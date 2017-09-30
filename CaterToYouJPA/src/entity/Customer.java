@@ -1,12 +1,29 @@
 package entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Customer {
 	
 	//field
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@Column(name="user_id")
 	private int userID;
+	
+	@Column(name="cart_id")
 	private int cartID;
+	
+	@Column(name="billing_address")
 	private int billingAddress;
+	
+	@Column(name="customer_imagel")
 	private int customerImage;
 	
 	//gets and sets
