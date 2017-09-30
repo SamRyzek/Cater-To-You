@@ -55,6 +55,9 @@ public class Item {
 	)
 	private List<Orders> orders;
 	
+	@ManyToMany(mappedBy="itemList")
+	private List<Category> categoryList;
+	
 	
 	//gets and sets
 	public List<Orders> getOrders() {

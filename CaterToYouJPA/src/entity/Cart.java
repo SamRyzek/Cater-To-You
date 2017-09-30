@@ -9,7 +9,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Cart {
+public class cart {
 	//id
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
