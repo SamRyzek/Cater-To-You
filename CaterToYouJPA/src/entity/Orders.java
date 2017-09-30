@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -15,6 +18,7 @@ public class Orders {
 	//field
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@OneToMany(mappedBy="orders_id")
 	private int id;
 	
 	@Column(name="total")
@@ -26,8 +30,15 @@ public class Orders {
 	@Column(name="delivery_date_time")
 	private Date deliveryDateTime;
 	
+	@ManyToOne
+	@JoinColumn(name="id")
 	@Column(name="delivery_address")
 	private int deliveryAddress;
+	
+	
+	
+	
+	
 	
 	//gets and sets
 	public int getId() {
