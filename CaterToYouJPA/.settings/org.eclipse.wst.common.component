@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-modules id="moduleCoreId" project-version="2.0">
-<<<<<<< HEAD
-	<wb-module deploy-name="CaterToYouJPA"/>
-=======
 	<wb-module deploy-name="CaterToYouJPA">
 		<wb-resource deploy-path="/" source-path="src"/>
-        <wb-resource deploy-path="/" source-path="/test"/>
 	</wb-module>
->>>>>>> 1e8aa640e84b998163db49637dd2bc398fc06122
 </project-modules>
