@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Address {
@@ -13,6 +15,7 @@ public class Address {
 	//field
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@OneToMany(mappedBy="delivery_address")
 	private int id;
 	
 	@Column(name="street")
@@ -29,6 +32,12 @@ public class Address {
 	
 	@Column(name="zip")
 	private int zip;
+	
+	
+	
+	
+	
+	
 	
 	
 	
