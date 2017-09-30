@@ -9,7 +9,18 @@
     </provider>
 
     <!-- List Entities Here -->
-    <class>entity.Actor</class>
+    <class>entity.Address</class>
+    <class>entity.Cart</class>
+    <class>entity.Category</class>
+    <class>entity.Company</class>
+    <class>entity.Customer</class>
+    <class>entity.Employees</class>
+    <class>entity.Images</class>
+    <class>entity.Item</class>
+    <class>entity.Menu</class>
+    <class>entity.OrderHasItems</class>
+    <class>entity.Orders</class>
+    <class>entity.User</class>
     
 
     <properties>

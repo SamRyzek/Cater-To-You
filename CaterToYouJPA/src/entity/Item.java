@@ -1,22 +1,46 @@
 package entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Item {
 	
 	
 	//field
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@Column(name="name")
 	private String name;
+	
+	@Column(name="calories")
 	private int calories;
+	
+	@Column(name="desc")
 	private String description;
+	
+	@Column(name="price")
 	private double price;
+	
+	@Column(name="availability")
 	private int availability;
+	
+	@Column(name="menu_id")
 	private int menuID;
+	
+	@Column(name="item_image")
 	private int itemImage;
+	
+	
+	//gets and sets
 	public int getId() {
 		return id;
 	}
-	
-	//gets and sets
 	public void setId(int id) {
 		this.id = id;
 	}
