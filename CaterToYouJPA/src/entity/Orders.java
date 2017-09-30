@@ -1,6 +1,7 @@
 package entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,14 +9,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
 
 
 @Entity
 public class Orders {
 	
-	//field
+	//fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@OneToMany(mappedBy="orders_id")
@@ -30,17 +33,23 @@ public class Orders {
 	@Column(name="delivery_date_time")
 	private Date deliveryDateTime;
 	
+	@Column(name="delivery_address")
 	@ManyToOne
 	@JoinColumn(name="id")
-	@Column(name="delivery_address")
 	private int deliveryAddress;
 	
-	
-	
-	
+	@ManyToMany(mappedBy="Item")
+	private List<Item> items;
 	
 	
 	//gets and sets
+	
+	public List<Item> getItems() {
+		return items;
+	}
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
 	public int getId() {
 		return id;
 	}

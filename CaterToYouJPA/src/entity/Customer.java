@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Customer {
@@ -18,6 +21,9 @@ public class Customer {
 	private int userID;
 	
 	@Column(name="cart_id")
+	@OneToOne(mappedBy="cart")
+	@ManyToOne
+	@JoinColumn(name="cart_id")
 	private int cartID;
 	
 	@Column(name="billing_address")

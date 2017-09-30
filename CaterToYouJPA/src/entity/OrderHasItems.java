@@ -1,5 +1,6 @@
 package entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,9 +21,14 @@ public class OrderHasItems {
 	
 	private int count;
 	
+	@Column(name="item_id")
+	@ManyToOne
+	@JoinColumn(name="id")
 	private int itemId;
 	
+	@Column(name="orders_id")
 	private int ordersId;
+	
 	
 	
 
