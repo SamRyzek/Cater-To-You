@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Company {
@@ -19,6 +20,7 @@ public class Company {
 	private String name;
 	
 	@Column(name="menu_id")
+	@OneToOne(mappedBy="Company")
 	private int menuID;
 	
 	@Column(name="company_address")
