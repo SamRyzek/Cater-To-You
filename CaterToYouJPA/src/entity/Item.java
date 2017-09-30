@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -41,6 +42,8 @@ public class Item {
 	private int menuID;
 	
 	@Column(name="item_image")
+	@ManyToOne
+	@JoinColumn(name="item_image")
 	private int itemImage;
 	
 	@ManyToMany

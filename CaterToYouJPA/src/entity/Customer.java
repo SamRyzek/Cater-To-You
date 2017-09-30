@@ -18,6 +18,8 @@ public class Customer {
 	private int id;
 	
 	@Column(name="user_id")
+	@ManyToOne
+	@JoinColumn(name="user_id")
 	private int userID;
 	
 	@Column(name="cart_id")
@@ -29,8 +31,11 @@ public class Customer {
 	@Column(name="billing_address")
 	private int billingAddress;
 	
-	@Column(name="customer_imagel")
+	@Column(name="customer_image")
+	@ManyToOne
+	@JoinColumn(name="customer_image")
 	private int customerImage;
+	
 	
 	//gets and sets
 	public int getId() {

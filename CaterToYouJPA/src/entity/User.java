@@ -5,12 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@OneToMany(mappedBy="user")
 	private int id;
 	
 	@Column(name="first_name")
@@ -25,8 +27,8 @@ public class User {
 	
 	private String email;
 	
+	
 	//gets and sets
-
 	public int getId() {
 		return id;
 	}
