@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+<<<<<<< HEAD
+=======
 	<classpathentry kind="src" path="src"/>
+<<<<<<< HEAD
+>>>>>>> d2eed05e5e196ed8d5e58f24c44c660b2b5e5f61
+=======
 	<classpathentry kind="src" path="test"/>
+>>>>>>> 1e8aa640e84b998163db49637dd2bc398fc06122
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8/"/>
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer">
 		<attributes>
