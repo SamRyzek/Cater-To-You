@@ -10,7 +10,6 @@ public class Address {
 	private String city;
 	private String state;
 	private int zip;
-	private int customerID;
 	
 	
 	
@@ -51,18 +50,13 @@ public class Address {
 	public void setZip(int zip) {
 		this.zip = zip;
 	}
-	public int getCustomerID() {
-		return customerID;
-	}
-	public void setCustomerID(int customerID) {
-		this.customerID = customerID;
-	}
+	
 	
 	//toString
 	@Override
 	public String toString() {
 		return "Address [id=" + id + ", street=" + street + ", street2=" + street2 + ", city=" + city + ", state="
-				+ state + ", zip=" + zip + ", customerID=" + customerID + "]";
+				+ state + ", zip=" + zip + "]";
 	}
 	
 	
