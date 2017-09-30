@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Cart {
-	
+	//id
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@OneToOne
