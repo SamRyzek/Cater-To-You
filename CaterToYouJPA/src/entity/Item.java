@@ -1,10 +1,16 @@
 package entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Item {
@@ -13,6 +19,7 @@ public class Item {
 	//field
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@OneToMany(mappedBy="item_id")
 	private int id;
 	
 	@Column(name="name")
@@ -36,8 +43,21 @@ public class Item {
 	@Column(name="item_image")
 	private int itemImage;
 	
+	@ManyToMany
+	@JoinTable(name="order_has_item", 
+	joinColumns=@JoinColumn(name="id"), 
+	inverseJoinColumns=@JoinColumn(name="id")
+	)
+	private List<Orders> orders;
+	
 	
 	//gets and sets
+	public List<Orders> getOrders() {
+		return orders;
+	}
+	public void setOrders(List<Orders> orders) {
+		this.orders = orders;
+	}
 	public int getId() {
 		return id;
 	}
