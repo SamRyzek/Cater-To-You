@@ -18,7 +18,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Orders {
 	
-	//field
+	//fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@OneToMany(mappedBy="orders_id")
