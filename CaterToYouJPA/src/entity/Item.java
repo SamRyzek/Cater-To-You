@@ -39,6 +39,8 @@ public class Item {
 	private int availability;
 	
 	@Column(name="menu_id")
+	@ManyToOne
+	@JoinColumn(name="menu_id")
 	private int menuID;
 	
 	@Column(name="item_image")
