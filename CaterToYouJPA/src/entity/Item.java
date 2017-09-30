@@ -116,12 +116,17 @@ public class Item {
 	}
 	
 	
-	//toString
+	public List<Category> getCategoryList() {
+		return categoryList;
+	}
+	public void setCategoryList(List<Category> categoryList) {
+		this.categoryList = categoryList;
+	}
 	@Override
 	public String toString() {
 		return "Item [id=" + id + ", name=" + name + ", calories=" + calories + ", description=" + description
 				+ ", price=" + price + ", availability=" + availability + ", menuID=" + menuID + ", itemImage="
-				+ itemImage + "]";
+				+ itemImage + ", orders=" + orders + ", categoryList=" + categoryList + "]";
 	}
 	
 	
