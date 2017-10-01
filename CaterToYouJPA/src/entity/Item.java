@@ -34,7 +34,7 @@ public class Item {
 	@Column(name="price")
 	private double price;
 	
-	@Column(name="availability")
+	@Column(name="availablity")
 	private int availability;
 	
 	@ManyToOne
