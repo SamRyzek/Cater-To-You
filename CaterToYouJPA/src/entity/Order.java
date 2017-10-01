@@ -12,11 +12,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
 
 @Entity
-public class Orders {
+@Table(name="orders")
+public class Order {
 	
 	//fields
 	@Id
@@ -27,28 +29,31 @@ public class Orders {
 	@Column(name="total")
 	private int total;
 	
-	@Column(name="customer_id")
-	private int customerID;
+	@ManyToOne
+	@JoinColumn(name="customer_id")
+	private Customer customer;
+	
+	
 	
 	@Column(name="delivery_date_time")
 	private Date deliveryDateTime;
 	
-	@Column(name="delivery_address")
 	@ManyToOne
-	@JoinColumn(name="id")
-	private int deliveryAddress;
+	@JoinColumn(name="delivery_address")
+	private Address address;
 	
-	@ManyToMany(mappedBy="Item")
-	private List<Item> items;
+	@OneToMany(mappedBy="order")
+	private List<OrderHasItems> orderHasItemsList;
 	
 	
 	//gets and sets
 	
-	public List<Item> getItems() {
-		return items;
+	
+	public List<OrderHasItems> getOrderHasItemsList() {
+		return orderHasItemsList;
 	}
-	public void setItems(List<Item> items) {
-		this.items = items;
+	public void setOrderHasItemsList(List<OrderHasItems> orderHasItemsList) {
+		this.orderHasItemsList = orderHasItemsList;
 	}
 	public int getId() {
 		return id;
@@ -62,11 +67,12 @@ public class Orders {
 	public void setTotal(int total) {
 		this.total = total;
 	}
-	public int getCustomerID() {
-		return customerID;
+	
+	public Customer getCustomer() {
+		return customer;
 	}
-	public void setCustomerID(int customerID) {
-		this.customerID = customerID;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 	public Date getDeliveryDateTime() {
 		return deliveryDateTime;
@@ -74,18 +80,17 @@ public class Orders {
 	public void setDeliveryDateTime(Date deliveryDateTime) {
 		this.deliveryDateTime = deliveryDateTime;
 	}
-	public int getDeliveryAddress() {
-		return deliveryAddress;
-	}
-	public void setDeliveryAddress(int deliveryAddress) {
-		this.deliveryAddress = deliveryAddress;
-	}
 	
-	//toString
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 	@Override
 	public String toString() {
-		return "Orders [id=" + id + ", total=" + total + ", customerID=" + customerID + ", deliveryDateTime="
-				+ deliveryDateTime + ", deliveryAddress=" + deliveryAddress + "]";
+		return "Order [id=" + id + ", total=" + total + ", customer=" + customer + ", deliveryDateTime="
+				+ deliveryDateTime + ", address=" + address + ", orderHasItemsList=" + orderHasItemsList + "]";
 	}
 	
 	

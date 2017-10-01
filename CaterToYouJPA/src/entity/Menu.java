@@ -1,10 +1,11 @@
 package entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -14,10 +15,22 @@ public class Menu {
 	//field
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@OneToMany(mappedBy="Menu")
-	@OneToOne
-	@JoinColumn(name="menu_id")
 	private int id;
+	
+	@OneToOne(mappedBy="menu")
+	private Company company;
+
+	@OneToMany(mappedBy="menu")
+	private List<Item> itemList;
+	
+	
+	
+	
+//	@OneToOne
+//	@JoinColumn(name="menu_id")
+//	
+	
+
 
 	//gets and sets
 	public int getId() {
@@ -27,11 +40,27 @@ public class Menu {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	public Company getCompany() {
+		return company;
+	}
 	
-	//toString
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+
+	public List<Item> getItemList() {
+		return itemList;
+	}
+	
+	public void setItemList(List<Item> itemList) {
+		this.itemList = itemList;
+	}
+	
+	
 	@Override
 	public String toString() {
-		return "Menu [id=" + id + "]";
+		return "Menu [id=" + id + ", company=" + company + "]";
 	}
 	
 	

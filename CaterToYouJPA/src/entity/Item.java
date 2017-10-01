@@ -20,7 +20,6 @@ public class Item {
 	//field
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@OneToMany(mappedBy="item_id")
 	private int id;
 	
 	@Column(name="name")
@@ -38,31 +37,31 @@ public class Item {
 	@Column(name="availability")
 	private int availability;
 	
-	@Column(name="menu_id")
 	@ManyToOne
 	@JoinColumn(name="menu_id")
-	private int menuID;
+	private Menu menu;
 	
-	@Column(name="item_image")
 	@ManyToOne
 	@JoinColumn(name="item_image")
-	private int itemImage;
+	private Image image;
+	
+	@OneToMany(mappedBy="item")
+	List<OrderHasItems> orderHasItemsList;
+	
 	
 	@ManyToMany
-	@JoinTable(name="order_has_item", 
-	joinColumns=@JoinColumn(name="id"), 
-	inverseJoinColumns=@JoinColumn(name="id")
-	)
-	private List<Orders> orders;
+	@JoinTable(name="item_has_category",
+	joinColumns=@JoinColumn(name="item_id"),
+	inverseJoinColumns=@JoinColumn(name="category_id")		
+			)
+	private List<Category> categoryList;
+	
+	@OneToMany(mappedBy="item")
+	private List<CartHasItem> cartHasItemList;
 	
 	
 	//gets and sets
-	public List<Orders> getOrders() {
-		return orders;
-	}
-	public void setOrders(List<Orders> orders) {
-		this.orders = orders;
-	}
+	
 	public int getId() {
 		return id;
 	}
@@ -99,26 +98,47 @@ public class Item {
 	public void setAvailability(int availability) {
 		this.availability = availability;
 	}
-	public int getMenuID() {
-		return menuID;
+	
+	public Menu getMenu() {
+		return menu;
 	}
-	public void setMenuID(int menuID) {
-		this.menuID = menuID;
-	}
-	public int getItemImage() {
-		return itemImage;
-	}
-	public void setItemImage(int itemImage) {
-		this.itemImage = itemImage;
+	public void setMenu(Menu menu) {
+		this.menu = menu;
 	}
 	
 	
-	//toString
+	
+	public Image getImage() {
+		return image;
+	}
+	public void setImage(Image image) {
+		this.image = image;
+	}
+	public List<Category> getCategoryList() {
+		return categoryList;
+	}
+	public void setCategoryList(List<Category> categoryList) {
+		this.categoryList = categoryList;
+	}
+	
+	public List<OrderHasItems> getOrderHasItemsList() {
+		return orderHasItemsList;
+	}
+	public void setOrderHasItemsList(List<OrderHasItems> orderHasItemsList) {
+		this.orderHasItemsList = orderHasItemsList;
+	}
+	
+	public List<CartHasItem> getCartHasItemList() {
+		return cartHasItemList;
+	}
+	public void setCartHasItemList(List<CartHasItem> cartHasItemList) {
+		this.cartHasItemList = cartHasItemList;
+	}
 	@Override
 	public String toString() {
 		return "Item [id=" + id + ", name=" + name + ", calories=" + calories + ", description=" + description
-				+ ", price=" + price + ", availability=" + availability + ", menuID=" + menuID + ", itemImage="
-				+ itemImage + "]";
+				+ ", price=" + price + ", availability=" + availability + ", menu=" + menu + ", image=" + image
+				+ ", orderHasItemsList=" + orderHasItemsList + ", categoryList=" + categoryList + "]";
 	}
 	
 	

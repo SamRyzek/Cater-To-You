@@ -21,6 +21,7 @@
     <class>entity.OrderHasItems</class>
     <class>entity.Orders</class>
     <class>entity.User</class>
+    <class>entity.UserRoles</class>
     
 
     <properties>

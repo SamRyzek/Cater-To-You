@@ -1,10 +1,11 @@
 package entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -13,10 +14,28 @@ public class Cart {
 	//id
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@OneToOne
-	@JoinColumn(name="cart_id")
-	@OneToMany(mappedBy="cart")
 	private int id;
+
+	
+	@OneToMany(mappedBy="cart")
+	private List<CartHasItem> cartHasItemList;
+	
+	@OneToOne(mappedBy="cart")
+	private Customer customer;
+	
+	
+	
+//	@OneToOne
+//	@JoinColumn(name="cart_id")
+//	@OneToMany(mappedBy="cart")
+
+	public List<CartHasItem> getCartHasItemList() {
+		return cartHasItemList;
+	}
+
+	public void setCartHasItemList(List<CartHasItem> cartHasItemList) {
+		this.cartHasItemList = cartHasItemList;
+	}
 
 	public int getId() {
 		return id;
@@ -24,6 +43,14 @@ public class Cart {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 	
 	

@@ -1,12 +1,14 @@
 package entity;
 
-import javax.persistence.Column;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -17,24 +19,26 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="user_id")
-	@ManyToOne
+//	@Column(name="user_id")
+	@OneToOne
 	@JoinColumn(name="user_id")
-	private int userID;
+	private User user;
 	
-	@Column(name="cart_id")
-	@OneToOne(mappedBy="cart")
 	@ManyToOne
+	@JoinColumn(name="billing_address")
+	private Address address;
+	
+	
+	@OneToOne
 	@JoinColumn(name="cart_id")
-	private int cartID;
+	private Cart cart;
 	
-	@Column(name="billing_address")
-	private int billingAddress;
-	
-	@Column(name="customer_image")
 	@ManyToOne
 	@JoinColumn(name="customer_image")
-	private int customerImage;
+	private Image image;
+	
+	@OneToMany(mappedBy="customer")
+	private List<Order> orderList;
 	
 	
 	//gets and sets
@@ -44,36 +48,45 @@ public class Customer {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getUserID() {
-		return userID;
+	
+	public User getUser() {
+		return user;
 	}
-	public void setUserID(int userID) {
-		this.userID = userID;
-	}
-	public int getCartID() {
-		return cartID;
-	}
-	public void setCartID(int cartID) {
-		this.cartID = cartID;
-	}
-	public int getBillingAddress() {
-		return billingAddress;
-	}
-	public void setBillingAddress(int billingAddress) {
-		this.billingAddress = billingAddress;
-	}
-	public int getCustomerImage() {
-		return customerImage;
-	}
-	public void setCustomerImage(int customerImage) {
-		this.customerImage = customerImage;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
-	//toString
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	public Cart getCart() {
+		return cart;
+	}
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+	
+	public Image getImage() {
+		return image;
+	}
+	public void setImage(Image image) {
+		this.image = image;
+	}
+	
+	
+	public List<Order> getOrderList() {
+		return orderList;
+	}
+	public void setOrderList(List<Order> orderList) {
+		this.orderList = orderList;
+	}
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", userID=" + userID + ", cartID=" + cartID + ", billingAddress=" + billingAddress
-				+ ", customerImage=" + customerImage + "]";
+		return "Customer [id=" + id + ", user=" + user + ", address=" + address + ", cart=" + cart + ", image=" + image
+				+ ", orderList=" + orderList + "]";
 	}
 	
 	

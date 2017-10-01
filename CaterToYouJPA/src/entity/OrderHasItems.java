@@ -29,6 +29,14 @@ public class OrderHasItems {
 	@Column(name="orders_id")
 	private int ordersId;
 	
+	@ManyToOne
+	@JoinColumn(name="item_id")
+	private Item item;
+	
+	@ManyToOne
+	@JoinColumn(name="orders_id")
+	private Order order;
+	
 	
 	
 
@@ -66,6 +74,22 @@ public class OrderHasItems {
 
 	
 	
+	public Item getItem() {
+		return item;
+	}
+
+	public void setItem(Item item) {
+		this.item = item;
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
 	//toString
 	@Override
 	public String toString() {
