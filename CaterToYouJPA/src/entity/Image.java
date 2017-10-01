@@ -25,20 +25,10 @@ public class Image {
 	private List<Company> companyList;
 	
 	@OneToMany(mappedBy="image")
-	private List<Company> customerList;
+	private List<Customer> customerList;
 	
 	@OneToMany(mappedBy="image")
-	private List<Company> itemList;
-	
-	
-
-	public List<Company> getItemList() {
-		return itemList;
-	}
-
-	public void setItemList(List<Company> itemList) {
-		this.itemList = itemList;
-	}
+	private List<Item> itemList;
 
 	public int getId() {
 		return id;
@@ -63,13 +53,34 @@ public class Image {
 	public void setCompanyList(List<Company> companyList) {
 		this.companyList = companyList;
 	}
+
+	public List<Customer> getCustomerList() {
+		return customerList;
+	}
+
+	public void setCustomerList(List<Customer> customerList) {
+		this.customerList = customerList;
+	}
+
+	public List<Item> getItemList() {
+		return itemList;
+	}
+
+	public void setItemList(List<Item> itemList) {
+		this.itemList = itemList;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Image [id=");
+		builder.append(id);
+		builder.append(", imageUrl=");
+		builder.append(imageUrl);
+		builder.append("]");
+		return builder.toString();
+	}
 	
-
-
-
-
-
-
 }
 
 

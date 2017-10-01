@@ -15,31 +15,15 @@ public class UserRoles {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	
-	@OneToMany(mappedBy="type")
+	@OneToMany(mappedBy="userRoles")
 	private List<User> user;
-	
-	private String type;
-
 
 	public List<User> getUser() {
 		return user;
 	}
 
-
 	public void setUser(List<User> user) {
 		this.user = user;
 	}
-
-
-	public String getType() {
-		return type;
-	}
-
-
-	public void setType(String type) {
-		this.type = type;
-	}
 	
-
 }

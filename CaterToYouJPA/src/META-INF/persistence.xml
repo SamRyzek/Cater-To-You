@@ -11,22 +11,23 @@
     <!-- List Entities Here -->
     <class>entity.Address</class>
     <class>entity.Cart</class>
+    <class>entity.CartHasItem</class>
     <class>entity.Category</class>
     <class>entity.Company</class>
     <class>entity.Customer</class>
-    <class>entity.Employees</class>
-    <class>entity.Images</class>
+    <class>entity.Employee</class>
+    <class>entity.Image</class>
     <class>entity.Item</class>
     <class>entity.Menu</class>
     <class>entity.OrderHasItems</class>
-    <class>entity.Orders</class>
+    <class>entity.Order</class>
     <class>entity.User</class>
     <class>entity.UserRoles</class>
     
 
     <properties>
       <property name="javax.persistence.jdbc.url"
-        value="jdbc:mysql://localhost:3306/sdvid" />
+        value="jdbc:mysql://localhost:3306/caterDB" />
       <property name="javax.persistence.jdbc.user"
         value="cater"/>
       <property name="javax.persistence.jdbc.password"

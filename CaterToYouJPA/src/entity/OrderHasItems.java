@@ -1,6 +1,5 @@
 package entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,19 +14,9 @@ public class OrderHasItems {
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	@ManyToOne
-	@JoinColumn(name="id")
 	private int id;
 	
 	private int count;
-	
-	@Column(name="item_id")
-	@ManyToOne
-	@JoinColumn(name="id")
-	private int itemId;
-	
-	@Column(name="orders_id")
-	private int ordersId;
 	
 	@ManyToOne
 	@JoinColumn(name="item_id")
@@ -36,26 +25,9 @@ public class OrderHasItems {
 	@ManyToOne
 	@JoinColumn(name="orders_id")
 	private Order order;
-	
-	
-	
 
 	//sets and gets
-	public int getItemId() {
-		return itemId;
-	}
 	
-	public void setItemId(int itemId) {
-		this.itemId = itemId;
-	}
-	
-	public int getOrdersId() {
-		return ordersId;
-	}
-	
-	public void setOrdersId(int ordersId) {
-		this.ordersId = ordersId;
-	}
 	public int getId() {
 		return id;
 	}
@@ -72,8 +44,6 @@ public class OrderHasItems {
 		this.count = count;
 	}
 
-	
-	
 	public Item getItem() {
 		return item;
 	}
@@ -89,14 +59,18 @@ public class OrderHasItems {
 	public void setOrder(Order order) {
 		this.order = order;
 	}
-
+	
 	//toString
+	
 	@Override
 	public String toString() {
-		return "OrderHasItems [id=" + id + ", count=" + count + ", itemId=" + itemId + ", ordersId=" + ordersId + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("OrderHasItems [id=");
+		builder.append(id);
+		builder.append(", count=");
+		builder.append(count);
+		builder.append("]");
+		return builder.toString();
 	}
-	
-	
-	
 	
 }

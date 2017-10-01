@@ -23,7 +23,6 @@ public class Order {
 	//fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@OneToMany(mappedBy="orders_id")
 	private int id;
 	
 	@Column(name="total")
@@ -32,7 +31,6 @@ public class Order {
 	@ManyToOne
 	@JoinColumn(name="customer_id")
 	private Customer customer;
-	
 	
 	
 	@Column(name="delivery_date_time")

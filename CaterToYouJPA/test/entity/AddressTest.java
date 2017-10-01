@@ -37,26 +37,26 @@ public class AddressTest {
 	
 	@Test 
 	public void test_Address_street_mapped() {
-		assertEquals("",add.getCity());
+		assertEquals(" 5312 DTC Blvd",add.getStreet());
 	}
 	
 	@Test
 	public void test_Address_Street2_mapped() {
-		assertEquals("", add.getStreet2());
+		assertEquals(" Suite #400", add.getStreet2());
 	}
 	
 	@Test
 	public void test_Address_city_mapped() {
-		assertEquals("", add.getCity());
+		assertEquals(" Denver", add.getCity());
 	}
 	
 	@Test
 	public void test_Address_state_mapped() {
-		assertEquals("", add.getState());
+		assertEquals(" CO", add.getState());
 	}
 	
 	@Test
 	public void test_Address_zip_mapped() {
-		assertEquals("", add.getZip());
+		assertEquals(80111, add.getZip());
 	}
 }
