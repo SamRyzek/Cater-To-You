@@ -69,17 +69,17 @@ public class AddressTest {
 		assertEquals(1, add.getCustomerList().get(0).getId());
 	}
 	
-//	@Test
-//	public void test_Address_orderList_mapped() {
-//		Address add = em.find(Address.class, 7);
-//		assertEquals(2, add.getOrderList().size());
-//		assertEquals(2, add.getOrderList().get(0).getId());
-//	}
-//	
-//	@Test
-//	public void test_Address_companyList_mapped() {
-//		Address add = em.find(Address.class, 7);
-//		assertEquals(1, add.getCompanyList());
-//		assertEquals("", add.getCompanyList().get(0).getName());
-//	}
+	@Test
+	public void test_Address_orderList_mapped() {
+		Address add = em.find(Address.class, 7);
+		assertEquals(2, add.getOrderList().size());
+		assertEquals(3, add.getOrderList().get(1).getId());
+	}
+	
+	@Test
+	public void test_Address_companyList_mapped() {
+		Address add = em.find(Address.class, 1);
+		assertEquals(1, add.getCompanyList());
+		assertEquals(" Illegal Pete's", add.getCompanyList().get(0).getName());
+	}
 }

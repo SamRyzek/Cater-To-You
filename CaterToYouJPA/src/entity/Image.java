@@ -69,17 +69,6 @@ public class Image {
 	public void setItemList(List<Item> itemList) {
 		this.itemList = itemList;
 	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Image [id=");
-		builder.append(id);
-		builder.append(", imageUrl=");
-		builder.append(imageUrl);
-		builder.append("]");
-		return builder.toString();
-	}
 	
 }
 

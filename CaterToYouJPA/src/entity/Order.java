@@ -85,15 +85,5 @@ public class Order {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-	@Override
-	public String toString() {
-		return "Order [id=" + id + ", total=" + total + ", customer=" + customer + ", deliveryDateTime="
-				+ deliveryDateTime + ", address=" + address + ", orderHasItemsList=" + orderHasItemsList + "]";
-	}
-	
-	
-	
-	
-	
 
 }

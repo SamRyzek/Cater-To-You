@@ -14,7 +14,6 @@ import javax.persistence.OneToOne;
 @Entity
 public class Customer {
 	
-	//field
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -81,14 +80,4 @@ public class Customer {
 	public void setOrderList(List<Order> orderList) {
 		this.orderList = orderList;
 	}
-	@Override
-	public String toString() {
-		return "Customer [id=" + id + ", user=" + user + ", address=" + address + ", cart=" + cart + ", image=" + image
-				+ ", orderList=" + orderList + "]";
-	}
-	
-	
-	
-	
-
 }

@@ -60,17 +60,4 @@ public class OrderHasItems {
 		this.order = order;
 	}
 	
-	//toString
-	
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("OrderHasItems [id=");
-		builder.append(id);
-		builder.append(", count=");
-		builder.append(count);
-		builder.append("]");
-		return builder.toString();
-	}
-	
 }

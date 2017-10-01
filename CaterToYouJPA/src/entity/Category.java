@@ -17,7 +17,6 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	
 	private String category;
 	
 	@ManyToMany(mappedBy="categoryList")
@@ -45,10 +44,5 @@ public class Category {
 
 	public void setItemList(List<Item> itemList) {
 		this.itemList = itemList;
-	}
-
-	@Override
-	public String toString() {
-		return "Category [id=" + id + ", category=" + category + ", itemList=" + itemList + "]";
 	}
 }

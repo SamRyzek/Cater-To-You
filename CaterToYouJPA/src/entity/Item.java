@@ -134,16 +134,5 @@ public class Item {
 	public void setCartHasItemList(List<CartHasItem> cartHasItemList) {
 		this.cartHasItemList = cartHasItemList;
 	}
-	@Override
-	public String toString() {
-		return "Item [id=" + id + ", name=" + name + ", calories=" + calories + ", description=" + description
-				+ ", price=" + price + ", availability=" + availability + ", menu=" + menu + ", image=" + image
-				+ ", orderHasItemsList=" + orderHasItemsList + ", categoryList=" + categoryList + "]";
-	}
-	
-	
-	
-	
-	
 
 }

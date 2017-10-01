@@ -52,18 +52,4 @@ public class Employee {
 		this.company = company;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Employee [employeeID=");
-		builder.append(employeeID);
-		builder.append(", user=");
-		builder.append(user);
-		builder.append(", company=");
-		builder.append(company);
-		builder.append("]");
-		return builder.toString();
-	}
-	
-	
 }
