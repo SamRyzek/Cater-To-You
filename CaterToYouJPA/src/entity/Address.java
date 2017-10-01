@@ -103,6 +103,12 @@ public class Address {
 	public void setOrderList(List<Order> orderList) {
 		this.orderList = orderList;
 	}
+	public List<Company> getCompanyList() {
+		return companyList;
+	}
+	public void setCompanyList(List<Company> companyList) {
+		this.companyList = companyList;
+	}
 	//toString
 	@Override
 	public String toString() {

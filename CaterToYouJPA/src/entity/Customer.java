@@ -19,7 +19,6 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-//	@Column(name="user_id")
 	@OneToOne
 	@JoinColumn(name="user_id")
 	private User user;
@@ -27,7 +26,6 @@ public class Customer {
 	@ManyToOne
 	@JoinColumn(name="billing_address")
 	private Address address;
-	
 	
 	@OneToOne
 	@JoinColumn(name="cart_id")

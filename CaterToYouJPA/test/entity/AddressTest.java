@@ -14,20 +14,17 @@ public class AddressTest {
 	
 	EntityManagerFactory emf = null;
 	EntityManager em = null;
-	Address add;
 	
 	@Before
 	public void setUp() {
 		emf = Persistence.createEntityManagerFactory("CaterToYou");
 		em = emf.createEntityManager();
-		add = em.find(Address.class,1);
 	}
 	
 	@After
 	public void tearDown() {
 		em.close();
 		emf.close();
-		add = null;
 	}
 	
 	@Test
@@ -37,26 +34,52 @@ public class AddressTest {
 	
 	@Test 
 	public void test_Address_street_mapped() {
-		assertEquals(" 5312 DTC Blvd",add.getStreet());
+		Address add = em.find(Address.class, 7);
+		assertEquals(" 5695 S Galena St.",add.getStreet());
 	}
 	
 	@Test
 	public void test_Address_Street2_mapped() {
-		assertEquals(" Suite #400", add.getStreet2());
+		Address add = em.find(Address.class, 7);
+		assertEquals(" ", add.getStreet2());
 	}
 	
 	@Test
 	public void test_Address_city_mapped() {
-		assertEquals(" Denver", add.getCity());
+		Address add = em.find(Address.class, 7);
+		assertEquals(" Greenwood Village", add.getCity());
 	}
 	
 	@Test
 	public void test_Address_state_mapped() {
+		Address add = em.find(Address.class, 7);
 		assertEquals(" CO", add.getState());
 	}
 	
 	@Test
 	public void test_Address_zip_mapped() {
+		Address add = em.find(Address.class, 7);
 		assertEquals(80111, add.getZip());
 	}
+	
+	@Test
+	public void test_Address_customerList_mapped() {
+		Address add = em.find(Address.class, 6);
+		assertEquals(1, add.getCustomerList().size());
+		assertEquals(1, add.getCustomerList().get(0).getId());
+	}
+	
+//	@Test
+//	public void test_Address_orderList_mapped() {
+//		Address add = em.find(Address.class, 7);
+//		assertEquals(2, add.getOrderList().size());
+//		assertEquals(2, add.getOrderList().get(0).getId());
+//	}
+//	
+//	@Test
+//	public void test_Address_companyList_mapped() {
+//		Address add = em.find(Address.class, 7);
+//		assertEquals(1, add.getCompanyList());
+//		assertEquals("", add.getCompanyList().get(0).getName());
+//	}
 }
