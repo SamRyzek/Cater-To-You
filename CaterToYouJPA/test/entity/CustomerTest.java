@@ -59,6 +59,7 @@ public class CustomerTest {
 	@Test
 	public void test_Customer_orderList_mapped() {
 		Customer c = em.find(Customer.class, 1);
-		assertEquals();
+		assertEquals(1, c.getOrderList().size());
+		assertEquals(4, c.getOrderList().get(0).getId());
 	}
 }
