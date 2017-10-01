@@ -20,11 +20,7 @@ public class Category {
 	
 	private String category;
 	
-	@ManyToMany
-	@JoinTable(name="item_has_category",
-			joinColumns=@JoinColumn(name="category_id"),
-			inverseJoinColumns=@JoinColumn(name="item_id")
-			)
+	@ManyToMany(mappedBy="categoryList")
 	private List<Item> itemList;
 
 	public int getId() {

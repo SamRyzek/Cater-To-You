@@ -23,6 +23,13 @@ public class CartHasItem {
 	@JoinColumn(name="id")
 	private int itemID;
 	
+	@ManyToOne
+	@JoinColumn(name="item_id")
+	private Item item;
+	
+	@ManyToOne
+	@JoinColumn(name="cart_id")
+	private Cart cart;
 	
 	private int count;
 	
@@ -55,6 +62,18 @@ public class CartHasItem {
 	
 	//toString
 	
+	public Item getItem() {
+		return item;
+	}
+	public void setItem(Item item) {
+		this.item = item;
+	}
+	public Cart getCart() {
+		return cart;
+	}
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 	@Override
 	public String toString() {
 		return "CartHasItem [id=" + id + ", cartID=" + cartID + ", itemID=" + itemID + ", count=" + count + "]";

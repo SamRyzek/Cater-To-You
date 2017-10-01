@@ -5,16 +5,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@OneToMany(mappedBy="user")
 	private int id;
+	
+	@OneToOne(mappedBy="user")
+	private Customer customer;
+	
+	@OneToOne(mappedBy="user")
+	private Employee employee;
 	
 	@Column(name="first_name")
 	private String firstName;
@@ -29,7 +35,8 @@ public class User {
 	private String email;
 	
 	@ManyToOne
-	private int type;
+	@JoinColumn(name="type")
+	private UserRoles userRoles;
 	
 	
 	//gets and sets
@@ -39,6 +46,30 @@ public class User {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public UserRoles getUserRoles() {
+		return userRoles;
+	}
+
+	public void setUserRoles(UserRoles userRoles) {
+		this.userRoles = userRoles;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 	public String getFirstName() {
@@ -81,11 +112,11 @@ public class User {
 		this.email = email;
 	}
 
-	//toString
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
-				+ ", password=" + password + ", email=" + email + "]";
+		return "User [id=" + id + ", customer=" + customer + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", username=" + username + ", password=" + password + ", email=" + email + ", userRoles=" + userRoles
+				+ "]";
 	}
 	
 	

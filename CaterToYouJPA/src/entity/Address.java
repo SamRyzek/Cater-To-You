@@ -1,11 +1,13 @@
 package entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -15,8 +17,18 @@ public class Address {
 	//field
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@OneToMany(mappedBy="delivery_address")
 	private int id;
+	
+	@OneToMany(mappedBy="address")
+	private List<Customer> customerList;
+	
+	@OneToMany(mappedBy="address")
+	private List<Order> orderList;
+	
+	@OneToMany(mappedBy="address")
+	private List<Company> companyList;
+	
+	
 	
 	@Column(name="street")
 	private String street;
@@ -80,6 +92,18 @@ public class Address {
 	}
 	
 	
+	public List<Customer> getCustomerList() {
+		return customerList;
+	}
+	public void setCustomerList(List<Customer> customerList) {
+		this.customerList = customerList;
+	}
+	public List<Order> getOrderList() {
+		return orderList;
+	}
+	public void setOrderList(List<Order> orderList) {
+		this.orderList = orderList;
+	}
 	//toString
 	@Override
 	public String toString() {
