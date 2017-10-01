@@ -79,7 +79,7 @@ public class AddressTest {
 	@Test
 	public void test_Address_companyList_mapped() {
 		Address add = em.find(Address.class, 1);
-		assertEquals(1, add.getCompanyList());
+		assertEquals(1, add.getCompanyList().size());
 		assertEquals(" Illegal Pete's", add.getCompanyList().get(0).getName());
 	}
 }
