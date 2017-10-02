@@ -1,5 +1,7 @@
 package data;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -20,9 +22,11 @@ public class LoginDAOimp implements LoginDAO {
 	
 	@Override
 	public User returnUser(String userName, String password) {
+		User user = null;
 		String sql = "SELECT u FROM User u WHERE u.username = :user AND u.password = :pass";
-		User user = em.createQuery(sql, User.class).setParameter("user", userName)
-				.setParameter("pass", password).getResultList().get(0);
+		List<User> userList = em.createQuery(sql, User.class).setParameter("user", userName)
+				.setParameter("pass", password).getResultList();
+		user = userList.size() == 0 ? null : userList.get(0); 
 		return user;
 	}
 

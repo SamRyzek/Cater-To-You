@@ -15,43 +15,43 @@ import entity.User;
 
 @Controller
 public class LoginController {
-	
+
 	@Autowired
 	LoginDAO dao;
-	
+
 	@RequestMapping("index.do")
 	public String displayHome(HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		if(user == null) {
-			return "/views/index.jsp";
+			return "views/index.jsp";
 		}
 		return getCorrectJSP(user);
 	}
-	
+
 	private String getCorrectJSP(User user) {
 		String jsp = "";
 		switch(user.getUserRoles().getId()) {
-		
+
 		case 1:
-			jsp = "/views/customer..jsp";
+			jsp = "views/customer.jsp";
 			break;
 		case 2:
-			jsp = "/views/company.jsp";
+			jsp = "views/company.jsp";
 			break;
 		case 3:
-			jsp = "/views/admin.jsp";
+			jsp = "views/admin.jsp";
 			break;
-		default: jsp = "/views/index.jsp";
+		default: jsp = "views/index.jsp";
 		}
 		return jsp;
 	}
-	
-	@RequestMapping(path = "checkLogin.do", 
-			method = RequestMethod.POST,
-			params = "login")
+
+	@RequestMapping(path = "checkLogin.do",
+			method = RequestMethod.GET)
 	public String checkLogin(Model model, HttpSession session,
 			@RequestParam("username") String userName,
 			@RequestParam("password") String password) {
+		String sql = "SELECT u FROM User u WHERE u.username = :user AND u.password = :pass";
 		User user = dao.returnUser(userName, password);
 		if(user == null) {
 			model.addAttribute("loginErr", "Your information Incorrect");
@@ -60,7 +60,7 @@ public class LoginController {
 		setSessions(session, user);
 		return getCorrectJSP(user);
 	}
-	
+
 	private void setSessions(HttpSession session, User user) {
 		switch(user.getUserRoles().getId()) {
 		case 1:
@@ -69,5 +69,5 @@ public class LoginController {
 			break;
 		}
 	}
-	
+
 }
