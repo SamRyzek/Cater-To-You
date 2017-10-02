@@ -33,6 +33,7 @@ public interface CustomerDAO {
 	// information
 
 	
+//************************Chris's methods
 	
 	public Customer updateEmail(Customer c, int id);
 
@@ -54,7 +55,7 @@ public interface CustomerDAO {
 
 	public Item returnItemToScreen(String title); // take in the title of the item off a drop down, go pull it out of
 													// the db, and return it back to the controller, it gets put on a
-													// jsp for the customer
+//********************Chris's methods													 jsp for the customer
 
 	public void showCartWithAllItems();
 
