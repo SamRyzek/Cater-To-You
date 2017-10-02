@@ -46,8 +46,7 @@ public class Item {
 	private Image image;
 	
 	@OneToMany(mappedBy="item")
-	List<OrderHasItems> orderHasItemsList;
-	
+	private List<OrderHasItems> orderHasItemsList;
 	
 	@ManyToMany
 	@JoinTable(name="item_has_category",
