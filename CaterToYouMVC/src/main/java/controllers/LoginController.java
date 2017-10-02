@@ -33,29 +33,29 @@ public class LoginController {
 		switch(user.getUserRoles().getId()) {
 		
 		case 1:
-			jsp = "customer";
+			jsp = "/views/customer..jsp";
 			break;
 		case 2:
-			jsp = "company";
+			jsp = "/views/company.jsp";
 			break;
 		case 3:
-			jsp = "admin";
+			jsp = "/views/admin.jsp";
 			break;
-		default: jsp = "index";
+		default: jsp = "/views/index.jsp";
 		}
 		return jsp;
 	}
 	
-	@RequestMapping(path = "", 
+	@RequestMapping(path = "checkLogin.do", 
 			method = RequestMethod.POST,
 			params = "login")
 	public String checkLogin(Model model, HttpSession session,
-			@RequestParam("userName") String userName,
+			@RequestParam("username") String userName,
 			@RequestParam("password") String password) {
 		User user = dao.returnUser(userName, password);
 		if(user == null) {
 			model.addAttribute("loginErr", "Your information Incorrect");
-			return "index";
+			return "/views/index.jsp";
 		}
 		setSessions(session, user);
 		return getCorrectJSP(user);

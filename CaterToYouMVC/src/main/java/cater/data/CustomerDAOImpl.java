@@ -1,11 +1,9 @@
 package cater.data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.Order;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -68,28 +66,13 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public Customer updatePersonalInfo(Customer c, int id) {
-
-		Customer cust = em.find(Customer.class, id);
-		if (cust != null) {
-
-			cust.setAddress(c.getAddress());
-			cust.setImage(c.getImage());
-
-		}
-
-		return null;
-
-	}
-
-	@Override
 	public Item returnItemToScreen(String title) {
 
 		return null;
 	}
 
 	@Override
-	public void updateQuantityInCart(Item i) {
+	public void updateQuantityInCart(Item i, int quantity) {
 
 	}
 
@@ -99,20 +82,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	}
 
+	
+
+	
 	@Override
-	public void cartEditOrder() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void addItemsBasedOnQuantityByItemID() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void checkoutEmptiesCart() {
+	public void checkoutEmptiesCartMovesToOrder() {
 		// TODO Auto-generated method stub
 
 	}
@@ -130,12 +104,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 	    return menuItems;
 	}
 
-	@Override
-	public List<Order> findOrderHistory(int id) {
-		String sql = "SELECT o FROM order o where o.customer.id = :id ";
-	    List<Order> orderHistory = em.createQuery(sql, Order.class).setParameter("id", id).getResultList();
-	    return orderHistory;
-	}
 
 	@Override
 	public Customer updateEmail(Customer c, int id) {
@@ -168,21 +136,22 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public List<Item> returnItemsInOrderById(Order order) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<Menu> populateMenuList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Order> returnOrdersForCustomer(Customer c) {
+	public List<Item> returnItemsInOrderById(entity.Order order) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
+	public List<entity.Order> returnOrdersForCustomer(Customer c) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }

@@ -2,8 +2,6 @@ package cater.data;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import entity.Company;
 import entity.Employee;
 import entity.Image;
@@ -16,9 +14,9 @@ public interface CompanyDAO {
 	
 	public Company updateCompanyInfo(Company c, int id);
 	
-	public Item updateMenuItem(Item i); 
-	public Item addMenuItem(Item i); 
-	public Item makeMenuItemInactive(Item i); 
+	public Menu updateMenuItem(Item i); 
+	public Menu addMenuItem(Item i); 
+	public Menu makeMenuItemInactive(Item i); 
 	
 	public Employee updateEmployee(Employee e);
 	public Employee addEmployee(Employee e);
