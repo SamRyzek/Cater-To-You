@@ -2,7 +2,9 @@ package cater.data;
 
 import java.util.List;
 
+import entity.Address;
 import entity.Cart;
+import entity.Company;
 import entity.Customer;
 import entity.Item;
 import entity.Menu;
@@ -24,7 +26,7 @@ public interface CustomerDAO {
 	public void removeItemFromCart(Item i, Cart cart);
 
 	public void calculateCartTotal(Item i, Cart c);
-	public List<Order> findOrderHistory(int id);
+	
 	// update personal information, and when we create a customer object he'll
 	// automatically have all null shit, therefore we don't need an add customer
 	// information
@@ -32,11 +34,11 @@ public interface CustomerDAO {
 
 //************************Chris's methods
 
-	public Customer updateEmail(Customer c, int id);
+	public Customer updateEmail(Customer c);
 
-	public Customer updateAddress(Customer c, Address a, int id);
+	public Customer updateAddress(Customer c, Address a);
 
-	public Menu returnMenuByCompanyId(Menu m); //put an m.getId and then do the find
+	public Menu returnMenuByCompanyId(Company c); //put an m.getId and then do the find
 
 	public List<Item> returnItemsFromMenu(Menu m); //m.getId eager load in the list of items it has. With menu obj, we don't need to reorganize shit if we decide to search on other stuff
 
@@ -50,11 +52,11 @@ public interface CustomerDAO {
 	public List<Order> returnOrdersForCustomer(Customer c);
 
 
-	public Item returnItemToScreen(String title); // take in the title of the item off a drop down, go pull it out of
+	public Item returnItemToScreen(Item i); // take in the title of the item off a drop down, go pull it out of
 													// the db, and return it back to the controller, it gets put on a
 //********************Chris's methods													 jsp for the customer
 
-	public void showCartWithAllItems();
+	public List<Item> showCartWithAllItems(Customer c);
 
 	//get cart and return all items within the cart
 
@@ -67,9 +69,7 @@ public interface CustomerDAO {
 	//cart check out with total and cart is emptied
 
 
-	List<Item> showMenu(int id);
-
-	List<Order> findOrderHistory(int id);
+	public List<Item> showMenu(int id);
 
 
 	//takes all items in the cart and adds their prices

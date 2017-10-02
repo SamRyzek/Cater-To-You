@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.Order;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import entity.Address;
 import entity.Cart;
 import entity.CartHasItem;
+import entity.Company;
 import entity.Customer;
 import entity.Item;
 import entity.Menu;
@@ -68,9 +68,13 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public Item returnItemToScreen(String title) {
+	public Item returnItemToScreen(Item i) {
+		String queryString = "SELECT i FROM Item i WHERE i.name = :name";
+		Item item = em.createQuery(queryString, Item.class)
+				.setParameter("name", i.getName())
+				.getSingleResult();
 
-		return null;
+		return item;
 	}
 
 	@Override
@@ -82,8 +86,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 				.setParameter("cart", cart.getId())
 				.getResultList().get(0);
 
-
-
 		if (chi != null) {
 
 			chi.setCart(cart);
@@ -91,13 +93,17 @@ public class CustomerDAOImpl implements CustomerDAO {
 			chi.setItem(i);
 			em.persist(chi);
 		}
-
 	}
 
 	@Override
-	public void showCartWithAllItems() {
-		// TODO Auto-generated method stub
+	public List<Item> showCartWithAllItems(Customer c) {
+		int id = c.getCart().getId();
+		String stringQuery = "SELECT i FROM Item i WHERE i.cartHasItemList.cart.id = :id";
+		List<Item> itemList = em.createQuery(stringQuery, Item.class)
+				.setParameter("id", id)
+				.getResultList();
 
+		return itemList;
 	}
 
 	@Override
@@ -122,10 +128,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 		}
 
-
-
-
-
 	}
 
 	@Override
@@ -136,61 +138,85 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public List<Order> findOrderHistory(int id) {
-		String sql = "SELECT o FROM Order o where o.customer.id = :id ";
-	    List<Order> orderHistory = em.createQuery(sql, Order.class).setParameter("id", id).getResultList();
-	    return orderHistory;
-	}
+	public Customer updateEmail(Customer c) {
 
-	@Override
-	public Customer updateEmail(Customer c, int id) {
-
+		int id = c.getId();
 		Customer customer = em.find(Customer.class, id);
 		String email = c.getUser().getEmail();
 
 		customer.getUser().setEmail(email);
 
+		return customer;
+	}
+
+	@Override
+	public Customer updateAddress(Customer c, Address a) {
+		
+		int id = c.getId();
+		
+		Customer customer = em.find(Customer.class, id);
+		customer.setAddress(a);
 		return null;
 	}
 
 	@Override
-	public Customer updateAddress(Customer c, Address a, int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Menu returnMenuByCompanyId(Menu m) {
-		// TODO Auto-generated method stub
-		return null;
+	public Menu returnMenuByCompanyId(Company c) { //join fetch
+		
+		int id = c.getId();
+		String queryString = "SELECT m FROM Menu m JOIN FETCH m.itemList WHERE m.company.id = :id";
+		Menu menu = em.createQuery(queryString, Menu.class)
+				.setParameter("id", id)
+				.getSingleResult();
+		
+		return menu;
 	}
 
 	@Override
 	public List<Item> returnItemsFromMenu(Menu m) {
-		// TODO Auto-generated method stub
-		return null;
+		int id = m.getId();
+		
+		String queryString = "SELECT m FROM Menu m JOIN FETCH m.itemList WHERE m.id = :id";
+		
+		Menu menu = em.createQuery(queryString, Menu.class)
+				.setParameter("id", id)
+				.getSingleResult();
+		return menu.getItemList();
 	}
 
 	@Override
 	public Item returnItemById(Item i) {
-		// TODO Auto-generated method stub
-		return null;
+	
+		int id = i.getId();
+		String queryString = "SELECT i from Item WHERE i.id = :id";
+		
+		Item item = em.createQuery(queryString, Item.class)
+				.setParameter("id", id)
+				.getSingleResult();
+		
+		return item;
 	}
 
 	@Override
 	public List<Menu> populateMenuList() {
-		// TODO Auto-generated method stub
-		return null;
+		
+	String queryString = "SELECT m FROM Menu m JOIN FETCH m.itemList";
+	List<Menu> menuList = em.createQuery(queryString, Menu.class)
+			.getResultList();
+		
+		return menuList;
+	}
+
+
+	@Override
+	public List<Order> returnOrdersForCustomer(Customer c) {
+		int id = c.getId();
+		String queryString = "SELECT o FROM Order o where o.customer.id = :id ";
+	    List<Order> orderHistory = em.createQuery(queryString, Order.class).setParameter("id", id).getResultList();
+	    return orderHistory;
 	}
 
 	@Override
-	public List<Item> returnItemsInOrderById(entity.Order order) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<entity.Order> returnOrdersForCustomer(Customer c) {
+	public List<Item> returnItemsInOrderById(Order order) {
 		// TODO Auto-generated method stub
 		return null;
 	}
