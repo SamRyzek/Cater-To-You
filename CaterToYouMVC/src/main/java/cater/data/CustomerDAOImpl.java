@@ -1,12 +1,12 @@
 package cater.data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.Order;
 
+import org.hibernate.validator.constraints.Email;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -125,21 +125,26 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	@Override
 	public List<Item> showMenu(int id) {
-		String sql = "SELECT i FROM item i where i.menu.company.id = :id ";
+		String sql = "SELECT i FROM Item i where i.menu.company.id = :id ";
 	    List<Item> menuItems = em.createQuery(sql, Menu.class).setParameter("id", id).getResultList().get(0).getItemList();
 	    return menuItems;
 	}
 
 	@Override
 	public List<Order> findOrderHistory(int id) {
-		String sql = "SELECT o FROM order o where o.customer.id = :id ";
+		String sql = "SELECT o FROM Order o where o.customer.id = :id ";
 	    List<Order> orderHistory = em.createQuery(sql, Order.class).setParameter("id", id).getResultList();
 	    return orderHistory;
 	}
 
 	@Override
 	public Customer updateEmail(Customer c, int id) {
-		// TODO Auto-generated method stub
+		
+		Customer customer = em.find(Customer.class, id);
+		String email = c.getUser().getEmail();
+				
+		customer.getUser().setEmail(email);
+		
 		return null;
 	}
 

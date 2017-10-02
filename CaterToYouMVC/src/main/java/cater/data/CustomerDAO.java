@@ -1,9 +1,13 @@
 package cater.data;
 
+import java.util.List;
+
+import entity.Address;
 import entity.Cart;
 import entity.Customer;
 import entity.Item;
 import entity.Menu;
+import entity.Order;
 
 public interface CustomerDAO {
 
@@ -72,9 +76,6 @@ public interface CustomerDAO {
 
 	List<Item> showMenu(int id);
 
-	List<Order> findOrderHistory(int id);
-
-	Customer updatePersonalInfo(Customer c, int id);
 
 	//takes all items in the cart and adds their prices
 
