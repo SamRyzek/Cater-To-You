@@ -8,11 +8,18 @@
 <title>Cater To You - ${company.name}</title>
 </head>
 <body>
+	${company.name}
+				${address.street}
+				${address.street2}
+				${address.city}
+				${address.state}
+				${address.zip}
 	
 	<c:forEach items="${menu}" var="item">
 				${item.name}
 				${item.description}
 				${item.price}
+				
 		 <form action="addToCart.do" method="POST">
 				Quantity
 		<input type="number" name="quantity" value="${count}"/><br/>
