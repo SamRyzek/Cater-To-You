@@ -15,13 +15,13 @@
 <title>Cater To You</title>
 </head>
 <body>
-	First Name: ${customer.firstName} Last Name: ${customer.lastName}
+	First Name: ${user.firstName} Last Name: ${user.lastName}
 
 	<form action="Shop.do" method="GET">
 		<input type="submit" value="Shop" />
 	</form>
 
-	Email: ${customer.email}
+	Email: ${user.email}
 	Billing Address Street: ${address.street} Street 2: ${address.street2}
 	City: ${address.city} State: ${address.state} Zip: ${address.zip}
 	<form action="updateCustomer.do" method="POST">
