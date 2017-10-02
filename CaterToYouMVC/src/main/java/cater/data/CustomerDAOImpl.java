@@ -1,5 +1,6 @@
 package cater.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -108,7 +109,10 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public void checkoutEmptiesCartMovesToOrder() {
+	public void checkoutEmptiesCartMovesToOrder(Cart cart) {
+		
+		int id = cart.getId();
+		String stringQuery = "SELECT * FROM Cart c WHERE c.getHasItemList.cart.id = :id";
 		
 
 	}
@@ -215,20 +219,37 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public List<Order> returnOrdersForCustomer(Customer c) {
 		int id = c.getId();
 		String queryString = "SELECT o FROM Order o where o.customer.id = :id ";
-	    List<Order> orderHistory = em.createQuery(queryString, Order.class).setParameter("id", id).getResultList();
+	    List<Order> orderHistory = em.createQuery(queryString, Order.class)
+	    		.setParameter("id", id)
+	    		.getResultList();
 	    return orderHistory;
 	}
 
+//	@Override
+//	public List<Item> returnItemsInOrderById(Order order) {
+//		
+//		int id = order.getId();
+//		String queryString = "SELECT ord FROM OrderHasItems ord WHERE ord.order.id = :id";
+//		List<OrderHasItems> orderHasItemList = em.createQuery(queryString, OrderHasItems.class)
+//				.setParameter("id", id)
+//				.getResultList();
+//		
+//		List<Item> itemList = new ArrayList<>(); 
+//		for (OrderHasItems i : orderHasItemList) {
+//			itemList.add(i.getItem());	
+//		}
+//		
+//		
+//		return itemList;
+//	}
 	@Override
-	public List<OrderHasItems> returnItemsInOrderById(Order order) {
-		
+	public List<Item> returnItemsInOrderById(Order order) {
 		int id = order.getId();
-		String queryString = "SELECT ohi.item FROM OrderHasItems ohi WHERE ohi.order.id = :id";
-		List<OrderHasItems> itemList = em.createQuery(queryString, OrderHasItems.class)
+		String queryString = "SELECT i FROM Item i WHERE i.OrderHasItems.Order.id = :id";
+		List<Item> items = em.createQuery(queryString, Item.class)
 				.setParameter("id", id)
 				.getResultList();
-		
-		return itemList;
+		return items;
 	}
 
 
