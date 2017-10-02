@@ -8,42 +8,44 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.criteria.Order;
 
 @Entity
 public class Address {
-	
-	
+
+
 	//field
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@OneToMany(mappedBy="address")
 	private List<Customer> customerList;
-	
+
 	@OneToMany(mappedBy="address")
 	private List<Order> orderList;
-	
+
 	@OneToMany(mappedBy="address")
 	private List<Company> companyList;
-	
-	
-	
+
+
+
 	@Column(name="street")
 	private String street;
-	
+
 	@Column(name="street2")
 	private String street2;
-	
+
 	@Column(name="city")
 	private String city;
-	
+
 	@Column(name="state")
 	private String state;
-	
+
 	@Column(name="zip")
 	private int zip;
 
+	//sets and gets
 	public int getId() {
 		return id;
 	}

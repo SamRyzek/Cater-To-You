@@ -73,7 +73,7 @@ public class AddressTest {
 	public void test_Address_orderList_mapped() {
 		Address add = em.find(Address.class, 7);
 		assertEquals(2, add.getOrderList().size());
-		assertEquals(3, add.getOrderList().get(1).getId());
+		assertEquals(3, add.getOrderList().get(0).getId());
 	}
 	
 	@Test
