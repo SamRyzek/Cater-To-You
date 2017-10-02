@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.criteria.Order;
 
+import entity.Address;
 import entity.Cart;
 import entity.Customer;
 import entity.Item;
@@ -20,10 +21,10 @@ public interface CustomerDAO {
 	// checkout cart
 	// need to include functionality to update order history
 	// may need to take in customer cart
-	public void emptyCart();
+	public void emptyCart(Item i, Cart cart);
 
 	// delete item from cart
-	public void removeItemFromCart(Item i);
+	public void removeItemFromCart(Item i, Cart cart);
 
 	// enter shipping address
 
@@ -69,6 +70,8 @@ public interface CustomerDAO {
 	List<Item> showMenu(int id);
 
 	List<Order> findOrderHistory(int id);
+
+	Customer updatePersonalInfo(Customer c, int id);
 
 	//takes all items in the cart and adds their prices
 

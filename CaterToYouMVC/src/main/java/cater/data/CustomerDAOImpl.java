@@ -10,6 +10,7 @@ import javax.persistence.criteria.Order;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import entity.Address;
 import entity.Cart;
 import entity.CartHasItem;
 import entity.Customer;
@@ -47,14 +48,23 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public void emptyCart() {
-		// TODO Auto-generated method stub
-
+	public void emptyCart(Item i, Cart cart) {
+		
+		String sql = "DELETE ci FROM CartHasItem ci WHERE ci.cart.id = :cart";
+		em.createQuery(sql, CartHasItem.class)
+				.setParameter("cart", cart.getId())
+				.executeUpdate();
+		
 	}
 
 	@Override
-	public void removeItemFromCart(Item i) {
+	public void removeItemFromCart(Item i, Cart cart) {
 
+		String sql = "DELETE ci FROM CartHasItem ci WHERE ci.item.id = :id AND ci.cart.id = :cart";
+		em.createQuery(sql, CartHasItem.class)
+				.setParameter("id", i.getId())
+				.setParameter("cart", cart.getId())
+				.executeUpdate();
 	}
 
 	@Override
@@ -125,6 +135,30 @@ public class CustomerDAOImpl implements CustomerDAO {
 		String sql = "SELECT o FROM order o where o.customer.id = :id ";
 	    List<Order> orderHistory = em.createQuery(sql, Order.class).setParameter("id", id).getResultList();
 	    return orderHistory;
+	}
+
+	@Override
+	public Customer updateEmail(Customer c, int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Customer updateAddress(Customer c, Address a, int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Menu returnMenuByCompanyId(Menu m) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Item> returnItemsFromMenu(Menu m) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
