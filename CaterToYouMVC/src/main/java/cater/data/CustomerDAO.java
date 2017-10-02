@@ -15,7 +15,7 @@ public interface CustomerDAO {
 	public void addItemToCart(Item i, Cart cart);
 
 	// update cart
-	public void updateQuantityInCart(Item i);
+	public void updateQuantityInCart(Item i, Cart cart);
 
 	// checkout cart
 	// need to include functionality to update order history
@@ -60,15 +60,13 @@ public interface CustomerDAO {
 
 	//get cart and return all items within the cart
 
-	public void cartEditOrder();
 
 	//get cart and allow for orders to be edited, think cart update
 
-	public void addItemsBasedOnQuantityByItemID();
 
 	//take in items by id and add items based on quantity
 
-	public void checkoutEmptiesCart();
+	public void checkoutEmptiesCartMovesToOrder();
 
 	//cart check out with total and cart is emptied
 
