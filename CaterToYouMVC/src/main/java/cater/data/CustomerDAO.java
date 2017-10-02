@@ -70,6 +70,8 @@ public interface CustomerDAO {
 
 	List<Item> showMenu(int id);
 
+	List<Order> findOrderHistory(int id);
+
 
 	//takes all items in the cart and adds their prices
 
