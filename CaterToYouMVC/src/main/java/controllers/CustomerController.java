@@ -40,15 +40,15 @@ public class CustomerController {
 		return "views/menus.jsp";
 	}
 
-	@RequestMapping(path = "OrderHistory.do", method = RequestMethod.GET)
-	public String show(Model model, HttpSession session) {
-		Customer customer = (Customer) session.getAttribute("customer");
-		if (customer != null) {
-			List<Order> orderHistory = customerDAO.findOrderHistory(customer.getId());
-			model.addAttribute("orders", orderHistory);
-			return "views/orderHistory.jsp";
-		}
-	}
+//	@RequestMapping(path = "OrderHistory.do", method = RequestMethod.GET)
+//	public String show(Model model, HttpSession session) {
+//		Customer customer = (Customer) session.getAttribute("customer");
+//		if (customer != null) {
+//			List<Order> orderHistory = customerDAO.findOrderHistory(customer.getId());
+//			model.addAttribute("orders", orderHistory);
+//			return "views/orderHistory.jsp";
+//		}
+//	}
 
 	@RequestMapping(path = "updateCustomer.do", method = RequestMethod.GET)
 	public String customerUpdate(Model model, HttpSession session) {
