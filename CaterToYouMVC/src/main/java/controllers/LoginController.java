@@ -33,7 +33,7 @@ public class LoginController {
 		switch(user.getUserRoles().getId()) {
 		
 		case 1:
-			jsp = "/views/customer..jsp";
+			jsp = "views/customer..jsp";
 			break;
 		case 2:
 			jsp = "/views/company.jsp";
@@ -52,6 +52,9 @@ public class LoginController {
 	public String checkLogin(Model model, HttpSession session,
 			@RequestParam("username") String userName,
 			@RequestParam("password") String password) {
+		String sql = "SELECT u FROM User u WHERE u.username = :user AND u.password = :pass";
+		User user = em.createQuery(sql, User.class).setParameter("user", userName)
+				.setParameter("pass", password).getResultList().get(0);
 		User user = dao.returnUser(userName, password);
 		if(user == null) {
 			model.addAttribute("loginErr", "Your information Incorrect");
