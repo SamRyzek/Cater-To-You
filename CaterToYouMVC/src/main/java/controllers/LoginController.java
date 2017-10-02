@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import data.LoginDAO;
+import entity.Customer;
 import entity.User;
 
 @Controller
@@ -51,8 +52,22 @@ public class LoginController {
 	public String checkLogin(Model model, HttpSession session,
 			@RequestParam("userName") String userName,
 			@RequestParam("password") String password) {
-		
-		return "";
+		User user = dao.returnUser(userName, password);
+		if(user == null) {
+			model.addAttribute("loginErr", "Your information Incorrect");
+			return "index";
+		}
+		setSessions(session, user);
+		return getCorrectJSP(user);
+	}
+	
+	private void setSessions(HttpSession session, User user) {
+		switch(user.getUserRoles().getId()) {
+		case 1:
+			Customer cust = dao.getCustomer(user);
+			session.setAttribute("customer", cust);
+			break;
+		}
 	}
 	
 }
