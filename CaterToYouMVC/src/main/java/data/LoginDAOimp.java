@@ -24,8 +24,8 @@ public class LoginDAOimp implements LoginDAO {
 	public User returnUser(String userName, String password) {
 		User user = null;
 		String sql = "SELECT u FROM User u WHERE u.username = :user AND u.password = :pass";
-		List<User> userList = em.createQuery(sql, User.class).setParameter("user", " " +userName)
-				.setParameter("pass", " " + password).getResultList();
+		List<User> userList = em.createQuery(sql, User.class).setParameter("user", userName)
+				.setParameter("pass", password).getResultList();
 		user = userList.size() == 0 ? null : userList.get(0); 
 		return user;
 	}
