@@ -15,8 +15,8 @@
 				${address.city}
 				${address.state}
 				${address.zip}
-		 <form action="shop.do" method="POST">
-		<input type="text" name="company" value="${company.id}"/><br/>
+		 <form action="shopHere.do" method="POST">
+		<input type="text" name="companyId" value="${company.id}"/><br/>
 		<input type="submit" value="Shop Here" />
 		 </form>
 			</c:forEach>

@@ -11,7 +11,7 @@
 		Name of Customer:
 		<input type="text" name="oldname" value="${customer.name}" readonly/><br/>
 		Email:
-		<input type="text" name="name" value="${customer.name}"/><br/>
+		<input type="text" name="name" value="${customer.firstName}"/><br/>
 		Billing Address:
 		Street:
 		<input type="text" name="street" value="${address.street}"/><br/>

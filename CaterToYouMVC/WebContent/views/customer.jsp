@@ -10,17 +10,18 @@
 <body>
 	First Name: ${customer.firstName} Last Name: ${customer.lastName}
 
-	<form action="shop.do" method="POST">
+	<form action="Shop.do" method="GET">
 		<input type="submit" value="Shop" />
 	</form>
 
+	Email: ${customer.email}
 	Billing Address Street: ${address.street} Street 2: ${address.street2}
 	City: ${address.city} State: ${address.state} Zip: ${address.zip}
-	<form action="updateAddress.do" method="POST">
+	<form action="updateCustomer.do" method="POST">
 		<input type="submit" value="Update" />
 	</form>
 	
-	<form action="orderHistory.do" method="POST">
+	<form action="orderHistory.do" method="GET">
 		<input type="submit" value="Order History" />
 	</form>
 	<form action="showCart.do" method="POST">
