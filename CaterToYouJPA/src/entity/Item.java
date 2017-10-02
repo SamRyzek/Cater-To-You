@@ -133,5 +133,10 @@ public class Item {
 	public void setCartHasItemList(List<CartHasItem> cartHasItemList) {
 		this.cartHasItemList = cartHasItemList;
 	}
+	@Override
+	public String toString() {
+		return "Item [name=" + name + "]";
+	}
+	
 
 }
