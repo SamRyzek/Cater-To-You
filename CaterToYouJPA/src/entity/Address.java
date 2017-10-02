@@ -7,8 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.criteria.Order;
 
 @Entity
 public class Address {
@@ -47,11 +47,7 @@ public class Address {
 	
 	
 	
-	
-	
-	
-	
-	
+
 	
 	//sets and gets
 	public int getId() {
