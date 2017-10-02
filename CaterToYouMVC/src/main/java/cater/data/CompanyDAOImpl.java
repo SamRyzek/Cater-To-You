@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +14,7 @@ import entity.Employee;
 import entity.Image;
 import entity.Item;
 import entity.Menu;
+import entity.Order;
 
 @Repository
 @Transactional
@@ -41,28 +43,7 @@ public class CompanyDAOImpl implements CompanyDAO {
 	}
 
 	@Override //session will give us the menu
-	public Item updateMenuItem(Item i) {
-		
-		Item item = em.find(Item.class, 0);
-		
-		if(item != null) {
-			
-			item.setAvailability(i.getAvailability());
-			item.setCalories(i.getCalories());
-			item.setDescription(i.getDescription());
-			item.setPrice(i.getPrice());
-			item.setImage(i.getImage());
-			item.setName(i.getName());
-			
-		}
-		
-		return item;
-	}
-
-	@Override
-	public Item addMenuItem(Item i) {
-		
-		
+	public Menu updateMenuItem(Item i) {
 		
 		
 		
@@ -70,7 +51,15 @@ public class CompanyDAOImpl implements CompanyDAO {
 	}
 
 	@Override
-	public Item makeMenuItemInactive(Item i) {
+	public Menu addMenuItem(Item i) {
+		
+		
+		
+		return null;
+	}
+
+	@Override
+	public Menu makeMenuItemInactive(Item i) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -112,19 +101,6 @@ public class CompanyDAOImpl implements CompanyDAO {
 	}}
 
 
-
-@Override
-public List<Item> showMenu(id){
-	String sql = "SELECT i FROM item i where i.menu.company.id = :id ";
-	List<Item> menuItems = em.createQuery(sql, Menu.class).setParameter("id", id).getResultList;
-	return menuItems;
-}
-@Override
-public List<Order> findOrderHistory(id){
-	String query = "SELECT i FROM item i where i.menu.company.id = :id ";
-	List<Item> menuItems = em.createQuery(sql, Menu.class).setParameter("id", id).getResultList;
-	return menuItems;
-}
 
 
 	
