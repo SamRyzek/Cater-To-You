@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +13,6 @@ import entity.Employee;
 import entity.Image;
 import entity.Item;
 import entity.Menu;
-import entity.Order;
 
 @Repository
 @Transactional

@@ -2,13 +2,12 @@ package cater.data;
 
 import java.util.List;
 
-import javax.persistence.criteria.Order;
-
 import entity.Address;
 import entity.Cart;
 import entity.Customer;
 import entity.Item;
 import entity.Menu;
+import entity.Order;
 
 public interface CustomerDAO {
 
@@ -62,11 +61,10 @@ public interface CustomerDAO {
 	//get cart and return all items within the cart
 
 
-	public void addItemsBasedOnQuantityByItemID();
 
 	//take in items by id and add items based on quantity
 
-	public void checkoutEmptiesCart();
+	public void checkoutEmptiesCartMovesToOrder();
 
 	//cart check out with total and cart is emptied
 
@@ -74,9 +72,8 @@ public interface CustomerDAO {
 
 	List<Item> showMenu(int id);
 
-	List<Order> findOrderHistory(int id);
 
-	Customer updatePersonalInfo(Customer c, int id);
+	//takes all items in the cart and adds their prices
 
 
 }
