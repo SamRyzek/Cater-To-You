@@ -37,7 +37,7 @@ public class CustomerController {
 	public String show(@RequestParam("id") Integer id, Model model) {
 		List<Item> menuItems = customerDAO.showMenu(id);
 		model.addAttribute("menu", menuItems);
-		return "views.menus.jsp";
+		return "views/menus.jsp";
 	}
 
 	@RequestMapping(path = "OrderHistory.do", method = RequestMethod.GET)
@@ -46,7 +46,7 @@ public class CustomerController {
 		if (customer != null) {
 			List<Order> orderHistory = customerDAO.findOrderHistory(customer.getId());
 			model.addAttribute("orders", orderHistory);
-			return "views.orderHistory.jsp";
+			return "views/orderHistory.jsp";
 		}
 	}
 
@@ -56,10 +56,17 @@ public class CustomerController {
 		if (customer != null) {
 			model.addAttribute("address", customer.getAddress());
 		}
-		return "views.customerUpdate.jsp";
+		return "views/customerUpdate.jsp";
 
 	}
 	
+	@RequestMapping(path = "editCustomer.do", method = RequestMethod.POST)
+	public String customerEdit(Model model, HttpSession session) {
+		Customer customer = (Customer) session.getAttribute("customer");
+		//needs meat
+		return "views/customerUpdate.jsp";
+
+	}
 	
 
 }
