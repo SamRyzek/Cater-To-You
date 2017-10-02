@@ -16,13 +16,13 @@ import cater.data.CustomerDAO;
 import entity.Company;
 import entity.Customer;
 import entity.Item;
-import entity.Menu;
-import entity.Order;
 
 @Controller
 public class CustomerController {
+	
 	@Autowired
 	private CompanyDAO companyDAO;
+	
 	@Autowired
 	private CustomerDAO customerDAO;
 
