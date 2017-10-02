@@ -31,7 +31,6 @@ public class Order {
 	@JoinColumn(name="customer_id")
 	private Customer customer;
 	
-	
 	@Column(name="delivery_date_time")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date deliveryDateTime;

@@ -65,7 +65,7 @@ public interface CustomerDAO {
 
 	//take in items by id and add items based on quantity
 
-	public void checkoutEmptiesCartMovesToOrder(Cart cart);
+	public void checkoutEmptiesCartMovesToOrder(Cart cart, Address address);
 
 	//cart check out with total and cart is emptied
 
