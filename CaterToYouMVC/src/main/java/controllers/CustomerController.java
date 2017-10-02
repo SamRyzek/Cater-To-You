@@ -40,6 +40,7 @@ public class CustomerController {
 		Company company = companyDAO.findCompanyById(id);
 		model.addAttribute("menu", menuItems);
 		model.addAttribute("company", company);
+		model.addAttribute("address", company.getAddress());
 		return "views/menu.jsp";
 	}
 
