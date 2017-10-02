@@ -1,5 +1,7 @@
 package cater.data;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpSession;
@@ -90,6 +92,28 @@ public class CompanyDAOImpl implements CompanyDAO {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public List<Company> index() {
+			String sql = "SELECT c FROM Company c";
+			return em.createQuery(sql, Company.class).getResultList();
+	}}
+
+
+
+@Override
+public List<Item> showMenu(id){
+	String sql = "SELECT i FROM item i where i.menu.company.id = :id ";
+	List<Item> menuItems = em.createQuery(sql, Menu.class).setParameter("id", id).getResultList;
+	return menuItems;
+}
+@Override
+public List<Order> findOrderHistory(id){
+	String query = "SELECT i FROM item i where i.menu.company.id = :id ";
+	List<Item> menuItems = em.createQuery(sql, Menu.class).setParameter("id", id).getResultList;
+	return menuItems;
+}
+
 
 	
 	
@@ -98,4 +122,3 @@ public class CompanyDAOImpl implements CompanyDAO {
 	
 	
 	
-}

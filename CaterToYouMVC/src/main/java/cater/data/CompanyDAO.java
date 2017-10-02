@@ -1,5 +1,7 @@
 package cater.data;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import entity.Company;
@@ -24,6 +26,8 @@ public interface CompanyDAO {
 	
 	public void updateImage(Image i); //could be a url for String even
 	public void addImage(Image i); //could be a url for String even
+
+	public List<Company> index();
 	
 	
 
