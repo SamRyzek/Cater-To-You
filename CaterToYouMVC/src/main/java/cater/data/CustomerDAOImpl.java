@@ -161,4 +161,28 @@ public class CustomerDAOImpl implements CustomerDAO {
 		return null;
 	}
 
+	@Override
+	public Item returnItemById(Item i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Item> returnItemsInOrderById(Order order) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Menu> populateMenuList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Order> returnOrdersForCustomer(Customer c) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
