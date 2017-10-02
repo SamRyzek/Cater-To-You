@@ -16,6 +16,7 @@ import cater.data.CustomerDAO;
 import entity.Company;
 import entity.Customer;
 import entity.Item;
+import entity.User;
 
 @Controller
 public class CustomerController {
@@ -33,11 +34,14 @@ public class CustomerController {
 		return "views/menus.jsp";
 	}
 
-	@RequestMapping(path = "ShopHere.do", method = RequestMethod.GET)
+	@RequestMapping(path = "ShopHere.do", method = RequestMethod.POST)
 	public String show(@RequestParam("companyId") Integer id, Model model) {
 		List<Item> menuItems = customerDAO.showMenu(id);
+		Company company = companyDAO.findCompanyById(id);
 		model.addAttribute("menu", menuItems);
-		return "views/menus.jsp";
+		model.addAttribute("company", company);
+		model.addAttribute("address", company.getAddress());
+		return "views/menu.jsp";
 	}
 
 //	@RequestMapping(path = "OrderHistory.do", method = RequestMethod.GET)
@@ -50,7 +54,7 @@ public class CustomerController {
 //		}
 //	}
 
-	@RequestMapping(path = "updateCustomer.do", method = RequestMethod.GET)
+	@RequestMapping(path = "UpdateCustomer.do", method = RequestMethod.POST)
 	public String customerUpdate(Model model, HttpSession session) {
 		Customer customer = (Customer) session.getAttribute("customer");
 		if (customer != null) {
@@ -63,8 +67,10 @@ public class CustomerController {
 	@RequestMapping(path = "editCustomer.do", method = RequestMethod.POST)
 	public String customerEdit(Model model, HttpSession session) {
 		Customer customer = (Customer) session.getAttribute("customer");
-		//needs meat
-		return "views/customerUpdate.jsp";
+		model.addAttribute("customer", customer);
+		model.addAttribute("address", customer.getAddress());
+		model.addAttribute("user", (User)session.getAttribute("user"));
+		return "views/customer.jsp";
 
 	}
 	

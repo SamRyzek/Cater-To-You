@@ -24,7 +24,7 @@
 	Email: ${user.email}
 	Billing Address Street: ${address.street} Street 2: ${address.street2}
 	City: ${address.city} State: ${address.state} Zip: ${address.zip}
-	<form action="updateCustomer.do" method="POST">
+	<form action="UpdateCustomer.do" method="POST">
 		<input type="submit" value="Update" />
 	</form>
 	

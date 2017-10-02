@@ -96,6 +96,14 @@ public class CompanyDAOImpl implements CompanyDAO {
 	public List<Company> index() {
 			String sql = "SELECT c FROM Company c";
 			return em.createQuery(sql, Company.class).getResultList();
+	}
+
+	@Override
+	public Company findCompanyById(int id) {
+		String sql = "SELECT c FROM Company c where c.id= :id";
+		
+		return em.createQuery(sql, Company.class).setParameter("id", id).getResultList().get(0);
+	
 	}}
 
 

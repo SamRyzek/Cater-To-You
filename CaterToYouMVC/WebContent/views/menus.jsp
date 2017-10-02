@@ -15,6 +15,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <c:forEach items="${allCompanies}" var="company">
 				${company.name}
 				${company.address.street}
@@ -22,7 +23,7 @@
 				${copmany.address.city}
 				${company.address.state}
 				${company.address.zip}
-		 <form action="shopHere.do" method="POST">
+		 <form action="ShopHere.do" method="POST">
 		<input type="hidden" name="companyId" value="${company.id}"/><br/>
 		<input type="submit" value="Shop Here" />
 		 </form>

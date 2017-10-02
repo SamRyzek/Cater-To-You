@@ -12,6 +12,7 @@ public interface CompanyDAO {
 	
 	
 	
+	public Company findCompanyById(int id);
 	public Company updateCompanyInfo(Company c, int id);
 	
 	public Menu updateMenuItem(Item i); 
