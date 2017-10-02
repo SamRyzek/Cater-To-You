@@ -51,7 +51,6 @@ public class LoginController {
 	public String checkLogin(Model model, HttpSession session,
 			@RequestParam("username") String userName,
 			@RequestParam("password") String password) {
-		String sql = "SELECT u FROM User u WHERE u.username = :user AND u.password = :pass";
 		User user = dao.returnUser(userName, password);
 		if(user == null) {
 			model.addAttribute("loginErr", "Your information Incorrect");
@@ -66,6 +65,7 @@ public class LoginController {
 		case 1:
 			Customer cust = dao.getCustomer(user);
 			session.setAttribute("customer", cust);
+			session.setAttribute("user", user);
 			break;
 		}
 	}
