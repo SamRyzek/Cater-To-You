@@ -23,7 +23,7 @@ public class LoginController {
 	public String displayHome(HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		if(user == null) {
-			return "index";
+			return "/views/index.jsp";
 		}
 		return getCorrectJSP(user);
 	}
