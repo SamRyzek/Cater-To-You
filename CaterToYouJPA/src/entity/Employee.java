@@ -17,13 +17,8 @@ public class Employee {
 	//field
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="employee_id")
 	private int employeeID;
-	
-	@Column(name="user_id")
-	private int userID;
-	
-	@Column(name="company_id")
-	private int companyID;
 	
 	@OneToOne
 	@JoinColumn(name="user_id") //this tables column to join on
@@ -32,40 +27,29 @@ public class Employee {
 	@ManyToOne//owning table gets join column
 	@JoinColumn(name="company_id")
 	private Company company;
-	
-	
-	
-	
-	//gets and sets
+
 	public int getEmployeeID() {
 		return employeeID;
 	}
+
 	public void setEmployeeID(int employeeID) {
 		this.employeeID = employeeID;
 	}
-	public int getUserID() {
-		return userID;
+
+	public User getUser() {
+		return user;
 	}
-	public void setUserID(int userID) {
-		this.userID = userID;
+
+	public void setUser(User user) {
+		this.user = user;
 	}
-	public int getCompanyID() {
-		return companyID;
+
+	public Company getCompany() {
+		return company;
 	}
-	public void setCompanyID(int companyID) {
-		this.companyID = companyID;
+
+	public void setCompany(Company company) {
+		this.company = company;
 	}
-	
-	
-	
-	//toString
-	@Override
-	public String toString() {
-		return "Employees [employeeID=" + employeeID + ", userID=" + userID + ", companyID=" + companyID + "]";
-	}
-	
-	
-	
-	
 
 }

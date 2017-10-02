@@ -9,12 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="orders")
@@ -23,7 +22,6 @@ public class Order {
 	//fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@OneToMany(mappedBy="orders_id")
 	private int id;
 	
 	@Column(name="total")
@@ -34,8 +32,8 @@ public class Order {
 	private Customer customer;
 	
 	
-	
 	@Column(name="delivery_date_time")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date deliveryDateTime;
 	
 	@ManyToOne
@@ -87,15 +85,5 @@ public class Order {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-	@Override
-	public String toString() {
-		return "Order [id=" + id + ", total=" + total + ", customer=" + customer + ", deliveryDateTime="
-				+ deliveryDateTime + ", address=" + address + ", orderHasItemsList=" + orderHasItemsList + "]";
-	}
-	
-	
-	
-	
-	
 
 }

@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
@@ -16,7 +14,6 @@ public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
 	
 	private String category;
 	
@@ -45,10 +42,5 @@ public class Category {
 
 	public void setItemList(List<Item> itemList) {
 		this.itemList = itemList;
-	}
-
-	@Override
-	public String toString() {
-		return "Category [id=" + id + ", category=" + category + ", itemList=" + itemList + "]";
 	}
 }

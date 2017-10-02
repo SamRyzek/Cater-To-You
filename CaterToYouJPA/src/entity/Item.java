@@ -34,7 +34,7 @@ public class Item {
 	@Column(name="price")
 	private double price;
 	
-	@Column(name="availability")
+	@Column(name="availablity")
 	private int availability;
 	
 	@ManyToOne
@@ -46,8 +46,7 @@ public class Item {
 	private Image image;
 	
 	@OneToMany(mappedBy="item")
-	List<OrderHasItems> orderHasItemsList;
-	
+	private List<OrderHasItems> orderHasItemsList;
 	
 	@ManyToMany
 	@JoinTable(name="item_has_category",
@@ -134,16 +133,5 @@ public class Item {
 	public void setCartHasItemList(List<CartHasItem> cartHasItemList) {
 		this.cartHasItemList = cartHasItemList;
 	}
-	@Override
-	public String toString() {
-		return "Item [id=" + id + ", name=" + name + ", calories=" + calories + ", description=" + description
-				+ ", price=" + price + ", availability=" + availability + ", menu=" + menu + ", image=" + image
-				+ ", orderHasItemsList=" + orderHasItemsList + ", categoryList=" + categoryList + "]";
-	}
-	
-	
-	
-	
-	
 
 }

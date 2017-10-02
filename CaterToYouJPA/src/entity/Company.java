@@ -15,8 +15,6 @@ import javax.persistence.OneToOne;
 @Entity
 public class Company {
 	
-	
-	//field
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -78,17 +76,5 @@ public class Company {
 	public void setImage(Image image) {
 		this.image = image;
 	}
-	@Override
-	public String toString() {
-		return "Company [id=" + id + ", name=" + name + ", menu=" + menu + ", address=" + address + ", image=" + image
-				+ ", employeeList=" + employeeList + "]";
-	}
-
-	
-	
-	
-	
-	
-	
 
 }

@@ -22,15 +22,6 @@ public class Menu {
 
 	@OneToMany(mappedBy="menu")
 	private List<Item> itemList;
-	
-	
-	
-	
-//	@OneToOne
-//	@JoinColumn(name="menu_id")
-//	
-	
-
 
 	//gets and sets
 	public int getId() {
@@ -57,12 +48,4 @@ public class Menu {
 		this.itemList = itemList;
 	}
 	
-	
-	@Override
-	public String toString() {
-		return "Menu [id=" + id + ", company=" + company + "]";
-	}
-	
-	
-
 }

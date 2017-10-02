@@ -14,12 +14,10 @@ import javax.persistence.OneToOne;
 @Entity
 public class Customer {
 	
-	//field
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-//	@Column(name="user_id")
 	@OneToOne
 	@JoinColumn(name="user_id")
 	private User user;
@@ -27,7 +25,6 @@ public class Customer {
 	@ManyToOne
 	@JoinColumn(name="billing_address")
 	private Address address;
-	
 	
 	@OneToOne
 	@JoinColumn(name="cart_id")
@@ -83,14 +80,4 @@ public class Customer {
 	public void setOrderList(List<Order> orderList) {
 		this.orderList = orderList;
 	}
-	@Override
-	public String toString() {
-		return "Customer [id=" + id + ", user=" + user + ", address=" + address + ", cart=" + cart + ", image=" + image
-				+ ", orderList=" + orderList + "]";
-	}
-	
-	
-	
-	
-
 }

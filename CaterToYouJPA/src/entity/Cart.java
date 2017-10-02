@@ -11,23 +11,15 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Cart {
-	//id
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	
 	@OneToMany(mappedBy="cart")
 	private List<CartHasItem> cartHasItemList;
 	
 	@OneToOne(mappedBy="cart")
 	private Customer customer;
-	
-	
-	
-//	@OneToOne
-//	@JoinColumn(name="cart_id")
-//	@OneToMany(mappedBy="cart")
 
 	public List<CartHasItem> getCartHasItemList() {
 		return cartHasItemList;
@@ -52,6 +44,4 @@ public class Cart {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	
-	
 }
