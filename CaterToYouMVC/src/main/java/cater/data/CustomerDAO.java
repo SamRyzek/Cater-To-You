@@ -10,11 +10,10 @@ import entity.Order;
 
 public interface CustomerDAO {
 
-	// add item to cart
-	public void addItemToCart(Item i, Cart cart);
 
-	// update cart
-	public void updateQuantityInCart(Item i);
+	public void addItemToCart(Item i, Cart cart);// add item to cart
+
+	public void updateQuantityInCart(Item i, Cart cart, int quantity);// update cart
 
 	// checkout cart
 	// need to include functionality to update order history
@@ -24,8 +23,8 @@ public interface CustomerDAO {
 	// delete item from cart
 	public void removeItemFromCart(Item i, Cart cart);
 
-	// enter shipping address
-
+	public void calculateCartTotal(Item i, Cart c);
+	public List<Order> findOrderHistory(int id);
 	// update personal information, and when we create a customer object he'll
 	// automatically have all null shit, therefore we don't need an add customer
 	// information
@@ -59,25 +58,17 @@ public interface CustomerDAO {
 
 	//get cart and return all items within the cart
 
-	public void cartEditOrder();
 
-	//get cart and allow for orders to be edited, think cart update
-
-	public void addItemsBasedOnQuantityByItemID();
 
 	//take in items by id and add items based on quantity
 
-	public void checkoutEmptiesCart();
+	public void checkoutEmptiesCartMovesToOrder();
 
 	//cart check out with total and cart is emptied
 
-	public void calculateCartTotal();
 
 	List<Item> showMenu(int id);
 
-	List<Order> findOrderHistory(int id);
-
-	Customer updatePersonalInfo(Customer c, int id);
 
 	//takes all items in the cart and adds their prices
 
