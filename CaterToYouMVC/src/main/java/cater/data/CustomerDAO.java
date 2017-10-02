@@ -1,9 +1,12 @@
 package cater.data;
 
+import java.util.List;
+
 import entity.Cart;
 import entity.Customer;
 import entity.Item;
 import entity.Menu;
+import entity.Order;
 
 public interface CustomerDAO {
 
