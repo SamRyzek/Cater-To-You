@@ -33,7 +33,7 @@ public class LoginController {
 		switch(user.getUserRoles().getId()) {
 
 		case 1:
-			jsp = "views/customer..jsp";
+			jsp = "views/customer.jsp";
 			break;
 		case 2:
 			jsp = "views/company.jsp";
