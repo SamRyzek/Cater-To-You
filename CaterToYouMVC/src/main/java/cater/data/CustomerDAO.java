@@ -11,11 +11,10 @@ import entity.Order;
 
 public interface CustomerDAO {
 
-	// add item to cart
-	public void addItemToCart(Item i, Cart cart);
+	
+	public void addItemToCart(Item i, Cart cart);// add item to cart
 
-	// update cart
-	public void updateQuantityInCart(Item i, Cart cart);
+	public void updateQuantityInCart(Item i, Cart cart, int quantity);// update cart
 
 	// checkout cart
 	// need to include functionality to update order history
@@ -25,8 +24,8 @@ public interface CustomerDAO {
 	// delete item from cart
 	public void removeItemFromCart(Item i, Cart cart);
 
-	// enter shipping address
-
+	public void calculateCartTotal(Item i, Cart c);
+	public List<Order> findOrderHistory(int id);
 	// update personal information, and when we create a customer object he'll
 	// automatically have all null shit, therefore we don't need an add customer
 	// information
@@ -68,7 +67,6 @@ public interface CustomerDAO {
 
 	//cart check out with total and cart is emptied
 
-	public void calculateCartTotal(Item i, Cart c);
 
 	List<Item> showMenu(int id);
 
