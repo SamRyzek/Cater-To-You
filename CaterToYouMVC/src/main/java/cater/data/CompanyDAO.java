@@ -16,9 +16,9 @@ public interface CompanyDAO {
 	
 	public Company updateCompanyInfo(Company c, int id);
 	
-	public Menu updateMenuItem(Item i); 
-	public Menu addMenuItem(Item i); 
-	public Menu makeMenuItemInactive(Item i); 
+	public Item updateMenuItem(Item i); 
+	public Item addMenuItem(Item i); 
+	public Item makeMenuItemInactive(Item i); 
 	
 	public Employee updateEmployee(Employee e);
 	public Employee addEmployee(Employee e);
