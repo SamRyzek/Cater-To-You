@@ -26,7 +26,7 @@ public interface CustomerDAO {
 	public void removeItemFromCart(Item i, Cart cart);
 
 	public void calculateCartTotal(Item i, Cart c);
-	
+
 	// update personal information, and when we create a customer object he'll
 	// automatically have all null shit, therefore we don't need an add customer
 	// information

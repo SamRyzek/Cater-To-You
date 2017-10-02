@@ -57,6 +57,8 @@ public class LoginController {
 			return "/views/index.jsp";
 		}
 		setSessions(session, user);
+		model.addAttribute("user", user);
+		model.addAttribute("address", user.getCustomer().getAddress());
 		return getCorrectJSP(user);
 	}
 

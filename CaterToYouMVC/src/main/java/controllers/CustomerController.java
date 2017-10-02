@@ -34,7 +34,7 @@ public class CustomerController {
 	}
 
 	@RequestMapping(path = "ShopHere.do", method = RequestMethod.GET)
-	public String show(@RequestParam("id") Integer id, Model model) {
+	public String show(@RequestParam("companyId") Integer id, Model model) {
 		List<Item> menuItems = customerDAO.showMenu(id);
 		model.addAttribute("menu", menuItems);
 		return "views/menus.jsp";

@@ -17,13 +17,13 @@
 <body>
 <c:forEach items="${allCompanies}" var="company">
 				${company.name}
-				${address.street}
-				${address.street2}
-				${address.city}
-				${address.state}
-				${address.zip}
+				${company.address.street}
+				${company.address.street2}
+				${copmany.address.city}
+				${company.address.state}
+				${company.address.zip}
 		 <form action="shopHere.do" method="POST">
-		<input type="text" name="companyId" value="${company.id}"/><br/>
+		<input type="hidden" name="companyId" value="${company.id}"/><br/>
 		<input type="submit" value="Shop Here" />
 		 </form>
 			</c:forEach>
