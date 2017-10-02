@@ -15,15 +15,15 @@
 		New Name:
 		<input type="text" name="name" value="${company.name}"/><br/>
 		New Street:
-		<input type="text" name="street" value="${adress.street}"/><br/>
+		<input type="text" name="street" value="${address.street}"/><br/>
 		New Street2:
-		<input type="text" name="street2" value="${adress.street2}"/><br/>
+		<input type="text" name="street2" value="${address.street2}"/><br/>
 		New City:
-		<input type="text" name="city" value="${adress.city}"/><br/>
+		<input type="text" name="city" value="${address.city}"/><br/>
 		New State:
-		<input type="text" name="state" value="${adress.state}"/><br/>
+		<input type="text" name="state" value="${address.state}"/><br/>
 		New Zip:
-		<input type="text" name="zip" value="${adress.zip}"/><br/>
+		<input type="text" name="zip" value="${address.zip}"/><br/>
 		Image URL: 
 		<input type="text" name="url" value="${image.imageUrl}"/><br/>
 		<input type="submit" value="Edit Maze" />
