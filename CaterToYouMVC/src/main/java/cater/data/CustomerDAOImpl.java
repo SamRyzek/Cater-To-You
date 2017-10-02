@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.Order;
 
 import org.hibernate.validator.constraints.Email;
 import org.springframework.stereotype.Repository;
@@ -73,7 +74,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public void updateQuantityInCart(Item i, int quantity) {
+	public void updateQuantityInCart(Item i, Cart cart) {
 
 		String sql = "SELECT ci FROM CartHasItem ci WHERE ci.item.id = :id AND ci.cart.id = :cart";
 		CartHasItem chi = em.createQuery(sql, CartHasItem.class)
@@ -96,14 +97,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Override
 	public void showCartWithAllItems() {
 		// TODO Auto-generated method stub
-
-	}
-
-
-	@Override
-	public void addItemsBasedOnQuantityByItemID() {
-
-
 
 	}
 
