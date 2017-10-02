@@ -30,7 +30,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 				.setParameter("id", i.getId())
 				.setParameter("cart", cart.getId())
 				.getResultList().get(0);
-		
+
 		if (chi == null) {
 
 			chi = new CartHasItem();
@@ -38,7 +38,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 			chi.setCount(1);
 			chi.setItem(i);
 			em.persist(chi);
-		} 
+		}
 		else {
 			chi.setCount(chi.getCount() + 1);
 		}
@@ -47,12 +47,12 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	@Override
 	public void emptyCart(Item i, Cart cart) {
-		
+
 		String sql = "DELETE ci FROM CartHasItem ci WHERE ci.cart.id = :cart";
 		em.createQuery(sql, CartHasItem.class)
 				.setParameter("cart", cart.getId())
 				.executeUpdate();
-		
+
 	}
 
 	@Override
@@ -74,6 +74,21 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Override
 	public void updateQuantityInCart(Item i, int quantity) {
 
+		String sql = "SELECT ci FROM CartHasItem ci WHERE ci.item.id = :id AND ci.cart.id = :cart";
+		CartHasItem chi = em.createQuery(sql, CartHasItem.class)
+				.setParameter("id", i.getId())
+				.setParameter("cart", cart.getId())
+				.getResultList().get(0);
+
+
+		if (chi != null) {
+
+			chi.setCart(cart);
+			chi.setCount(chi.getCount() + 1);
+			chi.setItem(i);
+			em.persist(chi);
+		}
+
 	}
 
 	@Override
@@ -82,9 +97,9 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	}
 
-	
 
-	
+
+
 	@Override
 	public void checkoutEmptiesCartMovesToOrder() {
 		// TODO Auto-generated method stub
@@ -100,7 +115,9 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Override
 	public List<Item> showMenu(int id) {
 		String sql = "SELECT i FROM item i where i.menu.company.id = :id ";
-	    List<Item> menuItems = em.createQuery(sql, Menu.class).setParameter("id", id).getResultList().get(0).getItemList();
+	    List<Item> menuItems = em.createQuery(sql, Menu.class).setParameter("id", id)
+	    		.getResultList().get(0)
+	    		.getItemList();
 	    return menuItems;
 	}
 
@@ -153,5 +170,5 @@ public class CustomerDAOImpl implements CustomerDAO {
 		return null;
 	}
 
-	
+
 }
