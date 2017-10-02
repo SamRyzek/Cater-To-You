@@ -1,7 +1,12 @@
 package cater.data;
 
+import java.util.List;
+
+import entity.Address;
+import entity.Cart;
 import entity.Customer;
 import entity.Item;
+import entity.Menu;
 
 public interface CustomerDAO {
 
@@ -24,7 +29,19 @@ public interface CustomerDAO {
 	// update personal information, and when we create a customer object he'll
 	// automatically have all null shit, therefore we don't need an add customer
 	// information
-	public Customer updatePersonalInfo(Customer c, int id);
+	
+	public Customer updateEmail(Customer c, int id);
+	
+	public Customer updateAddress(Customer c, Address a, int id);
+	
+	public Menu returnMenuByCompanyId(Menu m); //put an m.getId and then do the find
+	
+	public List<Item> returnItemsFromMenu(Menu m); //m.getId eager load in the list of items it has. With menu obj, we don't need to reorganize shit if we decide to search on other stuff
+	
+	
+	
+	
+	
 
 	public Item returnItemToScreen(String title); // take in the title of the item off a drop down, go pull it out of
 													// the db, and return it back to the controller, it gets put on a
