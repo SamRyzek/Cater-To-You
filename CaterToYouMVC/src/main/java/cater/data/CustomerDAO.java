@@ -9,6 +9,7 @@ import entity.Customer;
 import entity.Item;
 import entity.Menu;
 import entity.Order;
+import entity.OrderHasItems;
 
 public interface CustomerDAO {
 
@@ -44,7 +45,7 @@ public interface CustomerDAO {
 
 	public Item returnItemById(Item i);
 
-	public List<Item> returnItemsInOrderById(Order order);
+	public List<OrderHasItems> returnItemsInOrderById(Order order);
 
 	public List<Menu> populateMenuList();
 

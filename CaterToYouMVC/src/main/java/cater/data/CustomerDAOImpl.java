@@ -16,6 +16,7 @@ import entity.Customer;
 import entity.Item;
 import entity.Menu;
 import entity.Order;
+import entity.OrderHasItems;
 
 @Repository
 @Transactional
@@ -108,7 +109,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	@Override
 	public void checkoutEmptiesCartMovesToOrder() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -133,7 +134,10 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Override
 	public List<Item> showMenu(int id) {
 		String sql = "SELECT i FROM Item i where i.menu.company.id = :id ";
-	    List<Item> menuItems = em.createQuery(sql, Menu.class).setParameter("id", id).getResultList().get(0).getItemList();
+	    List<Item> menuItems = em.createQuery(sql, Menu.class)
+	    		.setParameter("id", id)
+	    		.getResultList().get(0)
+	    		.getItemList();
 	    return menuItems;
 	}
 
@@ -216,9 +220,15 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public List<Item> returnItemsInOrderById(Order order) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<OrderHasItems> returnItemsInOrderById(Order order) {
+		
+		int id = order.getId();
+		String queryString = "SELECT ohi.item FROM OrderHasItems ohi WHERE ohi.order.id = :id";
+		List<OrderHasItems> itemList = em.createQuery(queryString, OrderHasItems.class)
+				.setParameter("id", id)
+				.getResultList();
+		
+		return itemList;
 	}
 
 
