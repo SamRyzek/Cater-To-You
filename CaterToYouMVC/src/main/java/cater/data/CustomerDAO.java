@@ -1,5 +1,10 @@
 package cater.data;
 
+import java.util.List;
+
+import javax.persistence.criteria.Order;
+
+import entity.Address;
 import entity.Cart;
 import entity.Customer;
 import entity.Item;
@@ -11,7 +16,7 @@ public interface CustomerDAO {
 	public void addItemToCart(Item i, Cart cart);
 
 	// update cart
-	public void updateQuantityInCart(Item i);
+	public void updateQuantityInCart(Item i, Cart cart);
 
 	// checkout cart
 	// need to include functionality to update order history
@@ -75,8 +80,6 @@ public interface CustomerDAO {
 	List<Order> findOrderHistory(int id);
 
 	Customer updatePersonalInfo(Customer c, int id);
-
-	//takes all items in the cart and adds their prices
 
 
 }

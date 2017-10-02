@@ -1,6 +1,6 @@
 package cater.data;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -89,8 +89,23 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public void updateQuantityInCart(Item i) {
+	public void updateQuantityInCart(Item i, Cart cart) {
 
+		String sql = "SELECT ci FROM CartHasItem ci WHERE ci.item.id = :id AND ci.cart.id = :cart";
+		CartHasItem chi = em.createQuery(sql, CartHasItem.class)
+				.setParameter("id", i.getId())
+				.setParameter("cart", cart.getId())
+				.getResultList().get(0);
+		
+		
+		if (chi != null) {
+			
+			chi.setCart(cart);
+			chi.setCount(chi.getCount() + 1);
+			chi.setItem(i);
+			em.persist(chi);
+		}  
+		
 	}
 
 	@Override
@@ -126,7 +141,9 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Override
 	public List<Item> showMenu(int id) {
 		String sql = "SELECT i FROM item i where i.menu.company.id = :id ";
-	    List<Item> menuItems = em.createQuery(sql, Menu.class).setParameter("id", id).getResultList().get(0).getItemList();
+	    List<Item> menuItems = em.createQuery(sql, Menu.class).setParameter("id", id)
+	    		.getResultList().get(0)
+	    		.getItemList();
 	    return menuItems;
 	}
 
