@@ -35,7 +35,7 @@ public class CompanyTest {
 	@Test
 	public void test_company_name_mapped() {
 		Company c = em.find(Company.class, 1);
-		assertEquals(" Illegal Pete's", c.getName());
+		assertEquals("Illegal Pete's", c.getName());
 	}
 	
 	@Test
@@ -62,7 +62,7 @@ public class CompanyTest {
 	public void test_company_employeeList_mapped() {
 		Company c = em.find(Company.class, 1);
 		assertEquals(3, c.getEmployeeList().size());
-		assertEquals(" James", c.getEmployeeList().get(0).getUser().getFirstName());
+		assertEquals("James", c.getEmployeeList().get(0).getUser().getFirstName());
 		
 	}
 }

@@ -23,7 +23,7 @@ public class LoginController {
 	public String displayHome(HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		if(user == null) {
-			return "/views/index.jsp";
+			return "views/index.jsp";
 		}
 		return getCorrectJSP(user);
 	}
@@ -33,22 +33,21 @@ public class LoginController {
 		switch(user.getUserRoles().getId()) {
 		
 		case 1:
-			jsp = "/views/customer..jsp";
+			jsp = "views/customer.jsp";
 			break;
 		case 2:
-			jsp = "/views/company.jsp";
+			jsp = "views/company.jsp";
 			break;
 		case 3:
-			jsp = "/views/admin.jsp";
+			jsp = "views/admin.jsp";
 			break;
-		default: jsp = "/views/index.jsp";
+		default: jsp = "views/index.jsp";
 		}
 		return jsp;
 	}
 	
 	@RequestMapping(path = "checkLogin.do", 
-			method = RequestMethod.POST,
-			params = "login")
+			method = RequestMethod.GET)
 	public String checkLogin(Model model, HttpSession session,
 			@RequestParam("username") String userName,
 			@RequestParam("password") String password) {

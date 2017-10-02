@@ -15,6 +15,7 @@
 </head>
 <body>
 <form action="checkLogin.do" method="GET">
+		${loginErr}
 		<p>Username:</p>
 		<input type="text" name="username"></input>
 		<p>Password:</p>
