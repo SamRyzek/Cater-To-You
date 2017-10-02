@@ -33,7 +33,7 @@ public class LoginController {
 		switch(user.getUserRoles().getId()) {
 
 		case 1:
-			jsp = "views/customer..jsp";
+			jsp = "views/customer.jsp";
 			break;
 		case 2:
 			jsp = "views/company.jsp";
@@ -51,13 +51,14 @@ public class LoginController {
 	public String checkLogin(Model model, HttpSession session,
 			@RequestParam("username") String userName,
 			@RequestParam("password") String password) {
-		String sql = "SELECT u FROM User u WHERE u.username = :user AND u.password = :pass";
 		User user = dao.returnUser(userName, password);
 		if(user == null) {
 			model.addAttribute("loginErr", "Your information Incorrect");
 			return "/views/index.jsp";
 		}
 		setSessions(session, user);
+		model.addAttribute("user", user);
+		model.addAttribute("address", user.getCustomer().getAddress());
 		return getCorrectJSP(user);
 	}
 
