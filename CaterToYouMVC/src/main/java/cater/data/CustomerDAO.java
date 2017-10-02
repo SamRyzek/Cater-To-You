@@ -61,9 +61,6 @@ public interface CustomerDAO {
 
 	//get cart and return all items within the cart
 
-	public void cartEditOrder();
-
-	//get cart and allow for orders to be edited, think cart update
 
 	public void addItemsBasedOnQuantityByItemID();
 
@@ -73,7 +70,7 @@ public interface CustomerDAO {
 
 	//cart check out with total and cart is emptied
 
-	public void calculateCartTotal();
+	public void calculateCartTotal(Item i, Cart c);
 
 	List<Item> showMenu(int id);
 

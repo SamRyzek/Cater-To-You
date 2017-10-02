@@ -98,6 +98,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 				.getResultList().get(0);
 		
 		
+		
 		if (chi != null) {
 			
 			chi.setCart(cart);
@@ -114,15 +115,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	}
 
-	@Override
-	public void cartEditOrder() {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public void addItemsBasedOnQuantityByItemID() {
-		// TODO Auto-generated method stub
+		
+		
 
 	}
 
@@ -133,8 +130,24 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public void calculateCartTotal() {
-		// TODO Auto-generated method stub
+	public void calculateCartTotal(Item i, Cart cart) {
+		
+		String sql = "SELECT ci FROM CartHasItem ci WHERE ci.item.id = :id AND ci.cart.id = :cart";
+		CartHasItem chi = em.createQuery(sql, CartHasItem.class)
+				.setParameter("id", i.getId())
+				.setParameter("cart", cart.getId())
+				.getResultList().get(0);
+		
+		if(chi != null) {
+			
+			chi.setCart(cart);
+			chi.setItem(i);
+			
+		}
+		
+		
+		
+		
 
 	}
 
@@ -201,5 +214,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }
