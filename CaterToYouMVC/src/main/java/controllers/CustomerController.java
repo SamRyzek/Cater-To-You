@@ -61,7 +61,6 @@ public class CustomerController {
 			model.addAttribute("address", customer.getAddress());
 		}
 		return "views/customerUpdate.jsp";
-
 	}
 	
 	@RequestMapping(path = "editCustomer.do", method = RequestMethod.POST)
