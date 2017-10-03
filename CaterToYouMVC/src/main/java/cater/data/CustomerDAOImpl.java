@@ -28,36 +28,35 @@ public class CustomerDAOImpl implements CustomerDAO {
 	EntityManager em;
 
 	@Override
-	public void addItemToCart(Item i, Cart cart) {
+	public void addItemToCart(int itemId, Cart cart, int count) {
 
 		String sql = "SELECT ci FROM CartHasItem ci WHERE ci.item.id = :id AND ci.cart.id = :cart";
-		CartHasItem chi = em.createQuery(sql, CartHasItem.class)
-				.setParameter("id", i.getId())
+		List<CartHasItem> chiList = em.createQuery(sql, CartHasItem.class)
+				.setParameter("id", itemId)
 				.setParameter("cart", cart.getId())
-				.getResultList().get(0);
+				.getResultList();
 
-		if (chi == null) {
-
+		Item item = em.find(Item.class, itemId);
+		if (chiList.size() == 0) {
+			CartHasItem chi = new CartHasItem();
 			chi = new CartHasItem();
 			chi.setCart(cart);
-			chi.setCount(1);
-			chi.setItem(i);
+			chi.setCount(count);
+			chi.setItem(item);
 			em.persist(chi);
 		}
 		else {
-			chi.setCount(chi.getCount() + 1);
+			CartHasItem chi = chiList.get(0);
+			chi.setCount(chi.getCount() + count);
 		}
-
 	}
 
 	@Override
 	public void emptyCart(Cart cart) {
-
 		String sql = "DELETE ci FROM CartHasItem ci WHERE ci.cart.id = :cart";
 		em.createQuery(sql, CartHasItem.class)
 				.setParameter("cart", cart.getId())
 				.executeUpdate();
-
 	}
 
 	@Override
@@ -89,7 +88,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public Cart getCartForCustomer(Customer customer) {
+	public Cart showCartWithAllItems(Customer customer) {
 		String sql = "SELECT c FROM Cart c JOIN FETCH c.cartHasItemList WHERE c.customer.id = :id";
 		List<Cart> cartList = em.createQuery(sql, Cart.class).setParameter("id", customer.getId())
 				.getResultList();
@@ -119,16 +118,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 		return item;
 	}
-	@Override
-	public List<Item> showCartWithAllItems(Customer c) {
-		int id = c.getCart().getId();
-		String stringQuery = "SELECT i FROM Item i WHERE i.cartHasItemList.cart.id = :id";
-		List<Item> itemList = em.createQuery(stringQuery, Item.class)
-				.setParameter("id", id)
-				.getResultList();
-
-		return itemList;
-	}
 
 	@Override
 	public void checkoutEmptiesCartMovesToOrder(Cart cart, Address address) {
@@ -147,7 +136,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		order.setOrderHasItemsList(orderHasList);
 		em.persist(order);
 	}
-	
+
 
 
 
@@ -238,7 +227,4 @@ public class CustomerDAOImpl implements CustomerDAO {
 				.getResultList();
 		return items;
 	}
-
-
-
 }

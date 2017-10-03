@@ -14,11 +14,11 @@ import entity.User;
 public interface CustomerDAO {
 
 
-	public void addItemToCart(Item i, Cart cart);// add item to cart
+	public void addItemToCart(int item, Cart cart, int count);// add item to cart
 	public void emptyCart(Cart cart); // checkout cart
 	public void removeItemFromCart(Item i, Cart cart); // delete item from cart
 	public void updateQuantityInCart(Item i, Cart cart, int quantity);// update cart
-	public Cart getCartForCustomer(Customer customer);
+	public Cart showCartWithAllItems(Customer customer);
 	public double calculateCartTotal(Cart c);
 
 	
@@ -49,7 +49,6 @@ public interface CustomerDAO {
 													// the db, and return it back to the controller, it gets put on a
 //********************Chris's methods													 jsp for the customer
 
-	public List<Item> showCartWithAllItems(Customer c);
 
 	//get cart and return all items within the cart
 

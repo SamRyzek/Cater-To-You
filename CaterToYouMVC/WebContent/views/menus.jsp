@@ -23,7 +23,7 @@
 				${copmany.address.city}
 				${company.address.state}
 				${company.address.zip}
-		 <form action="ShopHere.do" method="POST">
+		 <form action="ShopHere.do" method="GET">
 		<input type="hidden" name="companyId" value="${company.id}"/><br/>
 		<input type="submit" value="Shop Here" />
 		 </form>
