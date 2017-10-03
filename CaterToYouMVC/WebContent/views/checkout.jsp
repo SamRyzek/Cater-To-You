@@ -1,5 +1,7 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -12,31 +14,20 @@
 <link rel="icon" href="../../../../favicon.ico">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${company.name}</title>
+<title>Check Oout</title>
 </head>
 <body>
-	${company.name} Street: ${address.street} Street 2: ${address.street2}
-	City: ${address.city} State: ${address.state} Zip: ${address.zip}
-	<c:forEach items="${menu}" var="item">
-				${item.name}
-				${item.description}
-				${item.price}
-				<form action="UpdateMenuItem.do" method="POST">
-			<input type="text" name="itemId"
-				value="${item.id}"hidden/><br/> <input type="submit"
-				value="Update Item" /> </form>
-				<form action="InactivateItem.do" method="POST">
-			<input type="text" name="oldItemId"
-				value="${item.id}"hidden/><br/> <input type="submit"
-				value="Make Item Inactive" />
-		</form>
-	</c:forEach>
+	<h4>Your Cart</h4>
+	<ul>
+		<c:forEach items="${itemList}" var="item">
+			<li>${item.count} ${item.item.name} ${item.item.price * item.count}</li>
+		</c:forEach>
+	</ul>
 	
-	<form action="updateCompanyProfile.do" method="POST">
-		<input type="submit" value="Update Company Profile"/>
+	<form action="createOrder.do" method="POST">
+		<input type="hidden" name="cartId" value="" />
+		<input type="submit" value="Update" />
 	</form>
-
-
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -51,8 +42,3 @@
 	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
-
-
-
-
-

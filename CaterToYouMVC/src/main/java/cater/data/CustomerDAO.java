@@ -6,6 +6,7 @@ import entity.Address;
 import entity.Cart;
 import entity.Company;
 import entity.Customer;
+import entity.Image;
 import entity.Item;
 import entity.Menu;
 import entity.Order;
@@ -17,10 +18,16 @@ public interface CustomerDAO {
 	public void addItemToCart(int item, Cart cart, int count);// add item to cart
 	public void emptyCart(Cart cart); // checkout cart
 	public void removeItemFromCart(int i, Cart cart); // delete item from cart
-	public void updateQuantityInCart(Item i, Cart cart, int quantity);// update cart
+	public void updateQuantityInCart(int id, int quantity);// update cart
 	public Cart showCartWithAllItems(Customer customer);
 	public double calculateCartTotal(Cart c);
 
+	
+//***** New User Method
+	public User createUser(User user);
+	public Address usersAddress();
+	public Image usersImage();
+	public Customer usersCustomer();
 	
 
 

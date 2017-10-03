@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,30 +11,31 @@
 <link rel="icon" href="../../../../favicon.ico">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Cater To You</title>
+<title>Insert title here</title>
 </head>
 <body>
-	First Name: ${user.firstName} Last Name: ${user.lastName}
-
-	<form action="Shop.do" method="GET">
-		<input type="submit" value="Shop" />
+ <form action="editCompany.do" method="POST">
+		Name of Customer:
+		<input type="text" name="oldname" value="${user.firstName} ${user.lastName}"readonly/><br/>
+		Email:
+		<input type="text" name="email" value="${user.email}"/><br/>
+		Billing Address:
+		Street:
+		<input type="text" name="street" value="${address.street}"/><br/>
+		Street 2: 
+		<input type="text" name="street2" value="${address.street2}"/><br/>
+		City: 
+		<input type="text" name="city" value="${address.city}"/><br/>
+		State:
+		<input type="text" name="state" value="${address.state}" /><br/>
+		Zip: 
+		<input type="text" name="zip" value="${address.zip}"/><br/>
+		<input type="submit" value="Update" />
+	</form>
+	<form action="companyUpdate.do" method="GET">
+		<input type="submit" value="Return Home"/>
 	</form>
 
-	Email: ${user.email}
-	Billing Address Street: ${address.street} Street 2: ${address.street2}
-	City: ${address.city} State: ${address.state} Zip: ${address.zip}
-	<form action="UpdateCustomer.do" method="POST">
-		<input type="submit" value="Edit Profile" />
-	</form>
-	
-	<form action="OrderHistory.do" method="GET">
-		<input type="submit" value="Order History" />
-	</form>
-	<form action="showCart.do" method="GET">
-		<input type="submit" value="Show Cart"/>
-	</form>
-	
-	
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -46,6 +46,6 @@
 
     <script src="js/holder.js"></script>
 
-    <script src="js/bootstrap.min.js"></script>	
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>

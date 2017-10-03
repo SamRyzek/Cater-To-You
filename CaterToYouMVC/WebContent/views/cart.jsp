@@ -59,7 +59,7 @@
 			<p>Tax: ${tax}</p>
 			<p>Fee: ${fee}</p>
 			<p>Total: ${total}</p>
-			
+			<form action="checkout.do"><input type="submit" value="check out"></form>
 		</c:otherwise>
 	</c:choose>
 	
