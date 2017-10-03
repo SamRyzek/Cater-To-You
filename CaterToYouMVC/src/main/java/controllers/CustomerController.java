@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import cater.data.CompanyDAO;
 import cater.data.CustomerDAO;
 import cater.data.CustomerInput;
-import entity.Address;
 import entity.Cart;
 import entity.Company;
 import entity.Customer;
@@ -36,6 +35,15 @@ public class CustomerController {
 		List<Company> companies = companyDAO.index();
 		model.addAttribute("allCompanies", companies);
 		return "views/menus.jsp";
+	}
+	
+	@RequestMapping(path="newUser.do", method=RequestMethod.POST)
+	public String newUser(Model model, HttpSession session, User user) {
+		//create the user in the db
+		User u = customerDAO.createUser(user);
+//		session.setAttribute("user", user);
+//		session.setAttribute("customer", user.getCustomer());
+		return "actionSuccessful.jsp";
 	}
 
 	@RequestMapping(path = "ShopHere.do", method = RequestMethod.GET)
