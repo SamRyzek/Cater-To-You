@@ -39,6 +39,64 @@ public class CompanyController {
 		model.addAttribute("item", item);
 		return "views/itemUpdate.jsp";
 	}
+	
+	@RequestMapping(path = "editItem.do", method = RequestMethod.POST)
+	public String itemEdit(@RequestParam("name") String name, @RequestParam("calories") Integer calories,
+			@RequestParam("price") Double price, @RequestParam("description") String description, @RequestParam("availability") Integer availability,
+			@RequestParam("imageURL") String imageURL, @RequestParam("oldItemId") Integer oldId, Model model, HttpSession session) {
+		Item item = customerDAO.returnItemById(oldId);
+		Item itemTemp = new Item();
+		if (name==null) {
+			itemTemp.setName(item.getName());
+		}
+		else {
+			itemTemp.setName(name);
+		}
+		if (calories==null) {
+			itemTemp.setCalories(item.getCalories());
+		}
+		else {
+			itemTemp.setCalories(calories);
+		}
+		if (price==null) {
+			itemTemp.setPrice(item.getPrice());
+		}
+		else {
+			itemTemp.setPrice(price);
+		}
+		if (description==null) {
+			itemTemp.setDescription(item.getDescription());
+		}
+		else {
+			itemTemp.setDescription(description);
+		}
+		if (availability==null) {
+			itemTemp.setAvailability(item.getAvailability());
+		}
+		else {
+			itemTemp.setAvailability(availability);
+		}
+		if (imageURL==null) {
+			itemTemp.setImage(item.getImage());
+		}
+		else {
+			Image image = new Image();
+			image.setImageUrl(imageURL);
+			image = companyDAO.addImage(image);
+			itemTemp.setImage(image);
+		}
+		itemTemp.setMenu(item.getMenu());
+		companyDAO.makeMenuItemInactive(item);
+		itemTemp = companyDAO.addItem(itemTemp);
+		User user = (User) session.getAttribute("user");
+		List<Item> menuItems = customerDAO.showMenu(user.getEmployee().getCompany().getId());
+		model.addAttribute("user",user);
+		model.addAttribute("employee", user.getEmployee());
+		model.addAttribute("company", user.getEmployee().getCompany());
+		model.addAttribute("address", user.getEmployee().getCompany().getAddress());
+		model.addAttribute("menu", menuItems);
+		return "views/company.jsp";
+	}
 
 	@RequestMapping(path = "editCompany.do", method = RequestMethod.POST)
 	public String customerEdit(@RequestParam("name") String name, @RequestParam("street") String street,
