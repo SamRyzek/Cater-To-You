@@ -27,6 +27,10 @@
 				value="Update Item" />
 		</form>
 	</c:forEach>
+	
+	<form action="updateCompanyProfile.do" method="POST">
+		<input type="submit" value="Update Company Profile"/>
+	</form>
 
 
 
