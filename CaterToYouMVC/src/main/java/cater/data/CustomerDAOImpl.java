@@ -62,18 +62,12 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	@Override
 	public void updateQuantityInCart(Item i, Cart cart, int quantity) {
-
+		//CartHasItem cartHas = find
 		String sql = "SELECT ci FROM CartHasItem ci WHERE ci.item.id = :id AND ci.cart.id = :cart";
-		CartHasItem chi = em.createQuery(sql, CartHasItem.class).setParameter("id", i.getId())
-				.setParameter("cart", cart.getId()).getResultList().get(0);
+		List<CartHasItem> chiList = em.createQuery(sql, CartHasItem.class).setParameter("id", i.getId())
+				.setParameter("cart", cart.getId()).getResultList();
 
-		if (chi != null) {
-
-			chi.setCart(cart);
-			chi.setCount(chi.getCount() + 1);
-			chi.setItem(i);
-			em.persist(chi);
-		}
+		
 	}
 
 	@Override
@@ -142,9 +136,13 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	@Override
 	public Customer updateAddress(Customer customer) {
-		Customer customerTracked = em.find(Customer.class, customer.getId());
-		customerTracked.setAddress(customer.getAddress());
-		return customerTracked;
+		Address addressTracked = em.find(Address.class, customer.getAddress().getId());
+		addressTracked.setCity(customer.getAddress().getCity());
+		addressTracked.setState(customer.getAddress().getState());
+		addressTracked.setStreet(customer.getAddress().getStreet());
+		addressTracked.setStreet2(customer.getAddress().getStreet2());
+		addressTracked.setZip(customer.getAddress().getZip());
+		return em.find(Customer.class, customer.getId());
 	}
 
 	@Override
