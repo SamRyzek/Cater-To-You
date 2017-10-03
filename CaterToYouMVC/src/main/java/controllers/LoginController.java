@@ -22,37 +22,35 @@ public class LoginController {
 	@RequestMapping("index.do")
 	public String displayHome(HttpSession session) {
 		User user = (User) session.getAttribute("user");
-		if(user == null) {
+		if (user == null) {
 			return "views/index.jsp";
 		}
 		return getCorrectJSP(user);
 	}
-
-	private String getCorrectJSP(User user) {
-		String jsp = "";
-		switch(user.getUserRoles().getId()) {
-
-		case 1:
-			jsp = "views/customer.jsp";
-			break;
-		case 2:
-			jsp = "views/company.jsp";
-			break;
-		case 3:
-			jsp = "views/admin.jsp";
-			break;
-		default: jsp = "views/index.jsp";
-		}
-		return jsp;
+	
+	@RequestMapping("customer.do")
+	public String displayCustomer(Model model, HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		model.addAttribute("user", user);
+		model.addAttribute("address", user.getCustomer().getAddress());
+		return "views/customer.jsp";
+	}
+	
+	@RequestMapping("company.do")
+	public String displayCompany(Model model, HttpSession session) {
+		return "views/company.jsp";
+	}
+	
+	@RequestMapping("admin.do")
+	public String displayAdmin(Model model, HttpSession session) {
+		return "views/admin.jsp";
 	}
 
-	@RequestMapping(path = "checkLogin.do",
-			method = RequestMethod.GET)
-	public String checkLogin(Model model, HttpSession session,
-			@RequestParam("username") String userName,
+	@RequestMapping(path = "checkLogin.do", method = RequestMethod.POST)
+	public String checkLogin(Model model, HttpSession session, @RequestParam("username") String userName,
 			@RequestParam("password") String password) {
 		User user = dao.returnUser(userName, password);
-		if(user == null) {
+		if (user == null) {
 			model.addAttribute("loginErr", "Your information Incorrect");
 			return "/views/index.jsp";
 		}
@@ -62,8 +60,27 @@ public class LoginController {
 		return getCorrectJSP(user);
 	}
 
+	private String getCorrectJSP(User user) {
+		String jsp = "";
+		switch (user.getUserRoles().getId()) {
+
+		case 1:
+			jsp = "redirect:customer.do";
+			break;
+		case 2:
+			jsp = "redirect:company.do";
+			break;
+		case 3:
+			jsp = "redirect:admin.do";
+			break;
+		default:
+			jsp = "redirect:index.jsp";
+		}
+		return jsp;
+	}
+
 	private void setSessions(HttpSession session, User user) {
-		switch(user.getUserRoles().getId()) {
+		switch (user.getUserRoles().getId()) {
 		case 1:
 			Customer cust = dao.getCustomer(user);
 			session.setAttribute("customer", cust);

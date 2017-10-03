@@ -14,7 +14,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="checkLogin.do" method="GET">
+<form action="checkLogin.do" method="POST">
 		${loginErr}
 		<p>Username:</p>
 		<input type="text" name="username"></input>
