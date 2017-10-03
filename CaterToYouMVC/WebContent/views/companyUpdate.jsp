@@ -35,16 +35,21 @@
 		<input type="text" name="url" value="${image.imageUrl}"/><br/>
 		<input type="submit" value="Edit Maze" />
 	</form>
+	 <form action="UpdateMenuItem.do" method="POST">
 	Update Menu Item: <select name="menuItems">
 			<c:forEach items="${menu}" var="item">
 				<option value="${item.id}">${item.name}</option>
 			</c:forEach>
-		</select> <input type="submit" value="Update" />
+		</select> <input type="submit" value="UpdateMenuItem" />
+		</form>
+		<form action="UpdateStaff.do" method="POST">
 	Update Staff: <select name="staff">
 			<c:forEach items="${staff}" var="employee">
 				<option value="${employee.id}">${employee.name}</option>
 			</c:forEach>
-		</select> <input type="submit" value="Update" />
+		</select> <input type="submit" value="UpdateStaff" />
+		</form>
+		 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

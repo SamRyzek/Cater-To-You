@@ -45,7 +45,7 @@ public interface CustomerDAO {
 
 	public Item returnItemById(Item i);
 
-	public List<OrderHasItems> returnItemsInOrderById(Order order);
+	public List<Item> returnItemsInOrderById(Order order);
 
 	public List<Menu> populateMenuList();
 
@@ -65,7 +65,7 @@ public interface CustomerDAO {
 
 	//take in items by id and add items based on quantity
 
-	public void checkoutEmptiesCartMovesToOrder();
+	public void checkoutEmptiesCartMovesToOrder(Cart cart, Address address);
 
 	//cart check out with total and cart is emptied
 

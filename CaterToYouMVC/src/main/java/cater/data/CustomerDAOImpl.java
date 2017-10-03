@@ -1,5 +1,6 @@
 package cater.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -16,7 +17,6 @@ import entity.Customer;
 import entity.Item;
 import entity.Menu;
 import entity.Order;
-import entity.OrderHasItems;
 
 @Repository
 @Transactional
@@ -108,10 +108,24 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public void checkoutEmptiesCartMovesToOrder() {
+	public void checkoutEmptiesCartMovesToOrder(Cart cart, Address address) {
 		
-
+		List<CartHasItem> chiList1 = cart.getCartHasItemList();
+		List<Item> itemListToMove = new ArrayList<>();
+		
+		for(CartHasItem c : chiList1) {
+			itemListToMove.add(c.getItem());
+		}
+		Order order = new Order();
+		order.set(cart.getAddress());
+		
+		
+		for(CartHasItem c : cart.getCartHasItemList()) {
+			em.remove(c);
+		}
 	}
+	
+	
 
 	@Override
 	public void calculateCartTotal(Item i, Cart cart) {
@@ -214,20 +228,37 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public List<Order> returnOrdersForCustomer(Customer c) {
 		int id = c.getId();
 		String queryString = "SELECT o FROM Order o where o.customer.id = :id ";
-	    List<Order> orderHistory = em.createQuery(queryString, Order.class).setParameter("id", id).getResultList();
+	    List<Order> orderHistory = em.createQuery(queryString, Order.class)
+	    		.setParameter("id", id)
+	    		.getResultList();
 	    return orderHistory;
 	}
 
+//	@Override
+//	public List<Item> returnItemsInOrderById(Order order) {
+//		
+//		int id = order.getId();
+//		String queryString = "SELECT ord FROM OrderHasItems ord WHERE ord.order.id = :id";
+//		List<OrderHasItems> orderHasItemList = em.createQuery(queryString, OrderHasItems.class)
+//				.setParameter("id", id)
+//				.getResultList();
+//		
+//		List<Item> itemList = new ArrayList<>(); 
+//		for (OrderHasItems i : orderHasItemList) {
+//			itemList.add(i.getItem());	
+//		}
+//		
+//		
+//		return itemList;
+//	}
 	@Override
-	public List<OrderHasItems> returnItemsInOrderById(Order order) {
-		
+	public List<Item> returnItemsInOrderById(Order order) {
 		int id = order.getId();
-		String queryString = "SELECT ohi.item FROM OrderHasItems ohi WHERE ohi.order.id = :id";
-		List<OrderHasItems> itemList = em.createQuery(queryString, OrderHasItems.class)
+		String queryString = "SELECT i FROM Item i WHERE i.OrderHasItems.Order.id = :id";
+		List<Item> items = em.createQuery(queryString, Item.class)
 				.setParameter("id", id)
 				.getResultList();
-		
-		return itemList;
+		return items;
 	}
 
 
