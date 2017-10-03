@@ -36,7 +36,13 @@
 				<tr>
 				<td>${loop.index}</td>
 				<td>${item.item.name}</td>
-				<td>${item.count}</td>
+				<td>
+					<form action="changeQuantity.do" method="POST">
+						<input type="hidden" name="itemId" value="${item.id}">
+						<input type="text" name="count" value="${item.count}">
+						<input type="submit" value="update">
+					</form>
+				</td>
 				<td>${item.item.price}</td>
 				<td>${item.item.price * item.count}</td>
 				<td>
@@ -53,7 +59,7 @@
 			<p>Tax: ${tax}</p>
 			<p>Fee: ${fee}</p>
 			<p>Total: ${total}</p>
-			
+			<form action="checkout.do"><input type="submit" value="check out"></form>
 		</c:otherwise>
 	</c:choose>
 	

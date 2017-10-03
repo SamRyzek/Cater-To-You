@@ -160,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `item` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `calories` INT NULL,
-  `desc` VARCHAR(1000) NULL,
+  `synopsis` VARCHAR(1000) NULL,
   `price` DECIMAL(10,2) UNSIGNED NOT NULL,
   `availablity` INT UNSIGNED NOT NULL,
   `menu_id` INT UNSIGNED NOT NULL,
@@ -510,28 +510,28 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caterDB`;
-INSERT INTO `item` (`id`, `name`, `calories`, `desc`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (1, 'Grilled Chicken Tacos', 500, 'Just your basic chicken tacos', 7.29, 1000, 1, 13);
-INSERT INTO `item` (`id`, `name`, `calories`, `desc`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (2, 'Shredded Beef Tacos', 500, 'Just your basic beef tacos', 7.79, 1000, 1, 14);
-INSERT INTO `item` (`id`, `name`, `calories`, `desc`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (3, 'Beer-Battered Fish Tacos', 500, 'Just your basic fish tacos', 7.49, 1000, 1, 15);
-INSERT INTO `item` (`id`, `name`, `calories`, `desc`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (4, 'Grilled Steak Burrito', 500, 'Just your basic steak burrito', 7.79, 1000, 1, 16);
-INSERT INTO `item` (`id`, `name`, `calories`, `desc`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (5, 'Vegetarian Nachos', 500, 'Just your vegetarian tacos', 6.79, 1000, 1, 17);
-INSERT INTO `item` (`id`, `name`, `calories`, `desc`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (6, 'Chicken Taquitos', 500, '4 chicken taquitos', 5.99, 1000, 1, 18);
-INSERT INTO `item` (`id`, `name`, `calories`, `desc`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (7, 'Antipasta', 500, 'Mixed greens and the veggies with ham salami black olives and provolone cheese', 5.00, 1000, 2, NULL);
-INSERT INTO `item` (`id`, `name`, `calories`, `desc`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (8, 'Caesar Salad', 500, 'Crisp romaine tossed with our famous Caesar dress croutons and parmesan', 3.00, 1000, 2, NULL);
-INSERT INTO `item` (`id`, `name`, `calories`, `desc`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (9, 'New York Style Thin Crust Cheese', 500, '12\" 6 slices cheese', 12.00, 1000, 2, NULL);
-INSERT INTO `item` (`id`, `name`, `calories`, `desc`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (10, 'Baked Ravioli', 500, 'Red sauce and baked with mozarella with meat', 12.00, 1000, 2, NULL);
-INSERT INTO `item` (`id`, `name`, `calories`, `desc`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (11, 'Pan Con Lechon', 500, 'Slow-roasted pork sauteed onions veggie-citrus slaw and mojo aioli on toasted cuban bread', 9.50, 1000, 3, 19);
-INSERT INTO `item` (`id`, `name`, `calories`, `desc`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (12, 'Cubano', 500, 'Roasted pork ham swiss pickles and mustard on pressed cuban bread', 9.50, 1000, 3, NULL);
-INSERT INTO `item` (`id`, `name`, `calories`, `desc`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (13, 'Pollo A La Plancha', 500, 'All-natural grilled chicken breast sauteed onions and garlic mojo', 9.50, 1000, 3, 20);
-INSERT INTO `item` (`id`, `name`, `calories`, `desc`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (14, 'De La Casa', 500, 'Avocado cucumbers carrots tomatoes served over mixed greens with chili vinaigrette', 4.00, 1000, 3, NULL);
-INSERT INTO `item` (`id`, `name`, `calories`, `desc`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (15, 'Tres Leches Cake', 500, 'Three-milk sponge cake with whipped cream', 3.25, 1000, 3, NULL);
-INSERT INTO `item` (`id`, `name`, `calories`, `desc`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (16, 'Pulled Pork Sandwich Special', 500, 'Just your basic pulled pork', 11.49, 1000, 4, 21);
-INSERT INTO `item` (`id`, `name`, `calories`, `desc`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (17, 'Rib Special', 500, '4 pork ribs', 12.99, 1000, 4, NULL);
-INSERT INTO `item` (`id`, `name`, `calories`, `desc`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (18, 'Side of Fries', 500, 'Quarter inch cut skin cooked fresh to order', 2.49, 1000, 4, 22);
-INSERT INTO `item` (`id`, `name`, `calories`, `desc`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (19, 'Brisket', 500, 'You haven\'t had our brisket yet ?!?!?', 6.99, 1000, 5, NULL);
-INSERT INTO `item` (`id`, `name`, `calories`, `desc`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (20, 'Burnt End', 500, 'You\'re telling me you don\'t know what burnt ends are?', 8.79, 1000, 5, NULL);
-INSERT INTO `item` (`id`, `name`, `calories`, `desc`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (21, 'Burnt End Bowl', 500, 'Our signature burnt ends with hickory pit beans and sweet cornbread topped with crispy onion straws', 6.99, 1000, 5, NULL);
-INSERT INTO `item` (`id`, `name`, `calories`, `desc`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (22, 'The PK', 500, 'Pulled pork topped with melted smoked provolone cheese barbecue sauce and 2 house made onion rings served on a brioche bun', 9.49, 1000, 5, 23);
+INSERT INTO `item` (`id`, `name`, `calories`, `synopsis`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (1, 'Grilled Chicken Tacos', 500, 'Just your basic chicken tacos', 7.29, 1000, 1, 13);
+INSERT INTO `item` (`id`, `name`, `calories`, `synopsis`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (2, 'Shredded Beef Tacos', 500, 'Just your basic beef tacos', 7.79, 1000, 1, 14);
+INSERT INTO `item` (`id`, `name`, `calories`, `synopsis`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (3, 'Beer-Battered Fish Tacos', 500, 'Just your basic fish tacos', 7.49, 1000, 1, 15);
+INSERT INTO `item` (`id`, `name`, `calories`, `synopsis`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (4, 'Grilled Steak Burrito', 500, 'Just your basic steak burrito', 7.79, 1000, 1, 16);
+INSERT INTO `item` (`id`, `name`, `calories`, `synopsis`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (5, 'Vegetarian Nachos', 500, 'Just your vegetarian tacos', 6.79, 1000, 1, 17);
+INSERT INTO `item` (`id`, `name`, `calories`, `synopsis`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (6, 'Chicken Taquitos', 500, '4 chicken taquitos', 5.99, 1000, 1, 18);
+INSERT INTO `item` (`id`, `name`, `calories`, `synopsis`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (7, 'Antipasta', 500, 'Mixed greens and the veggies with ham salami black olives and provolone cheese', 5.00, 1000, 2, NULL);
+INSERT INTO `item` (`id`, `name`, `calories`, `synopsis`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (8, 'Caesar Salad', 500, 'Crisp romaine tossed with our famous Caesar dress croutons and parmesan', 3.00, 1000, 2, NULL);
+INSERT INTO `item` (`id`, `name`, `calories`, `synopsis`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (9, 'New York Style Thin Crust Cheese', 500, '12\" 6 slices cheese', 12.00, 1000, 2, NULL);
+INSERT INTO `item` (`id`, `name`, `calories`, `synopsis`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (10, 'Baked Ravioli', 500, 'Red sauce and baked with mozarella with meat', 12.00, 1000, 2, NULL);
+INSERT INTO `item` (`id`, `name`, `calories`, `synopsis`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (11, 'Pan Con Lechon', 500, 'Slow-roasted pork sauteed onions veggie-citrus slaw and mojo aioli on toasted cuban bread', 9.50, 1000, 3, 19);
+INSERT INTO `item` (`id`, `name`, `calories`, `synopsis`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (12, 'Cubano', 500, 'Roasted pork ham swiss pickles and mustard on pressed cuban bread', 9.50, 1000, 3, NULL);
+INSERT INTO `item` (`id`, `name`, `calories`, `synopsis`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (13, 'Pollo A La Plancha', 500, 'All-natural grilled chicken breast sauteed onions and garlic mojo', 9.50, 1000, 3, 20);
+INSERT INTO `item` (`id`, `name`, `calories`, `synopsis`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (14, 'De La Casa', 500, 'Avocado cucumbers carrots tomatoes served over mixed greens with chili vinaigrette', 4.00, 1000, 3, NULL);
+INSERT INTO `item` (`id`, `name`, `calories`, `synopsis`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (15, 'Tres Leches Cake', 500, 'Three-milk sponge cake with whipped cream', 3.25, 1000, 3, NULL);
+INSERT INTO `item` (`id`, `name`, `calories`, `synopsis`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (16, 'Pulled Pork Sandwich Special', 500, 'Just your basic pulled pork', 11.49, 1000, 4, 21);
+INSERT INTO `item` (`id`, `name`, `calories`, `synopsis`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (17, 'Rib Special', 500, '4 pork ribs', 12.99, 1000, 4, NULL);
+INSERT INTO `item` (`id`, `name`, `calories`, `synopsis`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (18, 'Side of Fries', 500, 'Quarter inch cut skin cooked fresh to order', 2.49, 1000, 4, 22);
+INSERT INTO `item` (`id`, `name`, `calories`, `synopsis`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (19, 'Brisket', 500, 'You haven\'t had our brisket yet ?!?!?', 6.99, 1000, 5, NULL);
+INSERT INTO `item` (`id`, `name`, `calories`, `synopsis`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (20, 'Burnt End', 500, 'You\'re telling me you don\'t know what burnt ends are?', 8.79, 1000, 5, NULL);
+INSERT INTO `item` (`id`, `name`, `calories`, `synopsis`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (21, 'Burnt End Bowl', 500, 'Our signature burnt ends with hickory pit beans and sweet cornbread topped with crispy onion straws', 6.99, 1000, 5, NULL);
+INSERT INTO `item` (`id`, `name`, `calories`, `synopsis`, `price`, `availablity`, `menu_id`, `item_image`) VALUES (22, 'The PK', 500, 'Pulled pork topped with melted smoked provolone cheese barbecue sauce and 2 house made onion rings served on a brioche bun', 9.49, 1000, 5, 23);
 
 COMMIT;
 

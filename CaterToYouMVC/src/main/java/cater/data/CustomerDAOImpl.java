@@ -13,6 +13,7 @@ import entity.Cart;
 import entity.CartHasItem;
 import entity.Company;
 import entity.Customer;
+import entity.Image;
 import entity.Item;
 import entity.Menu;
 import entity.Order;
@@ -25,6 +26,42 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	@PersistenceContext
 	EntityManager em;
+	
+	public User createUser(User user) {
+		
+		em.persist(user);
+		
+		Address a = usersAddress();
+		Image i = usersImage();
+		Customer c = usersCustomer();
+		c.setUser(user);
+		c.setImage(i);
+		c.setAddress(a);
+		
+		em.persist(c);
+		return user;
+	}
+	
+	public Address usersAddress() {
+		Address a = new Address();
+		em.persist(a);
+		return a;
+	}
+	
+	public Image usersImage() {
+		Image i = new Image();
+		em.persist(i);
+		return i;
+		
+	}
+	
+	public Customer usersCustomer() {
+		Customer c = new Customer();
+		em.persist(c);
+		return c;
+		
+	}
+	
 
 	@Override
 	public void addItemToCart(int itemId, Cart cart, int count) {
@@ -60,19 +97,9 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public void updateQuantityInCart(Item i, Cart cart, int quantity) {
-
-		String sql = "SELECT ci FROM CartHasItem ci WHERE ci.item.id = :id AND ci.cart.id = :cart";
-		CartHasItem chi = em.createQuery(sql, CartHasItem.class).setParameter("id", i.getId())
-				.setParameter("cart", cart.getId()).getResultList().get(0);
-
-		if (chi != null) {
-
-			chi.setCart(cart);
-			chi.setCount(chi.getCount() + 1);
-			chi.setItem(i);
-			em.persist(chi);
-		}
+	public void updateQuantityInCart(int id, int quantity) {
+		CartHasItem cartHas = em.find(CartHasItem.class, id);
+		cartHas.setCount(quantity);
 	}
 
 	@Override
@@ -141,9 +168,13 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	@Override
 	public Customer updateAddress(Customer customer) {
-		Customer customerTracked = em.find(Customer.class, customer.getId());
-		customerTracked.setAddress(customer.getAddress());
-		return customerTracked;
+		Address addressTracked = em.find(Address.class, customer.getAddress().getId());
+		addressTracked.setCity(customer.getAddress().getCity());
+		addressTracked.setState(customer.getAddress().getState());
+		addressTracked.setStreet(customer.getAddress().getStreet());
+		addressTracked.setStreet2(customer.getAddress().getStreet2());
+		addressTracked.setZip(customer.getAddress().getZip());
+		return em.find(Customer.class, customer.getId());
 	}
 
 	@Override

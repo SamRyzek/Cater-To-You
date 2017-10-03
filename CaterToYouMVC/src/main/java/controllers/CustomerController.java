@@ -36,6 +36,15 @@ public class CustomerController {
 		model.addAttribute("allCompanies", companies);
 		return "views/menus.jsp";
 	}
+	
+	@RequestMapping(path="newUser.do", method=RequestMethod.POST)
+	public String newUser(Model model, HttpSession session, User user) {
+		//create the user in the db
+		User u = customerDAO.createUser(user);
+//		session.setAttribute("user", user);
+//		session.setAttribute("customer", user.getCustomer());
+		return "actionSuccessful.jsp";
+	}
 
 	@RequestMapping(path = "ShopHere.do", method = RequestMethod.GET)
 	public String show(@RequestParam("companyId") Integer id, Model model) {
@@ -77,20 +86,23 @@ public class CustomerController {
 	@RequestMapping(path = "editCustomer.do", method = RequestMethod.POST)
 	public String customerEdit(Model model, HttpSession session, CustomerInput input) {
 		Customer customer = (Customer) session.getAttribute("customer");
+		User user = (User) session.getAttribute("user");
+		
 		customer.getAddress().setCity(input.getCity());
 		customer.getAddress().setState(input.getState());
 		customer.getAddress().setStreet(input.getStreet());
 		customer.getAddress().setStreet2(input.getStreet2());
 		customer.getAddress().setZip(Integer.parseInt(input.getZip()));
-		User user = (User) session.getAttribute("user");
+		customer = customerDAO.updateAddress(customer);
+		
 		user.setEmail(input.getEmail());
 		user = customerDAO.updateEmail(user);
-		customer = customerDAO.updateAddress(customer);
+		
 		session.setAttribute("user", user);
 		session.setAttribute("customer", customer);
 		model.addAttribute("customer", customer);
 		model.addAttribute("address", customer.getAddress());
-		model.addAttribute("user", (User) session.getAttribute("user"));
+		model.addAttribute("user", user);
 		return "redirect:customer.do";
 	}
 
@@ -99,7 +111,7 @@ public class CustomerController {
 		Customer customer = (Customer) session.getAttribute("customer");
 		Cart cart = customerDAO.showCartWithAllItems(customer);
 		double subTotal = customerDAO.calculateCartTotal(cart);
-		model.addAttribute("subTotal", subTotal);
+		model.addAttribute("subTotal", decimalFormatting(subTotal));
 		model.addAttribute("fee", decimalFormatting(subTotal * 0.1));
 		model.addAttribute("tax", decimalFormatting(subTotal * 0.075));
 		double total = (subTotal * 0.1) + (subTotal * 0.075) + subTotal;
@@ -120,6 +132,27 @@ public class CustomerController {
 		Customer customer = (Customer) session.getAttribute("customer");
 		customerDAO.removeItemFromCart(itemId, customer.getCart());
 		return "redirect:showCart.do";
+	}
+	
+	@RequestMapping(path = "changeQuantity.do", method = RequestMethod.POST)
+	public String updateQuantity(@RequestParam("itemId") int id, @RequestParam("count") int count) {
+		customerDAO.updateQuantityInCart(id, count);
+		return "redirect:showCart.do";
+	}
+	
+	@RequestMapping("checkout.do")
+	public String showCheckout(Model model, HttpSession session) {
+		Customer customer = (Customer) session.getAttribute("customer");
+		Cart cart = customerDAO.showCartWithAllItems(customer);
+		double subTotal = customerDAO.calculateCartTotal(cart);
+		model.addAttribute("subTotal", decimalFormatting(subTotal));
+		model.addAttribute("fee", decimalFormatting(subTotal * 0.1));
+		model.addAttribute("tax", decimalFormatting(subTotal * 0.075));
+		double total = (subTotal * 0.1) + (subTotal * 0.075) + subTotal;
+		model.addAttribute("total", decimalFormatting(total));
+		model.addAttribute("itemList", cart.getCartHasItemList());
+		model.addAttribute("cart", cart);
+		return "views/checkout.jsp";
 	}
 
 }

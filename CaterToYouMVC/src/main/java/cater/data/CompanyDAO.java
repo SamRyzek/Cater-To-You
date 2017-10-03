@@ -15,7 +15,7 @@ public interface CompanyDAO {
 	public Company findCompanyById(int id);
 	public Company updateCompanyInfo(Company c);
 	
-	public Menu updateMenuItem(Menu m); 
+//	public Menu updateMenuItem(Menu m); 
 	public Menu addMenuItem(Item i, Menu menu); 
 	public Menu makeMenuItemInactive(Item i); 
 	
@@ -26,6 +26,9 @@ public interface CompanyDAO {
 	public void updateImage(Image i); //could be a url for String even
 	public Image addImage(Image i); //could be a url for String even
 
+	public Item addItem(Item i);
+	public Item findItemById(int id);
+	
 	public List<Company> index();
 	
 
