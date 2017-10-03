@@ -26,6 +26,8 @@
 		<input type="text" name="street2" value="${address.street2}"/><br/>
 		City: 
 		<input type="text" name="city" value="${address.city}"/><br/>
+		State:
+		<input type="text" name="state" value="${address.state}" /><br/>
 		Zip: 
 		<input type="text" name="zip" value="${address.zip}"/><br/>
 		<input type="submit" value="Edit Profile" />
