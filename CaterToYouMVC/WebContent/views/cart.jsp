@@ -20,17 +20,47 @@
 			<h3>Your cart is empty</h3>
 		</c:when>
 		<c:otherwise>
-			<c:forEach items="${itemList}" var="item">
-				<p>
-				${item.count}
-				${item.item.name}
-				${item.item.price}
-				</p>
+			<table>
+				<thead>
+				<tr>
+					<th>Item Number</th>
+					<th>Item</th>
+					<th>Count</th>
+					<th>Price</th>
+					<th>Item Total</th>
+					<th></th>
+				</tr>
+				</thead>
+				<tbody>
+			<c:forEach items="${itemList}" var="item" varStatus="loop" >
+				<tr>
+				<td>${loop.index}</td>
+				<td>${item.item.name}</td>
+				<td>${item.count}</td>
+				<td>${item.item.price}</td>
+				<td>${item.item.price * item.count}</td>
+				<td>
+				<form action="removeItem.do">
+					<input type="hidden" name="itemId" value="${item.id}">
+					<input type="submit" value="Delete">
+				</form>
+				</td>
+				</tr>
 			</c:forEach>
+				</tbody>
+			</table>
+			<p>sub Total: ${subTotal}</p>
+			<p>Tax: ${tax}</p>
+			<p>Fee: ${fee}</p>
 			<p>Total: ${total}</p>
+			
 		</c:otherwise>
 	</c:choose>
-
+	
+	<form action="customer.do" method="GET">
+		<input type="submit" value="Return Home"/>
+	</form>
+	
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>
