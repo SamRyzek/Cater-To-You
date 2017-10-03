@@ -1,11 +1,14 @@
 package cater.data;
 
+import java.util.List;
+
 import entity.Company;
 import entity.Customer;
 import entity.Employee;
 import entity.Image;
 import entity.Item;
 import entity.Menu;
+import entity.User;
 
 public interface AdminDAO {
 	
@@ -27,6 +30,7 @@ public interface AdminDAO {
 	// need to include functionality to update order history
 	// may need to take in customer cart
 	public void emptyCart();
+	
 
 	// delete item from cart
 	public void removeItemFromCart(Item i);
@@ -60,6 +64,6 @@ public interface AdminDAO {
 	public void updateImage(Image i); //could be a url for String even
 	public void addImage(Image i); //could be a url for String even
 	
-	
+	public List<User> index();
 
 }

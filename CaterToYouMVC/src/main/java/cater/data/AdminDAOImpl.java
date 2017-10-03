@@ -1,13 +1,22 @@
 package cater.data;
 
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import entity.Company;
 import entity.Customer;
 import entity.Employee;
 import entity.Image;
 import entity.Item;
 import entity.Menu;
+import entity.User;
 
 public class AdminDAOImpl implements AdminDAO {
+	
+	@PersistenceContext
+	EntityManager em;
 
 	@Override
 	public void addItemToCart(Item i) {
@@ -97,6 +106,12 @@ public class AdminDAOImpl implements AdminDAO {
 	public void addImage(Image i) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public List<User> index() {
+		String sql = "SELECT u FROM User u";
+		return em.createQuery(sql, User.class).getResultList();
 	}
 
 }

@@ -14,7 +14,7 @@
 <title>Update "${item.name}"</title>
 </head>
 <body>
-<form action="updateItem.do" method="POST">
+<form action="changeItem.do" method="POST">
 			Name:
 			<input type="text" name="name" value="${item.name}"/><br/>
 			Calories:
@@ -25,6 +25,7 @@
 			<input type="text" name="price" value="${item.price}"/><br/>
 			Availability (Quantity):
 			<input type="number" name="availability" value="${item.availability}"/><br/>
+			<input type="submit" value="Update Item Information" />
 </form>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

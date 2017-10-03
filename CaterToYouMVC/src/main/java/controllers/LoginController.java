@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import cater.data.AdminDAO;
+import cater.data.CompanyDAO;
 import cater.data.CustomerDAO;
 import data.LoginDAO;
 import entity.Customer;
@@ -25,6 +27,10 @@ public class LoginController {
 	LoginDAO dao;
 	@Autowired
 	CustomerDAO customerDAO;
+	@Autowired
+	CompanyDAO companyDAO;
+	@Autowired
+	AdminDAO adminDAO;
 
 	@RequestMapping("index.do")
 	public String displayHome(HttpSession session) {
@@ -57,6 +63,8 @@ public class LoginController {
 	
 	@RequestMapping("admin.do")
 	public String displayAdmin(Model model, HttpSession session) {
+		model.addAttribute("companies", companyDAO.index());
+		model.addAttribute("users", adminDAO.index());
 		return "views/admin.jsp";
 	}
 
@@ -102,6 +110,9 @@ public class LoginController {
 		case 2:
 			Employee employee = dao.getEmployee(user);
 			session.setAttribute("employee", employee);
+			session.setAttribute("user", user);
+			break;
+		case 3:
 			session.setAttribute("user", user);
 			break;
 		}
