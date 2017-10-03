@@ -28,7 +28,7 @@ public class Item {
 	@Column(name="calories")
 	private int calories;
 	
-	@Column(name="desc")
+	@Column(name="synopsis")
 	private String description;
 	
 	@Column(name="price")

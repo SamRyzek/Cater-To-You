@@ -39,21 +39,21 @@ public class CompanyDAOImpl implements CompanyDAO {
 		return c;
 	}
 
-	@Override //session will give us the menu
-	public Menu updateMenuItem(Menu m) {
-
-		int id = m.getId();
-		Menu menu = em.find(Menu.class, id);
-
-		if (menu != null) {
-
-			menu.setCompany(m.getCompany());
-			menu.setItemList(m.getItemList());
-
-		}
-
-		return menu;
-	}
+//	@Override //session will give us the menu
+//	public Menu updateMenuItem(Menu m) {
+//
+//		int id = m.getId();
+//		Menu menu = em.find(Menu.class, id);
+//
+//		if (menu != null) {
+//
+//			menu.setCompany(m.getCompany());
+//			menu.setItemList(m.getItemList());
+//
+//		}
+//
+//		return menu;
+//	}
 
 	@Override
 	public Menu addMenuItem(Item i, Menu menu) {
@@ -76,9 +76,11 @@ public class CompanyDAOImpl implements CompanyDAO {
 		return m;
 	}
 
+
 	@Override
 	public Menu makeMenuItemInactive(Item i) {
-		// TODO Auto-generated method stub
+		Item item = em.find(Item.class, i.getId());
+		item.setAvailability(0);
 		return null;
 	}
 
@@ -147,6 +149,12 @@ public class CompanyDAOImpl implements CompanyDAO {
 			em.flush();
 			return i;
 		}
+	@Override
+	public Item addItem(Item i){
+		em.persist(i);
+		em.flush();
+		return i;
+	}
 
 		
 
@@ -165,4 +173,12 @@ public class CompanyDAOImpl implements CompanyDAO {
 		return em.createQuery(sql, Company.class).setParameter("id", id).getResultList().get(0);
 
 	}
+
+	@Override
+	public Item findItemById(int id) {
+		return em.find(Item.class, id);
+		 
+	}
+
+	
 }

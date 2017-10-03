@@ -41,7 +41,7 @@ public class CompanyController {
 	}
 
 	@RequestMapping(path = "editItem.do", method = RequestMethod.POST)
-	public String customerEdit(@RequestParam("name") String name, @RequestParam("calories") Integer calories,
+	public String itemEdit(@RequestParam("name") String name, @RequestParam("calories") Integer calories,
 			@RequestParam("price") Double price, @RequestParam("description") String description, @RequestParam("availability") Integer availability,
 			@RequestParam("imageURL") String imageURL, @RequestParam("oldItemId") Integer oldId, Model model, HttpSession session) {
 		Item item = customerDAO.returnItemById(oldId);
@@ -85,9 +85,22 @@ public class CompanyController {
 			image = companyDAO.addImage(image);
 			itemTemp.setImage(image);
 		}
-		Menu menu = item.getMenu();
-		item.setAvailability(0);
-		menu = companyDAO.addMenuItem(itemTemp, menu);
+		itemTemp.setMenu(item.getMenu());
+		companyDAO.makeMenuItemInactive(item);
+		itemTemp = companyDAO.addItem(itemTemp);
+		User user = (User) session.getAttribute("user");
+		List<Item> menuItems = customerDAO.showMenu(user.getEmployee().getCompany().getId());
+		model.addAttribute("user",user);
+		model.addAttribute("employee", user.getEmployee());
+		model.addAttribute("company", user.getEmployee().getCompany());
+		model.addAttribute("address", user.getEmployee().getCompany().getAddress());
+		model.addAttribute("menu", menuItems);
+		return "views/company.jsp";
+	}
+	@RequestMapping(path = "InactivateItem.do", method = RequestMethod.POST)
+	public String inactivate(@RequestParam("oldItemId") Integer oldId, Model model, HttpSession session) {
+		Item item = companyDAO.findItemById(oldId);
+		companyDAO.makeMenuItemInactive(item);
 		User user = (User) session.getAttribute("user");
 		List<Item> menuItems = customerDAO.showMenu(user.getEmployee().getCompany().getId());
 		model.addAttribute("user",user);
