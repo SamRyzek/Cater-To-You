@@ -180,5 +180,18 @@ public class CompanyDAOImpl implements CompanyDAO {
 		 
 	}
 
+	@Override
+	public List<Employee> findEmployeesByCompany(Company company) {
+		String sql = "SELECT e FROM Employee e where e.company= :company";
+		return em.createQuery(sql, Employee.class).setParameter("company", company).getResultList();
+
+	}
+
+	@Override
+	public Employee findEmployeeById(int id) {
+		return em.find(Employee.class, id);
+		
+	}
+
 	
 }

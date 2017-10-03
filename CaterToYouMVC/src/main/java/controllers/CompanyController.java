@@ -19,6 +19,7 @@ import cater.data.CustomerDAO;
 import cater.data.CustomerInput;
 import entity.Company;
 import entity.Customer;
+import entity.Employee;
 import entity.Image;
 import entity.Item;
 import entity.Menu;
@@ -110,5 +111,29 @@ public class CompanyController {
 		model.addAttribute("menu", menuItems);
 		return "views/company.jsp";
 	}
+	@RequestMapping(path = "InactivateEmployee.do", method = RequestMethod.POST)
+	public String inactivateEmp(@RequestParam("oldEmployeeId") Integer oldId, Model model, HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if (user.getEmployee().getEmployeeID() != oldId) {
+		Employee employee = companyDAO.findEmployeeById(oldId);
+		companyDAO.makeEmployeeInactive(employee);}
+		else {
+			String error = "You can not make yourself inactive from this screen";
+			model.addAttribute("message",error);
+			
+		}
+		Company company = companyDAO.findCompanyById(user.getEmployee().getCompany().getId());
+		model.addAttribute("user",user);
+		model.addAttribute("company", company);
+		model.addAttribute("address", user.getEmployee().getCompany().getAddress());
+		model.addAttribute("users", companyDAO.findEmployeesByCompany(company));
+		List<Item> menuItems = customerDAO.showMenu(user.getEmployee().getCompany().getId());
+		model.addAttribute("menu", menuItems);
+		model.addAttribute("employee", user.getEmployee());
+		
+		
+		return "views/company.jsp";
+	}
+
 
 }

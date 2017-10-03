@@ -19,9 +19,11 @@ public interface CompanyDAO {
 	public Menu addMenuItem(Item i, Menu menu); 
 	public Menu makeMenuItemInactive(Item i); 
 	
+	public Employee findEmployeeById(int id);
 	public Employee updateEmployee(Employee e);
 	public Employee addEmployee(Employee e);
 	public Employee makeEmployeeInactive(Employee e);
+	public List<Employee> findEmployeesByCompany(Company c);
 	
 	public void updateImage(Image i); //could be a url for String even
 	public Image addImage(Image i); //could be a url for String even
