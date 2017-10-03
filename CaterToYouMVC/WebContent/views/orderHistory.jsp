@@ -16,19 +16,15 @@
 <title>Order History</title>
 </head>
 <body>
-<c:forEach items="${allOrders}" var="order">
-				${order.id}
-				${order.date}
-				${deliveryAddress.street}
-				${deliveryAddress.street2}
-				${deliveryAddress.city}
-				${deliveryAddress.state}
-				${deliveryAddress.zip}
-		 <form action="shop.do" method="POST">
-		<input type="text" name="company" value="${company.id}"/><br/>
-		<input type="submit" value="Shop Here" />
-		 </form>
-			</c:forEach>
+	<c:forEach items="${orders}" var="order">
+		${order.id}
+		${order.deliveryDateTime}
+		${order.address.street}
+		${order.address.street2}
+		${order.address.city}
+		${order.address.state}
+		${order.address.zip}
+	</c:forEach>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

@@ -41,7 +41,7 @@ public class CompanyDAOImpl implements CompanyDAO {
 		return c;
 	}
 
-	@Override // session will give us the menu
+	@Override //session will give us the menu
 	public Menu updateMenuItem(Menu m) {
 
 		int id = m.getId();

@@ -18,14 +18,15 @@ import entity.Cart;
 import entity.Company;
 import entity.Customer;
 import entity.Item;
+import entity.Order;
 import entity.User;
 
 @Controller
 public class CustomerController {
-	
+
 	@Autowired
 	private CompanyDAO companyDAO;
-	
+
 	@Autowired
 	private CustomerDAO customerDAO;
 
@@ -36,7 +37,7 @@ public class CustomerController {
 		return "views/menus.jsp";
 	}
 
-	@RequestMapping(path = "ShopHere.do", method = RequestMethod.POST)
+	@RequestMapping(path = "ShopHere.do", method = RequestMethod.GET)
 	public String show(@RequestParam("companyId") Integer id, Model model) {
 		List<Item> menuItems = customerDAO.showMenu(id);
 		Company company = companyDAO.findCompanyById(id);
@@ -46,15 +47,23 @@ public class CustomerController {
 		return "views/menu.jsp";
 	}
 
-//	@RequestMapping(path = "OrderHistory.do", method = RequestMethod.GET)
-//	public String show(Model model, HttpSession session) {
-//		Customer customer = (Customer) session.getAttribute("customer");
-//		if (customer != null) {
-//			List<Order> orderHistory = customerDAO.findOrderHistory(customer.getId());
-//			model.addAttribute("orders", orderHistory);
-//			return "views/orderHistory.jsp";
-//		}
-//	}
+	@RequestMapping(path = "addToCart.do", method = RequestMethod.POST)
+	public String addItemToCart(@RequestParam("itemId") Integer id, @RequestParam("quantity") int count,
+			@RequestParam("company") int companyId, HttpSession session) {
+		Customer customer = (Customer) session.getAttribute("customer");
+		if (count > 0) {
+			customerDAO.addItemToCart(id, customer.getCart(), count);
+		}
+		return "redirect:ShopHere.do?companyId=" + companyId;
+	}
+
+	@RequestMapping(path = "OrderHistory.do", method = RequestMethod.GET)
+	public String showHistory(Model model, HttpSession session) {
+		Customer customer = (Customer) session.getAttribute("customer");
+		List<Order> orderHistory = customerDAO.returnOrdersForCustomer(customer);
+		model.addAttribute("orders", orderHistory);
+		return "views/orderHistory.jsp";
+	}
 
 	@RequestMapping(path = "UpdateCustomer.do", method = RequestMethod.POST)
 	public String customerUpdate(Model model, HttpSession session) {
@@ -64,7 +73,7 @@ public class CustomerController {
 		}
 		return "views/customerUpdate.jsp";
 	}
-	
+
 	@RequestMapping(path = "editCustomer.do", method = RequestMethod.POST)
 	public String customerEdit(Model model, HttpSession session, CustomerInput input) {
 		Customer customer = (Customer) session.getAttribute("customer");
@@ -73,7 +82,7 @@ public class CustomerController {
 		customer.getAddress().setStreet(input.getStreet());
 		customer.getAddress().setStreet2(input.getStreet2());
 		customer.getAddress().setZip(Integer.parseInt(input.getZip()));
-		User user = (User)session.getAttribute("user");
+		User user = (User) session.getAttribute("user");
 		user.setEmail(input.getEmail());
 		user = customerDAO.updateEmail(user);
 		customer = customerDAO.updateAddress(customer);
@@ -81,19 +90,18 @@ public class CustomerController {
 		session.setAttribute("customer", customer);
 		model.addAttribute("customer", customer);
 		model.addAttribute("address", customer.getAddress());
-		model.addAttribute("user", (User)session.getAttribute("user"));
+		model.addAttribute("user", (User) session.getAttribute("user"));
 		return "redirect:customer.do";
 	}
-	
+
 	@RequestMapping("showCart.do")
 	public String showCart(Model model, HttpSession session) {
 		Customer customer = (Customer) session.getAttribute("customer");
-		Cart cart = customerDAO.getCartForCustomer(customer);
+		Cart cart = customerDAO.showCartWithAllItems(customer);
 		model.addAttribute("total", customerDAO.calculateCartTotal(cart));
 		model.addAttribute("itemList", cart.getCartHasItemList());
 		model.addAttribute("cart", cart);
 		return "views/cart.jsp";
 	}
-	
 
 }

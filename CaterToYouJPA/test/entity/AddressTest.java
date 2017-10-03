@@ -35,25 +35,25 @@ public class AddressTest {
 	@Test 
 	public void test_Address_street_mapped() {
 		Address add = em.find(Address.class, 7);
-		assertEquals("5695 S Galena St.",add.getStreet());
+		assertEquals(" 5695 S Galena St.",add.getStreet());
 	}
 	
 	@Test
 	public void test_Address_Street2_mapped() {
 		Address add = em.find(Address.class, 7);
-		assertEquals("", add.getStreet2());
+		assertEquals(" ", add.getStreet2());
 	}
 	
 	@Test
 	public void test_Address_city_mapped() {
 		Address add = em.find(Address.class, 7);
-		assertEquals("Greenwood Village", add.getCity());
+		assertEquals(" Greenwood Village", add.getCity());
 	}
 	
 	@Test
 	public void test_Address_state_mapped() {
 		Address add = em.find(Address.class, 7);
-		assertEquals("CO", add.getState());
+		assertEquals(" CO", add.getState());
 	}
 	
 	@Test
@@ -80,6 +80,6 @@ public class AddressTest {
 	public void test_Address_companyList_mapped() {
 		Address add = em.find(Address.class, 1);
 		assertEquals(1, add.getCompanyList().size());
-		assertEquals("Illegal Pete's", add.getCompanyList().get(0).getName());
+		assertEquals(" Illegal Pete's", add.getCompanyList().get(0).getName());
 	}
 }
