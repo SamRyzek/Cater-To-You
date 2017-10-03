@@ -18,13 +18,7 @@ import entity.Item;
 import entity.Menu;
 import entity.Order;
 import entity.OrderHasItems;
-<<<<<<< HEAD
-
 import entity.User;
-
-=======
-import entity.User;
->>>>>>> 3cdb7945cdc0fc1037eb109b8fec06a15d55d365
 
 @Repository
 @Transactional
