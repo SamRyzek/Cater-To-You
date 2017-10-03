@@ -30,11 +30,9 @@ public class CompanyDAOImpl implements CompanyDAO {
 		if (c != null)
 
 		{
-
 			c.setAddress(company.getAddress());
 			c.setImage(company.getImage());
 			c.setName(company.getName());
-
 		}
 
 		em.close();
@@ -59,9 +57,9 @@ public class CompanyDAOImpl implements CompanyDAO {
 
 	@Override
 	public Menu addMenuItem(Item i, Menu menu) {
-
-		String sql = "SELECT m FROM Menu m WHERE m.item.id = :id";
-		Menu m = em.createQuery(sql, Menu.class).setParameter("id", menu.getId()).getSingleResult();
+		
+		
+		Menu m = menu;
 
 		if (m == null) {
 
@@ -144,18 +142,15 @@ public class CompanyDAOImpl implements CompanyDAO {
 	}
 
 	@Override
-	public void addImage(Image i) {
+	public Image addImage(Image i){
+			em.persist(i);
+			em.flush();
+			return i;
+		}
 
-		String sql = "SELECT i FROM Image i WHERE i.id = :id";
+		
 
-		Image image = em.createQuery(sql, Image.class)
-				.setParameter("id", i.getId())
-				.getSingleResult();
-
-		image = new Image();
-		em.persist(image);
-
-	}
+	
 
 	@Override
 	public List<Company> index() {

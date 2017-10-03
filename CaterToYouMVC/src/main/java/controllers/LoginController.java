@@ -58,6 +58,7 @@ public class LoginController {
 		model.addAttribute("company", user.getEmployee().getCompany());
 		model.addAttribute("address", user.getEmployee().getCompany().getAddress());
 		model.addAttribute("menu", menuItems);
+		
 		return "views/company.jsp";
 	}
 	
