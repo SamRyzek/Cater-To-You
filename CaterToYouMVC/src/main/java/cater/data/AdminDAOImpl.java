@@ -2,8 +2,12 @@ package cater.data;
 
 import java.util.List;
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import entity.Company;
 import entity.Customer;
@@ -12,7 +16,8 @@ import entity.Image;
 import entity.Item;
 import entity.Menu;
 import entity.User;
-
+@Repository
+@Transactional
 public class AdminDAOImpl implements AdminDAO {
 	
 	@PersistenceContext
