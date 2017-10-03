@@ -24,7 +24,7 @@ public class Employee {
 	@JoinColumn(name="user_id") //this tables column to join on
 	private User user;
 	
-	@ManyToOne//owning table gets join column
+	@ManyToOne //owning table gets join column
 	@JoinColumn(name="company_id")
 	private Company company;
 
