@@ -1,10 +1,7 @@
 package controllers;
 
-import java.awt.event.ItemEvent;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import cater.data.CompanyDAO;
 import cater.data.CustomerDAO;
-import cater.data.CustomerInput;
+import entity.Address;
 import entity.Company;
-import entity.Customer;
 import entity.Employee;
 import entity.Image;
 import entity.Item;
-import entity.Menu;
 import entity.User;
 
 @Controller
@@ -39,43 +34,47 @@ public class CompanyController {
 		model.addAttribute("item", item);
 		return "views/itemUpdate.jsp";
 	}
-
-	@RequestMapping(path = "editCompany.do", method = RequestMethod.POST)
-	public String customerEdit(@RequestParam("name") String name, @RequestParam("street") String street,
-			@RequestParam("street2") String street2, @RequestParam("city") String city,
-			@RequestParam("state") String state, @RequestParam("zip") String zip,
-			@RequestParam("imageURL") String imageURL,
-			@RequestParam("oldItemId") Integer oldId, Model model, HttpSession session) {
-		Company company = companyDAO.updateCompanyInfo(company);
-		Company tempCompany = new Company();
-		if (name == null) {
+	
+	@RequestMapping(path = "editItem.do", method = RequestMethod.POST)
+	public String itemEdit(@RequestParam("name") String name, @RequestParam("calories") Integer calories,
+			@RequestParam("price") Double price, @RequestParam("description") String description, @RequestParam("availability") Integer availability,
+			@RequestParam("imageURL") String imageURL, @RequestParam("oldItemId") Integer oldId, Model model, HttpSession session) {
+		Item item = customerDAO.returnItemById(oldId);
+		Item itemTemp = new Item();
+		if (name==null) {
 			itemTemp.setName(item.getName());
-		} else {
+		}
+		else {
 			itemTemp.setName(name);
 		}
-		if (street == null) {
-			itemTemp.setStreet(item.getStreet());
-		} else {
-			itemTemp.setStreet(street);
+		if (calories==null) {
+			itemTemp.setCalories(item.getCalories());
 		}
-		if (price == null) {
+		else {
+			itemTemp.setCalories(calories);
+		}
+		if (price==null) {
 			itemTemp.setPrice(item.getPrice());
-		} else {
+		}
+		else {
 			itemTemp.setPrice(price);
 		}
-		if (description == null) {
+		if (description==null) {
 			itemTemp.setDescription(item.getDescription());
-		} else {
+		}
+		else {
 			itemTemp.setDescription(description);
 		}
-		if (availability == null) {
+		if (availability==null) {
 			itemTemp.setAvailability(item.getAvailability());
-		} else {
+		}
+		else {
 			itemTemp.setAvailability(availability);
 		}
-		if (imageURL == null) {
+		if (imageURL==null) {
 			itemTemp.setImage(item.getImage());
-		} else {
+		}
+		else {
 			Image image = new Image();
 			image.setImageUrl(imageURL);
 			image = companyDAO.addImage(image);
@@ -91,6 +90,38 @@ public class CompanyController {
 		model.addAttribute("company", user.getEmployee().getCompany());
 		model.addAttribute("address", user.getEmployee().getCompany().getAddress());
 		model.addAttribute("menu", menuItems);
+		return "views/company.jsp";
+	}
+
+	@RequestMapping(path = "editCompany.do", method = RequestMethod.POST)
+	public String customerEdit(@RequestParam("name") String name, @RequestParam("Address") Address address,
+			@RequestParam("imageURL") String imageURL,
+			@RequestParam("oldItemId") Integer oldId, Model model, HttpSession session) {
+		Company company = new Company();
+		company = companyDAO.updateCompanyInfo(company);
+		Company tempCompany = new Company();
+		if (name == null) {
+			tempCompany.setName(company.getName());
+		} else {
+			tempCompany.setName(name);
+		}
+		if (address == null) {
+			tempCompany.setAddress(company.getAddress());
+		} else {
+			tempCompany.setAddress(address);
+		}
+		if (imageURL == null) {
+			tempCompany.setImage(company.getImage());
+		} else {
+			Image image = new Image();
+			image.setImageUrl(imageURL);
+			image = companyDAO.addImage(image);
+			tempCompany.setImage(image);
+		}
+
+		User user = (User) session.getAttribute("user");
+		model.addAttribute("company", user.getEmployee().getCompany());
+		model.addAttribute("address", user.getEmployee().getCompany().getAddress());
 		return "views/company.jsp";
 	}
 	@RequestMapping(path = "InactivateItem.do", method = RequestMethod.POST)
@@ -125,12 +156,12 @@ public class CompanyController {
 		List<Item> menuItems = customerDAO.showMenu(user.getEmployee().getCompany().getId());
 		model.addAttribute("menu", menuItems);
 		model.addAttribute("employee", user.getEmployee());
-		
+		String removed = " can not make yourself inactive from this screen";
+		model.addAttribute("message", removed);
 		
 		return "views/company.jsp";
 	}
-
-
+	
 	@RequestMapping(path = "updateCompanyProfile.do", method = RequestMethod.POST)
 	public String userUpdate(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");

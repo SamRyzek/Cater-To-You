@@ -27,6 +27,9 @@ public class Employee {
 	@ManyToOne //owning table gets join column
 	@JoinColumn(name="company_id")
 	private Company company;
+	
+	@Column(name="active")
+	private int active;
 
 	public int getEmployeeID() {
 		return employeeID;
@@ -51,5 +54,11 @@ public class Employee {
 	public void setCompany(Company company) {
 		this.company = company;
 	}
-
+	
+	public int getActive() {
+		return active;
+	}
+	public void setActive(int active) {
+		this.active = active;
+	}
 }
