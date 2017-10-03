@@ -98,10 +98,19 @@ public class CustomerController {
 	public String showCart(Model model, HttpSession session) {
 		Customer customer = (Customer) session.getAttribute("customer");
 		Cart cart = customerDAO.showCartWithAllItems(customer);
-		model.addAttribute("total", customerDAO.calculateCartTotal(cart));
+		double subTotal = customerDAO.calculateCartTotal(cart);
+		model.addAttribute("subTotal", subTotal);
+		model.addAttribute("fee", decimalFormatting(subTotal * 0.1));
+		model.addAttribute("tax", decimalFormatting(subTotal * 0.075));
+		double total = (subTotal * 0.1) + (subTotal * 0.075) + subTotal;
+		model.addAttribute("total", decimalFormatting(total) );
 		model.addAttribute("itemList", cart.getCartHasItemList());
 		model.addAttribute("cart", cart);
 		return "views/cart.jsp";
+	}
+	
+	private double decimalFormatting(double num) {
+		return Math.round(num * 100) / 100.00;
 	}
 
 }
