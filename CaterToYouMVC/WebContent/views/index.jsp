@@ -22,7 +22,7 @@
 		<input type="text" name="password"></input> 
 		<input type="submit" name="submit" value="Login"></input>
 	</form>
-	<a href="newCustomer.jsp">Create new Customer Account</a>
+	<a href="newUser.do">Create new Customer Account</a>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
