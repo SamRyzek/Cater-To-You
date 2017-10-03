@@ -24,7 +24,7 @@ public interface CompanyDAO {
 	public Employee makeEmployeeInactive(Employee e);
 	
 	public void updateImage(Image i); //could be a url for String even
-	public void addImage(Image i); //could be a url for String even
+	public Image addImage(Image i); //could be a url for String even
 
 	public List<Company> index();
 	

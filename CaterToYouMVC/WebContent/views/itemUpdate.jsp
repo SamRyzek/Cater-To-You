@@ -14,17 +14,20 @@
 <title>Update "${item.name}"</title>
 </head>
 <body>
-<form action="changeItem.do" method="POST">
+<form action="editItem.do" method="POST">
 			Name:
 			<input type="text" name="name" value="${item.name}"/><br/>
 			Calories:
 			<input type="text" name="calories" value="${item.calories}"/><br/>
 			Description:
-			<input type="text" name="desc" value="${item.description}"/><br/>
+			<input type="text" name="description" value="${item.description}"/><br/>
 			Price ($XX.XX):
 			<input type="text" name="price" value="${item.price}"/><br/>
 			Availability (Quantity):
 			<input type="number" name="availability" value="${item.availability}"/><br/>
+			Image Url:
+			<input type="text" name="imageURL" value="${item.image.imageUrl}"/><br/>
+			<input type="hidden" name="oldItemId" value="${item.id}"/><br/>
 			<input type="submit" value="Update Item Information" />
 </form>
 

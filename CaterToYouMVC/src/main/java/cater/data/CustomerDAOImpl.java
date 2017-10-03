@@ -126,9 +126,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	@Override
 	public List<Item> showMenu(int id) {
-		String sql = "SELECT i FROM Item i where i.menu.company.id = :id ";
-		List<Item> menuItems = em.createQuery(sql, Item.class).setParameter("id", id).getResultList();
-		return menuItems;
+		String sql = "SELECT i FROM Item i where i.menu.company.id = :id AND i.availability>0";
+	    List<Item> menuItems = em.createQuery(sql, Item.class)
+	    		.setParameter("id", id)
+	    		.getResultList();
+	    return menuItems;
 	}
 
 	@Override

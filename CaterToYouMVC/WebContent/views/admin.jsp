@@ -25,9 +25,9 @@
 		</select> <input type="submit" value="Update" />
 	</form>
 <form action="updateCustomer.do" method="GET">
-		USer: <select name="user">
-			<c:forEach items="${users}" var="customer">
-				<option value="${user.id}">${user.id} ${user.firstName} ${user.lastName}</option>
+		User: <select name="user">
+			<c:forEach items="${users}" var="otherUser">
+				<option value="${otherUser.id}">${otherUser.id} ${otherUser.firstName} ${otherUser.lastName}</option>
 			</c:forEach>
 		</select> <input type="submit" value="Update" />
 	</form>
