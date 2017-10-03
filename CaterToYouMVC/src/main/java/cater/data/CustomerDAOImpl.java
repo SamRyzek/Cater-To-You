@@ -18,10 +18,7 @@ import entity.Item;
 import entity.Menu;
 import entity.Order;
 import entity.OrderHasItems;
-<<<<<<< HEAD
-=======
 import entity.User;
->>>>>>> 8722afb0dcfcde054e62783cf271712e12e79d33
 
 @Repository
 @Transactional
@@ -235,23 +232,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 	    return orderHistory;
 	}
 
-//	@Override
-//	public List<Item> returnItemsInOrderById(Order order) {
-//
-//		int id = order.getId();
-//		String queryString = "SELECT ord FROM OrderHasItems ord WHERE ord.order.id = :id";
-//		List<OrderHasItems> orderHasItemList = em.createQuery(queryString, OrderHasItems.class)
-//				.setParameter("id", id)
-//				.getResultList();
-//
-//		List<Item> itemList = new ArrayList<>();
-//		for (OrderHasItems i : orderHasItemList) {
-//			itemList.add(i.getItem());
-//		}
-//
-//
-//		return itemList;
-//	}
 	@Override
 	public List<Item> returnItemsInOrderById(Order order) {
 		int id = order.getId();

@@ -13,10 +13,10 @@ public interface CompanyDAO {
 	
 	
 	public Company findCompanyById(int id);
-	public Company updateCompanyInfo(Company c, int id);
+	public Company updateCompanyInfo(Company c);
 	
-	public Menu updateMenuItem(Item i); 
-	public Menu addMenuItem(Item i); 
+	public Menu updateMenuItem(Menu m); 
+	public Menu addMenuItem(Item i, Menu menu); 
 	public Menu makeMenuItemInactive(Item i); 
 	
 	public Employee updateEmployee(Employee e);
@@ -28,17 +28,5 @@ public interface CompanyDAO {
 
 	public List<Company> index();
 	
-	
-
-	
-	
-//	we arent going to be adding or deleting menus, only affecting items within
-	
-	
-	
-//	need shit that takes in this shit
-//	company object
-//	menu object
-//	employee object
 
 }
