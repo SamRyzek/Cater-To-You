@@ -183,7 +183,8 @@ public class CompanyController {
 		List<Item> menuItems = customerDAO.showMenu(user.getEmployee().getCompany().getId());
 		model.addAttribute("menu", menuItems);
 		model.addAttribute("employee", user.getEmployee());
-		
+		String removed = " can not make yourself inactive from this screen";
+		model.addAttribute("message", removed);
 		
 		return "views/company.jsp";
 	}

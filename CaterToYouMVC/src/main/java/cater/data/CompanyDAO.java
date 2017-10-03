@@ -22,7 +22,7 @@ public interface CompanyDAO {
 	public Employee findEmployeeById(int id);
 	public Employee updateEmployee(Employee e);
 	public Employee addEmployee(Employee e);
-	public Employee makeEmployeeInactive(Employee e);
+	public void makeEmployeeInactive(Employee e);
 	public List<Employee> findEmployeesByCompany(Company c);
 	
 	public void updateImage(Image i); //could be a url for String even
