@@ -103,14 +103,23 @@ public class CustomerController {
 		model.addAttribute("fee", decimalFormatting(subTotal * 0.1));
 		model.addAttribute("tax", decimalFormatting(subTotal * 0.075));
 		double total = (subTotal * 0.1) + (subTotal * 0.075) + subTotal;
-		model.addAttribute("total", decimalFormatting(total) );
-		model.addAttribute("itemList", cart.getCartHasItemList());
+		model.addAttribute("total", decimalFormatting(total));
+		if (cart != null) {
+			model.addAttribute("itemList", cart.getCartHasItemList());
+		}
 		model.addAttribute("cart", cart);
 		return "views/cart.jsp";
 	}
-	
+
 	private double decimalFormatting(double num) {
 		return Math.round(num * 100) / 100.00;
+	}
+
+	@RequestMapping(path = "removeItem.do", method = RequestMethod.POST)
+	public String removeItemFromCart(@RequestParam("itemId") int itemId, HttpSession session) {
+		Customer customer = (Customer) session.getAttribute("customer");
+		customerDAO.removeItemFromCart(itemId, customer.getCart());
+		return "redirect:showCart.do";
 	}
 
 }

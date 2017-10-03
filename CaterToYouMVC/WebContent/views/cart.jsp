@@ -40,7 +40,7 @@
 				<td>${item.item.price}</td>
 				<td>${item.item.price * item.count}</td>
 				<td>
-				<form action="removeItem.do">
+				<form action="removeItem.do" method="POST">
 					<input type="hidden" name="itemId" value="${item.id}">
 					<input type="submit" value="Delete">
 				</form>
