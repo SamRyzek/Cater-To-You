@@ -9,7 +9,7 @@ import entity.Customer;
 import entity.Item;
 import entity.Menu;
 import entity.Order;
-import entity.OrderHasItems;
+import entity.User;
 
 public interface CustomerDAO {
 
@@ -35,9 +35,9 @@ public interface CustomerDAO {
 
 //************************Chris's methods
 
-	public Customer updateEmail(Customer c);
+	public User updateEmail(User user);
 
-	public Customer updateAddress(Customer c, Address a);
+	public Customer updateAddress(Customer customer);
 
 	public Menu returnMenuByCompanyId(Company c); //put an m.getId and then do the find
 

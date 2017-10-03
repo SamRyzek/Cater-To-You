@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import cater.data.CompanyDAO;
 import cater.data.CustomerDAO;
 import cater.data.CustomerInput;
-import entity.Address;
 import entity.Company;
 import entity.Customer;
 import entity.Item;
@@ -68,15 +67,15 @@ public class CustomerController {
 	@RequestMapping(path = "editCustomer.do", method = RequestMethod.POST)
 	public String customerEdit(Model model, HttpSession session, CustomerInput input) {
 		Customer customer = (Customer) session.getAttribute("customer");
-		Address address = customer.getAddress();
-		address.setCity(input.getCity());
-		address.setState(input.getState());
-		address.setStreet(input.getStreet());
-		address.setStreet2(input.getStreet2());
-		address.setZip(Integer.parseInt(input.getZip()));
+		customer.getAddress().setCity(input.getCity());
+		customer.getAddress().setState(input.getState());
+		customer.getAddress().setStreet(input.getStreet());
+		customer.getAddress().setStreet2(input.getStreet2());
+		customer.getAddress().setZip(Integer.parseInt(input.getZip()));
 		User user = (User)session.getAttribute("user");
-		customer = customerDAO.updateEmail(customer);
-		customer = customerDAO.updateAddress(customer, address);
+		user.setEmail(input.getEmail());
+		user = customerDAO.updateEmail(user);
+		customer = customerDAO.updateAddress(customer);
 		session.setAttribute("user", user);
 		session.setAttribute("customer", customer);
 		model.addAttribute("customer", customer);

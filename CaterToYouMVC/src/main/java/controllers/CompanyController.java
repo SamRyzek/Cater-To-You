@@ -29,8 +29,8 @@ public class CompanyController {
 
 	@RequestMapping(path = "UpdateMenuItem.do", method = RequestMethod.GET)
 	public String index(Model model, @RequestParam("menuId") Integer id) {
-		Item item = customerDAO.returnItemById(id);
-		model.addAttribute("item", item);
+//		Item item = customerDAO.returnItemById(id);
+//		model.addAttribute("item", item);
 		return "views/itemUpdate.jsp";
 	}
 

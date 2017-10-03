@@ -1,6 +1,5 @@
 package cater.data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -17,6 +16,7 @@ import entity.Customer;
 import entity.Item;
 import entity.Menu;
 import entity.Order;
+import entity.User;
 
 @Repository
 @Transactional
@@ -110,19 +110,19 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Override
 	public void checkoutEmptiesCartMovesToOrder(Cart cart, Address address) {
 		
-		List<CartHasItem> chiList1 = cart.getCartHasItemList();
-		List<Item> itemListToMove = new ArrayList<>();
-		
-		for(CartHasItem c : chiList1) {
-			itemListToMove.add(c.getItem());
-		}
-		Order order = new Order();
-		order.set(cart.getAddress());
-		
-		
-		for(CartHasItem c : cart.getCartHasItemList()) {
-			em.remove(c);
-		}
+//		List<CartHasItem> chiList1 = cart.getCartHasItemList();
+//		List<Item> itemListToMove = new ArrayList<>();
+//		
+//		for(CartHasItem c : chiList1) {
+//			itemListToMove.add(c.getItem());
+//		}
+//		Order order = new Order();
+//		order.set(cart.getAddress());
+//		
+//		
+//		for(CartHasItem c : cart.getCartHasItemList()) {
+//			em.remove(c);
+//		}
 	}
 	
 	
@@ -155,25 +155,17 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public Customer updateEmail(Customer c) {
-
-		int id = c.getId();
-		Customer customer = em.find(Customer.class, id);
-		String email = c.getUser().getEmail();
-
-		customer.getUser().setEmail(email);
-
-		return customer;
+	public User updateEmail(User user) {
+		User userTracked = em.find(User.class, user.getId());
+		userTracked.setEmail(user.getEmail());
+		return userTracked;
 	}
 
 	@Override
-	public Customer updateAddress(Customer c, Address a) {
-		
-		int id = c.getId();
-		
-		Customer customer = em.find(Customer.class, id);
-		customer.setAddress(a);
-		return null;
+	public Customer updateAddress(Customer customer) {
+		Customer customerTracked = em.find(Customer.class, customer.getId());
+		customerTracked.setAddress(customer.getAddress());
+		return customerTracked;
 	}
 
 	@Override
