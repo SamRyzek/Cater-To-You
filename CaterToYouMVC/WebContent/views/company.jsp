@@ -24,7 +24,11 @@
 				<form action="UpdateMenuItem.do" method="POST">
 			<input type="text" name="itemId"
 				value="${item.id}"hidden/><br/> <input type="submit"
-				value="Update Item" />
+				value="Update Item" /> </form>
+				<form action="InactivateItem.do" method="POST">
+			<input type="text" name="oldItemId"
+				value="${item.id}"hidden/><br/> <input type="submit"
+				value="Make Item Inactive" />
 		</form>
 	</c:forEach>
 

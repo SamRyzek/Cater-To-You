@@ -36,6 +36,15 @@ public class CustomerController {
 		model.addAttribute("allCompanies", companies);
 		return "views/menus.jsp";
 	}
+	
+	@RequestMapping(path="newUser.do", method=RequestMethod.POST)
+	public String newUser(Model model, HttpSession session, User user) {
+		//create the user in the db
+		User u = customerDAO.createUser(user);
+//		session.setAttribute("user", user);
+//		session.setAttribute("customer", user.getCustomer());
+		return "actionSuccessful.jsp";
+	}
 
 	@RequestMapping(path = "ShopHere.do", method = RequestMethod.GET)
 	public String show(@RequestParam("companyId") Integer id, Model model) {

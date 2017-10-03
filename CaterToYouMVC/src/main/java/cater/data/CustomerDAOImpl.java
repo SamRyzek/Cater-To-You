@@ -14,6 +14,7 @@ import entity.Cart;
 import entity.CartHasItem;
 import entity.Company;
 import entity.Customer;
+import entity.Image;
 import entity.Item;
 import entity.Menu;
 import entity.Order;
@@ -26,6 +27,42 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	@PersistenceContext
 	EntityManager em;
+	
+	public User createUser(User user) {
+		
+		em.persist(user);
+		
+		Address a = usersAddress();
+		Image i = usersImage();
+		Customer c = usersCustomer();
+		c.setUser(user);
+		c.setImage(i);
+		c.setAddress(a);
+		
+		em.persist(c);
+		return user;
+	}
+	
+	public Address usersAddress() {
+		Address a = new Address();
+		em.persist(a);
+		return a;
+	}
+	
+	public Image usersImage() {
+		Image i = new Image();
+		em.persist(i);
+		return i;
+		
+	}
+	
+	public Customer usersCustomer() {
+		Customer c = new Customer();
+		em.persist(c);
+		return c;
+		
+	}
+	
 
 	@Override
 	public void addItemToCart(int itemId, Cart cart, int count) {
