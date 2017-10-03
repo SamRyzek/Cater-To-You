@@ -34,7 +34,7 @@ public class ImageTest {
 	@Test
 	public void test_Image_url_mapped() {
 		Image im = em.find(Image.class, 1);
-		assertEquals("http://illegalpetes.com/wp-content/uploads/2015/06/logo-home.png", im.getImageUrl());
+		assertEquals(" http://illegalpetes.com/wp-content/uploads/2015/06/logo-home.png", im.getImageUrl());
 	}
 	
 	@Test

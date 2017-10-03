@@ -35,31 +35,31 @@ public class UserTest {
 	@Test
 	public void test_user_firstName_mapped() {
 		User user = em.find(User.class, 1);
-		assertEquals("James", user.getFirstName());
+		assertEquals(" James", user.getFirstName());
 	}
 	
 	@Test
 	public void test_user_lastName_mapped() {
 		User user = em.find(User.class, 1);
-		assertEquals("Gato", user.getLastName());
+		assertEquals(" Gato", user.getLastName());
 	}
 	
 	@Test
 	public void test_user_userName_mapped() {
 		User user = em.find(User.class, 1);
-		assertEquals("jGato", user.getUsername());
+		assertEquals(" jGato", user.getUsername());
 	}
 	
 	@Test
 	public void test_user_password_mapped() {
 		User user = em.find(User.class, 1);
-		assertEquals("password1", user.getPassword());
+		assertEquals(" password1", user.getPassword());
 	}
 	
 	@Test
 	public void test_user_email_mapped() {
 		User user = em.find(User.class, 1);
-		assertEquals("jgato@gmail.com", user.getEmail());
+		assertEquals(" jgato@gmail.com", user.getEmail());
 	}
 	@Test
 	public void test_user_customer_mapped() {
