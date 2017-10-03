@@ -18,6 +18,10 @@ import entity.Item;
 import entity.Menu;
 import entity.Order;
 import entity.OrderHasItems;
+<<<<<<< HEAD
+=======
+import entity.User;
+>>>>>>> 8722afb0dcfcde054e62783cf271712e12e79d33
 
 @Repository
 @Transactional
@@ -50,7 +54,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public void emptyCart(Item i, Cart cart) {
+	public void emptyCart(Cart cart) {
 
 		String sql = "DELETE ci FROM CartHasItem ci WHERE ci.cart.id = :cart";
 		em.createQuery(sql, CartHasItem.class)
@@ -67,16 +71,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 				.setParameter("id", i.getId())
 				.setParameter("cart", cart.getId())
 				.executeUpdate();
-	}
-
-	@Override
-	public Item returnItemToScreen(Item i) {
-		String queryString = "SELECT i FROM Item i WHERE i.name = :name";
-		Item item = em.createQuery(queryString, Item.class)
-				.setParameter("name", i.getName())
-				.getSingleResult();
-
-		return item;
 	}
 
 	@Override
@@ -98,6 +92,37 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
+	public Cart getCartForCustomer(Customer customer) {
+		String sql = "SELECT c FROM Cart c JOIN FETCH c.cartHasItemList WHERE c.customer.id = :id";
+		List<Cart> cartList = em.createQuery(sql, Cart.class).setParameter("id", customer.getId())
+				.getResultList();
+		Cart cart = cartList.size() == 0 ? null: cartList.get(0);
+		return cart;
+	}
+
+	@Override
+	public double calculateCartTotal(Cart cart) {
+		double total = 0.0;
+		String sql = "SELECT ci FROM CartHasItem ci WHERE ci.cart.id = :cart";
+		List<CartHasItem> cartHasList = em.createQuery(sql, CartHasItem.class)
+				.setParameter("cart", cart.getId())
+				.getResultList();
+		for (CartHasItem cartHasItem : cartHasList) {
+			total += cartHasItem.getItem().getPrice() * cartHasItem.getCount();
+		}
+		return total;
+	}
+
+	@Override
+	public Item returnItemToScreen(Item i) {
+		String queryString = "SELECT i FROM Item i WHERE i.name = :name";
+		Item item = em.createQuery(queryString, Item.class)
+				.setParameter("name", i.getName())
+				.getSingleResult();
+
+		return item;
+	}
+	@Override
 	public List<Item> showCartWithAllItems(Customer c) {
 		int id = c.getCart().getId();
 		String stringQuery = "SELECT i FROM Item i WHERE i.cartHasItemList.cart.id = :id";
@@ -110,45 +135,24 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	@Override
 	public void checkoutEmptiesCartMovesToOrder(Cart cart, Address address) {
-		
+
 		List<CartHasItem> chiList1 = cart.getCartHasItemList();
-		List<OrderHasItems> ohi = new ArrayList<>();
-		
+		List<OrderHasItems> orderHasList = new ArrayList<>();
+
 		for(CartHasItem c : chiList1) {
-			OrderHasItems ohi2 = new OrderHasItems();
-			ohi2.setItem(c.getItem());
-			ohicomm.add(c.getItem());
+			OrderHasItems orderHas = new OrderHasItems();
+			orderHas.setCount(c.getCount());
+			orderHas.setItem(c.getItem());
+			orderHasList.add(orderHas);
 		}
 		Order order = new Order();
 		order.setAddress(address);
-		order.setCustomer(cart.getCustomer());
-		order.
-		
-		
-		for(CartHasItem c : cart.getCartHasItemList()) {
-			em.remove(c);
-		}
+		order.setOrderHasItemsList(orderHasList);
+		em.persist(order);
 	}
 	
-	
 
-	@Override
-	public void calculateCartTotal(Item i, Cart cart) {
 
-		String sql = "SELECT ci FROM CartHasItem ci WHERE ci.item.id = :id AND ci.cart.id = :cart";
-		CartHasItem chi = em.createQuery(sql, CartHasItem.class)
-				.setParameter("id", i.getId())
-				.setParameter("cart", cart.getId())
-				.getResultList().get(0);
-
-		if(chi != null) {
-
-			chi.setCart(cart);
-			chi.setItem(i);
-
-		}
-
-	}
 
 	@Override
 	public List<Item> showMenu(int id) {
@@ -160,45 +164,37 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public Customer updateEmail(Customer c) {
-
-		int id = c.getId();
-		Customer customer = em.find(Customer.class, id);
-		String email = c.getUser().getEmail();
-
-		customer.getUser().setEmail(email);
-
-		return customer;
+	public User updateEmail(User user) {
+		User userTracked = em.find(User.class, user.getId());
+		userTracked.setEmail(user.getEmail());
+		return userTracked;
 	}
 
 	@Override
-	public Customer updateAddress(Customer c, Address a) {
-		
-		int id = c.getId();
-		
-		Customer customer = em.find(Customer.class, id);
-		customer.setAddress(a);
-		return null;
+	public Customer updateAddress(Customer customer) {
+		Customer customerTracked = em.find(Customer.class, customer.getId());
+		customerTracked.setAddress(customer.getAddress());
+		return customerTracked;
 	}
 
 	@Override
 	public Menu returnMenuByCompanyId(Company c) { //join fetch
-		
+
 		int id = c.getId();
 		String queryString = "SELECT m FROM Menu m JOIN FETCH m.itemList WHERE m.company.id = :id";
 		Menu menu = em.createQuery(queryString, Menu.class)
 				.setParameter("id", id)
 				.getSingleResult();
-		
+
 		return menu;
 	}
 
 	@Override
 	public List<Item> returnItemsFromMenu(Menu m) {
 		int id = m.getId();
-		
+
 		String queryString = "SELECT m FROM Menu m JOIN FETCH m.itemList WHERE m.id = :id";
-		
+
 		Menu menu = em.createQuery(queryString, Menu.class)
 				.setParameter("id", id)
 				.getSingleResult();
@@ -207,24 +203,24 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	@Override
 	public Item returnItemById(Item i) {
-	
+
 		int id = i.getId();
 		String queryString = "SELECT i from Item WHERE i.id = :id";
-		
+
 		Item item = em.createQuery(queryString, Item.class)
 				.setParameter("id", id)
 				.getSingleResult();
-		
+
 		return item;
 	}
 
 	@Override
 	public List<Menu> populateMenuList() {
-		
+
 	String queryString = "SELECT m FROM Menu m JOIN FETCH m.itemList";
 	List<Menu> menuList = em.createQuery(queryString, Menu.class)
 			.getResultList();
-		
+
 		return menuList;
 	}
 
@@ -241,19 +237,19 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 //	@Override
 //	public List<Item> returnItemsInOrderById(Order order) {
-//		
+//
 //		int id = order.getId();
 //		String queryString = "SELECT ord FROM OrderHasItems ord WHERE ord.order.id = :id";
 //		List<OrderHasItems> orderHasItemList = em.createQuery(queryString, OrderHasItems.class)
 //				.setParameter("id", id)
 //				.getResultList();
-//		
-//		List<Item> itemList = new ArrayList<>(); 
+//
+//		List<Item> itemList = new ArrayList<>();
 //		for (OrderHasItems i : orderHasItemList) {
-//			itemList.add(i.getItem());	
+//			itemList.add(i.getItem());
 //		}
-//		
-//		
+//
+//
 //		return itemList;
 //	}
 	@Override

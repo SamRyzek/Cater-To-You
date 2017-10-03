@@ -31,7 +31,7 @@
 	<form action="orderHistory.do" method="GET">
 		<input type="submit" value="Order History" />
 	</form>
-	<form action="showCart.do" method="POST">
+	<form action="showCart.do" method="GET">
 		<input type="submit" value="Show Cart"/>
 	</form>
 	

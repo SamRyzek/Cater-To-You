@@ -9,35 +9,27 @@ import entity.Customer;
 import entity.Item;
 import entity.Menu;
 import entity.Order;
-import entity.OrderHasItems;
+import entity.User;
 
 public interface CustomerDAO {
 
 
 	public void addItemToCart(Item i, Cart cart);// add item to cart
-
+	public void emptyCart(Cart cart); // checkout cart
+	public void removeItemFromCart(Item i, Cart cart); // delete item from cart
 	public void updateQuantityInCart(Item i, Cart cart, int quantity);// update cart
+	public Cart getCartForCustomer(Customer customer);
+	public double calculateCartTotal(Cart c);
 
-	// checkout cart
-	// need to include functionality to update order history
-	// may need to take in customer cart
-	public void emptyCart(Item i, Cart cart);
+	
 
-	// delete item from cart
-	public void removeItemFromCart(Item i, Cart cart);
 
-	public void calculateCartTotal(Item i, Cart c);
-
-	// update personal information, and when we create a customer object he'll
-	// automatically have all null shit, therefore we don't need an add customer
-	// information
-
+	
 
 //************************Chris's methods
 
-	public Customer updateEmail(Customer c);
-
-	public Customer updateAddress(Customer c, Address a);
+	public User updateEmail(User user);
+	public Customer updateAddress(Customer customer);
 
 	public Menu returnMenuByCompanyId(Company c); //put an m.getId and then do the find
 

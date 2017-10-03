@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import cater.data.CompanyDAO;
 import cater.data.CustomerDAO;
+import cater.data.CustomerInput;
+import entity.Cart;
 import entity.Company;
 import entity.Customer;
 import entity.Item;
@@ -61,17 +63,36 @@ public class CustomerController {
 			model.addAttribute("address", customer.getAddress());
 		}
 		return "views/customerUpdate.jsp";
-
 	}
 	
 	@RequestMapping(path = "editCustomer.do", method = RequestMethod.POST)
-	public String customerEdit(Model model, HttpSession session) {
+	public String customerEdit(Model model, HttpSession session, CustomerInput input) {
 		Customer customer = (Customer) session.getAttribute("customer");
+		customer.getAddress().setCity(input.getCity());
+		customer.getAddress().setState(input.getState());
+		customer.getAddress().setStreet(input.getStreet());
+		customer.getAddress().setStreet2(input.getStreet2());
+		customer.getAddress().setZip(Integer.parseInt(input.getZip()));
+		User user = (User)session.getAttribute("user");
+		user.setEmail(input.getEmail());
+		user = customerDAO.updateEmail(user);
+		customer = customerDAO.updateAddress(customer);
+		session.setAttribute("user", user);
+		session.setAttribute("customer", customer);
 		model.addAttribute("customer", customer);
 		model.addAttribute("address", customer.getAddress());
 		model.addAttribute("user", (User)session.getAttribute("user"));
-		return "views/customer.jsp";
-
+		return "redirect:customer.do";
+	}
+	
+	@RequestMapping("showCart.do")
+	public String showCart(Model model, HttpSession session) {
+		Customer customer = (Customer) session.getAttribute("customer");
+		Cart cart = customerDAO.getCartForCustomer(customer);
+		model.addAttribute("total", customerDAO.calculateCartTotal(cart));
+		model.addAttribute("itemList", cart.getCartHasItemList());
+		model.addAttribute("cart", cart);
+		return "views/cart.jsp";
 	}
 	
 
