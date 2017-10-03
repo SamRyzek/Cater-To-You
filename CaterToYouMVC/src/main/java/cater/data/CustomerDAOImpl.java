@@ -35,7 +35,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 				.setParameter("id", itemId)
 				.setParameter("cart", cart.getId())
 				.getResultList();
-		
+
 		Item item = em.find(Item.class, itemId);
 		if (chiList.size() == 0) {
 			CartHasItem chi = new CartHasItem();
@@ -136,7 +136,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		order.setOrderHasItemsList(orderHasList);
 		em.persist(order);
 	}
-	
+
 
 
 
@@ -188,14 +188,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public Item returnItemById(Item i) {
-
-		int id = i.getId();
-		String queryString = "SELECT i from Item WHERE i.id = :id";
+	public Item returnItemById(int id) {
+		String queryString = "SELECT i from Item i WHERE i.id = :id";
 
 		Item item = em.createQuery(queryString, Item.class)
-				.setParameter("id", id)
-				.getSingleResult();
+				.setParameter("id", id).getResultList().get(0);
 
 		return item;
 	}
@@ -221,23 +218,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 	    return orderHistory;
 	}
 
-//	@Override
-//	public List<Item> returnItemsInOrderById(Order order) {
-//
-//		int id = order.getId();
-//		String queryString = "SELECT ord FROM OrderHasItems ord WHERE ord.order.id = :id";
-//		List<OrderHasItems> orderHasItemList = em.createQuery(queryString, OrderHasItems.class)
-//				.setParameter("id", id)
-//				.getResultList();
-//
-//		List<Item> itemList = new ArrayList<>();
-//		for (OrderHasItems i : orderHasItemList) {
-//			itemList.add(i.getItem());
-//		}
-//
-//
-//		return itemList;
-//	}
 	@Override
 	public List<Item> returnItemsInOrderById(Order order) {
 		int id = order.getId();
@@ -247,7 +227,4 @@ public class CustomerDAOImpl implements CustomerDAO {
 				.getResultList();
 		return items;
 	}
-
-
-
 }

@@ -20,11 +20,11 @@
 			Calories:
 			<input type="text" name="calories" value="${item.calories}"/><br/>
 			Description:
-			<input type="text" name="desc" value="${item.desc}"/><br/>
+			<input type="text" name="desc" value="${item.description}"/><br/>
 			Price ($XX.XX):
-			<input type="text" name="price" value="${item.desc}"/><br/>
+			<input type="text" name="price" value="${item.price}"/><br/>
 			Availability (Quantity):
-			<input type="text" name="availability" value="${item.desc}"/><br/>
+			<input type="number" name="availability" value="${item.availability}"/><br/>
 </form>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

@@ -21,7 +21,12 @@
 				${item.name}
 				${item.description}
 				${item.price}
-			</c:forEach>
+				<form action="UpdateMenuItem.do" method="POST">
+			<input type="text" name="itemId"
+				value="${item.id}"hidden/><br/> <input type="submit"
+				value="Update Item" />
+		</form>
+	</c:forEach>
 
 
 
@@ -38,3 +43,8 @@
 	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
+
+
+
+
+
