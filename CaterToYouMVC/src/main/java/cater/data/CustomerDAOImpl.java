@@ -17,6 +17,7 @@ import entity.Customer;
 import entity.Item;
 import entity.Menu;
 import entity.Order;
+import entity.OrderHasItems;
 
 @Repository
 @Transactional
@@ -111,13 +112,17 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public void checkoutEmptiesCartMovesToOrder(Cart cart, Address address) {
 		
 		List<CartHasItem> chiList1 = cart.getCartHasItemList();
-		List<Item> itemListToMove = new ArrayList<>();
+		List<OrderHasItems> ohi = new ArrayList<>();
 		
 		for(CartHasItem c : chiList1) {
-			itemListToMove.add(c.getItem());
+			OrderHasItems ohi2 = new OrderHasItems();
+			ohi2.setItem(c.getItem());
+			ohicomm.add(c.getItem());
 		}
 		Order order = new Order();
-		order.set(cart.getAddress());
+		order.setAddress(address);
+		order.setCustomer(cart.getCustomer());
+		order.
 		
 		
 		for(CartHasItem c : cart.getCartHasItemList()) {
