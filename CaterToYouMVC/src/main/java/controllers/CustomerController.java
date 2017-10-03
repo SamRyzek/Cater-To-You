@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import cater.data.CompanyDAO;
 import cater.data.CustomerDAO;
 import cater.data.CustomerInput;
+import entity.Address;
 import entity.Cart;
 import entity.Company;
 import entity.Customer;
@@ -77,20 +78,23 @@ public class CustomerController {
 	@RequestMapping(path = "editCustomer.do", method = RequestMethod.POST)
 	public String customerEdit(Model model, HttpSession session, CustomerInput input) {
 		Customer customer = (Customer) session.getAttribute("customer");
+		User user = (User) session.getAttribute("user");
+		
 		customer.getAddress().setCity(input.getCity());
 		customer.getAddress().setState(input.getState());
 		customer.getAddress().setStreet(input.getStreet());
 		customer.getAddress().setStreet2(input.getStreet2());
 		customer.getAddress().setZip(Integer.parseInt(input.getZip()));
-		User user = (User) session.getAttribute("user");
+		customer = customerDAO.updateAddress(customer);
+		
 		user.setEmail(input.getEmail());
 		user = customerDAO.updateEmail(user);
-		customer = customerDAO.updateAddress(customer);
+		
 		session.setAttribute("user", user);
 		session.setAttribute("customer", customer);
 		model.addAttribute("customer", customer);
 		model.addAttribute("address", customer.getAddress());
-		model.addAttribute("user", (User) session.getAttribute("user"));
+		model.addAttribute("user", user);
 		return "redirect:customer.do";
 	}
 
@@ -119,6 +123,12 @@ public class CustomerController {
 	public String removeItemFromCart(@RequestParam("itemId") int itemId, HttpSession session) {
 		Customer customer = (Customer) session.getAttribute("customer");
 		customerDAO.removeItemFromCart(itemId, customer.getCart());
+		return "redirect:showCart.do";
+	}
+	
+	@RequestMapping(path = "changeQuantity.do", method = RequestMethod.POST)
+	public String updateQuantity(@RequestParam("itemId") int id, @RequestParam("count") int count) {
+		
 		return "redirect:showCart.do";
 	}
 
