@@ -58,8 +58,8 @@ public class CompanyDAOImpl implements CompanyDAO {
 	@Override
 	public Menu addMenuItem(Item i, Menu menu) {
 		
-		
-		Menu m = menu;
+		Menu m = em.find(Menu.class, menu.getId());
+
 
 		if (m == null) {
 
