@@ -43,7 +43,7 @@ public class LoginController {
 	
 	@RequestMapping("newUser.do")
 	public String goToCreateUserPage(){
-		return "views/createUser.jsp";
+		return "views/newUser.jsp";
 	}
 	
 	@RequestMapping("customer.do")

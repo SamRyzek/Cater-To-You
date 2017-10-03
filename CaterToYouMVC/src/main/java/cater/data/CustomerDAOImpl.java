@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 import entity.Address;
 import entity.Cart;
 import entity.CartHasItem;
@@ -19,6 +20,7 @@ import entity.Menu;
 import entity.Order;
 import entity.OrderHasItems;
 import entity.User;
+import entity.UserRoles;
 
 @Repository
 @Transactional
@@ -29,14 +31,17 @@ public class CustomerDAOImpl implements CustomerDAO {
 	
 	public User createUser(User user) {
 		
+		
+		user.setUserRoles(em.find(UserRoles.class, 1));
 		em.persist(user);
 		
-		Address a = usersAddress();
+		
+		//Address a = usersAddress();
 		Image i = usersImage();
 		Customer c = usersCustomer();
 		c.setUser(user);
 		c.setImage(i);
-		c.setAddress(a);
+		//c.setAddress(a);
 		
 		em.persist(c);
 		return user;

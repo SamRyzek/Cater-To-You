@@ -12,7 +12,7 @@
 <body>
 
 	<h1>Personal Details</h1><br>
-	<form action="createUser.do" method="POST">
+	<form action="newUser.do" method="POST">
 		
 		First Name:
 		<input type="text" name="firstName">
