@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import cater.data.CompanyDAO;
 import cater.data.CustomerDAO;
 import cater.data.CustomerInput;
+import entity.Cart;
 import entity.Company;
 import entity.Customer;
 import entity.Item;
@@ -82,7 +83,16 @@ public class CustomerController {
 		model.addAttribute("address", customer.getAddress());
 		model.addAttribute("user", (User)session.getAttribute("user"));
 		return "redirect:customer.do";
-
+	}
+	
+	@RequestMapping("showCart.do")
+	public String showCart(Model model, HttpSession session) {
+		Customer customer = (Customer) session.getAttribute("customer");
+		Cart cart = customerDAO.getCartForCustomer(customer);
+		model.addAttribute("total", customerDAO.calculateCartTotal(cart));
+		model.addAttribute("itemList", cart.getCartHasItemList());
+		model.addAttribute("cart", cart);
+		return "views/cart.jsp";
 	}
 	
 

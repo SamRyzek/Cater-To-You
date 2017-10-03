@@ -71,16 +71,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public Item returnItemToScreen(Item i) {
-		String queryString = "SELECT i FROM Item i WHERE i.name = :name";
-		Item item = em.createQuery(queryString, Item.class)
-				.setParameter("name", i.getName())
-				.getSingleResult();
-
-		return item;
-	}
-
-	@Override
 	public void updateQuantityInCart(Item i, Cart cart, int quantity) {
 
 		String sql = "SELECT ci FROM CartHasItem ci WHERE ci.item.id = :id AND ci.cart.id = :cart";
@@ -97,7 +87,38 @@ public class CustomerDAOImpl implements CustomerDAO {
 			em.persist(chi);
 		}
 	}
+	
+	@Override
+	public Cart getCartForCustomer(Customer customer) {
+		String sql = "SELECT c FROM Cart c JOIN FETCH c.cartHasItemList WHERE c.customer.id = :id";
+		List<Cart> cartList = em.createQuery(sql, Cart.class).setParameter("id", customer.getId())
+				.getResultList();
+		Cart cart = cartList.size() == 0 ? null: cartList.get(0);
+		return cart;
+	}
+	
+	@Override
+	public double calculateCartTotal(Cart cart) {
+		double total = 0.0;
+		String sql = "SELECT ci FROM CartHasItem ci WHERE ci.cart.id = :cart";
+		List<CartHasItem> cartHasList = em.createQuery(sql, CartHasItem.class)
+				.setParameter("cart", cart.getId())
+				.getResultList();
+		for (CartHasItem cartHasItem : cartHasList) {
+			total += cartHasItem.getItem().getPrice() * cartHasItem.getCount();
+		}
+		return total;
+	}
 
+	@Override
+	public Item returnItemToScreen(Item i) {
+		String queryString = "SELECT i FROM Item i WHERE i.name = :name";
+		Item item = em.createQuery(queryString, Item.class)
+				.setParameter("name", i.getName())
+				.getSingleResult();
+		
+		return item;
+	}
 	@Override
 	public List<Item> showCartWithAllItems(Customer c) {
 		int id = c.getCart().getId();
@@ -129,23 +150,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 	
 	
 
-	@Override
-	public void calculateCartTotal(Item i, Cart cart) {
-
-		String sql = "SELECT ci FROM CartHasItem ci WHERE ci.item.id = :id AND ci.cart.id = :cart";
-		CartHasItem chi = em.createQuery(sql, CartHasItem.class)
-				.setParameter("id", i.getId())
-				.setParameter("cart", cart.getId())
-				.getResultList().get(0);
-
-		if(chi != null) {
-
-			chi.setCart(cart);
-			chi.setItem(i);
-
-		}
-
-	}
 
 	@Override
 	public List<Item> showMenu(int id) {
