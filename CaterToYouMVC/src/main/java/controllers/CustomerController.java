@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import cater.data.CompanyDAO;
 import cater.data.CustomerDAO;
 import cater.data.CustomerInput;
-import entity.Address;
 import entity.Cart;
 import entity.Company;
 import entity.Customer;
@@ -103,7 +102,7 @@ public class CustomerController {
 		Customer customer = (Customer) session.getAttribute("customer");
 		Cart cart = customerDAO.showCartWithAllItems(customer);
 		double subTotal = customerDAO.calculateCartTotal(cart);
-		model.addAttribute("subTotal", subTotal);
+		model.addAttribute("subTotal", decimalFormatting(subTotal));
 		model.addAttribute("fee", decimalFormatting(subTotal * 0.1));
 		model.addAttribute("tax", decimalFormatting(subTotal * 0.075));
 		double total = (subTotal * 0.1) + (subTotal * 0.075) + subTotal;
@@ -128,8 +127,23 @@ public class CustomerController {
 	
 	@RequestMapping(path = "changeQuantity.do", method = RequestMethod.POST)
 	public String updateQuantity(@RequestParam("itemId") int id, @RequestParam("count") int count) {
-		
+		customerDAO.updateQuantityInCart(id, count);
 		return "redirect:showCart.do";
+	}
+	
+	@RequestMapping("checkout.do")
+	public String showCheckout(Model model, HttpSession session) {
+		Customer customer = (Customer) session.getAttribute("customer");
+		Cart cart = customerDAO.showCartWithAllItems(customer);
+		double subTotal = customerDAO.calculateCartTotal(cart);
+		model.addAttribute("subTotal", decimalFormatting(subTotal));
+		model.addAttribute("fee", decimalFormatting(subTotal * 0.1));
+		model.addAttribute("tax", decimalFormatting(subTotal * 0.075));
+		double total = (subTotal * 0.1) + (subTotal * 0.075) + subTotal;
+		model.addAttribute("total", decimalFormatting(total));
+		model.addAttribute("itemList", cart.getCartHasItemList());
+		model.addAttribute("cart", cart);
+		return "views/checkout.jsp";
 	}
 
 }

@@ -61,13 +61,9 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public void updateQuantityInCart(Item i, Cart cart, int quantity) {
-		//CartHasItem cartHas = find
-		String sql = "SELECT ci FROM CartHasItem ci WHERE ci.item.id = :id AND ci.cart.id = :cart";
-		List<CartHasItem> chiList = em.createQuery(sql, CartHasItem.class).setParameter("id", i.getId())
-				.setParameter("cart", cart.getId()).getResultList();
-
-		
+	public void updateQuantityInCart(int id, int quantity) {
+		CartHasItem cartHas = em.find(CartHasItem.class, id);
+		cartHas.setCount(quantity);
 	}
 
 	@Override
