@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import cater.data.CustomerDAO;
 import data.LoginDAO;
 import entity.Customer;
+import entity.Employee;
+import entity.Item;
 import entity.User;
 
 @Controller
@@ -18,6 +23,8 @@ public class LoginController {
 
 	@Autowired
 	LoginDAO dao;
+	@Autowired
+	CustomerDAO customerDAO;
 
 	@RequestMapping("index.do")
 	public String displayHome(HttpSession session) {
@@ -38,6 +45,13 @@ public class LoginController {
 	
 	@RequestMapping("company.do")
 	public String displayCompany(Model model, HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		List<Item> menuItems = customerDAO.showMenu(user.getEmployee().getCompany().getId());
+		model.addAttribute("user",user);
+		model.addAttribute("employee", user.getEmployee());
+		model.addAttribute("company", user.getEmployee().getCompany());
+		model.addAttribute("address", user.getEmployee().getCompany().getAddress());
+		model.addAttribute("menu", menuItems);
 		return "views/company.jsp";
 	}
 	
@@ -56,7 +70,6 @@ public class LoginController {
 		}
 		setSessions(session, user);
 		model.addAttribute("user", user);
-		model.addAttribute("address", user.getCustomer().getAddress());
 		return getCorrectJSP(user);
 	}
 
@@ -84,6 +97,11 @@ public class LoginController {
 		case 1:
 			Customer cust = dao.getCustomer(user);
 			session.setAttribute("customer", cust);
+			session.setAttribute("user", user);
+			break;
+		case 2:
+			Employee employee = dao.getEmployee(user);
+			session.setAttribute("employee", employee);
 			session.setAttribute("user", user);
 			break;
 		}

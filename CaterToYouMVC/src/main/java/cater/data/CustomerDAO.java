@@ -35,7 +35,7 @@ public interface CustomerDAO {
 
 	public List<Item> returnItemsFromMenu(Menu m); //m.getId eager load in the list of items it has. With menu obj, we don't need to reorganize shit if we decide to search on other stuff
 
-	public Item returnItemById(Item i);
+	public Item returnItemById(int id);
 
 	public List<Item> returnItemsInOrderById(Order order);
 

@@ -18,7 +18,13 @@ import entity.Item;
 import entity.Menu;
 import entity.Order;
 import entity.OrderHasItems;
+<<<<<<< HEAD
+
 import entity.User;
+
+=======
+import entity.User;
+>>>>>>> 3cdb7945cdc0fc1037eb109b8fec06a15d55d365
 
 @Repository
 @Transactional
@@ -199,14 +205,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public Item returnItemById(Item i) {
-
-		int id = i.getId();
-		String queryString = "SELECT i from Item WHERE i.id = :id";
+	public Item returnItemById(int id) {
+		String queryString = "SELECT i from Item i WHERE i.id = :id";
 
 		Item item = em.createQuery(queryString, Item.class)
-				.setParameter("id", id)
-				.getSingleResult();
+				.setParameter("id", id).getResultList().get(0);
 
 		return item;
 	}
