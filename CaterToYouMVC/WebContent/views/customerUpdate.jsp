@@ -30,7 +30,10 @@
 		<input type="text" name="state" value="${address.state}" /><br/>
 		Zip: 
 		<input type="text" name="zip" value="${address.zip}"/><br/>
-		<input type="submit" value="Edit Profile" />
+		<input type="submit" value="Update" />
+	</form>
+	<form action="customer.do" method="GET">
+		<input type="submit" value="Return Home"/>
 	</form>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

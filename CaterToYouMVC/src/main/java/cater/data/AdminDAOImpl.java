@@ -2,6 +2,7 @@ package cater.data;
 
 import java.util.List;
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -16,35 +17,35 @@ import entity.Item;
 import entity.Menu;
 import entity.User;
 
-@Repository 
+@Repository
 @Transactional
 public class AdminDAOImpl implements AdminDAO {
-	
+
 	@PersistenceContext
 	EntityManager em;
 
 	@Override
 	public void addItemToCart(Item i) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void updateQuantity(Item i) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void emptyCart() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void removeItemFromCart(Item i) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -104,15 +105,15 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public void updateImage(Image i) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void addImage(Image i) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	@Override
 	public List<User> index() {
 		String sql = "SELECT u FROM User u";

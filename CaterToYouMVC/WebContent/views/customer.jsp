@@ -25,7 +25,7 @@
 	Billing Address Street: ${address.street} Street 2: ${address.street2}
 	City: ${address.city} State: ${address.state} Zip: ${address.zip}
 	<form action="UpdateCustomer.do" method="POST">
-		<input type="submit" value="Update" />
+		<input type="submit" value="Edit Profile" />
 	</form>
 	
 	<form action="OrderHistory.do" method="GET">
