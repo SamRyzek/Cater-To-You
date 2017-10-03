@@ -1,5 +1,6 @@
 package cater.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -16,6 +17,7 @@ import entity.Customer;
 import entity.Item;
 import entity.Menu;
 import entity.Order;
+import entity.OrderHasItems;
 import entity.User;
 
 @Repository
@@ -49,7 +51,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public void emptyCart(Item i, Cart cart) {
+	public void emptyCart(Cart cart) {
 
 		String sql = "DELETE ci FROM CartHasItem ci WHERE ci.cart.id = :cart";
 		em.createQuery(sql, CartHasItem.class)
@@ -110,19 +112,19 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Override
 	public void checkoutEmptiesCartMovesToOrder(Cart cart, Address address) {
 		
-//		List<CartHasItem> chiList1 = cart.getCartHasItemList();
-//		List<Item> itemListToMove = new ArrayList<>();
-//		
-//		for(CartHasItem c : chiList1) {
-//			itemListToMove.add(c.getItem());
-//		}
-//		Order order = new Order();
-//		order.set(cart.getAddress());
-//		
-//		
-//		for(CartHasItem c : cart.getCartHasItemList()) {
-//			em.remove(c);
-//		}
+		List<CartHasItem> chiList1 = cart.getCartHasItemList();
+		List<OrderHasItems> orderHasList = new ArrayList<>();
+		
+		for(CartHasItem c : chiList1) {
+			OrderHasItems orderHas = new OrderHasItems();
+			orderHas.setCount(c.getCount());
+			orderHas.setItem(c.getItem());
+			orderHasList.add(orderHas);
+		}
+		Order order = new Order();
+		order.setAddress(address);
+		order.setOrderHasItemsList(orderHasList);
+		em.persist(order);
 	}
 	
 	

@@ -21,7 +21,7 @@ public interface CustomerDAO {
 	// checkout cart
 	// need to include functionality to update order history
 	// may need to take in customer cart
-	public void emptyCart(Item i, Cart cart);
+	public void emptyCart(Cart cart);
 
 	// delete item from cart
 	public void removeItemFromCart(Item i, Cart cart);

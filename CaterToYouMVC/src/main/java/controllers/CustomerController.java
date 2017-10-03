@@ -81,7 +81,7 @@ public class CustomerController {
 		model.addAttribute("customer", customer);
 		model.addAttribute("address", customer.getAddress());
 		model.addAttribute("user", (User)session.getAttribute("user"));
-		return "views/customer.jsp";
+		return "redirect:customer.do";
 
 	}
 	
