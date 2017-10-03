@@ -37,6 +37,9 @@ public class Company {
 	@OneToMany(mappedBy="company")
 	private List<Employee> employeeList;
 	
+	@Column(name="active")
+	private int active;
+	
 	//gets and sets
 	
 	public int getId() {
@@ -76,5 +79,12 @@ public class Company {
 	public void setImage(Image image) {
 		this.image = image;
 	}
+	public int getActive() {
+		return active;
+	}
+	public void setActive(int active) {
+		this.active = active;
+	}
+	
 
 }
