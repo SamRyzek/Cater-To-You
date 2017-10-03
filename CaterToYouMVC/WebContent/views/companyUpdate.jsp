@@ -44,7 +44,7 @@
 		</select> <input type="submit" value="UpdateStaff" />
 	</form>
 
-	<form action="customer.do" method="GET">
+	<form action="company.do" method="GET">
 		<input type="submit" value="Return Home" />
 	</form>
 
