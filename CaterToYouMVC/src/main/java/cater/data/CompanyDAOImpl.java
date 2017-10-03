@@ -122,9 +122,10 @@ public class CompanyDAOImpl implements CompanyDAO {
 	}
 
 	@Override
-	public Employee makeEmployeeInactive(Employee e) {
-		// TODO Auto-generated method stub
-		return null;
+	public void makeEmployeeInactive(Employee e) {
+		Employee employee = em.find(Employee.class, e.getEmployeeID());
+		employee.setActive(0);
+		return;
 	}
 
 	@Override

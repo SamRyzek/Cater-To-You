@@ -103,6 +103,7 @@ CREATE TABLE IF NOT EXISTS `company` (
   `menu_id` INT UNSIGNED NOT NULL,
   `company_address` INT UNSIGNED NULL,
   `company_image` INT UNSIGNED NULL,
+  `active` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_company_menu1_idx` (`menu_id` ASC),
   INDEX `fk_company_address_idx` (`company_address` ASC),
@@ -134,6 +135,7 @@ CREATE TABLE IF NOT EXISTS `employees` (
   `employee_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` INT UNSIGNED NOT NULL,
   `company_id` INT UNSIGNED NOT NULL,
+  `active` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`employee_id`),
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC),
   UNIQUE INDEX `employee_id_UNIQUE` (`employee_id` ASC),
@@ -475,11 +477,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caterDB`;
-INSERT INTO `company` (`id`, `name`, `menu_id`, `company_address`, `company_image`) VALUES (1, 'Illegal Pete\'s', 1, 1, 1);
-INSERT INTO `company` (`id`, `name`, `menu_id`, `company_address`, `company_image`) VALUES (2, 'Lil Ricci\'s', 2, 2, 2);
-INSERT INTO `company` (`id`, `name`, `menu_id`, `company_address`, `company_image`) VALUES (3, 'Cuba Cuba Sandwicheria', 3, 3, 3);
-INSERT INTO `company` (`id`, `name`, `menu_id`, `company_address`, `company_image`) VALUES (4, 'Brothers BBQ Greenwood Village', 4, 4, 4);
-INSERT INTO `company` (`id`, `name`, `menu_id`, `company_address`, `company_image`) VALUES (5, 'Burnt End BBQ', 5, 5, 5);
+INSERT INTO `company` (`id`, `name`, `menu_id`, `company_address`, `company_image`, `active`) VALUES (1, 'Illegal Pete\'s', 1, 1, 1, 1);
+INSERT INTO `company` (`id`, `name`, `menu_id`, `company_address`, `company_image`, `active`) VALUES (2, 'Lil Ricci\'s', 2, 2, 2, 1);
+INSERT INTO `company` (`id`, `name`, `menu_id`, `company_address`, `company_image`, `active`) VALUES (3, 'Cuba Cuba Sandwicheria', 3, 3, 3, 1);
+INSERT INTO `company` (`id`, `name`, `menu_id`, `company_address`, `company_image`, `active`) VALUES (4, 'Brothers BBQ Greenwood Village', 4, 4, 4, 1);
+INSERT INTO `company` (`id`, `name`, `menu_id`, `company_address`, `company_image`, `active`) VALUES (5, 'Burnt End BBQ', 5, 5, 5, 1);
 
 COMMIT;
 
@@ -489,18 +491,18 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caterDB`;
-INSERT INTO `employees` (`employee_id`, `user_id`, `company_id`) VALUES (1, 1, 1);
-INSERT INTO `employees` (`employee_id`, `user_id`, `company_id`) VALUES (2, 2, 1);
-INSERT INTO `employees` (`employee_id`, `user_id`, `company_id`) VALUES (3, 3, 1);
-INSERT INTO `employees` (`employee_id`, `user_id`, `company_id`) VALUES (4, 4, 2);
-INSERT INTO `employees` (`employee_id`, `user_id`, `company_id`) VALUES (5, 5, 2);
-INSERT INTO `employees` (`employee_id`, `user_id`, `company_id`) VALUES (6, 6, 3);
-INSERT INTO `employees` (`employee_id`, `user_id`, `company_id`) VALUES (7, 7, 4);
-INSERT INTO `employees` (`employee_id`, `user_id`, `company_id`) VALUES (8, 8, 4);
-INSERT INTO `employees` (`employee_id`, `user_id`, `company_id`) VALUES (9, 9, 4);
-INSERT INTO `employees` (`employee_id`, `user_id`, `company_id`) VALUES (10, 10, 4);
-INSERT INTO `employees` (`employee_id`, `user_id`, `company_id`) VALUES (11, 11, 5);
-INSERT INTO `employees` (`employee_id`, `user_id`, `company_id`) VALUES (12, 12, 5);
+INSERT INTO `employees` (`employee_id`, `user_id`, `company_id`, `active`) VALUES (1, 1, 1, 1);
+INSERT INTO `employees` (`employee_id`, `user_id`, `company_id`, `active`) VALUES (2, 2, 1, 1);
+INSERT INTO `employees` (`employee_id`, `user_id`, `company_id`, `active`) VALUES (3, 3, 1, 1);
+INSERT INTO `employees` (`employee_id`, `user_id`, `company_id`, `active`) VALUES (4, 4, 2, 1);
+INSERT INTO `employees` (`employee_id`, `user_id`, `company_id`, `active`) VALUES (5, 5, 2, 1);
+INSERT INTO `employees` (`employee_id`, `user_id`, `company_id`, `active`) VALUES (6, 6, 3, 1);
+INSERT INTO `employees` (`employee_id`, `user_id`, `company_id`, `active`) VALUES (7, 7, 4, 1);
+INSERT INTO `employees` (`employee_id`, `user_id`, `company_id`, `active`) VALUES (8, 8, 4, 1);
+INSERT INTO `employees` (`employee_id`, `user_id`, `company_id`, `active`) VALUES (9, 9, 4, 1);
+INSERT INTO `employees` (`employee_id`, `user_id`, `company_id`, `active`) VALUES (10, 10, 4, 1);
+INSERT INTO `employees` (`employee_id`, `user_id`, `company_id`, `active`) VALUES (11, 11, 5, 1);
+INSERT INTO `employees` (`employee_id`, `user_id`, `company_id`, `active`) VALUES (12, 12, 5, 1);
 
 COMMIT;
 

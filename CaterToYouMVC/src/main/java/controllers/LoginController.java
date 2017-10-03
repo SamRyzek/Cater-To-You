@@ -41,6 +41,11 @@ public class LoginController {
 		return getCorrectJSP(user);
 	}
 	
+	@RequestMapping("newUser.do")
+	public String goToCreateUserPage(){
+		return "views/createUser.jsp";
+	}
+	
 	@RequestMapping("customer.do")
 	public String displayCustomer(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
