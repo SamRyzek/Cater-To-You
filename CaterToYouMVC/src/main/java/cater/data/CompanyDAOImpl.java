@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import entity.Address;
 import entity.Company;
 import entity.Employee;
 import entity.Image;
@@ -27,13 +28,15 @@ public class CompanyDAOImpl implements CompanyDAO {
 
 		int id = company.getId();
 		Company c = em.find(Company.class, id);
-
+	
+		
 		if (c != null)
 
 		{
 			c.setAddress(company.getAddress());
 			c.setImage(company.getImage());
 			c.setName(company.getName());
+	
 		}
 
 		em.close();
