@@ -179,6 +179,15 @@ public class CustomerDAOImpl implements CustomerDAO {
 		userTracked.setEmail(user.getEmail());
 		return userTracked;
 	}
+	
+	public Customer createAddressForCustomer(Customer customer) {
+		Customer c = em.find(Customer.class, customer.getId());
+		Address a = customer.getAddress(); //creating address with no relation to customer here
+		em.persist(a);
+		c.setAddress(a); //now we're returning the customer with the associated updated address
+		return c;
+	}
+	
 
 	@Override
 	public Address updateAddress(Address address) {
