@@ -34,6 +34,12 @@ public class CompanyController {
 		model.addAttribute("item", item);
 		return "views/itemUpdate.jsp";
 	}
+	@RequestMapping(path = "UpdateStaff.do", method = RequestMethod.POST)
+	public String find(Model model, @RequestParam("staffId") Integer id) {
+		Employee employee = companyDAO.findEmployeeById(id);
+		model.addAttribute("employee", employee);
+		return "views/employeeUpdate.jsp";
+	}
 	
 	@RequestMapping(path = "editItem.do", method = RequestMethod.POST)
 	public String itemEdit(@RequestParam("name") String name, @RequestParam("calories") Integer calories,
@@ -152,7 +158,7 @@ public class CompanyController {
 		model.addAttribute("user",user);
 		model.addAttribute("company", company);
 		model.addAttribute("address", user.getEmployee().getCompany().getAddress());
-		model.addAttribute("users", companyDAO.findEmployeesByCompany(company));
+		model.addAttribute("users", companyDAO.findUserEmployeesByCompany(company));
 		List<Item> menuItems = customerDAO.showMenu(user.getEmployee().getCompany().getId());
 		model.addAttribute("menu", menuItems);
 		model.addAttribute("employee", user.getEmployee());
@@ -166,7 +172,15 @@ public class CompanyController {
 	public String userUpdate(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		if (user != null) {
+			Company company = companyDAO.findCompanyById(user.getEmployee().getCompany().getId());
+			model.addAttribute("user",user);
+			model.addAttribute("company", company);
 			model.addAttribute("address", user.getEmployee().getCompany().getAddress());
+			model.addAttribute("staff", companyDAO.findUserEmployeesByCompany(company));
+			List<Item> menuItems = customerDAO.showMenu(user.getEmployee().getCompany().getId());
+			model.addAttribute("menu", menuItems);
+			model.addAttribute("employee", user.getEmployee());
+	
 		}
 		return "views/companyUpdate.jsp";
 	}

@@ -7,6 +7,7 @@ import entity.Employee;
 import entity.Image;
 import entity.Item;
 import entity.Menu;
+import entity.User;
 
 public interface CompanyDAO {
 	
@@ -23,7 +24,8 @@ public interface CompanyDAO {
 	public Employee updateEmployee(Employee e);
 	public Employee addEmployee(Employee e);
 	public void makeEmployeeInactive(Employee e);
-	public List<Employee> findEmployeesByCompany(Company c);
+	public List<User> findUserEmployeesByCompany(Company c);
+	
 	
 	public void updateImage(Image i); //could be a url for String even
 	public Image addImage(Image i); //could be a url for String even

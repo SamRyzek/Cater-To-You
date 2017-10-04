@@ -30,24 +30,23 @@
 		<input type="submit" value="Edit Company Profile" />
 	</form>
 	<form action="UpdateMenuItem.do" method="POST">
-		Update Menu Item: <select name="menuItems">
+		Update Menu Item: <select name="itemId">
 			<c:forEach items="${menu}" var="item">
 				<option value="${item.id}">${item.name}</option>
 			</c:forEach>
-		</select> <input type="submit" value="UpdateMenuItem" />
+		</select> <input type="submit" value="Update Menu Item" />
 	</form>
 	<form action="UpdateStaff.do" method="POST">
-		Update Staff: <select name="staff">
+		Update Staff: <select name="staffId">
 			<c:forEach items="${staff}" var="employee">
-				<option value="${employee.id}">${employee.name}</option>
+				<option value="${employee.id}">${employee.firstName} ${employee.lastName}</option>
 			</c:forEach>
-		</select> <input type="submit" value="UpdateStaff" />
+		</select> <input type="submit" value="Update Employee" />
 	</form>
 
 	<form action="company.do" method="GET">
 		<input type="submit" value="Return Home" />
 	</form>
-
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

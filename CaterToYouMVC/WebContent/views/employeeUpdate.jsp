@@ -16,12 +16,20 @@
 <body>
 <form action="updateEmployee.do" method="POST">
 		First Name of Employee to Edit:
-		<input type="text" name="firstName" value="${user.firstName}" readonly/><br/>
+		<input type="text" name="firstName" value="${employee.firstName}" readonly/><br/>
 		Last Name:
-		<input type="text" name="lastName" value="${user.lastName}"/><br/>
+		<input type="text" name="lastName" value="${employee.lastName}"/><br/>
 		
 	</form>
-
+	
+	<form action="InactivateEmployee.do" method="POST">
+			<input type="text" name="oldId"
+				value="${employee.id}"hidden/><br/> <input type="submit"
+				value="Make Item Inactive" />
+</form>
+<form action="company.do" method="GET">
+		<input type="submit" value="Return Home" />
+	</form>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

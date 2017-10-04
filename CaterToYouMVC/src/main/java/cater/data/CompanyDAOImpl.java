@@ -13,6 +13,7 @@ import entity.Employee;
 import entity.Image;
 import entity.Item;
 import entity.Menu;
+import entity.User;
 
 @Repository
 @Transactional
@@ -182,9 +183,9 @@ public class CompanyDAOImpl implements CompanyDAO {
 	}
 
 	@Override
-	public List<Employee> findEmployeesByCompany(Company company) {
-		String sql = "SELECT e FROM Employee e where e.company= :company";
-		return em.createQuery(sql, Employee.class).setParameter("company", company).getResultList();
+	public List<User> findUserEmployeesByCompany(Company company) {
+		String sql = "SELECT u FROM User u where u.employee.company= :company";
+		return em.createQuery(sql, User.class).setParameter("company", company).getResultList();
 
 	}
 
