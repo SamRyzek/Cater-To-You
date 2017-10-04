@@ -77,7 +77,7 @@ body {
 	<h4>Your Cart</h4>
 	<ul class="Two">
 		<c:forEach items="${itemList}" var="item">
-			<li>${item.count}${item.item.name}${item.item.price * item.count}</li>
+			<li>${item.count}${item.item.name}$${item.item.price * item.count}</li>
 		</c:forEach>
 	</ul>
 	<br></br>

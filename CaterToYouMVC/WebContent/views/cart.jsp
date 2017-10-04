@@ -74,7 +74,7 @@ body {
 						<th>Item Number</th>
 						<th>Item</th>
 						<th>Count</th>
-						<th>Price</th>
+						<th>Unit Price</th>
 						<th>Item Total</th>
 						<th></th>
 					</tr>
@@ -85,14 +85,14 @@ body {
 							<td>${loop.index}</td>
 							<td>${item.item.name}</td>
 							<td>
-								<form action="changeQuantity.do" method="POST">
+								<form action="changeQuantity.do" method="POST"> <!-- needs to remove item if q is 0 -->
 									<input type="hidden" name="itemId" value="${item.id}">
 									<input type="text" name="count" value="${item.count}">
 									<input type="submit" value="update">
 								</form>
 							</td>
-							<td>${item.item.price}</td>
-							<td>${item.item.price * item.count}</td>
+							<td>$${item.item.price}</td>
+							<td>$${item.item.price * item.count}</td>
 							<td>
 								<form action="removeItem.do" method="POST">
 									<input type="hidden" name="itemId" value="${item.id}">
@@ -103,10 +103,10 @@ body {
 					</c:forEach>
 				</tbody>
 			</table>
-			<p>Sub Total: ${subTotal}</p>
-			<p>Tax: ${tax}</p>
-			<p>Fee: ${fee}</p>
-			<p>Total: ${total}</p>
+			<p>Sub Total: $${subTotal}</p>
+			<p>Tax: $${tax}</p>
+			<p>Fee: $${fee}</p>
+			<p>Total: $${total}</p>
 		</c:otherwise>
 	</c:choose>
 
