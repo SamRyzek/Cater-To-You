@@ -39,6 +39,30 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 	
 	
+	public List<Address> getPreviousAddress(Customer customer) {
+
+		Customer c = em.find(Customer.class, customer.getId());
+		
+		String queryString = "SELECT ord FROM Order ord WHERE ord.customer.id= :id";
+		List<Order> orderList = em.createQuery(queryString, Order.class).setParameter("id", c.getId())
+				.getResultList();
+		
+		List<Address> custAddresses = new ArrayList<>();
+		for(Order o : orderList) {
+			custAddresses.add(o.getAddress());
+		}
+		
+		return custAddresses;
+	}
+	
+	public Address getAddressById(int addId) {
+		
+		Address a = em.find(Address.class, addId);
+		
+		return a;
+	}
+	
+	
 	
 	public Customer usersCustomer(User user) {
 		Customer c = new Customer();
@@ -91,10 +115,16 @@ public class CustomerDAOImpl implements CustomerDAO {
 		em.remove(cartHas);
 	}
 
-	@Override
+	@Override //if they update to 0, it removes it
 	public void updateQuantityInCart(int id, int quantity) {
 		CartHasItem cartHas = em.find(CartHasItem.class, id);
+		
+		if(quantity == 0) {
+			em.remove(cartHas);
+		}
+		else {
 		cartHas.setCount(quantity);
+		}
 	}
 
 	@Override
