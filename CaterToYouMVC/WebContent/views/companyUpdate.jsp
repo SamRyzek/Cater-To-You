@@ -38,8 +38,8 @@
 	</form>
 	<form action="UpdateStaff.do" method="POST">
 		Update Staff: <select name="staffId">
-			<c:forEach items="${staff}" var="employee">
-				<option value="${employee.id}">${employee.firstName} ${employee.lastName}</option>
+			<c:forEach items="${staff}" var="user">
+				<option value="${user.id}">${user.firstName} ${user.lastName}</option>
 			</c:forEach>
 		</select> <input type="submit" value="Update Employee" />
 	</form>

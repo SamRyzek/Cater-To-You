@@ -11,20 +11,26 @@
 <link rel="icon" href="../../../../favicon.ico">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Update "${employee.firstName}" "${employee.lastName}"</title>
+<title>Update "${user.firstName}" "${user.lastName}"</title>
 </head>
 <body>
-<form action="updateEmployee.do" method="POST">
+<form action="editEmployee.do" method="POST">
 		First Name of Employee to Edit:
-		<input type="text" name="firstName" value="${employee.firstName}" readonly/><br/>
+		<input type="text" name="firstName" value="${user.firstName}" readonly/><br/>
 		Last Name:
-		<input type="text" name="lastName" value="${employee.lastName}"/><br/>
-		
+		<input type="text" name="lastName" value="${user.lastName}"/><br/>
+		Username:
+		<input type="text" name="username" value="${user.username}"/><br/>
+		Password:
+		<input type="text" name="password" value="${user.password}"/><br/>
+		Email:
+		<input type="text" name="email" value="${user.email}"/><br/>
+		<input type="submit" value="Update Employee Information" />
 	</form>
 	
 	<form action="InactivateEmployee.do" method="POST">
-			<input type="text" name="oldId"
-				value="${employee.id}"hidden/><br/> <input type="submit"
+			<input type="hidden" name="oldId"
+				value="${employee.employeeID}"/><input type="submit"
 				value="Make Item Inactive" />
 </form>
 <form action="company.do" method="GET">

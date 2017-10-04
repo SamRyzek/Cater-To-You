@@ -36,8 +36,9 @@ public class CompanyController {
 	}
 	@RequestMapping(path = "UpdateStaff.do", method = RequestMethod.POST)
 	public String find(Model model, @RequestParam("staffId") Integer id) {
-		Employee employee = companyDAO.findEmployeeById(id);
-		model.addAttribute("employee", employee);
+		User user = companyDAO.findUserById(id);
+		model.addAttribute("employee", user.getEmployee());
+		model.addAttribute("user", user);
 		return "views/employeeUpdate.jsp";
 	}
 	
@@ -144,7 +145,7 @@ public class CompanyController {
 		return "views/company.jsp";
 	}
 	@RequestMapping(path = "InactivateEmployee.do", method = RequestMethod.POST)
-	public String inactivateEmp(@RequestParam("oldEmployeeId") Integer oldId, Model model, HttpSession session) {
+	public String inactivateEmp(@RequestParam("oldId") Integer oldId, Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		if (user.getEmployee().getEmployeeID() != oldId) {
 		Employee employee = companyDAO.findEmployeeById(oldId);
@@ -180,6 +181,7 @@ public class CompanyController {
 			List<Item> menuItems = customerDAO.showMenu(user.getEmployee().getCompany().getId());
 			model.addAttribute("menu", menuItems);
 			model.addAttribute("employee", user.getEmployee());
+			model.addAttribute("image", user.getEmployee().getCompany().getImage());
 	
 		}
 		return "views/companyUpdate.jsp";
