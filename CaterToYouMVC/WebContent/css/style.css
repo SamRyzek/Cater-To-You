@@ -1,0 +1,76 @@
+body {
+	background-color: transparent;
+	background-size: cover;
+	background-repeat:no-repeat;
+	text-align: left;
+	color: white;
+}
+
+.navbar:link{
+	background-color: transparent;
+	color: white;
+	text-decoration: underline;
+}
+
+html{
+	background-image: url("3D-Solar-System-Wallpaper.jpg");
+	background-color: transparent;
+	background-size: cover;
+	background-repeat:no-repeat;
+	text-align: left;
+	color: white;
+	color: white;
+	font-size:20px;
+
+}
+.list{
+	
+	vertical-align: -50px;
+	display: list;
+	padding-top: 120px
+	position: absolute;
+    bottom: 8px;
+    left: 16px;
+    font-size: 18px;
+
+	}
+	ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+	position: fixed;
+	width: 100%;
+	color: white;
+	bottom: 0;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: bottom;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover {
+	background-color: white;
+}
+
+
+html {
+	background-image: url("3D-Solar-System-Wallpaper.jpg");
+	background-color: black;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+.list{
+	vertical-align:text-bottom;
+	vertical-align: -50px;
+}
+	

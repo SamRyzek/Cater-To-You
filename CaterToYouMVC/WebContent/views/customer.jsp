@@ -11,18 +11,15 @@
 <meta name="author" content="">
 <link rel="icon" href="../../../../favicon.ico">
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Cater To You</title>
 </head>
 <body>
 	${user.firstName} ${user.lastName}
-
-
 	<p>Email: ${user.email}</p> 
-	
 	<p>Billing Address: ${address.street} 
 	${address.street2} </p>
-	
 	${address.city} ${address.state} ${address.zip}
 	
 	<form action="Shop.do" method="GET">
@@ -55,3 +52,59 @@
 	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
+
+ 
+<style>
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+	position: fixed;
+	width: 100%;
+	color: white;
+	bottom: 0;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: bottom;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover {
+	background-color: white;
+}
+
+
+html {
+	background-image: url("3D-Solar-System-Wallpaper.jpg");
+	background-color: black;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+.list{
+	vertical-align:text-bottom;
+	vertical-align: -50px;
+}
+
+</style>
+</head>
+<body>
+	<div class="navbar">
+		<ul>
+
+			<li><a href="newPlanet.html">Add Planet</a></li>
+
+			<li><a href="removePlanet.html">Remove Planet</a></li>
+
+			<li><a href="updatePlanet.html">Update Planet</a></li>
+		</ul>
+	</div>
