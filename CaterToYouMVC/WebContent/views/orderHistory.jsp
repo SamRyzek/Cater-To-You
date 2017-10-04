@@ -16,7 +16,9 @@
 <title>Order History</title>
 </head>
 <body>
+	<ul>
 	<c:forEach items="${orders}" var="order">
+	<li>
 		${order.id}
 		${order.deliveryDateTime}
 		${order.address.street}
@@ -24,8 +26,9 @@
 		${order.address.city}
 		${order.address.state}
 		${order.address.zip}
+	</li>
 	</c:forEach>
-	
+	</ul>
 	<form action="customer.do" method="GET">
 		<input type="submit" value="Return Home"/>
 	</form>

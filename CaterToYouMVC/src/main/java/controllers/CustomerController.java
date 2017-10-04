@@ -45,12 +45,13 @@ public class CustomerController {
 	}
 
 	@RequestMapping(path = "ShopHere.do", method = RequestMethod.GET)
-	public String show(@RequestParam("companyId") Integer id, Model model) {
+	public String show(@RequestParam("companyId") Integer id, Model model, HttpSession session) {
 		List<Item> menuItems = customerDAO.showMenu(id);
 		Company company = companyDAO.findCompanyById(id);
 		model.addAttribute("menu", menuItems);
 		model.addAttribute("company", company);
 		model.addAttribute("address", company.getAddress());
+		this.addCartToModel(model, session);
 		return "views/menu.jsp";
 	}
 
@@ -106,18 +107,7 @@ public class CustomerController {
 
 	@RequestMapping("showCart.do")
 	public String showCart(Model model, HttpSession session) {
-		Customer customer = (Customer) session.getAttribute("customer");
-		Cart cart = customerDAO.showCartWithAllItems(customer);
-		double subTotal = customerDAO.calculateCartTotal(cart);
-		model.addAttribute("subTotal", decimalFormatting(subTotal));
-		model.addAttribute("fee", decimalFormatting(subTotal * 0.1));
-		model.addAttribute("tax", decimalFormatting(subTotal * 0.075));
-		double total = (subTotal * 0.1) + (subTotal * 0.075) + subTotal;
-		model.addAttribute("total", decimalFormatting(total));
-		if (cart != null) {
-			model.addAttribute("itemList", cart.getCartHasItemList());
-		}
-		model.addAttribute("cart", cart);
+		this.addCartToModel(model, session);
 		return "views/cart.jsp";
 	}
 
@@ -140,6 +130,11 @@ public class CustomerController {
 	
 	@RequestMapping("checkout.do")
 	public String showCheckout(Model model, HttpSession session) {
+		this.addCartToModel(model, session);
+		return "views/checkout.jsp";
+	}
+	
+	private void addCartToModel(Model model, HttpSession session) {
 		Customer customer = (Customer) session.getAttribute("customer");
 		Cart cart = customerDAO.showCartWithAllItems(customer);
 		double subTotal = customerDAO.calculateCartTotal(cart);
@@ -148,9 +143,10 @@ public class CustomerController {
 		model.addAttribute("tax", decimalFormatting(subTotal * 0.075));
 		double total = (subTotal * 0.1) + (subTotal * 0.075) + subTotal;
 		model.addAttribute("total", decimalFormatting(total));
-		model.addAttribute("itemList", cart.getCartHasItemList());
+		if (cart != null) {
+			model.addAttribute("itemList", cart.getCartHasItemList());
+		}
 		model.addAttribute("cart", cart);
-		return "views/checkout.jsp";
 	}
 	
 	@RequestMapping(path="createOrder.do", method = RequestMethod.POST)
