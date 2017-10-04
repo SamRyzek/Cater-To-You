@@ -189,4 +189,9 @@ public class CompanyDAOImpl implements CompanyDAO {
 		return employee;
 	}
 
+	@Override
+	public Address findAddressByAddressId(int id) {
+		return em.find(Address.class, id);
+	}
+
 }

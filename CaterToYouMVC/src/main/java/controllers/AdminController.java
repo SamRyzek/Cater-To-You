@@ -78,7 +78,6 @@ public class AdminController {
 			Model model, HttpSession session) {
 		Company compTemp = new Company();
 		Address addTemp = new Address();
-		Employee empTemp = new Employee();
 	
 		if (name == null) {
 			return "views/createCompany.jsp";
@@ -117,7 +116,7 @@ public class AdminController {
 		
 		compTemp = adminDAO.createCompany(compTemp);
 		
-		return "redirect:index.do";
+		return "views/createEmployee";
 	}
 
 }

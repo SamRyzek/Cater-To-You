@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import cater.data.AdminDAO;
 import cater.data.CompanyDAO;
 import cater.data.CustomerDAO;
 import entity.Address;
@@ -18,6 +19,7 @@ import entity.Company;
 import entity.Employee;
 import entity.Image;
 import entity.Item;
+import entity.Menu;
 import entity.User;
 
 @Controller
@@ -27,6 +29,8 @@ public class CompanyController {
 	private CompanyDAO companyDAO;
 	@Autowired
 	private CustomerDAO customerDAO;
+	@Autowired
+	private AdminDAO adminDAO;
 
 	@RequestMapping(path = "UpdateMenuItem.do", method = RequestMethod.POST)
 	public String index(Model model, @RequestParam("itemId") Integer id) {
@@ -229,6 +233,45 @@ public class CompanyController {
 
 		}
 		return "views/companyUpdate.jsp";
+	}
+	@RequestMapping(path = "makeEmployee.do", method = RequestMethod.POST)
+	public String makeEmployee(@RequestParam("fName") String fName, @RequestParam("lName") String lName,
+			@RequestParam("email") String email, @RequestParam("username") String username,
+			@RequestParam("password") String password, @RequestParam("companyId") int companyId,
+			 Model model, HttpSession session) {
+		Company comp = companyDAO.findCompanyById(companyId);
+		User userTemp = new User();
+		Employee empTemp = new Employee();
+
+		if (fName == null) {
+			return "views/createEmployee.jsp";
+		} else {
+			userTemp.setFirstName(fName);
+		}
+		if (lName == null) {
+			return "views/createEmployee.jsp";
+		} else {
+			userTemp.setLastName(lName);
+		}
+		if (email == null) {
+			return "views/createEmployee.jsp";
+		} else {
+			userTemp.setUsername(username);
+		}
+		if (password == null) {
+			return "views/createEmployee.jsp";
+		} else {
+			userTemp.setPassword(password);
+		}
+		userTemp.setUserRoles();
+		
+		Menu menu = adminDAO.createMenu();
+		compTemp.setMenu(menu);
+		compTemp.setAddress(addTemp);
+
+		compTemp = adminDAO.createCompany(compTemp);
+
+		return "views/createEmployee";
 	}
 
 }
