@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="icon" href="../../../../favicon.ico">
@@ -15,37 +15,43 @@
 <title>Cater To You</title>
 </head>
 <body>
-	First Name: ${user.firstName} Last Name: ${user.lastName}
+	${user.firstName} ${user.lastName}
 
+
+	<p>Email: ${user.email}</p> 
+	
+	<p>Billing Address: ${address.street} 
+	${address.street2} </p>
+	
+	${address.city} ${address.state} ${address.zip}
+	
 	<form action="Shop.do" method="GET">
 		<input type="submit" value="Shop" />
 	</form>
 
-	Email: ${user.email}
-	Billing Address Street: ${address.street} Street 2: ${address.street2}
-	City: ${address.city} State: ${address.state} Zip: ${address.zip}
 	<form action="UpdateCustomer.do" method="POST">
 		<input type="submit" value="Edit Profile" />
 	</form>
-	
+
 	<form action="OrderHistory.do" method="GET">
 		<input type="submit" value="Order History" />
 	</form>
+	
 	<form action="showCart.do" method="GET">
-		<input type="submit" value="Show Cart"/>
+		<input type="submit" value="Show Cart" />
 	</form>
-	
-	
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script>
-        window.jQuery
-                || document.write('<script src="js/jquery.min.js"><\/script>')
-    </script>
 
-    <script src="js/holder.js"></script>
 
-    <script src="js/bootstrap.min.js"></script>	
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script>
+		window.jQuery
+				|| document.write('<script src="js/jquery.min.js"><\/script>')
+	</script>
+
+	<script src="js/holder.js"></script>
+
+	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

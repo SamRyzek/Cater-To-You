@@ -33,19 +33,19 @@ public class LoginController {
 	AdminDAO adminDAO;
 
 	@RequestMapping("index.do")
-	public String displayHome(HttpSession session) {
+	public String displayHome(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		if (user == null) {
 			return "views/index.jsp";
 		}
-		return getCorrectJSP(user);
+		return getCorrectJSP(model, user);
 	}
-	
+
 	@RequestMapping("newUser.do")
-	public String goToCreateUserPage(){
+	public String goToCreateUserPage() {
 		return "views/newUser.jsp";
 	}
-	
+
 	@RequestMapping("customer.do")
 	public String displayCustomer(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
@@ -53,20 +53,20 @@ public class LoginController {
 		model.addAttribute("address", user.getCustomer().getAddress());
 		return "views/customer.jsp";
 	}
-	
+
 	@RequestMapping("company.do")
 	public String displayCompany(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		List<Item> menuItems = customerDAO.showMenu(user.getEmployee().getCompany().getId());
-		model.addAttribute("user",user);
+		model.addAttribute("user", user);
 		model.addAttribute("employee", user.getEmployee());
 		model.addAttribute("company", user.getEmployee().getCompany());
 		model.addAttribute("address", user.getEmployee().getCompany().getAddress());
 		model.addAttribute("menu", menuItems);
-		
+
 		return "views/company.jsp";
 	}
-	
+
 	@RequestMapping("admin.do")
 	public String displayAdmin(Model model, HttpSession session) {
 		model.addAttribute("companies", companyDAO.index());
@@ -84,10 +84,10 @@ public class LoginController {
 		}
 		setSessions(session, user);
 		model.addAttribute("user", user);
-		return getCorrectJSP(user);
+		return getCorrectJSP(model, user);
 	}
 
-	private String getCorrectJSP(User user) {
+	private String getCorrectJSP(Model model, User user) {
 		String jsp = "";
 		switch (user.getUserRoles().getId()) {
 
@@ -95,8 +95,14 @@ public class LoginController {
 			jsp = "redirect:customer.do";
 			break;
 		case 2:
-			jsp = "redirect:company.do";
+			if (user.getEmployee().getActive() == 1) {
+				jsp = "redirect:company.do";
+			} else {
+				model.addAttribute("loginErr", "Your information Incorrect");
+				return "/views/index.jsp";
+			}
 			break;
+
 		case 3:
 			jsp = "redirect:admin.do";
 			break;

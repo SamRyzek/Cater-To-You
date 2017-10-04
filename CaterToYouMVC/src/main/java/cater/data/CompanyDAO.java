@@ -24,7 +24,9 @@ public interface CompanyDAO {
 	public Employee updateEmployee(Employee e);
 	public Employee addEmployee(Employee e);
 	public void makeEmployeeInactive(Employee e);
+	public void makeEmployeeActive(Employee e);
 	public List<User> findUserEmployeesByCompany(Company c);
+	public List<User> findInactiveUserEmployeesByCompany(Company c);
 	
 	public User findUserById(int id);
 	public User editUser(User user);
