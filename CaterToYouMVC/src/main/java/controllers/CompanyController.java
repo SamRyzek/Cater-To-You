@@ -97,11 +97,8 @@ public class CompanyController {
 		compTemp = companyDAO.updateCompanyInfo(compTemp);
 		User activeUser = (User) session.getAttribute("user");
 		List<Item> menuItems = customerDAO.showMenu(activeUser.getEmployee().getCompany().getId());
-		model.addAttribute("user", activeUser);
-		model.addAttribute("employee", activeUser.getEmployee());
-		model.addAttribute("company", activeUser.getEmployee().getCompany());
-		model.addAttribute("address", activeUser.getEmployee().getCompany().getAddress());
-		model.addAttribute("menu", menuItems);
+	
+		
 		return "redirect:index.do";
 	}
 

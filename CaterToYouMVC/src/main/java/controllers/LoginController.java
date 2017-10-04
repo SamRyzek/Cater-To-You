@@ -15,6 +15,8 @@ import cater.data.AdminDAO;
 import cater.data.CompanyDAO;
 import cater.data.CustomerDAO;
 import data.LoginDAO;
+import entity.Address;
+import entity.Company;
 import entity.Customer;
 import entity.Employee;
 import entity.Item;
@@ -58,10 +60,11 @@ public class LoginController {
 	public String displayCompany(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		List<Item> menuItems = customerDAO.showMenu(user.getEmployee().getCompany().getId());
+		Company company = companyDAO.findCompanyById(user.getEmployee().getCompany().getId());
 		model.addAttribute("user", user);
 		model.addAttribute("employee", user.getEmployee());
-		model.addAttribute("company", user.getEmployee().getCompany());
-		model.addAttribute("address", user.getEmployee().getCompany().getAddress());
+		model.addAttribute("company", company);
+		model.addAttribute("address", company.getAddress());
 		model.addAttribute("menu", menuItems);
 
 		return "views/company.jsp";
