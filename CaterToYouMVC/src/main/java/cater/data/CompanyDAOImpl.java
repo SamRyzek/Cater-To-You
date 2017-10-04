@@ -126,6 +126,12 @@ public class CompanyDAOImpl implements CompanyDAO {
 		employee.setActive(0);
 		return;
 	}
+	@Override
+	public void makeEmployeeActive(Employee e) {
+		Employee employee = em.find(Employee.class, e.getEmployeeID());
+		employee.setActive(1);
+		return;
+	}
 
 	@Override
 	public void updateImage(Image i) {
@@ -206,6 +212,12 @@ public class CompanyDAOImpl implements CompanyDAO {
 		userTracked.setPassword(user.getPassword());
 		userTracked.setEmail(user.getEmail());
 		return userTracked;
+	}
+
+	@Override
+	public List<User> findInactiveUserEmployeesByCompany(Company company) {
+		String sql = "SELECT u FROM User u where u.employee.company= :company and u.employee.active=0";
+		return em.createQuery(sql, User.class).setParameter("company", company).getResultList();
 	}
 
 }

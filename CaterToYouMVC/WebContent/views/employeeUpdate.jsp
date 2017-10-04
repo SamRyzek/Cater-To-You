@@ -32,7 +32,7 @@
 	<form action="InactivateEmployee.do" method="POST">
 			<input type="hidden" name="oldId"
 				value="${employee.employeeID}"/><input type="submit"
-				value="Make Item Inactive" />
+				value="Make Employee Inactive" />
 </form>
 <form action="company.do" method="GET">
 		<input type="submit" value="Return Home" />
