@@ -14,7 +14,54 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Company Selections</title>
 </head>
-<body>
+<style>
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover {
+	background-color: #111;
+}
+
+html {
+	background-image: url("css/food2.jpg");
+	background-repeat: no-repeat;
+	background-origin: inheret;
+	background-size: 100%;
+	background-color: blue;
+}
+
+body {
+	background-color: blue;
+	border: 2px solid white;
+	color: white;
+}
+</style>
+<body class="active">
+	<ul>
+		<li><form action="showCart.do" method="GET">
+				<a href="showCart.do">Go To Cart</a>
+			</form></li>
+		<li style="float: right"><form action="customer.do" method="GET">
+				<a href="customer.do">Return Home</a>
+			</form></li>
+	</ul>
 
 	<c:forEach items="${allCompanies}" var="company">
 				${company.name}
@@ -29,12 +76,6 @@
 		</form>
 	</c:forEach>
 
-	<form action="showCart.do" method="GET">
-		<input type="submit" value="Show Cart">
-	</form>
-	<form action="customer.do" method="GET">
-		<input type="submit" value="Return Home" />
-	</form>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

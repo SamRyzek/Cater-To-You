@@ -40,7 +40,7 @@ body {
 			<h1>Cater To You</h1>
 			<br>
 			<form action="checkLogin.do" method="POST">
-				${loginErr}
+				<p>${loginErr}</p>
 				<input type="text" name="username"></input>
 				<p>Username:</p>
 				<input type="text" name="password"></input> <input type="submit"
