@@ -25,9 +25,8 @@ public interface CustomerDAO {
 	
 //***** New User Method
 	public User createUser(User user);
-	public Address usersAddress();
-	public Image usersImage();
-	public Customer usersCustomer();
+	public Customer usersCustomer(User user);
+	public Cart usersCart();
 	
 
 

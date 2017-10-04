@@ -40,10 +40,15 @@ public class CustomerController {
 	@RequestMapping(path="newUser.do", method=RequestMethod.POST)
 	public String newUser(Model model, HttpSession session, User user) {
 		//create the user in the db
+		
 		User u = customerDAO.createUser(user);
+		
+		System.out.println(user);
+		
+		
 //		session.setAttribute("user", user);
 //		session.setAttribute("customer", user.getCustomer());
-		return "actionSuccessful.jsp";
+		return "views/actionSuccessful.jsp";
 	}
 
 	@RequestMapping(path = "ShopHere.do", method = RequestMethod.GET)
