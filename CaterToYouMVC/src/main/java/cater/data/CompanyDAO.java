@@ -2,7 +2,9 @@ package cater.data;
 
 import java.util.List;
 
+import entity.Address;
 import entity.Company;
+import entity.Customer;
 import entity.Employee;
 import entity.Image;
 import entity.Item;
@@ -40,6 +42,9 @@ public interface CompanyDAO {
 	
 	public Item addItem(Item i);
 	public Item findItemById(int id);
+	public Address createAddress(Address address);
+	public Address findAddressByAddressId(int id);
+	public Employee createEmployee(Employee employee);
 	
 	
 	

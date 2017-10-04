@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import entity.Address;
 import entity.Company;
+import entity.Customer;
 import entity.Employee;
 import entity.Image;
 import entity.Item;
@@ -173,6 +174,19 @@ public class CompanyDAOImpl implements CompanyDAO {
 	public List<User> findInactiveUserEmployeesByCompany(Company company) {
 		String sql = "SELECT u FROM User u where u.employee.company= :company and u.employee.active=0";
 		return em.createQuery(sql, User.class).setParameter("company", company).getResultList();
+	}
+	
+	@Override
+	public Address createAddress(Address address) {
+		em.persist(address);
+		return address;
+	}
+	
+	
+	@Override
+	public Employee createEmployee(Employee employee) {
+		em.persist(employee);
+		return employee;
 	}
 
 }

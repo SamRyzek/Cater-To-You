@@ -54,20 +54,26 @@ body {
 }
 </style>
 <body>
+	<div>
+		<ul>
+			<li style="float: right"><form action="companyUpdate.do"
+					method="GET">
+					<a href="companyUpdate.do">Return Home</a>
+				</form></li>
+		</ul>
+	</div>
+
 	<form action="editCompany.do" method="POST">
 		Name of Customer: <input type="text" name="oldname"
-			value="${user.firstName} ${user.lastName}" readonly /><br /> Email: <input
-			type="text" name="email" value="${user.email}" /><br /> Billing
-		Address: Street: <input type="text" name="street"
+			value="${user.firstName} ${user.lastName}" readonly /><br /> Email:
+		<input type="text" name="email" value="${user.email}" /><br />
+		Billing Address: Street: <input type="text" name="street"
 			value="${address.street}" /><br /> Street 2: <input type="text"
 			name="street2" value="${address.street2}" /><br /> City: <input
 			type="text" name="city" value="${address.city}" /><br /> State: <input
 			type="text" name="state" value="${address.state}" /><br /> Zip: <input
 			type="text" name="zip" value="${address.zip}" /><br /> <input
 			type="submit" value="Update" />
-	</form>
-	<form action="companyUpdate.do" method="GET">
-		<input type="submit" value="Return Home" />
 	</form>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

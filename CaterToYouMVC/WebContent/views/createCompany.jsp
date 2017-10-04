@@ -7,18 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="editCompany.do" method="POST">
+<form action="makeCompany.do" method="POST">
 
-		<input type="hidden" name="id" value="${company.id}" /> <input
-			type="hidden" name="addId" value="${address.id}" /> Name: <input
-			type="text" name="name" value="${company.name}" /><br /> New
-		Street: <input type="text" name="street" value="${address.street}" /><br />
-		New Street2: <input type="text" name="street2"
-			value="${address.street2}" /><br /> New City: <input type="text"
-			name="city" value="${address.city}" /><br /> New State: <input
-			type="text" name="state" value="${address.state}" /><br /> New Zip:
-		<input type="text" name="zip" value="${address.zip}" /><br /> Image
-		URL: <input type="text" name="url" value="${image.imageUrl}" /><br />
+	Name: <input
+			type="text" name="name" value="" /><br /> New
+		Street: <input type="text" name="street" value="" /><br />
+		Street2: <input type="text" name="street2"
+			value="" /><br /> City: <input type="text"
+			name="city" value="" /><br /> State: <input
+			type="text" name="state" value="" /><br /> Zip:
+		<input type="text" name="zip" value="" /><br /> Image
+		URL: <input type="text" name="url" value="" /><br />
 		<input type="submit" value="Edit Company Profile" />
 	</form>
 </body>
