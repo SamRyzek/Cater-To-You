@@ -119,5 +119,26 @@ public class AdminDAOImpl implements AdminDAO {
 		String sql = "SELECT u FROM User u";
 		return em.createQuery(sql, User.class).getResultList();
 	}
+	
+	@Override
+	public Company createCompany(Company company) {
+		em.persist(company);
+		return company;
+	}
+
+	@Override
+	public Menu createMenu() {
+		Menu menu = new Menu();
+		em.persist(menu);
+		return menu;
+	}
+
+	
+
+	@Override
+	public User createUser(User user) {
+		em.persist(user);
+		return user;
+	}
 
 }
