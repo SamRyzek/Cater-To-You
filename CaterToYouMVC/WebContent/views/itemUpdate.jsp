@@ -29,8 +29,15 @@
 			<input type="text" name="imageURL" value="${item.image.imageUrl}"/><br/>
 			<input type="hidden" name="oldItemId" value="${item.id}"/><br/>
 			<input type="submit" value="Update Item Information" />
+			</form>
+			<form action="InactivateItem.do" method="POST">
+			<input type="text" name="oldItemId"
+				value="${item.id}"hidden/><br/> <input type="submit"
+				value="Make Item Inactive" />
 </form>
-
+<form action="company.do" method="GET">
+		<input type="submit" value="Return Home" />
+	</form>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
