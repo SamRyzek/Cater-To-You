@@ -18,7 +18,7 @@
 
 html {
 
-	background-image: url("file:///Users/samuelryzek/SD/CaterToYou/CaterToYouMVC/WebContent/css/food2.jpg");
+	background-image: url("css/food2.jpg");
 	background-repeat: no-repeat;
 	background-origin: inheret;
 	background-size: 100%;
