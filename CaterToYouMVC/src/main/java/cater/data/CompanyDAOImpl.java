@@ -40,27 +40,26 @@ public class CompanyDAOImpl implements CompanyDAO {
 		return c;
 	}
 
-//	@Override //session will give us the menu
-//	public Menu updateMenuItem(Menu m) {
-//
-//		int id = m.getId();
-//		Menu menu = em.find(Menu.class, id);
-//
-//		if (menu != null) {
-//
-//			menu.setCompany(m.getCompany());
-//			menu.setItemList(m.getItemList());
-//
-//		}
-//
-//		return menu;
-//	}
+	// @Override //session will give us the menu
+	// public Menu updateMenuItem(Menu m) {
+	//
+	// int id = m.getId();
+	// Menu menu = em.find(Menu.class, id);
+	//
+	// if (menu != null) {
+	//
+	// menu.setCompany(m.getCompany());
+	// menu.setItemList(m.getItemList());
+	//
+	// }
+	//
+	// return menu;
+	// }
 
 	@Override
 	public Menu addMenuItem(Item i, Menu menu) {
-		
-		Menu m = em.find(Menu.class, menu.getId());
 
+		Menu m = em.find(Menu.class, menu.getId());
 
 		if (m == null) {
 
@@ -76,7 +75,6 @@ public class CompanyDAOImpl implements CompanyDAO {
 
 		return m;
 	}
-
 
 	@Override
 	public Menu makeMenuItemInactive(Item i) {
@@ -146,21 +144,18 @@ public class CompanyDAOImpl implements CompanyDAO {
 	}
 
 	@Override
-	public Image addImage(Image i){
-			em.persist(i);
-			em.flush();
-			return i;
-		}
-	@Override
-	public Item addItem(Item i){
+	public Image addImage(Image i) {
 		em.persist(i);
 		em.flush();
 		return i;
 	}
 
-		
-
-	
+	@Override
+	public Item addItem(Item i) {
+		em.persist(i);
+		em.flush();
+		return i;
+	}
 
 	@Override
 	public List<Company> index() {
@@ -179,7 +174,7 @@ public class CompanyDAOImpl implements CompanyDAO {
 	@Override
 	public Item findItemById(int id) {
 		return em.find(Item.class, id);
-		 
+
 	}
 
 	@Override
@@ -192,14 +187,25 @@ public class CompanyDAOImpl implements CompanyDAO {
 	@Override
 	public Employee findEmployeeById(int id) {
 		return em.find(Employee.class, id);
-		
+
 	}
 
 	@Override
 	public User findUserById(int id) {
-		
+
 		return em.find(User.class, id);
 	}
 
-	
+	@Override
+	public User editUser(User user) {
+		User userTracked = em.find(User.class, user.getId());
+		
+		userTracked.setFirstName(user.getFirstName());
+		userTracked.setLastName(user.getLastName());
+		userTracked.setUsername(user.getUsername());
+		userTracked.setPassword(user.getPassword());
+		userTracked.setEmail(user.getEmail());
+		return userTracked;
+	}
+
 }
