@@ -14,46 +14,6 @@
 <link rel="stylesheet" href="styles.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Cater To You</title>
-</head>
-<body>
-	${user.firstName} ${user.lastName}
-	<p>Email: ${user.email}</p> 
-	<p>Billing Address: ${address.street} 
-	${address.street2} </p>
-	${address.city} ${address.state} ${address.zip}
-	
-	<form action="Shop.do" method="GET">
-		<input type="submit" value="Shop" />
-	</form>
-
-	<form action="UpdateCustomer.do" method="POST">
-		<input type="submit" value="Edit Profile" />
-	</form>
-
-	<form action="OrderHistory.do" method="GET">
-		<input type="submit" value="Order History" />
-	</form>
-	
-	<form action="showCart.do" method="GET">
-		<input type="submit" value="Show Cart" />
-	</form>
-
-
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
-	<script>
-		window.jQuery
-				|| document.write('<script src="js/jquery.min.js"><\/script>')
-	</script>
-
-	<script src="js/holder.js"></script>
-
-	<script src="js/bootstrap.min.js"></script>
-</body>
-</html>
-
- 
 <style>
 ul {
 	list-style-type: none;
@@ -83,28 +43,55 @@ li a:hover {
 	background-color: white;
 }
 
-
 html {
 	background-image: url("3D-Solar-System-Wallpaper.jpg");
 	background-color: black;
 	background-size: cover;
 	background-repeat: no-repeat;
 }
-.list{
-	vertical-align:text-bottom;
+
+.list {
+	vertical-align: text-bottom;
 	vertical-align: -50px;
 }
-
 </style>
 </head>
 <body>
+	${user.firstName} ${user.lastName}
+	<p>Email: ${user.email}</p>
+	<p>Billing Address: ${address.street} ${address.street2}</p>
+	${address.city} ${address.state} ${address.zip}
 	<div class="navbar">
 		<ul>
+			<li><form action="Shop.do" method="GET">
+					<input type="submit" value="Shop" />
+				</form></li>
 
-			<li><a href="newPlanet.html">Add Planet</a></li>
+			<li><form action="UpdateCustomer.do" method="POST">
+					<input type="submit" value="Edit Profile" />
+				</form></li>
 
-			<li><a href="removePlanet.html">Remove Planet</a></li>
+			<li><form action="OrderHistory.do" method="GET">
+					<input type="submit" value="Order History" />
+				</form></li>
 
-			<li><a href="updatePlanet.html">Update Planet</a></li>
+			<li><form action="showCart.do" method="GET">
+					<input type="submit" value="Show Cart" />
+				</form></li>
 		</ul>
 	</div>
+
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script>
+		window.jQuery
+				|| document.write('<script src="js/jquery.min.js"><\/script>')
+	</script>
+
+	<script src="js/holder.js"></script>
+
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
