@@ -36,14 +36,14 @@ public class CategoryTest {
 	@Test
 	public void test_Category_category_mapped() {
 		Category cat = em.find(Category.class, 1);
-		assertEquals(" BBQ", cat.getCategory());
+		assertEquals("BBQ", cat.getCategory());
 	}
 	
 	@Test 
 	public void test_Category_itemList_mapped() {
 		Category cat = em.find(Category.class, 1);
 		assertEquals(7, cat.getItemList().size());
-		assertEquals(" You're telling me you don't know what burnt ends are?", cat.getItemList().get(4).getDescription());
+		assertEquals("You're telling me you don't know what burnt ends are?", cat.getItemList().get(4).getDescription());
 	}
 
 }
