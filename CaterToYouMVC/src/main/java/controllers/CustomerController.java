@@ -85,7 +85,7 @@ public class CustomerController {
 	@RequestMapping(path = "UpdateCustomer.do", method = RequestMethod.GET)
 	public String customerUpdate(Model model, HttpSession session, @RequestParam("customerId") int id) {
 
-		Customer customer = customerDAO.getCustomerById(id);//(Customer) session.getAttribute("customer");
+		Customer customer = customerDAO.getCustomerById(id);
 		
 		session.setAttribute("customer", customer);
 		model.addAttribute("user", customer.getUser());
@@ -95,7 +95,7 @@ public class CustomerController {
 
 	@RequestMapping(path = "editCustomer.do", method = RequestMethod.POST)
 	public String customerEdit(Model model, HttpSession session, CustomerInput input) {
-		Customer customer = (Customer) session.getAttribute("customer");
+		Customer customer = customerDAO.getCustomerById(input.getId());
 		User user = (User) session.getAttribute("user");
 
 		if(customer.getAddress()==null) {

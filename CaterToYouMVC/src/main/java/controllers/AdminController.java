@@ -11,10 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import cater.data.AdminDAO;
 import cater.data.CompanyDAO;
 import cater.data.CustomerDAO;
+import entity.Address;
 import entity.Company;
+import entity.Employee;
 import entity.Item;
+import entity.Menu;
 import entity.User;
 
 @Controller
@@ -24,11 +28,13 @@ public class AdminController {
 	private CompanyDAO companyDAO;
 	@Autowired
 	private CustomerDAO customerDAO;
+	@Autowired
+	private AdminDAO adminDAO;
 
 	@RequestMapping(path = "UpdateAccount.do", method = RequestMethod.GET)
 	public String chooseUpdatePage(Model model, @RequestParam("userID") Integer id) {
 		User user = companyDAO.findUserById(id);
-		
+
 		if (user.getUserRoles().getId() == 1) {
 			model.addAttribute("address", user.getCustomer().getAddress());
 			return "views/customerUpdate.jsp";
@@ -39,7 +45,7 @@ public class AdminController {
 		}
 		return "redirect:index.do";
 	}
-	
+
 	@RequestMapping(path = "AdminUpdateCompany.do", method = RequestMethod.GET)
 	public String userUpdate(@RequestParam("companyID") Integer id, Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
@@ -58,10 +64,60 @@ public class AdminController {
 		}
 		return "views/companyUpdate.jsp";
 	}
+
 	@RequestMapping(path = "CreateCompany.do", method = RequestMethod.GET)
 	public String userUpdate(Model model, HttpSession session) {
 		return "views/createCompany.jsp";
-	
+
 	}
+
+	@RequestMapping(path = "makeCompany.do", method = RequestMethod.POST)
+	public String userEdit(@RequestParam("name") String name, @RequestParam("street") String street,
+			@RequestParam("street2") String street2, @RequestParam("city") String city,
+			@RequestParam("state") String state, @RequestParam("zip") int zip, @RequestParam("url") String imageURL,
+			Model model, HttpSession session) {
+		Company compTemp = new Company();
+		Address addTemp = new Address();
+		Employee empTemp = new Employee();
 	
+		if (name == null) {
+			return "views/createCompany.jsp";
+		} else {
+			compTemp.setName(name);
+		}
+		if (street == null) {
+			return "views/createCompany.jsp";
+		} else {
+			addTemp.setStreet(street);
+		}
+		if (street2 == null) {
+			return "views/createCompany.jsp";
+		} else {
+			addTemp.setStreet2(street2);
+		}
+		if (city == null) {
+			return "views/createCompany.jsp";
+		} else {
+			addTemp.setCity(city);
+		}
+		if (state == null) {
+			return "views/createCompany.jsp";
+		} else {
+			addTemp.setState(state);
+		}
+		if (zip == ' ') {
+			return "views/createCompany.jsp";
+		} else {
+			addTemp.setZip(zip);
+		}
+		addTemp = companyDAO.createAddress(addTemp);
+		Menu menu = adminDAO.createMenu();
+		compTemp.setMenu(menu);
+		compTemp.setAddress(addTemp);
+		
+		compTemp = adminDAO.createCompany(compTemp);
+		
+		return "redirect:index.do";
+	}
+
 }
