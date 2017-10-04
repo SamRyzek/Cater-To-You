@@ -212,7 +212,7 @@ public class CompanyController {
 		return "redirect:index.do";
 	}
 
-	@RequestMapping(path = "updateCompanyProfile.do", method = RequestMethod.POST)
+	@RequestMapping(path = "updateCompanyProfile.do", method = RequestMethod.GET)
 	public String userUpdate(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		if (user != null) {
