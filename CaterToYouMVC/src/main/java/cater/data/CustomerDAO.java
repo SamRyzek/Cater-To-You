@@ -21,6 +21,8 @@ public interface CustomerDAO {
 	public void updateQuantityInCart(int id, int quantity);// update cart
 	public Cart showCartWithAllItems(Customer customer);
 	public double calculateCartTotal(Cart c);
+	
+	public Customer createAddressForCustomer(Customer customer);
 
 	
 //***** New User Method
