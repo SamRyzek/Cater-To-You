@@ -92,6 +92,13 @@ public class CustomerController {
 		model.addAttribute("address", customer.getAddress());
 		return "views/customerUpdate.jsp";
 	}
+	
+	public String updateUserPasword(@RequestParam("id") int id, 
+			@RequestParam("newUserName") String userName,
+			@RequestParam("newPassword") String password) {
+		
+		return "redirect:UpdateCustomer.do";
+	}
 
 	@RequestMapping(path = "editCustomer.do", method = RequestMethod.POST)
 	public String customerEdit(Model model, HttpSession session, CustomerInput input) {

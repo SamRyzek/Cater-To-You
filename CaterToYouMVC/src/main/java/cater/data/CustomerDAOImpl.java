@@ -180,6 +180,14 @@ public class CustomerDAOImpl implements CustomerDAO {
 		User userTracked = em.find(User.class, user.getId());
 		userTracked.setEmail(user.getEmail());
 		return userTracked;
+		
+	}
+	
+	public User persistUserNamePassword(User user) {
+		User userTracked = em.find(User.class, user.getId());
+		userTracked.setEmail(user.getEmail());
+		return userTracked;
+		
 	}
 	
 	@Override
