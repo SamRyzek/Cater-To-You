@@ -16,6 +16,7 @@ import entity.Image;
 import entity.Item;
 import entity.Menu;
 import entity.User;
+import entity.UserRoles;
 
 @Repository
 @Transactional
@@ -192,6 +193,13 @@ public class CompanyDAOImpl implements CompanyDAO {
 	@Override
 	public Address findAddressByAddressId(int id) {
 		return em.find(Address.class, id);
+	}
+	
+	@Override
+	public User createUserWithEmployeeRole(User user) {
+		user.setUserRoles(em.find(UserRoles.class, 2));
+		em.persist(user);
+		return user;
 	}
 
 }

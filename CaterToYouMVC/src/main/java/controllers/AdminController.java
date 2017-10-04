@@ -115,8 +115,8 @@ public class AdminController {
 		compTemp.setAddress(addTemp);
 		
 		compTemp = adminDAO.createCompany(compTemp);
-		
-		return "views/createEmployee";
+		model.addAttribute("company", compTemp);
+		return "views/createEmployee.jsp";
 	}
 
 }

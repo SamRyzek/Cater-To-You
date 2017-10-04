@@ -28,7 +28,7 @@ public interface CustomerDAO {
 	
 	public Address getAddressById(int addId);
 	
-	public Cart getCartByAddAnd
+
 
 
 

@@ -234,7 +234,7 @@ public class CompanyController {
 		}
 		return "views/companyUpdate.jsp";
 	}
-	@RequestMapping(path = "makeEmployee.do", method = RequestMethod.POST)
+	@RequestMapping(path = "MakeEmployee.do", method = RequestMethod.POST)
 	public String makeEmployee(@RequestParam("fName") String fName, @RequestParam("lName") String lName,
 			@RequestParam("email") String email, @RequestParam("username") String username,
 			@RequestParam("password") String password, @RequestParam("companyId") int companyId,
@@ -253,25 +253,28 @@ public class CompanyController {
 		} else {
 			userTemp.setLastName(lName);
 		}
-		if (email == null) {
+		if (username == null) {
 			return "views/createEmployee.jsp";
 		} else {
 			userTemp.setUsername(username);
+		}
+		if (email == null) {
+			return "views/createEmployee.jsp";
+		} else {
+			userTemp.setEmail(email);
 		}
 		if (password == null) {
 			return "views/createEmployee.jsp";
 		} else {
 			userTemp.setPassword(password);
 		}
-		userTemp.setUserRoles();
-		
-		Menu menu = adminDAO.createMenu();
-		compTemp.setMenu(menu);
-		compTemp.setAddress(addTemp);
-
-		compTemp = adminDAO.createCompany(compTemp);
-
-		return "views/createEmployee";
+		userTemp = companyDAO.createUserWithEmployeeRole(userTemp);
+		empTemp.setActive(1);
+		empTemp.setUser(userTemp);
+		empTemp.setCompany(comp);
+		empTemp = companyDAO.createEmployee(empTemp);
+	
+		return "redirect:index.do";
 	}
 
 }
