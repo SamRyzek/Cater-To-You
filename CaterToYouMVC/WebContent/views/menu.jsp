@@ -14,33 +14,71 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Cater To You - ${company.name}</title>
 </head>
-<body>
-	<div>
-	${company.name} ${address.street} ${address.street2} ${address.city}
-	${address.state} ${address.zip}
+<style>
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
 
-	<c:forEach items="${menu}" var="item">
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover {
+	background-color: #111;
+}
+
+html {
+	background-image: url("css/food2.jpg");
+	background-repeat: no-repeat;
+	background-origin: inheret;
+	background-size: 100%;
+	background-color: blue;
+}
+
+body {
+	background-color: blue;
+	border: 2px solid white;
+	color: white;
+}
+</style>
+<body class="active">
+		<ul>
+			<li><form action="showCart.do" method="GET">
+					<a href="showCart.do">Go To Cart</a>
+				</form></li>
+			<li style="float: right"><form action="customer.do" method="GET">
+					<a href="customer.do">Return Home</a>
+				</form></li>
+		</ul>
+	<div>
+		${company.name} ${address.street} ${address.street2} ${address.city}
+		${address.state} ${address.zip}
+
+		<c:forEach items="${menu}" var="item">
 				${item.name}
 				${item.description}
 				${item.price}
 
 		 <form action="addToCart.do" method="POST">
-		 	<input type="hidden" name="itemId" value="${item.id}">
-		 	<input type="hidden" name="company" value="${company.id}">
-			Quantity <input type="number" name="quantity" value="1" /><br />
-			<input type="submit" value="Add to Cart" />
+				<input type="hidden" name="itemId" value="${item.id}"> <input
+					type="hidden" name="company" value="${company.id}">
+				Quantity <input type="number" name="quantity" value="1" /><br /> <input
+					type="submit" value="Add to Cart" />
 			</form>
-	</c:forEach>
-</div>
-
-	<form action="showCart.do" method="GET">
-		<input type="submit" value="Show Cart">
-	</form>
-
-	<form action="index.do" method="GET">
-
-		<input type="submit" value="Return Home"/>
-	</form>
+		</c:forEach>
+	</div>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
