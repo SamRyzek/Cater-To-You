@@ -18,7 +18,7 @@
 
 html {
 
-	background-image: url("file:///Users/samuelryzek/SD/CaterToYou/CaterToYouMVC/WebContent/css/food2.jpg");
+	background-image: url("css/food2.jpg");
 	background-repeat: no-repeat;
 	background-origin: inheret;
 	background-size: 100%;
@@ -40,7 +40,7 @@ body {
 			<h1>Cater To You</h1>
 			<br>
 			<form action="checkLogin.do" method="POST">
-				${loginErr}
+				<p>${loginErr}</p>
 				<input type="text" name="username"></input>
 				<p>Username:</p>
 				<input type="text" name="password"></input> <input type="submit"

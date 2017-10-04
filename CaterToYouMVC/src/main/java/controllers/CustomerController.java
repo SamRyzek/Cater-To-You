@@ -82,7 +82,7 @@ public class CustomerController {
 		return "views/orderHistory.jsp";
 	}
 
-	@RequestMapping(path = "UpdateCustomer.do", method = RequestMethod.POST)
+	@RequestMapping(path = "UpdateCustomer.do", method = RequestMethod.GET)
 	public String customerUpdate(Model model, HttpSession session) {
 		Customer customer = (Customer) session.getAttribute("customer");
 		if (customer != null) {

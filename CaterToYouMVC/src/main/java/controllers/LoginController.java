@@ -79,7 +79,7 @@ public class LoginController {
 			@RequestParam("password") String password) {
 		User user = dao.returnUser(userName, password);
 		if (user == null) {
-			model.addAttribute("loginErr", "Your information Incorrect");
+			model.addAttribute("loginErr", "Your Information Is Incorrect");
 			return "/views/index.jsp";
 		}
 		setSessions(session, user);

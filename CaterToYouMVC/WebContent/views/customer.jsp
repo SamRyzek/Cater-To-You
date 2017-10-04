@@ -11,33 +11,78 @@
 <meta name="author" content="">
 <link rel="icon" href="../../../../favicon.ico">
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Cater To You</title>
+<style>
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+li {
+	float: left;
+	border-right: 1px solid #bbb;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover {
+	background-color: #111;
+}
+
+html {
+	background-image: url("css/food2.jpg");
+	background-repeat: no-repeat;
+	background-origin: inheret;
+	background-size: 100%;
+	background-color: blue;
+}
+
+body {
+	background-color: darkblue;
+	border: 2px solid white;
+	color: white;
+}
+</style>
 </head>
-<body>
-	${user.firstName} ${user.lastName}
-	<p>Email: ${user.email}</p> 
-	<p>Billing Address: ${address.street} 
-	${address.street2} </p>
+<body class="active">
+	<div>
+		<ul>
+			<li><form action="Shop.do" method="GET">
+					<a href="Shop.do">Shop</a>
+				</form></li>
+
+			<li><form action="UpdateCustomer.do" method="GET">
+					<a href="UpdateCustomer.do">Update</a>
+				</form></li>
+
+			<li><form action="OrderHistory.do" method="GET">
+					<a href="OrderHistory.do">Go To History</a>
+				</form></li>
+
+			<li><form action="showCart.do" method="GET">
+					<a href="showCart.do">Go To Cart</a>
+				</form></li>
+			<!-- <li style="float: right"><form action="customer.do" method="GET">
+					<a href="customer.do">Return Home</a>
+				</form></li> -->
+		</ul>
+	</div>
+
+	<p>${user.firstName}${user.lastName}</p>
+	<p>Email: ${user.email}</p>
+	<p>${address.street}${address.street2}</p>
 	${address.city} ${address.state} ${address.zip}
-	
-	<form action="Shop.do" method="GET">
-		<input type="submit" value="Shop" />
-	</form>
-
-	<form action="UpdateCustomer.do" method="POST">
-		<input type="submit" value="Edit Profile" />
-	</form>
-
-	<form action="OrderHistory.do" method="GET">
-		<input type="submit" value="Order History" />
-	</form>
-	
-	<form action="showCart.do" method="GET">
-		<input type="submit" value="Show Cart" />
-	</form>
-
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -52,59 +97,3 @@
 	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
-
- 
-<style>
-ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #333;
-	position: fixed;
-	width: 100%;
-	color: white;
-	bottom: 0;
-}
-
-li {
-	float: left;
-}
-
-li a {
-	display: block;
-	color: white;
-	text-align: bottom;
-	padding: 14px 16px;
-	text-decoration: none;
-}
-
-li a:hover {
-	background-color: white;
-}
-
-
-html {
-	background-image: url("3D-Solar-System-Wallpaper.jpg");
-	background-color: black;
-	background-size: cover;
-	background-repeat: no-repeat;
-}
-.list{
-	vertical-align:text-bottom;
-	vertical-align: -50px;
-}
-
-</style>
-</head>
-<body>
-	<div class="navbar">
-		<ul>
-
-			<li><a href="newPlanet.html">Add Planet</a></li>
-
-			<li><a href="removePlanet.html">Remove Planet</a></li>
-
-			<li><a href="updatePlanet.html">Update Planet</a></li>
-		</ul>
-	</div>

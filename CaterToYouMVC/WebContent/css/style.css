@@ -13,19 +13,18 @@ body {
 }
 
 html{
-	background-image: url("3D-Solar-System-Wallpaper.jpg");
-	background-color: transparent;
+	
+	background-color: white;
 	background-size: cover;
 	background-repeat:no-repeat;
 	text-align: left;
-	color: white;
-	color: white;
+	
 	font-size:20px;
 
 }
 .list{
 	
-	vertical-align: -50px;
+	
 	display: list;
 	padding-top: 120px
 	position: absolute;
@@ -43,7 +42,6 @@ html{
 	position: fixed;
 	width: 100%;
 	color: white;
-	bottom: 0;
 }
 
 li {

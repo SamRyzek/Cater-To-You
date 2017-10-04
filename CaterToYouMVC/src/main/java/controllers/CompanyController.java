@@ -46,7 +46,7 @@ public class CompanyController {
 	@RequestMapping(path = "editCompany.do", method = RequestMethod.POST)
 	public String userEdit(@RequestParam("id") int id, @RequestParam("addId") int addId,
 			@RequestParam("name") String name, @RequestParam("street") String street,
-			@RequestParam("street 2") String street2, @RequestParam("city") String city,
+			@RequestParam("street2") String street2, @RequestParam("city") String city,
 			@RequestParam("state") String state, @RequestParam("zip") int zip, @RequestParam("url") String imageURL,
 			Model model, HttpSession session) {
 		Company comp = companyDAO.findCompanyById(id);
@@ -79,15 +79,22 @@ public class CompanyController {
 			addTemp.setState(state);
 		}
 		if (zip == ' ') {
-			addTemp.setState(add.getState());
+			addTemp.setZip(add.getZip());
 		} else {
-			addTemp.setState(state);
+			addTemp.setZip(zip);
 		}
+		if (imageURL == " ") {
+			imageURL = comp.getImage().getImageUrl();
+		} 
 
-		compTemp.setId(id);
-		compTemp = companyDAO.updateCompanyInfo(compTemp);
+		
 		addTemp.setId(addId);
 		addTemp = customerDAO.updateAddress(addTemp);
+		compTemp.setAddress(addTemp);
+		compTemp.setId(id);
+		compTemp.setImage(comp.getImage());
+		compTemp.getImage().setImageUrl(imageURL);
+		compTemp = companyDAO.updateCompanyInfo(compTemp);
 		User activeUser = (User) session.getAttribute("user");
 		List<Item> menuItems = customerDAO.showMenu(activeUser.getEmployee().getCompany().getId());
 		model.addAttribute("user", activeUser);

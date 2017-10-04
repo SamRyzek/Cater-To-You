@@ -16,7 +16,7 @@
 <title>Update Company Info</title>
 </head>
 <body>
-	<form action="updateCompany.do" method="POST">
+	<form action="editCompany.do" method="POST">
 
 		<input type="hidden" name="id" value="${company.id}" /> <input
 			type="hidden" name="addId" value="${address.id}" /> Name: <input
