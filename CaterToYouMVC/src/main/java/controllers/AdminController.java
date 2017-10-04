@@ -2,6 +2,8 @@ package controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import cater.data.CompanyDAO;
 import cater.data.CustomerDAO;
+import entity.Company;
 import entity.Item;
 import entity.User;
 
@@ -22,7 +25,7 @@ public class AdminController {
 	@Autowired
 	private CustomerDAO customerDAO;
 
-	@RequestMapping(path = "UpdateAccount.do", method = RequestMethod.POST)
+	@RequestMapping(path = "UpdateAccount.do", method = RequestMethod.GET)
 	public String chooseUpdatePage(Model model, @RequestParam("userID") Integer id) {
 		User user = companyDAO.findUserById(id);
 		if (user.getUserRoles().getId() == 1) {
@@ -35,4 +38,24 @@ public class AdminController {
 		}
 		return "redirect:index.do";
 	}
+	
+	@RequestMapping(path = "AdminUpdateCompany.do", method = RequestMethod.GET)
+	public String userUpdate(@RequestParam("companyID") Integer id, Model model, HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if (user != null) {
+			Company company = companyDAO.findCompanyById(id);
+			model.addAttribute("user", user);
+			model.addAttribute("company", company);
+			model.addAttribute("address", company.getAddress());
+			model.addAttribute("staff", companyDAO.findUserEmployeesByCompany(company));
+			model.addAttribute("inactiveStaff", companyDAO.findInactiveUserEmployeesByCompany(company));
+			List<Item> menuItems = customerDAO.showMenu(company.getId());
+			model.addAttribute("menu", menuItems);
+			model.addAttribute("employee", user.getEmployee());
+			model.addAttribute("image", company.getImage());
+
+		}
+		return "views/companyUpdate.jsp";
+	}
+	
 }

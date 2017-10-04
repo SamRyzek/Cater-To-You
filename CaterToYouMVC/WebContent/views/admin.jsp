@@ -17,15 +17,15 @@
 <title>Admin Control</title>
 </head>
 <body>
-<form action="updateCompany.do" method="GET">
-		Company: <select name="company">
+<form action="AdminUpdateCompany.do" method="GET">
+		Company: <select name="companyID">
 			<c:forEach items="${companies}" var="company">
 				<option value="${company.id}">${company.name}</option>
 			</c:forEach>
 		</select> <input type="submit" value="Update" />
 	</form>
-<form action="updateCustomer.do" method="GET">
-		User: <select name="user">
+<form action="updateAccount.do" method="GET">
+		User: <select name="userID">
 			<c:forEach items="${users}" var="otherUser">
 				<option value="${otherUser.id}">${otherUser.id} ${otherUser.firstName} ${otherUser.lastName}</option>
 			</c:forEach>

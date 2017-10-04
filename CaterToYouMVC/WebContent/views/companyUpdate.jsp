@@ -18,8 +18,8 @@
 <body>
 	<form action="updateCompany.do" method="POST">
 
-		<input type="text" name="id" value="${company.id}" /> <input
-			type="text" name="addId" value="${address.id}" /> Name: <input
+		<input type="hidden" name="id" value="${company.id}" /> <input
+			type="hidden" name="addId" value="${address.id}" /> Name: <input
 			type="text" name="name" value="${company.name}" /><br /> New
 		Street: <input type="text" name="street" value="${address.street}" /><br />
 		New Street2: <input type="text" name="street2"
