@@ -83,10 +83,12 @@ public class CustomerController {
 	}
 
 	@RequestMapping(path = "UpdateCustomer.do", method = RequestMethod.GET)
-	public String customerUpdate(Model model, HttpSession session, @RequestParam("cutomerId") int id) {
+	public String customerUpdate(Model model, HttpSession session, @RequestParam("customerId") int id) {
 
 		Customer customer = customerDAO.getCustomerById(id);//(Customer) session.getAttribute("customer");
+		
 		session.setAttribute("customer", customer);
+		model.addAttribute("user", customer.getUser());
 		model.addAttribute("address", customer.getAddress());
 		return "views/customerUpdate.jsp";
 	}

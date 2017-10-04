@@ -62,8 +62,8 @@ body {
 					<a href="Shop.do">Shop</a>
 				</form></li>
 
-			<li><form action="UpdateCustomer.do?customerId=${use.customer.id}" method="GET">
-					<a href="UpdateCustomer.do?customerId=${use.customer.id}">Update</a>
+			<li><form action="UpdateCustomer.do?customerId=${user.customer.id}" method="GET">
+					<a href="UpdateCustomer.do?customerId=${user.customer.id}">Update</a>
 				</form></li>
 
 			<li><form action="OrderHistory.do" method="GET">
