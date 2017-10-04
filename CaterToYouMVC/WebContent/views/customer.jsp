@@ -62,8 +62,8 @@ body {
 					<a href="Shop.do">Shop</a>
 				</form></li>
 
-			<li><form action="UpdateCustomer.do" method="GET">
-					<a href="UpdateCustomer.do">Update</a>
+			<li><form action="UpdateCustomer.do?customerId=${use.customer.id}" method="GET">
+					<a href="UpdateCustomer.do?customerId=${use.customer.id}">Update</a>
 				</form></li>
 
 			<li><form action="OrderHistory.do" method="GET">
@@ -74,15 +74,18 @@ body {
 					<a href="showCart.do">Go To Cart</a>
 				</form></li>
 			<!-- <li style="float: right"><form action="customer.do" method="GET">
-					<a href="customer.do">Return Home</a>
-				</form></li> -->
+					<a href="index.do">Return Home</a>
+			</form></li> -->
 		</ul>
 	</div>
-
-	<p>${user.firstName}${user.lastName}</p>
-	<p>Email: ${user.email}</p>
-	<p>${address.street}${address.street2}</p>
-	${address.city} ${address.state} ${address.zip}
+	<div>
+		<p>${user.firstName}${user.lastName}</p>
+		<p>Email: ${user.email}</p>
+		<p>${address.street}${address.street2}</p>
+		${address.city} ${address.state} ${address.zip}
+		<img alt="picture" src="">
+	</div>
+	
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

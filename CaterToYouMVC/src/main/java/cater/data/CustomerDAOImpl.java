@@ -76,6 +76,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 			chi.setCount(chi.getCount() + count);
 		}
 	}
+	
+	
 
 	@Override
 	public void emptyCart(Cart cart) {
@@ -243,5 +245,12 @@ public class CustomerDAOImpl implements CustomerDAO {
 		String queryString = "SELECT i FROM Item i WHERE i.OrderHasItems.Order.id = :id";
 		List<Item> items = em.createQuery(queryString, Item.class).setParameter("id", id).getResultList();
 		return items;
+	}
+
+
+
+	@Override
+	public Customer getCustomerById(int id) {
+		return em.find(Customer.class, id);
 	}
 }
