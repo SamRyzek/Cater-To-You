@@ -1,12 +1,12 @@
 package cater.data;
 
+import java.util.Date;
 import java.util.List;
 
 import entity.Address;
 import entity.Cart;
 import entity.Company;
 import entity.Customer;
-import entity.Image;
 import entity.Item;
 import entity.Menu;
 import entity.Order;
@@ -62,7 +62,8 @@ public interface CustomerDAO {
 
 	//take in items by id and add items based on quantity
 
-	public void checkoutEmptiesCartMovesToOrder(Cart cart, Address address);
+	public void checkoutEmptiesCartMovesToOrder(int id, Address address, String time, String date);
+	public Date conveStringToDateTime(String time, String date);
 
 	//cart check out with total and cart is emptied
 

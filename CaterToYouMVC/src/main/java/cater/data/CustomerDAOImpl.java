@@ -1,6 +1,9 @@
 package cater.data;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -14,7 +17,6 @@ import entity.Cart;
 import entity.CartHasItem;
 import entity.Company;
 import entity.Customer;
-import entity.Image;
 import entity.Item;
 import entity.Menu;
 import entity.Order;
@@ -30,13 +32,9 @@ public class CustomerDAOImpl implements CustomerDAO {
 	EntityManager em;
 	
 	public User createUser(User user) {
-		
-		
 		user.setUserRoles(em.find(UserRoles.class, 1));
 		em.persist(user);
-		
 		usersCustomer(user);
-		
 		return user;
 	}
 	
@@ -48,7 +46,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 		c.setUser(user);
 		c.setCart(ca);
 		em.persist(c);
-
 		return c;	
 	}
 	
@@ -129,8 +126,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public void checkoutEmptiesCartMovesToOrder(Cart cart, Address address) {
-
+	public void checkoutEmptiesCartMovesToOrder(int id, Address address, String time, String date) {
+		Cart cart = em.find(Cart.class, id);
 		List<CartHasItem> chiList1 = cart.getCartHasItemList();
 		List<OrderHasItems> orderHasList = new ArrayList<>();
 
@@ -143,7 +140,24 @@ public class CustomerDAOImpl implements CustomerDAO {
 		Order order = new Order();
 		order.setAddress(address);
 		order.setOrderHasItemsList(orderHasList);
+		order.setDeliveryDateTime(conveStringToDateTime(time, date));
 		em.persist(order);
+		emptyCart(cart);
+	}
+	
+	public Date conveStringToDateTime(String time, String date) {
+		String[] timeSections = time.split(" ");
+		int pmNumber = timeSections[1].equals("PM") ? 12: 0;
+		timeSections = timeSections[0].split(":");
+		String newTime = Integer.parseInt(timeSections[0]) + pmNumber + timeSections[1];
+		String dateTime = date + " " + newTime;
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		try {
+			return simpleDateFormat.parse(dateTime);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override

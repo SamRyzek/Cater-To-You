@@ -31,11 +31,14 @@
 
 	<form action="createOrder.do" method="POST">
 		<input type="hidden" name="cartId" value="${cart.id}" />
-		<p>
-			Delivery Date: <input type="text" id="datepicker">
-		</p>
-		<p>
-			<input type="submit" value="Update" />
+		<p>Delivery Date: <input type="text" name="date" id="datepicker">
+		Delivery Time: <input type="text" name="time" class="timepicker"></p>
+		<p>street: <input type="text" name="street"></p>
+		<p>street2: <input type="text" name="street2"></p>
+		<p>  city: <input type="text" name="city">
+		state: <input type="text" name="state">
+		zip code: <input type="text" name="zip"></p>
+		<p><input type="submit" value="Pay" /></p>
 	</form>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -61,18 +64,17 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('.timepicker').timepicker({
-			    timeFormat: 'h:mm p',
-			    interval: 15,
-			    minTime: '10',
-			    maxTime: '6:00pm',
-			    defaultTime: '11',
-			    startTime: '10:00',
-			    dynamic: false,
-			    dropdown: true,
-			    scrollbar: true
+				timeFormat : 'h:mm p',
+				interval : 15,
+				minTime : '8',
+				maxTime : '6:00pm',
+				defaultTime : '11',
+				startTime : '10:00',
+				dynamic : false,
+				dropdown : true,
+				scrollbar : true
 			});
 		});
-		
 	</script>
 </body>
 </html>

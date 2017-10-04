@@ -39,15 +39,7 @@ public class CustomerController {
 	
 	@RequestMapping(path="newUser.do", method=RequestMethod.POST)
 	public String newUser(Model model, HttpSession session, User user) {
-		//create the user in the db
-		
-		User u = customerDAO.createUser(user);
-		
-		System.out.println(user);
-		
-		
-//		session.setAttribute("user", user);
-//		session.setAttribute("customer", user.getCustomer());
+		customerDAO.createUser(user);
 		return "views/actionSuccessful.jsp";
 	}
 
@@ -158,6 +150,11 @@ public class CustomerController {
 		model.addAttribute("itemList", cart.getCartHasItemList());
 		model.addAttribute("cart", cart);
 		return "views/checkout.jsp";
+	}
+	
+	public String createOrder() {
+		
+		return "redirect:customer.do";
 	}
 
 }
