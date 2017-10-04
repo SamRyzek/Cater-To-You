@@ -95,9 +95,7 @@ public class CompanyController {
 		compTemp.setImage(comp.getImage());
 		compTemp.getImage().setImageUrl(imageURL);
 		compTemp = companyDAO.updateCompanyInfo(compTemp);
-		User activeUser = (User) session.getAttribute("user");
-		List<Item> menuItems = customerDAO.showMenu(activeUser.getEmployee().getCompany().getId());
-	
+		
 		
 		return "redirect:index.do";
 	}
@@ -135,13 +133,7 @@ public class CompanyController {
 		}
 		userTemp.setId(id);
 		userTemp = companyDAO.editUser(userTemp);
-		User activeUser = (User) session.getAttribute("user");
-		List<Item> menuItems = customerDAO.showMenu(activeUser.getEmployee().getCompany().getId());
-		model.addAttribute("user", activeUser);
-		model.addAttribute("employee", activeUser.getEmployee());
-		model.addAttribute("company", activeUser.getEmployee().getCompany());
-		model.addAttribute("address", activeUser.getEmployee().getCompany().getAddress());
-		model.addAttribute("menu", menuItems);
+		
 		return "redirect:index.do";
 	}
 
@@ -188,13 +180,7 @@ public class CompanyController {
 		itemTemp.setMenu(item.getMenu());
 		companyDAO.makeMenuItemInactive(item);
 		itemTemp = companyDAO.addItem(itemTemp);
-		User user = (User) session.getAttribute("user");
-		List<Item> menuItems = customerDAO.showMenu(user.getEmployee().getCompany().getId());
-		model.addAttribute("user", user);
-		model.addAttribute("employee", user.getEmployee());
-		model.addAttribute("company", user.getEmployee().getCompany());
-		model.addAttribute("address", user.getEmployee().getCompany().getAddress());
-		model.addAttribute("menu", menuItems);
+		
 		return "redirect:index.do";
 	}
 
@@ -202,13 +188,7 @@ public class CompanyController {
 	public String inactivate(@RequestParam("oldItemId") Integer oldId, Model model, HttpSession session) {
 		Item item = companyDAO.findItemById(oldId);
 		companyDAO.makeMenuItemInactive(item);
-		User user = (User) session.getAttribute("user");
-		List<Item> menuItems = customerDAO.showMenu(user.getEmployee().getCompany().getId());
-		model.addAttribute("user", user);
-		model.addAttribute("employee", user.getEmployee());
-		model.addAttribute("company", user.getEmployee().getCompany());
-		model.addAttribute("address", user.getEmployee().getCompany().getAddress());
-		model.addAttribute("menu", menuItems);
+	
 		return "redirect:index.do";
 	}
 
@@ -218,21 +198,7 @@ public class CompanyController {
 		if (user.getEmployee().getEmployeeID() != oldId) {
 			Employee employee = companyDAO.findEmployeeById(oldId);
 			companyDAO.makeEmployeeInactive(employee);
-		} else {
-			String error = "You can not make yourself inactive from this screen";
-			model.addAttribute("message", error);
-
-		}
-		Company company = companyDAO.findCompanyById(user.getEmployee().getCompany().getId());
-		model.addAttribute("user", user);
-		model.addAttribute("company", company);
-		model.addAttribute("address", user.getEmployee().getCompany().getAddress());
-		model.addAttribute("users", companyDAO.findUserEmployeesByCompany(company));
-		List<Item> menuItems = customerDAO.showMenu(user.getEmployee().getCompany().getId());
-		model.addAttribute("menu", menuItems);
-		model.addAttribute("employee", user.getEmployee());
-		String removed = " can not make yourself inactive from this screen";
-		model.addAttribute("message", removed);
+		} 
 
 		return "redirect:index.do";
 	}
@@ -243,22 +209,6 @@ public class CompanyController {
 		if (user.getEmployee().getEmployeeID() != id) {
 		Employee employee = companyDAO.findEmployeeById(id);
 		companyDAO.makeEmployeeActive(employee);}
-		else {
-			String error = "You can not make yourself inactive from this screen";
-			model.addAttribute("message", error);
-
-		}
-		Company company = companyDAO.findCompanyById(user.getEmployee().getCompany().getId());
-		model.addAttribute("user", user);
-		model.addAttribute("company", company);
-		model.addAttribute("address", user.getEmployee().getCompany().getAddress());
-		model.addAttribute("users", companyDAO.findUserEmployeesByCompany(company));
-		List<Item> menuItems = customerDAO.showMenu(user.getEmployee().getCompany().getId());
-		model.addAttribute("menu", menuItems);
-		model.addAttribute("employee", user.getEmployee());
-		String removed = " can not make yourself inactive from this screen";
-		model.addAttribute("message", removed);
-
 		return "redirect:index.do";
 	}
 
@@ -269,13 +219,13 @@ public class CompanyController {
 			Company company = companyDAO.findCompanyById(user.getEmployee().getCompany().getId());
 			model.addAttribute("user", user);
 			model.addAttribute("company", company);
-			model.addAttribute("address", user.getEmployee().getCompany().getAddress());
+			model.addAttribute("address", company.getAddress());
 			model.addAttribute("staff", companyDAO.findUserEmployeesByCompany(company));
 			model.addAttribute("inactiveStaff", companyDAO.findInactiveUserEmployeesByCompany(company));
-			List<Item> menuItems = customerDAO.showMenu(user.getEmployee().getCompany().getId());
+			List<Item> menuItems = customerDAO.showMenu(company.getId());
 			model.addAttribute("menu", menuItems);
 			model.addAttribute("employee", user.getEmployee());
-			model.addAttribute("image", user.getEmployee().getCompany().getImage());
+			model.addAttribute("image", company.getImage());
 
 		}
 		return "views/companyUpdate.jsp";

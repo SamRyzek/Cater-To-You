@@ -96,12 +96,29 @@ public class CustomerController {
 		Customer customer = (Customer) session.getAttribute("customer");
 		User user = (User) session.getAttribute("user");
 		
+		if(customer.getAddress()==null) {
+			Address a = new Address();
+			
+			
+			a.setCity(input.getCity());
+			a.setState(input.getState());
+			a.setStreet(input.getStreet());
+			a.setStreet2(input.getStreet2());
+			a.setZip(Integer.parseInt(input.getZip()));
+			customer.setAddress(a);
+			customerDAO.createAddressForCustomer(customer);
+			
+			customerDAO.updateAddress(customer.getAddress());
+		}
+		else {
+		
 		customer.getAddress().setCity(input.getCity());
 		customer.getAddress().setState(input.getState());
 		customer.getAddress().setStreet(input.getStreet());
 		customer.getAddress().setStreet2(input.getStreet2());
 		customer.getAddress().setZip(Integer.parseInt(input.getZip()));
 		customer.setAddress(customerDAO.updateAddress(customer.getAddress()));
+		}
 		
 		user.setEmail(input.getEmail());
 		user = customerDAO.updateEmail(user);
