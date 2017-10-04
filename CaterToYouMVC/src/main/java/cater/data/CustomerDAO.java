@@ -1,12 +1,12 @@
 package cater.data;
 
+import java.util.Date;
 import java.util.List;
 
 import entity.Address;
 import entity.Cart;
 import entity.Company;
 import entity.Customer;
-import entity.Image;
 import entity.Item;
 import entity.Menu;
 import entity.Order;
@@ -35,7 +35,7 @@ public interface CustomerDAO {
 //************************Chris's methods
 
 	public User updateEmail(User user);
-	public Customer updateAddress(Customer customer);
+	public Address updateAddress(Address address);
 
 	public Menu returnMenuByCompanyId(Company c); //put an m.getId and then do the find
 
@@ -62,7 +62,8 @@ public interface CustomerDAO {
 
 	//take in items by id and add items based on quantity
 
-	public void checkoutEmptiesCartMovesToOrder(Cart cart, Address address);
+	public void checkoutEmptiesCartMovesToOrder(int id, Address address, String time, String date);
+	public Date conveStringToDateTime(String time, String date);
 
 	//cart check out with total and cart is emptied
 

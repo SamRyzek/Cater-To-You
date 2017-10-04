@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import cater.data.CompanyDAO;
 import cater.data.CustomerDAO;
 import cater.data.CustomerInput;
+import entity.Address;
 import entity.Cart;
 import entity.Company;
 import entity.Customer;
@@ -39,15 +40,7 @@ public class CustomerController {
 	
 	@RequestMapping(path="newUser.do", method=RequestMethod.POST)
 	public String newUser(Model model, HttpSession session, User user) {
-		//create the user in the db
-		
-		User u = customerDAO.createUser(user);
-		
-		System.out.println(user);
-		
-		
-//		session.setAttribute("user", user);
-//		session.setAttribute("customer", user.getCustomer());
+		customerDAO.createUser(user);
 		return "views/actionSuccessful.jsp";
 	}
 
@@ -98,7 +91,7 @@ public class CustomerController {
 		customer.getAddress().setStreet(input.getStreet());
 		customer.getAddress().setStreet2(input.getStreet2());
 		customer.getAddress().setZip(Integer.parseInt(input.getZip()));
-		customer = customerDAO.updateAddress(customer);
+		customer.setAddress(customerDAO.updateAddress(customer.getAddress()));
 		
 		user.setEmail(input.getEmail());
 		user = customerDAO.updateEmail(user);
@@ -158,6 +151,25 @@ public class CustomerController {
 		model.addAttribute("itemList", cart.getCartHasItemList());
 		model.addAttribute("cart", cart);
 		return "views/checkout.jsp";
+	}
+	
+	@RequestMapping(path="createOrder.do", method = RequestMethod.POST)
+	public String createOrder(@RequestParam("date") String date,
+							@RequestParam("time") String time,
+							@RequestParam("cartId") int id, 
+							@RequestParam("street") String street,
+							@RequestParam("street2") String street2, 
+							@RequestParam("city") String city,
+							@RequestParam("state") String state,
+							@RequestParam("zip") int zip) { 
+		Address address = new Address();
+		address.setStreet(street);
+		address.setStreet2(street2);
+		address.setCity(city);
+		address.setState(state);
+		address.setZip(zip);
+		customerDAO.checkoutEmptiesCartMovesToOrder(id, address, time, date);
+		return "redirect:customer.do";
 	}
 
 }

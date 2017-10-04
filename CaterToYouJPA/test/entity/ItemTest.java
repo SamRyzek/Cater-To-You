@@ -36,7 +36,7 @@ public class ItemTest {
 	@Test
 	public void test_Item_name_mapped() {
 		Item i = em.find(Item.class, 1);
-		assertEquals(" Grilled Chicken Tacos", i.getName());
+		assertEquals("Grilled Chicken Tacos", i.getName());
 	}
 	
 	@Test
@@ -48,7 +48,7 @@ public class ItemTest {
 	@Test
 	public void test_Item_description_mapped() {
 		Item i = em.find(Item.class, 1);
-		assertEquals(" Just your basic chicken tacos", i.getDescription());
+		assertEquals("Just your basic chicken tacos", i.getDescription());
 	}
 	
 	@Test
@@ -94,6 +94,6 @@ public class ItemTest {
 	public void test_Item_categoryList_mapped() {
 		Item i = em.find(Item.class, 1);
 		assertEquals(1, i.getCategoryList().size());
-		assertEquals(" Mexican", i.getCategoryList().get(0).getCategory());
+		assertEquals("Mexican", i.getCategoryList().get(0).getCategory());
 	}
 }
