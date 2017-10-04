@@ -12,7 +12,7 @@
 <link rel="icon" href="../../../../favicon.ico">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Company Selections</title>
 </head>
 <body>
 
@@ -29,6 +29,9 @@
 		</form>
 	</c:forEach>
 
+	<form action="showCart.do" method="GET">
+		<input type="submit" value="Show Cart">
+	</form>
 	<form action="customer.do" method="GET">
 		<input type="submit" value="Return Home" />
 	</form>

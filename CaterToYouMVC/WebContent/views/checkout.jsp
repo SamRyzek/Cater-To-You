@@ -38,7 +38,13 @@
 		<p>  city: <input type="text" name="city">
 		state: <input type="text" name="state">
 		zip code: <input type="text" name="zip"></p>
-		<p><input type="submit" value="Pay" /></p>
+		<p><input type="submit" value="Checkout" /></p>
+	</form>
+	<form action="showCart.do" method="GET">
+		<input type="submit" value="Return to Cart"/>
+	</form>
+	<form action="customer.do" method="GET">
+		<input type="submit" value="Return Home"/>
 	</form>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

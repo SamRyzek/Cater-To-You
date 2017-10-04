@@ -178,7 +178,9 @@ public class CustomerController {
 		address.setState(state);
 		address.setZip(zip);
 		customerDAO.checkoutEmptiesCartMovesToOrder(id, address, time, date);
-		return "redirect:customer.do";
+		
+		String message ="Your order has been placed.";
+		return "redirect:actionSuccessful.do?message=" + message;
 	}
 
 }

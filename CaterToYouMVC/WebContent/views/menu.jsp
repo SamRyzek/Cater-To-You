@@ -31,7 +31,11 @@
 		</form>
 	</c:forEach>
 	
-	<form action="customer.do" method="GET">
+	<form action="showCart.do" method="GET">
+		<input type="submit" value="Show Cart">
+	</form>
+	
+	<form action="index.do" method="GET">
 		<input type="submit" value="Return Home"/>
 	</form>
 	
