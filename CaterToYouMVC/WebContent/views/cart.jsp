@@ -55,7 +55,7 @@
 			</c:forEach>
 				</tbody>
 			</table>
-			<p>sub Total: ${subTotal}</p>
+			<p>Sub Total: ${subTotal}</p>
 			<p>Tax: ${tax}</p>
 			<p>Fee: ${fee}</p>
 			<p>Total: ${total}</p>
