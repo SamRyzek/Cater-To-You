@@ -25,57 +25,28 @@ public class CompanyDAOImpl implements CompanyDAO {
 
 	@Override
 	public Company updateCompanyInfo(Company company) {
-
 		int id = company.getId();
 		Company c = em.find(Company.class, id);
-	
-		
-		if (c != null)
-
-		{
+		if (c != null) {
 			c.setAddress(company.getAddress());
 			c.setImage(company.getImage());
 			c.setName(company.getName());
-	
 		}
-
 		em.close();
 		return c;
 	}
 
-	// @Override //session will give us the menu
-	// public Menu updateMenuItem(Menu m) {
-	//
-	// int id = m.getId();
-	// Menu menu = em.find(Menu.class, id);
-	//
-	// if (menu != null) {
-	//
-	// menu.setCompany(m.getCompany());
-	// menu.setItemList(m.getItemList());
-	//
-	// }
-	//
-	// return menu;
-	// }
-
 	@Override
 	public Menu addMenuItem(Item i, Menu menu) {
-
 		Menu m = em.find(Menu.class, menu.getId());
-
 		if (m == null) {
-
 			m = new Menu();
 			m.setItemList(m.getItemList());
 			em.persist(m);
-
 		} else {
-
 			m.setItemList(m.getItemList());
 			em.persist(m);
 		}
-
 		return m;
 	}
 
@@ -88,38 +59,27 @@ public class CompanyDAOImpl implements CompanyDAO {
 
 	@Override
 	public Employee updateEmployee(Employee e) {
-
 		int id = e.getEmployeeID();
 		Employee employee = em.find(Employee.class, id);
-
 		if (employee != null) {
-
 			employee.setCompany(e.getCompany());
 			employee.setUser(e.getUser());
-
 		}
-
 		em.close();
 		return employee;
 	}
 
 	@Override
 	public Employee addEmployee(Employee e) {
-
 		String sql = "SELECT e FROM Employee e WHERE e.id = :id";
-
 		Employee employee = em.createQuery(sql, Employee.class).setParameter("id", e.getEmployeeID()).getSingleResult();
-
 		if (employee == null) {
-
 			employee = new Employee();
 			em.persist(employee);
 		} else {
-
 			employee.setUser(employee.getUser());
 			em.persist(employee);
 		}
-
 		return null;
 	}
 
@@ -129,6 +89,7 @@ public class CompanyDAOImpl implements CompanyDAO {
 		employee.setActive(0);
 		return;
 	}
+
 	@Override
 	public void makeEmployeeActive(Employee e) {
 		Employee employee = em.find(Employee.class, e.getEmployeeID());
@@ -138,18 +99,13 @@ public class CompanyDAOImpl implements CompanyDAO {
 
 	@Override
 	public void updateImage(Image i) {
-
 		Image image = em.find(Image.class, 0);
-
 		if (image != null) {
-
 			image.setCompanyList(i.getCompanyList());
 			image.setCustomerList(i.getCustomerList());
 			image.setImageUrl(i.getImageUrl());
 			image.setItemList(i.getItemList());
-
 		}
-
 	}
 
 	@Override
@@ -175,7 +131,6 @@ public class CompanyDAOImpl implements CompanyDAO {
 	@Override
 	public Company findCompanyById(int id) {
 		String sql = "SELECT c FROM Company c where c.id= :id";
-
 		return em.createQuery(sql, Company.class).setParameter("id", id).getResultList().get(0);
 
 	}
@@ -183,14 +138,12 @@ public class CompanyDAOImpl implements CompanyDAO {
 	@Override
 	public Item findItemById(int id) {
 		return em.find(Item.class, id);
-
 	}
 
 	@Override
 	public List<User> findUserEmployeesByCompany(Company company) {
 		String sql = "SELECT u FROM User u where u.employee.company= :company and u.employee.active>0";
 		return em.createQuery(sql, User.class).setParameter("company", company).getResultList();
-
 	}
 
 	@Override
@@ -208,7 +161,6 @@ public class CompanyDAOImpl implements CompanyDAO {
 	@Override
 	public User editUser(User user) {
 		User userTracked = em.find(User.class, user.getId());
-		
 		userTracked.setFirstName(user.getFirstName());
 		userTracked.setLastName(user.getLastName());
 		userTracked.setUsername(user.getUsername());

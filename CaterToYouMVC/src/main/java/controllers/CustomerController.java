@@ -37,21 +37,21 @@ public class CustomerController {
 		model.addAttribute("allCompanies", companies);
 		return "views/menus.jsp";
 	}
-	
+
 	@RequestMapping(path="newUser.do", method=RequestMethod.POST)
 	public String newUser(Model model, HttpSession session, User user) {
 		customerDAO.createUser(user);
 		String message = "New user has been created successfully.";
-		
-		return "redirect:actionSuccessful.do?message=" + message; 
+
+		return "redirect:actionSuccessful.do?message=" + message;
 	}
-	
+
 	@RequestMapping(path="actionSuccessful.do", method=RequestMethod.GET)
 	public String displayActionSuccessful(Model model, HttpSession session, String message) {
 		model.addAttribute("message", message);
 		return "views/actionSuccessful.jsp";
 	}
-	
+
 
 	@RequestMapping(path = "ShopHere.do", method = RequestMethod.GET)
 	public String show(@RequestParam("companyId") Integer id, Model model, HttpSession session) {
@@ -84,7 +84,7 @@ public class CustomerController {
 
 	@RequestMapping(path = "UpdateCustomer.do", method = RequestMethod.GET)
 	public String customerUpdate(Model model, HttpSession session, @RequestParam("cutomerId") int id) {
-		
+
 		Customer customer = customerDAO.getCustomerById(id);//(Customer) session.getAttribute("customer");
 		session.setAttribute("customer", customer);
 		model.addAttribute("address", customer.getAddress());
@@ -96,16 +96,33 @@ public class CustomerController {
 		Customer customer = (Customer) session.getAttribute("customer");
 		User user = (User) session.getAttribute("user");
 
+		if(customer.getAddress()==null) {
+			Address a = new Address();
+
+
+			a.setCity(input.getCity());
+			a.setState(input.getState());
+			a.setStreet(input.getStreet());
+			a.setStreet2(input.getStreet2());
+			a.setZip(Integer.parseInt(input.getZip()));
+			customer.setAddress(a);
+			customerDAO.createAddressForCustomer(customer);
+
+			customerDAO.updateAddress(customer.getAddress());
+		}
+		else {
+
 		customer.getAddress().setCity(input.getCity());
 		customer.getAddress().setState(input.getState());
 		customer.getAddress().setStreet(input.getStreet());
 		customer.getAddress().setStreet2(input.getStreet2());
 		customer.getAddress().setZip(Integer.parseInt(input.getZip()));
 		customer.setAddress(customerDAO.updateAddress(customer.getAddress()));
-		
+		}
+
 		user.setEmail(input.getEmail());
 		user = customerDAO.updateEmail(user);
-		
+
 		session.setAttribute("user", user);
 		session.setAttribute("customer", customer);
 		model.addAttribute("customer", customer);
@@ -130,19 +147,19 @@ public class CustomerController {
 		customerDAO.removeItemFromCart(itemId, customer.getCart());
 		return "redirect:showCart.do";
 	}
-	
+
 	@RequestMapping(path = "changeQuantity.do", method = RequestMethod.POST)
 	public String updateQuantity(@RequestParam("itemId") int id, @RequestParam("count") int count) {
 		customerDAO.updateQuantityInCart(id, count);
 		return "redirect:showCart.do";
 	}
-	
+
 	@RequestMapping("checkout.do")
 	public String showCheckout(Model model, HttpSession session) {
 		this.addCartToModel(model, session);
 		return "views/checkout.jsp";
 	}
-	
+
 	private void addCartToModel(Model model, HttpSession session) {
 		Customer customer = (Customer) session.getAttribute("customer");
 		Cart cart = customerDAO.showCartWithAllItems(customer);
@@ -157,16 +174,16 @@ public class CustomerController {
 		}
 		model.addAttribute("cart", cart);
 	}
-	
+
 	@RequestMapping(path="createOrder.do", method = RequestMethod.POST)
 	public String createOrder(@RequestParam("date") String date,
 							@RequestParam("time") String time,
-							@RequestParam("cartId") int id, 
+							@RequestParam("cartId") int id,
 							@RequestParam("street") String street,
-							@RequestParam("street2") String street2, 
+							@RequestParam("street2") String street2,
 							@RequestParam("city") String city,
 							@RequestParam("state") String state,
-							@RequestParam("zip") int zip) { 
+							@RequestParam("zip") int zip) {
 		Address address = new Address();
 		address.setStreet(street);
 		address.setStreet2(street2);
@@ -174,7 +191,7 @@ public class CustomerController {
 		address.setState(state);
 		address.setZip(zip);
 		customerDAO.checkoutEmptiesCartMovesToOrder(id, address, time, date);
-		
+
 		String message ="Your order has been placed.";
 		return "redirect:actionSuccessful.do?message=" + message;
 	}

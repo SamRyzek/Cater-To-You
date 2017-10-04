@@ -30,6 +30,11 @@ ul.One {
 	background-color: #333;
 }
 
+ul.Two{
+
+
+}
+
 li {
 	float: left;
 }
@@ -70,7 +75,7 @@ body {
 			</form></li>
 	</ul>
 	<h4>Your Cart</h4>
-	<ul>
+	<ul class="Two">
 		<c:forEach items="${itemList}" var="item">
 			<li>${item.count}${item.item.name}${item.item.price * item.count}</li>
 		</c:forEach>
