@@ -83,9 +83,9 @@ body {
 		<p>Email: ${user.email}</p>
 		<p>${address.street}${address.street2}</p>
 		${address.city} ${address.state} ${address.zip}
-		<img alt="profile image" src="${user.customer.image.imageUrl}">
+		<img alt="picture" src="${user.customer.image.imageUrl}">
 	</div>
-	
+
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
