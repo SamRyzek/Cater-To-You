@@ -301,4 +301,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public Customer getCustomerById(int id) {
 		return em.find(Customer.class, id);
 	}
+
+
+	@Override
+	public Cart getCartByAddAnd() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

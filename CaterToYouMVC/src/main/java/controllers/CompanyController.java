@@ -263,13 +263,13 @@ public class CompanyController {
 		} else {
 			userTemp.setPassword(password);
 		}
-		userTemp.setUserRoles();
-		
-		Menu menu = adminDAO.createMenu();
-		compTemp.setMenu(menu);
-		compTemp.setAddress(addTemp);
-
-		compTemp = adminDAO.createCompany(compTemp);
+//		userTemp.setUserRoles();
+//		
+//		Menu menu = adminDAO.createMenu();
+//		compTemp.setMenu(menu);
+//		compTemp.setAddress(addTemp);
+//
+//		compTemp = adminDAO.createCompany(compTemp);
 
 		return "views/createEmployee";
 	}
