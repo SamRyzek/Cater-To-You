@@ -42,6 +42,6 @@ public class UserRolesTest {
 	@Test
 	public void test_UserRoles_type_mapped() {
 		UserRoles ur = em.find(UserRoles.class, 1);
-		assertEquals(" Customer", ur.getType());
+		assertEquals("Customer", ur.getType());
 	}
 }

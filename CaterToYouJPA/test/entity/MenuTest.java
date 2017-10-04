@@ -35,7 +35,7 @@ public class MenuTest {
 	@Test
 	public void test_Menu_company_mapped() {
 		Menu m = em.find(Menu.class, 1);
-		assertEquals(" Illegal Pete's", m.getCompany().getName());
+		assertEquals("Illegal Pete's", m.getCompany().getName());
 	}
 	
 	@Test

@@ -18,11 +18,11 @@
 	${company.name} Street: ${address.street} Street 2: ${address.street2}
 	City: ${address.city} State: ${address.state} Zip: ${address.zip}
 	<c:forEach items="${menu}" var="item">
-				${item.name}
+				<br />${item.name}
 				${item.description}
 				${item.price}
 				
-		</form>
+		
 	</c:forEach>
 	
 	<form action="updateCompanyProfile.do" method="POST">

@@ -41,6 +41,6 @@ public class CartTest {
 	@Test
 	public void test_cart_customer_mapped() {
 		Cart c = em.find(Cart.class, 1);
-		assertEquals(" Sara", c.getCustomer().getUser().getFirstName());
+		assertEquals("Sara", c.getCustomer().getUser().getFirstName());
 	}
 }

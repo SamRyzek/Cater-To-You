@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import cater.data.CompanyDAO;
 import cater.data.CustomerDAO;
 import cater.data.CustomerInput;
+import entity.Address;
 import entity.Cart;
 import entity.Company;
 import entity.Customer;
@@ -39,17 +40,18 @@ public class CustomerController {
 	
 	@RequestMapping(path="newUser.do", method=RequestMethod.POST)
 	public String newUser(Model model, HttpSession session, User user) {
-		//create the user in the db
+		customerDAO.createUser(user);
+		String message = "New user has been created successfully.";
 		
-		User u = customerDAO.createUser(user);
-		
-		System.out.println(user);
-		
-		
-//		session.setAttribute("user", user);
-//		session.setAttribute("customer", user.getCustomer());
+		return "redirect:actionSuccessful.do?message=" + message; 
+	}
+	
+	@RequestMapping(path="actionSuccessful.do", method=RequestMethod.GET)
+	public String displayActionSuccessful(Model model, HttpSession session, String message) {
+		model.addAttribute("message", message);
 		return "views/actionSuccessful.jsp";
 	}
+	
 
 	@RequestMapping(path = "ShopHere.do", method = RequestMethod.GET)
 	public String show(@RequestParam("companyId") Integer id, Model model) {
@@ -98,7 +100,7 @@ public class CustomerController {
 		customer.getAddress().setStreet(input.getStreet());
 		customer.getAddress().setStreet2(input.getStreet2());
 		customer.getAddress().setZip(Integer.parseInt(input.getZip()));
-		customer = customerDAO.updateAddress(customer);
+		customer.setAddress(customerDAO.updateAddress(customer.getAddress()));
 		
 		user.setEmail(input.getEmail());
 		user = customerDAO.updateEmail(user);
@@ -158,6 +160,25 @@ public class CustomerController {
 		model.addAttribute("itemList", cart.getCartHasItemList());
 		model.addAttribute("cart", cart);
 		return "views/checkout.jsp";
+	}
+	
+	@RequestMapping(path="createOrder.do", method = RequestMethod.POST)
+	public String createOrder(@RequestParam("date") String date,
+							@RequestParam("time") String time,
+							@RequestParam("cartId") int id, 
+							@RequestParam("street") String street,
+							@RequestParam("street2") String street2, 
+							@RequestParam("city") String city,
+							@RequestParam("state") String state,
+							@RequestParam("zip") int zip) { 
+		Address address = new Address();
+		address.setStreet(street);
+		address.setStreet2(street2);
+		address.setCity(city);
+		address.setState(state);
+		address.setZip(zip);
+		customerDAO.checkoutEmptiesCartMovesToOrder(id, address, time, date);
+		return "redirect:customer.do";
 	}
 
 }
