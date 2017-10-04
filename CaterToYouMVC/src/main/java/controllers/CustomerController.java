@@ -41,8 +41,17 @@ public class CustomerController {
 	@RequestMapping(path="newUser.do", method=RequestMethod.POST)
 	public String newUser(Model model, HttpSession session, User user) {
 		customerDAO.createUser(user);
+		String message = "New user has been created successfully.";
+		
+		return "redirect:actionSuccessful.do?message=" + message; 
+	}
+	
+	@RequestMapping(path="actionSuccessful.do", method=RequestMethod.GET)
+	public String displayActionSuccessful(Model model, HttpSession session, String message) {
+		model.addAttribute("message", message);
 		return "views/actionSuccessful.jsp";
 	}
+	
 
 	@RequestMapping(path = "ShopHere.do", method = RequestMethod.GET)
 	public String show(@RequestParam("companyId") Integer id, Model model, HttpSession session) {
@@ -165,7 +174,9 @@ public class CustomerController {
 		address.setState(state);
 		address.setZip(zip);
 		customerDAO.checkoutEmptiesCartMovesToOrder(id, address, time, date);
-		return "redirect:customer.do";
+		
+		String message ="Your order has been placed.";
+		return "redirect:actionSuccessful.do?message=" + message;
 	}
 
 }

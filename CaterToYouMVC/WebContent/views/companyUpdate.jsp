@@ -17,8 +17,9 @@
 </head>
 <body>
 	<form action="updateCompany.do" method="POST">
-		Name of Company to Edit: <input type="text" name="oldname"
-			value="${company.name}" readonly /><br /> New Name: <input
+
+		<input type="text" name="id" value="${company.id}" /> <input
+			type="text" name="addId" value="${address.id}" /> Name: <input
 			type="text" name="name" value="${company.name}" /><br /> New
 		Street: <input type="text" name="street" value="${address.street}" /><br />
 		New Street2: <input type="text" name="street2"
@@ -42,6 +43,13 @@
 				<option value="${user.id}">${user.firstName} ${user.lastName}</option>
 			</c:forEach>
 		</select> <input type="submit" value="Update Employee" />
+	</form>
+	<form action="ActivateEmployee.do" method="POST">
+	Inactive Employees: <select name="inactiveId">
+			<c:forEach items="${inactiveStaff}" var="user">
+				<option value="${user.id}">${user.lastName}, ${user.firstName} </option>
+			</c:forEach></select>
+		<input type="submit" value="Make Employee Active" />
 	</form>
 
 	<form action="company.do" method="GET">

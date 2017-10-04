@@ -8,8 +8,14 @@
 </head>
 <body>
 
+	<!-- depending on what action was taken, display that on the screen  -->
 	<h1>Action Successful</h1>
+	<h2>${message}</h2>
 
+	<form action="showCart.do" method="GET">
+		<input type="submit" value="Show Cart"/>
+	</form>
+	
 	<form action="index.do" method="GET">
 		<input type="submit" name="Return Home">
 	</form>

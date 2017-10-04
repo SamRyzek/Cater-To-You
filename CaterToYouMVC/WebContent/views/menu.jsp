@@ -23,27 +23,25 @@
 				${item.name}
 				${item.description}
 				${item.price}
-				
+
 		 <form action="addToCart.do" method="POST">
 		 	<input type="hidden" name="itemId" value="${item.id}">
 		 	<input type="hidden" name="company" value="${company.id}">
 			Quantity <input type="number" name="quantity" value="1" /><br />
 			<input type="submit" value="Add to Cart" />
-		</form>
+			</form>
 	</c:forEach>
-	</div>
-	<div>
-		<h4>Your Cart</h4>
-	<ul>
-		<c:forEach items="${itemList}" var="item">
-			<li>${item.count}${item.item.name}${item.item.price * item.count}</li>
-		</c:forEach>
-	</ul>
-	</div>
-	<form action="customer.do" method="GET">
+</div>
+
+	<form action="showCart.do" method="GET">
+		<input type="submit" value="Show Cart">
+	</form>
+
+	<form action="index.do" method="GET">
+
 		<input type="submit" value="Return Home"/>
 	</form>
-	
+
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>
