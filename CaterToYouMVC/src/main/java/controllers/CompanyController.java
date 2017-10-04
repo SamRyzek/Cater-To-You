@@ -34,6 +34,7 @@ public class CompanyController {
 		model.addAttribute("item", item);
 		return "views/itemUpdate.jsp";
 	}
+
 	@RequestMapping(path = "UpdateStaff.do", method = RequestMethod.POST)
 	public String find(Model model, @RequestParam("staffId") Integer id) {
 		User user = companyDAO.findUserById(id);
@@ -41,150 +42,140 @@ public class CompanyController {
 		model.addAttribute("user", user);
 		return "views/employeeUpdate.jsp";
 	}
-	
+
 	@RequestMapping(path = "editCompany.do", method = RequestMethod.POST)
-	public String userEdit(@RequestParam("id") int id,@RequestParam("addId") int addId,@RequestParam("name") String name, @RequestParam("street") String street,
-			@RequestParam("street 2") String street2, @RequestParam("city") String city, @RequestParam("state") String state, @RequestParam("zip") int zip, @RequestParam("url") String imageURL,  Model model, HttpSession session) {
+	public String userEdit(@RequestParam("id") int id, @RequestParam("addId") int addId,
+			@RequestParam("name") String name, @RequestParam("street") String street,
+			@RequestParam("street 2") String street2, @RequestParam("city") String city,
+			@RequestParam("state") String state, @RequestParam("zip") int zip, @RequestParam("url") String imageURL,
+			Model model, HttpSession session) {
 		Company comp = companyDAO.findCompanyById(id);
 		Company compTemp = new Company();
 		Address add = comp.getAddress();
 		Address addTemp = new Address();
-		if (name==null) {
+		if (name == null) {
 			compTemp.setName(comp.getName());
-		}
-		else {
+		} else {
 			compTemp.setName(name);
 		}
-		if (street==null) {
+		if (street == null) {
 			addTemp.setStreet(add.getStreet());
-		}
-		else {
+		} else {
 			addTemp.setStreet(street);
 		}
-		if (street2==null) {
+		if (street2 == null) {
 			addTemp.setStreet2(add.getStreet2());
-		}
-		else {
+		} else {
 			addTemp.setStreet2(street2);
 		}
-		if (city==null) {
+		if (city == null) {
 			addTemp.setCity(add.getCity());
-		}
-		else {
+		} else {
 			addTemp.setCity(city);
 		}
-		if (state==null) {
+		if (state == null) {
 			addTemp.setState(add.getState());
-		}
-		else {
+		} else {
 			addTemp.setState(state);
 		}
-		if (zip==' ') {
+		if (zip == ' ') {
 			addTemp.setState(add.getState());
-		}
-		else {
+		} else {
 			addTemp.setState(state);
 		}
-		
+
 		compTemp.setId(id);
 		compTemp = companyDAO.updateCompanyInfo(compTemp);
 		addTemp.setId(addId);
 		addTemp = customerDAO.updateAddress(addTemp);
 		User activeUser = (User) session.getAttribute("user");
 		List<Item> menuItems = customerDAO.showMenu(activeUser.getEmployee().getCompany().getId());
-		model.addAttribute("user",activeUser);
+		model.addAttribute("user", activeUser);
 		model.addAttribute("employee", activeUser.getEmployee());
 		model.addAttribute("company", activeUser.getEmployee().getCompany());
 		model.addAttribute("address", activeUser.getEmployee().getCompany().getAddress());
 		model.addAttribute("menu", menuItems);
 		return "redirect:index.do";
 	}
+
 	@RequestMapping(path = "editUser.do", method = RequestMethod.POST)
-	public String userEdit(@RequestParam("firstName") String fName,@RequestParam("lastName") String lName, @RequestParam("username") String username,
-			@RequestParam("password") String password, @RequestParam("email") String email, @RequestParam("id") int id,  Model model, HttpSession session) {
+	public String userEdit(@RequestParam("firstName") String fName, @RequestParam("lastName") String lName,
+			@RequestParam("username") String username, @RequestParam("password") String password,
+			@RequestParam("email") String email, @RequestParam("id") int id, Model model, HttpSession session) {
 		User user = companyDAO.findUserById(id);
 		User userTemp = new User();
-		if (fName==null) {
+		if (fName == null) {
 			userTemp.setFirstName(user.getFirstName());
-		}
-		else {
+		} else {
 			userTemp.setFirstName(fName);
 		}
-		if (lName==null) {
+		if (lName == null) {
 			userTemp.setLastName(user.getLastName());
-		}
-		else {
+		} else {
 			userTemp.setLastName(lName);
 		}
-		if (username==null) {
+		if (username == null) {
 			userTemp.setUsername(user.getUsername());
-		}
-		else {
+		} else {
 			userTemp.setUsername(username);
 		}
-		if (password==null) {
+		if (password == null) {
 			userTemp.setPassword(user.getPassword());
-		}
-		else {
+		} else {
 			userTemp.setPassword(password);
 		}
-		if (email==null) {
+		if (email == null) {
 			userTemp.setEmail(user.getEmail());
-		}
-		else {
+		} else {
 			userTemp.setEmail(email);
 		}
 		userTemp.setId(id);
 		userTemp = companyDAO.editUser(userTemp);
 		User activeUser = (User) session.getAttribute("user");
 		List<Item> menuItems = customerDAO.showMenu(activeUser.getEmployee().getCompany().getId());
-		model.addAttribute("user",activeUser);
+		model.addAttribute("user", activeUser);
 		model.addAttribute("employee", activeUser.getEmployee());
 		model.addAttribute("company", activeUser.getEmployee().getCompany());
 		model.addAttribute("address", activeUser.getEmployee().getCompany().getAddress());
 		model.addAttribute("menu", menuItems);
 		return "redirect:index.do";
 	}
+
 	@RequestMapping(path = "editItem.do", method = RequestMethod.POST)
 	public String itemEdit(@RequestParam("name") String name, @RequestParam("calories") Integer calories,
-			@RequestParam("price") Double price, @RequestParam("description") String description, @RequestParam("availability") Integer availability,
-			@RequestParam("imageURL") String imageURL, @RequestParam("oldItemId") Integer oldId, Model model, HttpSession session) {
+			@RequestParam("price") Double price, @RequestParam("description") String description,
+			@RequestParam("availability") Integer availability, @RequestParam("imageURL") String imageURL,
+			@RequestParam("oldItemId") Integer oldId, Model model, HttpSession session) {
 		Item item = customerDAO.returnItemById(oldId);
 		Item itemTemp = new Item();
-		if (name==null) {
+		if (name == null) {
 			itemTemp.setName(item.getName());
-		}
-		else {
+		} else {
 			itemTemp.setName(name);
 		}
-		if (calories==null) {
+		if (calories == null) {
 			itemTemp.setCalories(item.getCalories());
-		}
-		else {
+		} else {
 			itemTemp.setCalories(calories);
 		}
-		if (price==null) {
+		if (price == null) {
 			itemTemp.setPrice(item.getPrice());
-		}
-		else {
+		} else {
 			itemTemp.setPrice(price);
 		}
-		if (description==null) {
+		if (description == null) {
 			itemTemp.setDescription(item.getDescription());
-		}
-		else {
+		} else {
 			itemTemp.setDescription(description);
 		}
-		if (availability==null) {
+		if (availability == null) {
 			itemTemp.setAvailability(item.getAvailability());
-		}
-		else {
+		} else {
 			itemTemp.setAvailability(availability);
 		}
-		if (imageURL==null) {
+		if (imageURL == null) {
 			itemTemp.setImage(item.getImage());
-		}
-		else {
+		} else {
 			Image image = new Image();
 			image.setImageUrl(imageURL);
 			image = companyDAO.addImage(image);
@@ -195,14 +186,13 @@ public class CompanyController {
 		itemTemp = companyDAO.addItem(itemTemp);
 		User user = (User) session.getAttribute("user");
 		List<Item> menuItems = customerDAO.showMenu(user.getEmployee().getCompany().getId());
-		model.addAttribute("user",user);
+		model.addAttribute("user", user);
 		model.addAttribute("employee", user.getEmployee());
 		model.addAttribute("company", user.getEmployee().getCompany());
 		model.addAttribute("address", user.getEmployee().getCompany().getAddress());
 		model.addAttribute("menu", menuItems);
 		return "redirect:index.do";
 	}
-
 
 	@RequestMapping(path = "InactivateItem.do", method = RequestMethod.POST)
 	public String inactivate(@RequestParam("oldItemId") Integer oldId, Model model, HttpSession session) {
@@ -217,19 +207,20 @@ public class CompanyController {
 		model.addAttribute("menu", menuItems);
 		return "redirect:index.do";
 	}
+
 	@RequestMapping(path = "InactivateEmployee.do", method = RequestMethod.POST)
 	public String inactivateEmp(@RequestParam("oldId") Integer oldId, Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		if (user.getEmployee().getEmployeeID() != oldId) {
-		Employee employee = companyDAO.findEmployeeById(oldId);
-		companyDAO.makeEmployeeInactive(employee);}
-		else {
+			Employee employee = companyDAO.findEmployeeById(oldId);
+			companyDAO.makeEmployeeInactive(employee);
+		} else {
 			String error = "You can not make yourself inactive from this screen";
-			model.addAttribute("message",error);
-			
+			model.addAttribute("message", error);
+
 		}
 		Company company = companyDAO.findCompanyById(user.getEmployee().getCompany().getId());
-		model.addAttribute("user",user);
+		model.addAttribute("user", user);
 		model.addAttribute("company", company);
 		model.addAttribute("address", user.getEmployee().getCompany().getAddress());
 		model.addAttribute("users", companyDAO.findUserEmployeesByCompany(company));
@@ -238,9 +229,10 @@ public class CompanyController {
 		model.addAttribute("employee", user.getEmployee());
 		String removed = " can not make yourself inactive from this screen";
 		model.addAttribute("message", removed);
-		
+
 		return "redirect:index.do";
 	}
+
 	@RequestMapping(path = "ActivateEmployee.do", method = RequestMethod.POST)
 	public String activateEmp(@RequestParam("inactiveId") Integer id, Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
@@ -249,11 +241,11 @@ public class CompanyController {
 		companyDAO.makeEmployeeActive(employee);}
 		else {
 			String error = "You can not make yourself inactive from this screen";
-			model.addAttribute("message",error);
-			
+			model.addAttribute("message", error);
+
 		}
 		Company company = companyDAO.findCompanyById(user.getEmployee().getCompany().getId());
-		model.addAttribute("user",user);
+		model.addAttribute("user", user);
 		model.addAttribute("company", company);
 		model.addAttribute("address", user.getEmployee().getCompany().getAddress());
 		model.addAttribute("users", companyDAO.findUserEmployeesByCompany(company));
@@ -262,15 +254,16 @@ public class CompanyController {
 		model.addAttribute("employee", user.getEmployee());
 		String removed = " can not make yourself inactive from this screen";
 		model.addAttribute("message", removed);
-		
+
 		return "redirect:index.do";
 	}
+
 	@RequestMapping(path = "updateCompanyProfile.do", method = RequestMethod.POST)
 	public String userUpdate(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		if (user != null) {
 			Company company = companyDAO.findCompanyById(user.getEmployee().getCompany().getId());
-			model.addAttribute("user",user);
+			model.addAttribute("user", user);
 			model.addAttribute("company", company);
 			model.addAttribute("address", user.getEmployee().getCompany().getAddress());
 			model.addAttribute("staff", companyDAO.findUserEmployeesByCompany(company));
@@ -279,13 +272,9 @@ public class CompanyController {
 			model.addAttribute("menu", menuItems);
 			model.addAttribute("employee", user.getEmployee());
 			model.addAttribute("image", user.getEmployee().getCompany().getImage());
-	
+
 		}
 		return "views/companyUpdate.jsp";
 	}
-
-
-
-
 
 }
