@@ -92,6 +92,13 @@ public class CustomerController {
 		model.addAttribute("address", customer.getAddress());
 		return "views/customerUpdate.jsp";
 	}
+	
+	public String updateUserPasword(@RequestParam("id") int id, 
+			@RequestParam("newUserName") String userName,
+			@RequestParam("newPassword") String password) {
+		
+		return "redirect:UpdateCustomer.do";
+	}
 
 	@RequestMapping(path = "editCustomer.do", method = RequestMethod.POST)
 	public String customerEdit(Model model, HttpSession session, CustomerInput input) {
@@ -185,15 +192,28 @@ public class CustomerController {
 							@RequestParam("street2") String street2,
 							@RequestParam("city") String city,
 							@RequestParam("state") String state,
-							@RequestParam("zip") int zip) {
-		Address address = new Address();
-		address.setStreet(street);
-		address.setStreet2(street2);
-		address.setCity(city);
-		address.setState(state);
-		address.setZip(zip);
+							@RequestParam("zip") int zip,
+							@RequestParam("addressId") int addId,
+							@RequestParam("addressType") int addType	
+							){
+		Address address = null;
+
+		if(addType == 0){
+
+			address = new Address();
+			address.setStreet(street);
+			address.setStreet2(street2);
+			address.setCity(city);
+			address.setState(state);
+			address.setZip(zip);
+		
+		}
+		else {
+			address = customerDAO.getAddressById(addId);
+		}
 		customerDAO.checkoutEmptiesCartMovesToOrder(id, address, time, date);
 
+		
 		String message ="Your order has been placed.";
 		return "redirect:actionSuccessful.do?message=" + message;
 	}
