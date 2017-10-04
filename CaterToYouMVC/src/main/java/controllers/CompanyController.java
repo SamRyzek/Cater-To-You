@@ -95,7 +95,7 @@ public class CompanyController {
 		model.addAttribute("company", activeUser.getEmployee().getCompany());
 		model.addAttribute("address", activeUser.getEmployee().getCompany().getAddress());
 		model.addAttribute("menu", menuItems);
-		return "views/company.jsp";
+		return "redirect:index.do";
 	}
 
 	@RequestMapping(path = "editUser.do", method = RequestMethod.POST)
@@ -138,7 +138,7 @@ public class CompanyController {
 		model.addAttribute("company", activeUser.getEmployee().getCompany());
 		model.addAttribute("address", activeUser.getEmployee().getCompany().getAddress());
 		model.addAttribute("menu", menuItems);
-		return "views/company.jsp";
+		return "redirect:index.do";
 	}
 
 	@RequestMapping(path = "editItem.do", method = RequestMethod.POST)
@@ -191,7 +191,7 @@ public class CompanyController {
 		model.addAttribute("company", user.getEmployee().getCompany());
 		model.addAttribute("address", user.getEmployee().getCompany().getAddress());
 		model.addAttribute("menu", menuItems);
-		return "views/company.jsp";
+		return "redirect:index.do";
 	}
 
 	@RequestMapping(path = "InactivateItem.do", method = RequestMethod.POST)
@@ -205,7 +205,7 @@ public class CompanyController {
 		model.addAttribute("company", user.getEmployee().getCompany());
 		model.addAttribute("address", user.getEmployee().getCompany().getAddress());
 		model.addAttribute("menu", menuItems);
-		return "views/company.jsp";
+		return "redirect:index.do";
 	}
 
 	@RequestMapping(path = "InactivateEmployee.do", method = RequestMethod.POST)
@@ -230,16 +230,16 @@ public class CompanyController {
 		String removed = " can not make yourself inactive from this screen";
 		model.addAttribute("message", removed);
 
-		return "views/company.jsp";
+		return "redirect:index.do";
 	}
 
 	@RequestMapping(path = "ActivateEmployee.do", method = RequestMethod.POST)
-	public String activateEmp(@RequestParam("oldId") Integer oldId, Model model, HttpSession session) {
+	public String activateEmp(@RequestParam("inactiveId") Integer id, Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
-		if (user.getEmployee().getEmployeeID() != oldId) {
-			Employee employee = companyDAO.findEmployeeById(oldId);
-			companyDAO.makeEmployeeActive(employee);
-		} else {
+		if (user.getEmployee().getEmployeeID() != id) {
+		Employee employee = companyDAO.findEmployeeById(id);
+		companyDAO.makeEmployeeActive(employee);}
+		else {
 			String error = "You can not make yourself inactive from this screen";
 			model.addAttribute("message", error);
 
@@ -255,7 +255,7 @@ public class CompanyController {
 		String removed = " can not make yourself inactive from this screen";
 		model.addAttribute("message", removed);
 
-		return "views/company.jsp";
+		return "redirect:index.do";
 	}
 
 	@RequestMapping(path = "updateCompanyProfile.do", method = RequestMethod.POST)
@@ -267,6 +267,7 @@ public class CompanyController {
 			model.addAttribute("company", company);
 			model.addAttribute("address", user.getEmployee().getCompany().getAddress());
 			model.addAttribute("staff", companyDAO.findUserEmployeesByCompany(company));
+			model.addAttribute("inactiveStaff", companyDAO.findInactiveUserEmployeesByCompany(company));
 			List<Item> menuItems = customerDAO.showMenu(user.getEmployee().getCompany().getId());
 			model.addAttribute("menu", menuItems);
 			model.addAttribute("employee", user.getEmployee());

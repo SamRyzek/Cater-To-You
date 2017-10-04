@@ -15,6 +15,7 @@
 <title>Cater To You - ${company.name}</title>
 </head>
 <body>
+	<div>
 	${company.name} ${address.street} ${address.street2} ${address.city}
 	${address.state} ${address.zip}
 
@@ -22,19 +23,25 @@
 				${item.name}
 				${item.description}
 				${item.price}
-				
+
 		 <form action="addToCart.do" method="POST">
 		 	<input type="hidden" name="itemId" value="${item.id}">
 		 	<input type="hidden" name="company" value="${company.id}">
-			Quantity <input type="number" name="quantity" value="${count}" /><br />
+			Quantity <input type="number" name="quantity" value="1" /><br />
 			<input type="submit" value="Add to Cart" />
-		</form>
+			</form>
 	</c:forEach>
-	
-	<form action="customer.do" method="GET">
+</div>
+
+	<form action="showCart.do" method="GET">
+		<input type="submit" value="Show Cart">
+	</form>
+
+	<form action="index.do" method="GET">
+
 		<input type="submit" value="Return Home"/>
 	</form>
-	
+
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>
