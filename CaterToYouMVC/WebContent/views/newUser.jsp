@@ -30,7 +30,11 @@
 		<input type="text" name="email">
 		<br>
 		<input type=submit value="Create Customer Registration">
+		
+	</form>
 	
+	<form action="index.do" method="GET">
+		<input type="button" value="Return to Login">
 	</form>
 
 

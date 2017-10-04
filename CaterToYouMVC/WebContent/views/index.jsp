@@ -41,11 +41,11 @@ body {
 			<br>
 			<form action="checkLogin.do" method="POST">
 				<p>${loginErr}</p>
-				<input type="text" name="username"></input>
 				<p>Username:</p>
-				<input type="text" name="password"></input> <input type="submit"
-					name="submit" value="Login"></input>
+				<input type="text" name="username"></input>
 				<p>Password:</p>
+				<input type="text" name="password"></input> <br> <input type="submit"
+					name="submit" value="Login"></input>
 			</form>
 			<a href="newUser.do">Create new Customer Account</a>
 
