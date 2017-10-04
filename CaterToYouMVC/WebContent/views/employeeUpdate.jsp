@@ -14,7 +14,7 @@
 <title>Update "${user.firstName}" "${user.lastName}"</title>
 </head>
 <body>
-<form action="editEmployee.do" method="POST">
+<form action="editUser.do" method="POST">
 		First Name of Employee to Edit:
 		<input type="text" name="firstName" value="${user.firstName}" readonly/><br/>
 		Last Name:
@@ -25,6 +25,7 @@
 		<input type="text" name="password" value="${user.password}"/><br/>
 		Email:
 		<input type="text" name="email" value="${user.email}"/><br/>
+		<input type="hidden" name="id" value="${user.id}"/><br/>
 		<input type="submit" value="Update Employee Information" />
 	</form>
 	

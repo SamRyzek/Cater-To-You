@@ -42,6 +42,109 @@ public class CompanyController {
 		return "views/employeeUpdate.jsp";
 	}
 	
+	@RequestMapping(path = "editCompany.do", method = RequestMethod.POST)
+	public String userEdit(@RequestParam("id") int id,@RequestParam("addId") int addId,@RequestParam("name") String name, @RequestParam("street") String street,
+			@RequestParam("street 2") String street2, @RequestParam("city") String city, @RequestParam("state") String state, @RequestParam("zip") int zip, @RequestParam("url") String imageURL,  Model model, HttpSession session) {
+		Company comp = companyDAO.findCompanyById(id);
+		Company compTemp = new Company();
+		Address add = comp.getAddress();
+		Address addTemp = new Address();
+		if (name==null) {
+			compTemp.setName(comp.getName());
+		}
+		else {
+			compTemp.setName(name);
+		}
+		if (street==null) {
+			addTemp.setStreet(add.getStreet());
+		}
+		else {
+			addTemp.setStreet(street);
+		}
+		if (street2==null) {
+			addTemp.setStreet2(add.getStreet2());
+		}
+		else {
+			addTemp.setStreet2(street2);
+		}
+		if (city==null) {
+			addTemp.setCity(add.getCity());
+		}
+		else {
+			addTemp.setCity(city);
+		}
+		if (state==null) {
+			addTemp.setState(add.getState());
+		}
+		else {
+			addTemp.setState(state);
+		}
+		if (zip==' ') {
+			addTemp.setState(add.getState());
+		}
+		else {
+			addTemp.setState(state);
+		}
+		
+		compTemp.setId(id);
+		compTemp = companyDAO.updateCompanyInfo(compTemp);
+		addTemp.setId(addId);
+		addTemp = customerDAO.updateAddress(addTemp);
+		User activeUser = (User) session.getAttribute("user");
+		List<Item> menuItems = customerDAO.showMenu(activeUser.getEmployee().getCompany().getId());
+		model.addAttribute("user",activeUser);
+		model.addAttribute("employee", activeUser.getEmployee());
+		model.addAttribute("company", activeUser.getEmployee().getCompany());
+		model.addAttribute("address", activeUser.getEmployee().getCompany().getAddress());
+		model.addAttribute("menu", menuItems);
+		return "views/company.jsp";
+	}
+	@RequestMapping(path = "editUser.do", method = RequestMethod.POST)
+	public String userEdit(@RequestParam("firstName") String fName,@RequestParam("lastName") String lName, @RequestParam("username") String username,
+			@RequestParam("password") String password, @RequestParam("email") String email, @RequestParam("id") int id,  Model model, HttpSession session) {
+		User user = companyDAO.findUserById(id);
+		User userTemp = new User();
+		if (fName==null) {
+			userTemp.setFirstName(user.getFirstName());
+		}
+		else {
+			userTemp.setFirstName(fName);
+		}
+		if (lName==null) {
+			userTemp.setLastName(user.getLastName());
+		}
+		else {
+			userTemp.setLastName(lName);
+		}
+		if (username==null) {
+			userTemp.setUsername(user.getUsername());
+		}
+		else {
+			userTemp.setUsername(username);
+		}
+		if (password==null) {
+			userTemp.setPassword(user.getPassword());
+		}
+		else {
+			userTemp.setPassword(password);
+		}
+		if (email==null) {
+			userTemp.setEmail(user.getEmail());
+		}
+		else {
+			userTemp.setEmail(email);
+		}
+		userTemp.setId(id);
+		userTemp = companyDAO.editUser(userTemp);
+		User activeUser = (User) session.getAttribute("user");
+		List<Item> menuItems = customerDAO.showMenu(activeUser.getEmployee().getCompany().getId());
+		model.addAttribute("user",activeUser);
+		model.addAttribute("employee", activeUser.getEmployee());
+		model.addAttribute("company", activeUser.getEmployee().getCompany());
+		model.addAttribute("address", activeUser.getEmployee().getCompany().getAddress());
+		model.addAttribute("menu", menuItems);
+		return "views/company.jsp";
+	}
 	@RequestMapping(path = "editItem.do", method = RequestMethod.POST)
 	public String itemEdit(@RequestParam("name") String name, @RequestParam("calories") Integer calories,
 			@RequestParam("price") Double price, @RequestParam("description") String description, @RequestParam("availability") Integer availability,
@@ -100,37 +203,7 @@ public class CompanyController {
 		return "views/company.jsp";
 	}
 
-	@RequestMapping(path = "editCompany.do", method = RequestMethod.POST)
-	public String customerEdit(@RequestParam("name") String name, @RequestParam("Address") Address address,
-			@RequestParam("imageURL") String imageURL,
-			@RequestParam("oldItemId") Integer oldId, Model model, HttpSession session) {
-		Company company = new Company();
-		company = companyDAO.updateCompanyInfo(company);
-		Company tempCompany = new Company();
-		if (name == null) {
-			tempCompany.setName(company.getName());
-		} else {
-			tempCompany.setName(name);
-		}
-		if (address == null) {
-			tempCompany.setAddress(company.getAddress());
-		} else {
-			tempCompany.setAddress(address);
-		}
-		if (imageURL == null) {
-			tempCompany.setImage(company.getImage());
-		} else {
-			Image image = new Image();
-			image.setImageUrl(imageURL);
-			image = companyDAO.addImage(image);
-			tempCompany.setImage(image);
-		}
 
-		User user = (User) session.getAttribute("user");
-		model.addAttribute("company", user.getEmployee().getCompany());
-		model.addAttribute("address", user.getEmployee().getCompany().getAddress());
-		return "views/company.jsp";
-	}
 	@RequestMapping(path = "InactivateItem.do", method = RequestMethod.POST)
 	public String inactivate(@RequestParam("oldItemId") Integer oldId, Model model, HttpSession session) {
 		Item item = companyDAO.findItemById(oldId);
@@ -168,7 +241,30 @@ public class CompanyController {
 		
 		return "views/company.jsp";
 	}
-	
+	@RequestMapping(path = "ActivateEmployee.do", method = RequestMethod.POST)
+	public String activateEmp(@RequestParam("oldId") Integer oldId, Model model, HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if (user.getEmployee().getEmployeeID() != oldId) {
+		Employee employee = companyDAO.findEmployeeById(oldId);
+		companyDAO.makeEmployeeActive(employee);}
+		else {
+			String error = "You can not make yourself inactive from this screen";
+			model.addAttribute("message",error);
+			
+		}
+		Company company = companyDAO.findCompanyById(user.getEmployee().getCompany().getId());
+		model.addAttribute("user",user);
+		model.addAttribute("company", company);
+		model.addAttribute("address", user.getEmployee().getCompany().getAddress());
+		model.addAttribute("users", companyDAO.findUserEmployeesByCompany(company));
+		List<Item> menuItems = customerDAO.showMenu(user.getEmployee().getCompany().getId());
+		model.addAttribute("menu", menuItems);
+		model.addAttribute("employee", user.getEmployee());
+		String removed = " can not make yourself inactive from this screen";
+		model.addAttribute("message", removed);
+		
+		return "views/company.jsp";
+	}
 	@RequestMapping(path = "updateCompanyProfile.do", method = RequestMethod.POST)
 	public String userUpdate(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
