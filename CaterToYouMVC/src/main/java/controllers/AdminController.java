@@ -28,6 +28,7 @@ public class AdminController {
 	@RequestMapping(path = "UpdateAccount.do", method = RequestMethod.GET)
 	public String chooseUpdatePage(Model model, @RequestParam("userID") Integer id) {
 		User user = companyDAO.findUserById(id);
+		
 		if (user.getUserRoles().getId() == 1) {
 			model.addAttribute("address", user.getCustomer().getAddress());
 			return "views/customerUpdate.jsp";
@@ -56,6 +57,11 @@ public class AdminController {
 
 		}
 		return "views/companyUpdate.jsp";
+	}
+	@RequestMapping(path = "CreateCompany.do", method = RequestMethod.GET)
+	public String userUpdate(Model model, HttpSession session) {
+		return "views/createCompany.jsp";
+	
 	}
 	
 }
