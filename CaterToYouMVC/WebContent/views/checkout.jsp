@@ -60,7 +60,7 @@ html {
 }
 
 body {
-	background-color: blue;
+	background-color: darkblue;
 	border: 2px solid white;
 	color: white;
 }
