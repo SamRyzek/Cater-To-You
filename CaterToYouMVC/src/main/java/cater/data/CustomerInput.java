@@ -1,6 +1,7 @@
 package cater.data;
 
 public class CustomerInput {
+	private int id;
 	private String oldname;
 	private String email;
 	private String street;
@@ -8,6 +9,15 @@ public class CustomerInput {
 	private String city;
 	private String state;
 	private String zip;
+
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getOldname() {
 		return oldname;
