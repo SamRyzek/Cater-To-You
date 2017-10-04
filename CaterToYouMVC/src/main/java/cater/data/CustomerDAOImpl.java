@@ -128,9 +128,10 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Override
 	public void checkoutEmptiesCartMovesToOrder(int id, Address address, String time, String date) {
 		Cart cart = em.find(Cart.class, id);
+		
 		List<CartHasItem> chiList1 = cart.getCartHasItemList();
 		List<OrderHasItems> orderHasList = new ArrayList<>();
-
+		em.persist(address);
 		for (CartHasItem c : chiList1) {
 			OrderHasItems orderHas = new OrderHasItems();
 			orderHas.setCount(c.getCount());
@@ -138,9 +139,12 @@ public class CustomerDAOImpl implements CustomerDAO {
 			orderHasList.add(orderHas);
 		}
 		Order order = new Order();
+		order.setCustomer(cart.getCustomer());
 		order.setAddress(address);
 		order.setOrderHasItemsList(orderHasList);
-		order.setDeliveryDateTime(conveStringToDateTime(time, date));
+		Date dt = conveStringToDateTime(time, date);
+		System.out.println("date: "+dt +" :date");
+		order.setDeliveryDateTime(dt);
 		em.persist(order);
 		emptyCart(cart);
 	}
@@ -149,7 +153,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		String[] timeSections = time.split(" ");
 		int pmNumber = timeSections[1].equals("PM") ? 12: 0;
 		timeSections = timeSections[0].split(":");
-		String newTime = Integer.parseInt(timeSections[0]) + pmNumber + timeSections[1];
+		String newTime = Integer.parseInt(timeSections[0]) + pmNumber + ":" + timeSections[1];
 		String dateTime = date + " " + newTime;
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm");
 		try {
@@ -177,14 +181,14 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public Customer updateAddress(Customer customer) {
-		Address addressTracked = em.find(Address.class, customer.getAddress().getId());
-		addressTracked.setCity(customer.getAddress().getCity());
-		addressTracked.setState(customer.getAddress().getState());
-		addressTracked.setStreet(customer.getAddress().getStreet());
-		addressTracked.setStreet2(customer.getAddress().getStreet2());
-		addressTracked.setZip(customer.getAddress().getZip());
-		return em.find(Customer.class, customer.getId());
+	public Address updateAddress(Address address) {
+		Address addressTracked = em.find(Address.class, address.getId());
+		addressTracked.setCity(address.getCity());
+		addressTracked.setState(address.getState());
+		addressTracked.setStreet(address.getStreet());
+		addressTracked.setStreet2(address.getStreet2());
+		addressTracked.setZip(address.getZip());
+		return addressTracked;
 	}
 
 	@Override

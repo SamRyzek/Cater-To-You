@@ -35,7 +35,7 @@ public interface CustomerDAO {
 //************************Chris's methods
 
 	public User updateEmail(User user);
-	public Customer updateAddress(Customer customer);
+	public Address updateAddress(Address address);
 
 	public Menu returnMenuByCompanyId(Company c); //put an m.getId and then do the find
 
