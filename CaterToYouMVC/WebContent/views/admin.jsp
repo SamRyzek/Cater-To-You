@@ -61,38 +61,47 @@ body {
 }
 </style>
 <body>
-	<form action="AdminUpdateCompany.do" method="GET">
-		Company: <select name="companyID">
-			<c:forEach items="${companies}" var="company">
-				<option value="${company.id}">${company.name}</option>
-			</c:forEach>
-		</select> <input type="submit" value="Update" />
-	</form>
-	<form action="UpdateAccount.do" method="GET">
-		User: <select name="userID">
-			<c:forEach items="${users}" var="otherUser">
-				<option value="${otherUser.id}">${otherUser.id} ${otherUser.firstName} ${otherUser.lastName}</option>
-			</c:forEach>
-		</select> <input type="submit" value="Update" />
-	</form>
-	<form action="CreateCompany.do" method="GET">
-		<input type="submit" value="Create Company" />
-	</form>
-
+	<c:if test="${not empty companies}">
+		<form action="AdminUpdateCompany.do" method="GET">
+			Company: <select name="companyID">
+				<c:forEach items="${companies}" var="company">
+					<option value="${company.id}">${company.name}</option>
+				</c:forEach>
+			</select> <input type="submit" value="Update" />
+		</form>
+	</c:if>
+	<c:if test="${not empty users}">
+		<form action="UpdateAccount.do" method="GET">
+			User: <select name="userID">
+				<c:forEach items="${users}" var="otherUser">
+					<option value="${otherUser.id}">${otherUser.id} ${otherUser.firstName} ${otherUser.lastName}</option>
+				</c:forEach>
+			</select> <input type="submit" value="Update" />
+		</form>
+	</c:if>
+	
+		<form action="CreateCompany.do" method="GET">
+			<input type="submit" value="Create Company" />
+		</form>
+		<c:if test="${not empty companiesActive}">
+	
 	<form action="InactivateCompany.do" method="POST">
 		Active Companies: <select name="companyID">
-			<c:forEach items="${companiesActive}" var="company">
-				<option value="${company.id}">${company.name}</option>
-			</c:forEach></select>
-			<input type="submit" value="Make Company Inactive" />
+			<c:forEach items="${companiesActive}" var="company2">
+				<option value="${company2.id}">${company2.name}</option>
+			</c:forEach>
+		</select> <input type="submit" value="Make Company Inactive" />
 	</form>
+	</c:if>
+	<c:if test="${not empty companiesInactive}">
 	<form action="ActivateCompany.do" method="POST">
 		Inactive Companies: <select name="companyID">
-			<c:forEach items="${ompaniesInactive}" var="company">
-				<option value="${company.id}">${company.name}</option>
-			</c:forEach></select>
-			<input type="submit" value="Make Company Active" />
+			<c:forEach items="${companiesInactive}" var="company3">
+				<option value="${company3.id}">${company3.name}</option>
+			</c:forEach>
+		</select> <input type="submit" value="Make Company Active" />
 	</form>
+	</c:if>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>

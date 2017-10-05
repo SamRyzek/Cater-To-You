@@ -70,6 +70,10 @@ body {
 	${company.name} Street: ${address.street} Street 2: ${address.street2}
 	City: ${address.city} State: ${address.state} Zip: ${address.zip}
 	<br>
+	<form action="Orders.do" method="GET">
+	<input type="hidden" name="companyID" value="${company.id}" />
+		<input type="submit" value="Orders" />
+	</form>
 	<c:forEach items="${menu}" var="item">
 		<br />${item.name}
 				${item.description}
