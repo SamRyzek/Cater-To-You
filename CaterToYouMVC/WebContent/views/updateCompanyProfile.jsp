@@ -9,6 +9,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="icon" href="../../../../favicon.ico">
+<link href="css/style.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Update ${company.name}</title>
 </head>
@@ -50,7 +51,6 @@ body {
 	background-color: darkblue;
 	border: 2px solid white;
 	color: white;
-	
 }
 </style>
 <body>
@@ -64,20 +64,20 @@ body {
 		<li style="float: right"><a href="loggOut.do">Log Out</a></li>
 	</div>
 	<div>
-	<form action="editCompany.do" method="POST">
-		Name of Customer: <input type="text" name="oldname"
-			value="${user.firstName} ${user.lastName}" readonly /><br /> Email:
-		<input type="text" name="email" value="${user.email}" /><br />
-		Billing Address: Street: <input type="text" name="street"
-			value="${address.street}" /><br /> Street 2: <input type="text"
-			name="street2" value="${address.street2}" /><br /> City: <input
-			type="text" name="city" value="${address.city}" /><br /> State: <input
-			type="text" name="state" value="${address.state}" /><br /> Zip: <input
-			type="text" name="zip" value="${address.zip}" /><br /> <input
-			type="submit" value="Update" />
-	</form>
-	</div> 
+		<form action="editCompany.do" method="POST">
+			Name of Customer: <input type="text" name="oldname"
+				value="${user.firstName} ${user.lastName}" readonly /><br />
+			Email: <input type="text" name="email" value="${user.email}" /><br />
+			Billing Address: Street: <input type="text" name="street"
+				value="${address.street}" /><br /> Street 2: <input type="text"
+				name="street2" value="${address.street2}" /><br /> City: <input
+				type="text" name="city" value="${address.city}" /><br /> State: <input
+				type="text" name="state" value="${address.state}" /><br /> Zip: <input
+				type="text" name="zip" value="${address.zip}" /><br /> <input
+				type="submit" value="Update" />
+		</form>
+	</div>
 
-	
+
 </body>
 </html>

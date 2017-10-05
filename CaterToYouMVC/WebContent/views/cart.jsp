@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,6 +12,7 @@
 <meta name="author" content="">
 <link rel="icon" href="../../../../favicon.ico">
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Cart</title>
 </head>
@@ -83,7 +84,8 @@ body {
 							<td>${loop.index}</td>
 							<td>${item.item.name}</td>
 							<td>
-								<form action="changeQuantity.do" method="POST"> <!-- needs to remove item if q is 0 -->
+								<form action="changeQuantity.do" method="POST">
+									<!-- needs to remove item if q is 0 -->
 									<input type="hidden" name="itemId" value="${item.id}">
 									<input type="text" name="count" value="${item.count}">
 									<input type="submit" value="update">

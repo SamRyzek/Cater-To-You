@@ -11,10 +11,11 @@
 <meta name="author" content="">
 <link rel="icon" href="../../../../favicon.ico">
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Create Item</title>
 </head>
-<style>
+<!-- <style>
 ul {
 	list-style-type: none;
 	margin: 0;
@@ -56,7 +57,7 @@ body {
 
 .stuff {
 	min-width: 200px
-}
+} -->
 </style>
 <body>
 	<c:if test="${not empty message}">
@@ -71,8 +72,9 @@ body {
 		<label class="stuff">Price ($XX.XX)*:</label> <input type="text"
 			name="price" value="" /><br /> <label class="stuff">Availability*
 			(Quantity): </label><input type="number" name="availability" value="" /><br />
-		<label class = "stuff">Image Url: </label><input type="text" name="imageURL" value="" /><br /> <br />
-		<input type="submit" value="Create Item" />
+		<label class="stuff">Image Url: </label><input type="text"
+			name="imageURL" value="" /><br /> <br /> <input type="submit"
+			value="Create Item" />
 
 	</form>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

@@ -1,8 +1,6 @@
 body {
 	background-color: transparent;
-	background-size: cover;
-	background-repeat:no-repeat;
-	text-align: left;
+	border: 2px solid white;
 	color: white;
 }
 
@@ -12,16 +10,7 @@ body {
 	text-decoration: underline;
 }
 
-html{
-	
-	background-color: white;
-	background-size: cover;
-	background-repeat:no-repeat;
-	text-align: left;
-	
-	font-size:20px;
 
-}
 .list{
 	
 	
@@ -62,13 +51,18 @@ li a:hover {
 
 
 html {
-	background-image: url("3D-Solar-System-Wallpaper.jpg");
+	background-image: url("CaterToYou/CaterToYouMVC/WebContent/css/food2.jpg");
 	background-color: black;
 	background-size: cover;
 	background-repeat: no-repeat;
+	background-size: 100%;
 }
 .list{
 	vertical-align:text-bottom;
 	vertical-align: -50px;
 }
+.stuff {
+	min-width: 200px
+}
+
 	

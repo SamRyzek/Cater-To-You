@@ -11,11 +11,12 @@
 <meta name="author" content="">
 <link rel="icon" href="../../../../favicon.ico">
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>${company.name}</title>
 </head>
-<style>
-ul {
+<!-- <style>
+ ul {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
@@ -53,22 +54,22 @@ body {
 	border: 2px solid white;
 	color: white;
 }
-</style>
+</style>  -->
 <body class="active">
 	<div>
 		<ul>
 			<li><form action="updateCompanyProfile.do" method="GET">
 					<a href="updateCompanyProfile.do">Update Company Profile</a>
 				</form></li>
-				<li style="float: right"><a href="loggOut.do">Log Out</a></li>
+			<li style="float: right"><a href="loggOut.do">Log Out</a></li>
 
 		</ul>
 	</div>
 
 
-	<br>
-	${company.name} Street: ${address.street} Street 2: ${address.street2}
-	City: ${address.city} State: ${address.state} Zip: ${address.zip}
+	<br> ${company.name} Street: ${address.street} Street 2:
+	${address.street2} City: ${address.city} State: ${address.state} Zip:
+	${address.zip}
 	<br>
 	<form action="Orders.do" method="GET">
 	<input type="hidden" name="companyID" value="${company.id}" />
