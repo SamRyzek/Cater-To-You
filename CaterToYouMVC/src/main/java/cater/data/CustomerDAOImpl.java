@@ -42,27 +42,20 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public List<Address> getPreviousAddress(Customer customer) {
 
 		Customer c = em.find(Customer.class, customer.getId());
-		
 		String queryString = "SELECT ord FROM Order ord WHERE ord.customer.id= :id";
 		List<Order> orderList = em.createQuery(queryString, Order.class).setParameter("id", c.getId())
 				.getResultList();
-		
 		List<Address> custAddresses = new ArrayList<>();
 		for(Order o : orderList) {
 			custAddresses.add(o.getAddress());
 		}
-		
 		return custAddresses;
 	}
 	
 	public Address getAddressById(int addId) {
-		
 		Address a = em.find(Address.class, addId);
-		
 		return a;
 	}
-	
-	
 	
 	public Customer usersCustomer(User user) {
 		Customer c = new Customer();
@@ -163,7 +156,9 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 		List<CartHasItem> chiList1 = cart.getCartHasItemList();
 		List<OrderHasItems> orderHasList = new ArrayList<>();
-		em.persist(address);
+		if(address.getId() == 0) {
+			em.persist(address);
+		}
 		for (CartHasItem c : chiList1) {
 			OrderHasItems orderHas = new OrderHasItems();
 			orderHas.setCount(c.getCount());

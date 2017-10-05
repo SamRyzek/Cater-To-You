@@ -258,27 +258,32 @@ public class CompanyController {
 		User userTemp = new User();
 		Employee empTemp = new Employee();
 
-		if (fName == null) {
+		if (fName.isEmpty()) {
+			model.addAttribute("message", "Employee must have a first name.");
 			return "views/createEmployee.jsp";
 		} else {
 			userTemp.setFirstName(fName);
 		}
-		if (lName == null) {
+		if (lName.isEmpty()) {
+			model.addAttribute("message", "Employee must have a last name.");
 			return "views/createEmployee.jsp";
 		} else {
 			userTemp.setLastName(lName);
 		}
-		if (username == null) {
+		if (username.isEmpty()) {
+			model.addAttribute("message", "Employee must have a username.");
 			return "views/createEmployee.jsp";
 		} else {
 			userTemp.setUsername(username);
 		}
-		if (email == null) {
+		if (email.isEmpty()) {
+			model.addAttribute("message", "Employee must have an email.");
 			return "views/createEmployee.jsp";
 		} else {
 			userTemp.setEmail(email);
 		}
-		if (password == null) {
+		if (password.isEmpty()) {
+			model.addAttribute("message", "Employee must have a password.");
 			return "views/createEmployee.jsp";
 		} else {
 			userTemp.setPassword(password);
@@ -299,23 +304,23 @@ public class CompanyController {
 			HttpSession session) {
 		Company comp = companyDAO.findCompanyById(companyID);
 		Item itemTemp = new Item();
-		if (name == null || name.equals("")) {
+		if (name.isEmpty()) {
 			model.addAttribute("message", "Item must have a name.");
 			return "views/createItem.jsp";
 		} else {
 			itemTemp.setName(name);
 		}
-		if (calories == null) {
+		if (calories == null || calories<0) {
 		} else {
 			itemTemp.setCalories(calories);
 		}
-		if (price == null) {
+		if (price == null || price<0) {
 			model.addAttribute("message", "Item must have a price.");
 			return "views/createItem.jsp";
 		} else {
 			itemTemp.setPrice(price);
 		}
-		if (description == null) {
+		if (description.isEmpty()) {
 		} else {
 			itemTemp.setDescription(description);
 		}
