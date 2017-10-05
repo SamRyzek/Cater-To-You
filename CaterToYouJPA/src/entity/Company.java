@@ -40,7 +40,6 @@ public class Company {
 	@Column(name="active")
 	private int active;
 	
-	//gets and sets
 	
 	public int getId() {
 		return id;

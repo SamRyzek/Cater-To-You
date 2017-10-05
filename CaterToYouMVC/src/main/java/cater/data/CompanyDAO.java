@@ -9,6 +9,8 @@ import entity.Employee;
 import entity.Image;
 import entity.Item;
 import entity.Menu;
+import entity.Order;
+import entity.OrderHasItems;
 import entity.User;
 
 public interface CompanyDAO {
@@ -20,6 +22,10 @@ public interface CompanyDAO {
 	public List<Company> index();
 	public List<Company> indexActive();
 	public List<Company> indexInactive();
+	
+	public List<OrderHasItems> findOrderHavesByCompany(Company company, Order order);
+	public Order findOrderByOrderId(int id);
+	public List<Order> findOrdersByCompany(Company company);
 	
 	public Menu addMenuItem(Item i, Menu menu); 
 	public Menu makeMenuItemInactive(Item i); 

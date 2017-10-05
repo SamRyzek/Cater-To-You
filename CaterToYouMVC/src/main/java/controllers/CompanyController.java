@@ -20,6 +20,8 @@ import entity.Employee;
 import entity.Image;
 import entity.Item;
 import entity.Menu;
+import entity.Order;
+import entity.OrderHasItems;
 import entity.User;
 
 @Controller
@@ -219,6 +221,23 @@ public class CompanyController {
 		}
 
 		return "redirect:index.do";
+	}
+	@RequestMapping(path = "Orders.do", method = RequestMethod.GET)
+	public String orders(@RequestParam("companyID") Integer id, Model model, HttpSession session) {
+		Company company = companyDAO.findCompanyById(id);
+		List <Order> orders = companyDAO.findOrdersByCompany(company);
+		model.addAttribute("orders", orders);
+		model.addAttribute("company", company);
+		return "views/companyOrders.jsp";
+	}
+	@RequestMapping(path = "OrderInformation.do", method = RequestMethod.GET)
+	public String orderInfo(@RequestParam("companyID") Integer companyId,@RequestParam("orderID") Integer orderId, Model model, HttpSession session) {
+		Company company = companyDAO.findCompanyById(companyId);
+		Order order = companyDAO.findOrderByOrderId(orderId);
+		List <OrderHasItems> orderHaves = companyDAO.findOrderHavesByCompany(company, order);
+		model.addAttribute("orderHaves", orderHaves);
+		model.addAttribute("company", company);
+		return "views/specificOrder.jsp";
 	}
 
 	@RequestMapping(path = "ActivateEmployee.do", method = RequestMethod.POST)
