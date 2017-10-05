@@ -17,6 +17,7 @@ import entity.Cart;
 import entity.CartHasItem;
 import entity.Company;
 import entity.Customer;
+import entity.Image;
 import entity.Item;
 import entity.Menu;
 import entity.Order;
@@ -36,6 +37,28 @@ public class CustomerDAOImpl implements CustomerDAO {
 		em.persist(user);
 		usersCustomer(user);
 		return user;
+	}
+	
+	public Customer createImageForCustomer(Customer customer) {
+		Customer c = em.find(Customer.class, customer.getId());
+		Image i = customer.getImage(); //creating image with no relation to customer here
+		em.persist(i);
+		c.setImage(i); //now we're returning the customer with the associated updated image
+		return c;		
+	}
+	
+	public Image updateImage(Customer customer) {
+		Customer c = em.find(Customer.class, customer.getId());
+		Image i = customer.getImage();
+		em.persist(i);
+		c.setImage(i);
+		return i;
+	}
+	
+	public User getUserById(int id) {
+		
+		return em.find(User.class, id);
+		
 	}
 	
 	
