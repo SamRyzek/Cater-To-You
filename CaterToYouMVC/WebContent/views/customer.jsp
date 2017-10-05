@@ -11,7 +11,7 @@
 <meta name="author" content="">
 <link rel="icon" href="../../../../favicon.ico">
 <link href="css/bootstrap.min.css" rel="stylesheet">
-
+<link href="css/style.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Cater To You</title>
 <style>
@@ -61,9 +61,11 @@ body {
 			<li><form action="Shop.do" method="GET">
 					<a href="Shop.do">Shop</a>
 				</form></li>
-				
 
-			<li><form action="UpdateCustomer.do?customerId=${user.customer.id}" method="GET">
+
+			<li><form
+					action="UpdateCustomer.do?customerId=${user.customer.id}"
+					method="GET">
 					<a href="UpdateCustomer.do?customerId=${user.customer.id}">Update</a>
 				</form></li>
 
@@ -82,8 +84,10 @@ body {
 		<p>Email: ${user.email}</p>
 		<p>${address.street}${address.street2}</p>
 		${address.city} ${address.state} ${address.zip}
-		<p><img alt="picture" src="${user.customer.image.imageUrl}"></p>
-		
+		<p>
+			<img alt="picture" src="${user.customer.image.imageUrl}">
+		</p>
+
 	</div>
 
 

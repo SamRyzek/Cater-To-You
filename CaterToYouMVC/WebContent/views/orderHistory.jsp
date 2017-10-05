@@ -12,6 +12,7 @@
 <meta name="author" content="">
 <link rel="icon" href="../../../../favicon.ico">
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Order History</title>
 </head>
@@ -24,8 +25,8 @@ ul.One {
 	background-color: #333;
 }
 
-ul{
-
+ul {
+	
 }
 
 li {
@@ -59,31 +60,32 @@ body {
 }
 </style>
 <body class="active">
-	<ul class = "One">
+	<ul class="One">
 		<li style="float: right"><form action="customer.do" method="GET">
 				<a href="customer.do">Return Home</a>
 			</form></li>
-			<li style="float: right"><a href="loggOut.do">Log Out</a></li>
-			
+		<li style="float: right"><a href="loggOut.do">Log Out</a></li>
+
 	</ul>
 	<br>
 	<ul>
 		<c:forEach items="${orders}" var="order">
-			<li>${order.id} ${order.deliveryDateTime}
-				${order.address.street} ${order.address.street2}
-				${order.address.city} ${order.address.state} ${order.address.zip}</li>
+			<li>${order.id}${order.deliveryDateTime} ${order.address.street}
+				${order.address.street2} ${order.address.city}
+				${order.address.state} ${order.address.zip}</li>
 		</c:forEach>
 	</ul>
 	<br>
 
 
-<!-- scripts below -->
+	<!-- scripts below -->
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous">
+		
 	</script>
-	
+
 	<script>
 		window.jQuery
 				|| document.write('<script src="js/jquery.min.js"><\/script>')

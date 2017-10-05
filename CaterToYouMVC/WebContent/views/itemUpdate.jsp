@@ -10,6 +10,7 @@
 <meta name="author" content="">
 <link rel="icon" href="../../../../favicon.ico">
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Update "${item.name}"</title>
 </head>
@@ -51,7 +52,6 @@ body {
 	background-color: darkblue;
 	border: 2px solid white;
 	color: white;
-	
 }
 </style>
 <body>
@@ -60,8 +60,8 @@ body {
 		Calories: <input type="text" name="calories" value="${item.calories}" /><br />
 		Description: <input type="text" name="description"
 			value="${item.description}" /><br /> Price ($XX.XX): <input
-			type="text" name="price" value="${item.price}" /><br /> Availability
-		(Quantity): <input type="number" name="availability"
+			type="text" name="price" value="${item.price}" /><br />
+		Availability (Quantity): <input type="number" name="availability"
 			value="${item.availability}" /><br /> Image Url: <input type="text"
 			name="imageURL" value="${item.image.imageUrl}" /><br /> <input
 			type="hidden" name="oldItemId" value="${item.id}" /><br /> <input

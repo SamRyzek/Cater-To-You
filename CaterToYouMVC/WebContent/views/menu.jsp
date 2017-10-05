@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,6 +12,7 @@
 <meta name="author" content="">
 <link rel="icon" href="../../../../favicon.ico">
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Cater To You - ${company.name}</title>
 </head>
@@ -55,15 +56,15 @@ body {
 }
 </style>
 <body class="active">
-		<ul>
-			<li><form action="showCart.do" method="GET">
-					<a href="showCart.do">Go To Cart</a>
-				</form></li>
-			<li style="float: right"><form action="customer.do" method="GET">
-					<a href="customer.do">Return Home</a>
-				</form></li>
-				<li style="float: right"><a href="loggOut.do">Log Out</a></li>
-		</ul>
+	<ul>
+		<li><form action="showCart.do" method="GET">
+				<a href="showCart.do">Go To Cart</a>
+			</form></li>
+		<li style="float: right"><form action="customer.do" method="GET">
+				<a href="customer.do">Return Home</a>
+			</form></li>
+		<li style="float: right"><a href="loggOut.do">Log Out</a></li>
+	</ul>
 	<div>
 		${company.name} ${address.street} ${address.street2} ${address.city}
 		${address.state} ${address.zip}
@@ -84,14 +85,15 @@ body {
 	<div>
 		<ul>
 			<c:forEach items="${itemList}" var="item">
-				<li>${item.count} ${item.item.name} ${item.item.price} ${item.item.price * item.count}</li>
+				<li>${item.count}${item.item.name} ${item.item.price}
+					${item.item.price * item.count}</li>
 			</c:forEach>
 		</ul>
 		<p>Sub Total: ${subTotal}</p>
 		<p>Tax: ${tax}</p>
 		<p>Fee: ${fee}</p>
 		<p>Total:${total}</p>
-		
+
 	</div>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

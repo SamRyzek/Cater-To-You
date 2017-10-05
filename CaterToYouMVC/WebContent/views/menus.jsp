@@ -11,6 +11,7 @@
 <meta name="author" content="">
 <link rel="icon" href="../../../../favicon.ico">
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Company Selections</title>
 </head>
@@ -61,7 +62,7 @@ body {
 		<li style="float: right"><form action="customer.do" method="GET">
 				<a href="customer.do">Return Home</a>
 			</form></li>
-			<li style="float: right"><a href="loggOut.do">Log Out</a></li>
+		<li style="float: right"><a href="loggOut.do">Log Out</a></li>
 	</ul>
 
 	<c:forEach items="${allCompanies}" var="company">

@@ -11,6 +11,7 @@
 <meta name="author" content="">
 <link rel="icon" href="../../../../favicon.ico">
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Add Employee</title>
 </head>
@@ -55,18 +56,22 @@ body {
 }
 
 .stuff {
-	min-width: 200px
+	min-width: 125px
 }
 </style>
 <body>
 	<form action="MakeEmployee.do" method="POST">
-		<input type="hidden" name="companyId" value="${company.id}" /> FirstName: <input
-			type="text" name="fName" value="" /><br /> Last Name: <input
-			type="text" name="lName" value="${address.street}" /><br /> User
-		Name: <input type="text" name="username" value="" /><br /> Password:
-		<input type="text" name="password" value="" /><br /> Email: <input
-			type="text" name="email" value="" /><br /> <input type="submit"
-			value="Create Employee" />
+		<input type="hidden" name="companyId" value="${company.id}" /><label
+			class="stuff"> FirstName:</label> <input type="text" name="fName"
+			value="" /><br />
+		<label class="stuff">< Last Name:</label> <input type="text"
+			name="lName" value="${address.street}" /><br />
+		<label class="stuff"> User Name: </label><input type="text"
+			name="username" value="" /><br />
+		<label class="stuff"> Password: </label> <input type="text"
+			name="password" value="" /><br />
+		<label class="stuff"> Email: </label> <input type="text" name="email"
+			value="" /><br /> <input type="submit" value="Create Employee" />
 	</form>
 
 
