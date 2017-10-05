@@ -71,7 +71,7 @@ body {
 		<c:forEach items="${menu}" var="item">
 				${item.name}
 				${item.description}
-				${item.price}
+				<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${item.price}"/>$
 
 		 <form action="addToCart.do" method="POST">
 				<input type="hidden" name="itemId" value="${item.id}"> <input
@@ -84,13 +84,16 @@ body {
 	<div>
 		<ul>
 			<c:forEach items="${itemList}" var="item">
-				<li>${item.count} ${item.item.name} ${item.item.price} ${item.item.price * item.count}</li>
+				<li>${item.count} ${item.item.name} 
+				<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${item.item.price}"/>$
+				<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${item.item.price * item.count}"/>$
+				</li>
 			</c:forEach>
 		</ul>
-		<p>Sub Total: ${subTotal}</p>
-		<p>Tax: ${tax}</p>
-		<p>Fee: ${fee}</p>
-		<p>Total:${total}</p>
+		<p>Sub Total: <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${subTotal}"/>$</p>
+		<p>Tax: <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${tax}"/>$</p>
+		<p>Fee: <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${fee}"/>$</p>
+		<p>Total: <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${tax}"/>$</p>
 		
 	</div>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
