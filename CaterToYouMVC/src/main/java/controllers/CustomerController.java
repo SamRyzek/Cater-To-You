@@ -232,10 +232,11 @@ public class CustomerController {
 							@RequestParam(value ="city", required=false) String city,
 							@RequestParam(value ="state", required=false) String state,
 							@RequestParam(value ="zip", required=false) Integer zip,
-							@RequestParam("addressId") int addId,
-							@RequestParam("addressType") int addType	
+							@RequestParam(value="addressId", required=false) Integer addId,
+							@RequestParam(value="addressType", required=false) Integer addType	
 							){
 		Address address = null;
+		
 
 		if(addType == 0){
 
