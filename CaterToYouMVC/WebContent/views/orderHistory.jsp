@@ -26,7 +26,7 @@ ul.One {
 }
 
 ul {
-	
+
 }
 
 li {
@@ -60,9 +60,9 @@ body {
 }
 </style>
 <body class="active">
-	<ul class="One">
-		<li style="float: right"><form action="customer.do" method="GET">
-				<a href="customer.do">Return Home</a>
+	<ul class = "One">
+		<li style="float: right"><form action="index.do" method="GET">
+				<a href="index.do">Return Home</a>
 			</form></li>
 		<li style="float: right"><a href="loggOut.do">Log Out</a></li>
 
@@ -83,7 +83,7 @@ body {
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous">
-		
+
 	</script>
 
 	<script>

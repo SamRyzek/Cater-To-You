@@ -675,3 +675,4 @@ INSERT INTO `cart_has_item` (`id`, `cart_id`, `item_id`, `count`) VALUES (7, 3, 
 INSERT INTO `cart_has_item` (`id`, `cart_id`, `item_id`, `count`) VALUES (8, 5, 1, 1);
 
 COMMIT;
+

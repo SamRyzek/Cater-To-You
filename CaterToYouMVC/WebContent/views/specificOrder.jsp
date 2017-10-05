@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -11,12 +12,11 @@
 <meta name="author" content="">
 <link rel="icon" href="../../../../favicon.ico">
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${company.name}</title>
+<title>Order History</title>
 </head>
-<!-- <style>
- ul {
+<style>
+ul.One {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
@@ -24,9 +24,12 @@
 	background-color: #333;
 }
 
+ul {
+	
+}
+
 li {
 	float: left;
-	border-right: 1px solid #bbb;
 }
 
 li a {
@@ -54,41 +57,35 @@ body {
 	border: 2px solid white;
 	color: white;
 }
-</style>  -->
+</style>
 <body class="active">
-	<div>
-		<ul>
-			<li><form action="updateCompanyProfile.do" method="GET">
-					<a href="updateCompanyProfile.do">Update Company Profile</a>
-				</form></li>
-			<li style="float: right"><a href="loggOut.do">Log Out</a></li>
+	<ul class="One">
+		<li style="float: right"><form action="index.do" method="GET">
+				<a href="index.do">Return Home</a>
+			</form></li>
+		<li style="float: right"><a href="loggOut.do">Log Out</a></li>
 
-		</ul>
-	</div>
-
-
-	<br> ${company.name} Street: ${address.street} Street 2:
-	${address.street2} City: ${address.city} State: ${address.state} Zip:
-	${address.zip}
+	</ul>
 	<br>
-	<form action="Orders.do" method="GET">
-	<input type="hidden" name="companyID" value="${company.id}" />
-		<input type="submit" value="Orders" />
-	</form>
-	<c:forEach items="${menu}" var="item">
-		<br />${item.name}
-				${item.description}
-				${item.price}
-				
-		
-	</c:forEach>
+	${order.id}${order.deliveryDateTime} ${order.address.street}
+				${order.address.street2} ${order.address.city}
+				${order.address.state} ${order.address.zip}
+	<ul>
+		<c:forEach items="${orderHaves}" var="oi">
+			<li>${oi.count} X ${oi.item.name} </li><br />
+		</c:forEach>
+	</ul>
+	<br>
 
 
-
+	<!-- scripts below -->
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
+		crossorigin="anonymous">
+		
+	</script>
+
 	<script>
 		window.jQuery
 				|| document.write('<script src="js/jquery.min.js"><\/script>')
@@ -97,10 +94,8 @@ body {
 	<script src="js/holder.js"></script>
 
 	<script src="js/bootstrap.min.js"></script>
+
+
+
 </body>
 </html>
-
-
-
-
-

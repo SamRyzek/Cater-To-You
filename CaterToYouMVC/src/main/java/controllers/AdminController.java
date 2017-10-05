@@ -16,7 +16,6 @@ import cater.data.CompanyDAO;
 import cater.data.CustomerDAO;
 import entity.Address;
 import entity.Company;
-import entity.Employee;
 import entity.Item;
 import entity.Menu;
 import entity.User;

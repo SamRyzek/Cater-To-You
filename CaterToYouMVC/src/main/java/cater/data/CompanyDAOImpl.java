@@ -1,6 +1,9 @@
 package cater.data;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,6 +18,8 @@ import entity.Employee;
 import entity.Image;
 import entity.Item;
 import entity.Menu;
+import entity.Order;
+import entity.OrderHasItems;
 import entity.User;
 import entity.UserRoles;
 
@@ -124,16 +129,29 @@ public class CompanyDAOImpl implements CompanyDAO {
 		return i;
 	}
 
+	public List<Order> findOrdersByCompany(Company c){
+	
+	String sql = "SELECT o FROM OrderHasItems o where o.item.menu.company.id=:id";
+	List<OrderHasItems> ohi = em.createQuery(sql,OrderHasItems.class).setParameter("id",c.getId()).getResultList();
+	Set<Order> orders = new HashSet<Order>();
+	for (OrderHasItems orderHasItems : ohi) {
+		orders.add(orderHasItems.getOrder());
+	}
+	return new ArrayList<Order>(orders);
+}
+
 	@Override
 	public List<Company> index() {
 		String sql = "SELECT c FROM Company c";
 		return em.createQuery(sql, Company.class).getResultList();
 	}
+
 	@Override
 	public List<Company> indexActive() {
 		String sql = "SELECT c FROM Company c where c.active=1";
 		return em.createQuery(sql, Company.class).getResultList();
 	}
+
 	@Override
 	public List<Company> indexInactive() {
 		String sql = "SELECT c FROM Company c where c.active=0";
@@ -186,14 +204,13 @@ public class CompanyDAOImpl implements CompanyDAO {
 		String sql = "SELECT u FROM User u where u.employee.company= :company and u.employee.active=0";
 		return em.createQuery(sql, User.class).setParameter("company", company).getResultList();
 	}
-	
+
 	@Override
 	public Address createAddress(Address address) {
 		em.persist(address);
 		return address;
 	}
-	
-	
+
 	@Override
 	public Employee createEmployee(Employee employee) {
 		em.persist(employee);
@@ -204,12 +221,27 @@ public class CompanyDAOImpl implements CompanyDAO {
 	public Address findAddressByAddressId(int id) {
 		return em.find(Address.class, id);
 	}
-	
+
 	@Override
 	public User createUserWithEmployeeRole(User user) {
 		user.setUserRoles(em.find(UserRoles.class, 2));
 		em.persist(user);
 		return user;
 	}
+
+	@Override
+	public Order findOrderByOrderId(int id) {
+		return em.find(Order.class, id);
+	}
+
+	@Override
+	public List<OrderHasItems> findOrderHavesByCompany(Company company, Order o){
+		String sql = "SELECT o FROM OrderHasItems o where o.item.menu.company.id= :cID and o.order.id= :oID";
+		return em.createQuery(sql, OrderHasItems.class).setParameter("cID", company.getId()).setParameter("oID", o.getId()).getResultList();
+		
+	}
+
+
+	
 
 }

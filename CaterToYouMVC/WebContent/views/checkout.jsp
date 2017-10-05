@@ -40,7 +40,7 @@ ul.One {
 }
 
 ul.Two {
-	
+
 }
 
 li {
@@ -90,11 +90,15 @@ body {
 	<h4>Your Cart</h4>
 	<ul class="Two">
 		<c:forEach items="${itemList}" var="item">
-			<li>${item.count}${item.item.name} $${item.item.price *
-				item.count}</li>
-			<br>
+			<li>${item.count} ${item.item.name}
+			<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${item.item.price}"/>$<br>
+			<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${item.item.price * item.count}"/>$</li><br>
 		</c:forEach>
 	</ul>
+		<p>Sub Total: <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${subTotal}"/>$</p>
+		<p>Tax: <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${tax}"/>$</p>
+		<p>Fee: <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${fee}"/>$</p>
+		<p>Total: <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${tax}"/>$</p>
 	<br></br>
 	<form action="createOrder.do" method="POST">
 
