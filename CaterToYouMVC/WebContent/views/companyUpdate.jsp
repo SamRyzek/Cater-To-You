@@ -45,7 +45,7 @@ html {
 	background-repeat: no-repeat;
 	background-origin: inheret;
 	background-size: 100%;
-	background-color: blue;
+	background-color: darkblue;
 }
 
 body {
@@ -78,7 +78,7 @@ body {
 	<input
 			type="hidden" name="companyId" value="${company.id}" />
 		<input type="submit" value="Add Item to Menu" />
-	</form>
+	</form><br>
 	<c:if test="${not empty menu}">
 	<form action="UpdateMenuItem.do" method="POST">
 		Update Menu Item: <select name="itemId">
@@ -87,13 +87,13 @@ body {
 				<option value="${item.id}">${item.name}</option>
 			</c:forEach>
 		</select> <input type="submit" value="Update Menu Item" />
-	</form>
+	</form><br>
 	</c:if>
 	<form action="CreateEmployee.do" method="GET">
 	<input
 			type="hidden" name="companyId" value="${company.id}" />
 		<input type="submit" value="Add Employee" />
-	</form>
+	</form><br>
 	<c:if test="${not empty staff}">
 	<form action="UpdateStaff.do" method="POST">
 		Update Staff: <select name="staffId">
@@ -102,7 +102,7 @@ body {
 				<option value="${user.id}">${user.lastName}, ${user.firstName}</option>
 			</c:forEach>
 		</select> <input type="submit" value="Update Employee" />
-	</form>
+	</form><br>
 	</c:if>
 	<c:if test="${not empty inactiveStaff}">
 	<form action="ActivateEmployee.do" method="POST">
@@ -112,11 +112,11 @@ body {
 				<option value="${user.id}">${user.lastName}, ${user.firstName} </option>
 			</c:forEach></select>
 		<input type="submit" value="Make Employee Active" />
-	</form>
+	</form><br>
 </c:if>
 	<form action="index.do" method="GET">
 		<input type="submit" value="Return Home" />
-	</form>
+	</form><br>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
