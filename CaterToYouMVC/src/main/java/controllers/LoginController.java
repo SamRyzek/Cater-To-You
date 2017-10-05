@@ -78,6 +78,8 @@ public class LoginController {
 	@RequestMapping("admin.do")
 	public String displayAdmin(Model model, HttpSession session) {
 		model.addAttribute("companies", companyDAO.index());
+		model.addAttribute("companiesActive", companyDAO.indexActive());
+		model.addAttribute("companiesInactive", companyDAO.indexInactive());
 		model.addAttribute("users", adminDAO.index());
 		return "views/admin.jsp";
 	}

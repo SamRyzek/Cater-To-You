@@ -81,14 +81,14 @@ body {
 
 	<form action="InactivateCompany.do" method="POST">
 		Active Companies: <select name="companyID">
-			<c:forEach items="${companies}" var="company">
+			<c:forEach items="${companiesActive}" var="company">
 				<option value="${company.id}">${company.name}</option>
 			</c:forEach></select>
 			<input type="submit" value="Make Company Inactive" />
 	</form>
 	<form action="ActivateCompany.do" method="POST">
 		Inactive Companies: <select name="companyID">
-			<c:forEach items="${companies}" var="company">
+			<c:forEach items="${ompaniesInactive}" var="company">
 				<option value="${company.id}">${company.name}</option>
 			</c:forEach></select>
 			<input type="submit" value="Make Company Active" />
