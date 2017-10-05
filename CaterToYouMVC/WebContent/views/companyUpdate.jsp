@@ -54,20 +54,24 @@ body {
 	color: white;
 	
 }
+
+.stuff{
+	min-width: 100px;
+}
 </style>
 <body>
 	<form action="editCompany.do" method="POST">
 
 		<input type="hidden" name="id" value="${company.id}" /> <input
-			type="hidden" name="addId" value="${address.id}" /> Name: <input
-			type="text" name="name" value="${company.name}" /><br /> New
-		Street: <input type="text" name="street" value="${address.street}" /><br />
-		New Street2: <input type="text" name="street2"
-			value="${address.street2}" /><br /> New City: <input type="text"
-			name="city" value="${address.city}" /><br /> New State: <input
-			type="text" name="state" value="${address.state}" /><br /> New Zip:
-		<input type="text" name="zip" value="${address.zip}" /><br /> Image
-		URL: <input type="text" name="url" value="${image.imageUrl}" /><br />
+			type="hidden" name="addId" value="${address.id}" /><label class ="stuff">Name:</label> <input
+			type="text" name="name" value="${company.name}" /><br /> <label class = "stuff">New
+		Street: </label><input type="text" name="street" value="${address.street}" /><br />
+		<label class ="stuff" >New Street2: </label><input type="text" name="street2"
+			value="${address.street2}" /><br /><label class="stuff">New City: </label><input type="text"
+			name="city" value="${address.city}" /><br /><label class = "stuff">New State:</label> <input
+			type="text" name="state" value="${address.state}" /><br /> <label class="stuff">New Zip:</label>
+		<input type="text" name="zip" value="${address.zip}" /><br /> <label class = "stuff">Image
+		URL: </label>l<input type="text" name="url" value="${image.imageUrl}" /><br />
 		<input type="submit" value="Edit Company Profile" />
 	</form>
 	<form action="UpdateMenuItem.do" method="POST">
