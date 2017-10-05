@@ -74,29 +74,42 @@ body {
 		URL: </label>l<input type="text" name="url" value="${image.imageUrl}" /><br />
 		<input type="submit" value="Edit Company Profile" />
 	</form>
+	<c:if test="${not empty menu}">
 	<form action="UpdateMenuItem.do" method="POST">
 		Update Menu Item: <select name="itemId">
+	
 			<c:forEach items="${menu}" var="item">
 				<option value="${item.id}">${item.name}</option>
 			</c:forEach>
 		</select> <input type="submit" value="Update Menu Item" />
 	</form>
+	</c:if>
+	<form action="CreateEmployee.do" method="GET">
+	<input
+			type="hidden" name="companyId" value="${company.id}" />
+		<input type="submit" value="Add Employee" />
+	</form>
+	<c:if test="${not empty staff}">
 	<form action="UpdateStaff.do" method="POST">
 		Update Staff: <select name="staffId">
+	
 			<c:forEach items="${staff}" var="user">
-				<option value="${user.id}">${user.lastName} ${user.firstName}</option>
+				<option value="${user.id}">${user.lastName}, ${user.firstName}</option>
 			</c:forEach>
 		</select> <input type="submit" value="Update Employee" />
 	</form>
+	</c:if>
+	<c:if test="${not empty inactiveId}">
 	<form action="ActivateEmployee.do" method="POST">
 	Inactive Employees: <select name="inactiveId">
+	
 			<c:forEach items="${inactiveStaff}" var="user">
 				<option value="${user.id}">${user.lastName}, ${user.firstName} </option>
 			</c:forEach></select>
 		<input type="submit" value="Make Employee Active" />
 	</form>
-
-	<form action="company.do" method="GET">
+</c:if>
+	<form action="index.do" method="GET">
 		<input type="submit" value="Return Home" />
 	</form>
 

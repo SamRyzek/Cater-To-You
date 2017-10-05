@@ -46,6 +46,12 @@ public class CompanyController {
 		model.addAttribute("user", user);
 		return "views/employeeUpdate.jsp";
 	}
+	@RequestMapping(path = "CreateEmployee.do", method = RequestMethod.GET)
+	public String createEmployee(Model model, @RequestParam("companyId") Integer id) {
+		Company compTemp = companyDAO.findCompanyById(id);
+		model.addAttribute("company", compTemp);
+		return "views/createEmployee.jsp";
+	}
 
 	@RequestMapping(path = "editCompany.do", method = RequestMethod.POST)
 	public String userEdit(@RequestParam("id") int id, @RequestParam("addId") int addId,
@@ -96,8 +102,9 @@ public class CompanyController {
 		addTemp = customerDAO.updateAddress(addTemp);
 		compTemp.setAddress(addTemp);
 		compTemp.setId(id);
+		if (imageURL != "") {
 		compTemp.setImage(comp.getImage());
-		compTemp.getImage().setImageUrl(imageURL);
+		compTemp.getImage().setImageUrl(imageURL);}
 		compTemp = companyDAO.updateCompanyInfo(compTemp);
 
 
@@ -230,10 +237,10 @@ public class CompanyController {
 			model.addAttribute("menu", menuItems);
 			model.addAttribute("employee", user.getEmployee());
 			model.addAttribute("image", company.getImage());
-
 		}
 		return "views/companyUpdate.jsp";
 	}
+	
 	@RequestMapping(path = "MakeEmployee.do", method = RequestMethod.POST)
 	public String makeEmployee(@RequestParam("fName") String fName, @RequestParam("lName") String lName,
 			@RequestParam("email") String email, @RequestParam("username") String username,

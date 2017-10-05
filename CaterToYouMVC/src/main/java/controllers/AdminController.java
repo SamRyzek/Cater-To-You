@@ -51,6 +51,7 @@ public class AdminController {
 		User user = (User) session.getAttribute("user");
 		if (user != null) {
 			Company company = companyDAO.findCompanyById(id);
+			System.out.println(company.getName());
 			model.addAttribute("user", user);
 			model.addAttribute("company", company);
 			model.addAttribute("address", company.getAddress());
