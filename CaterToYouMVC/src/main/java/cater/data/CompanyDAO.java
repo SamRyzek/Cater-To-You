@@ -18,6 +18,8 @@ public interface CompanyDAO {
 	public Company findCompanyById(int id);
 	public Company updateCompanyInfo(Company c);
 	public List<Company> index();
+	public List<Company> indexActive();
+	public List<Company> indexInactive();
 	
 	public Menu addMenuItem(Item i, Menu menu); 
 	public Menu makeMenuItemInactive(Item i); 
