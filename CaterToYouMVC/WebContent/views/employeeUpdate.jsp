@@ -53,18 +53,21 @@ body {
 	color: white;
 	
 }
+.stuff{
+	min-width: 100px;
+}
 </style>
 <body>
 <form action="editUser.do" method="POST">
-		First Name of Employee to Edit:
+		<label class ="stuff">First Name of Employee to Edit:</label>
 		<input type="text" name="firstName" value="${user.firstName}" readonly/><br/>
-		Last Name:
+		<label class ="stuff">Last Name:</label>
 		<input type="text" name="lastName" value="${user.lastName}"/><br/>
-		Username:
+		<label class ="stuff">Username:</label>
 		<input type="text" name="username" value="${user.username}"/><br/>
-		Password:
+		<label class ="stuff">Password:</label>
 		<input type="text" name="password" value="${user.password}"/><br/>
-		Email:
+		<label class ="stuff">Email:</label>
 		<input type="text" name="email" value="${user.email}"/><br/>
 		<input type="hidden" name="id" value="${user.id}"/><br/>
 		<input type="submit" value="Update Employee Information" />

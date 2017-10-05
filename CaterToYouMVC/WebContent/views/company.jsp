@@ -65,9 +65,10 @@ body {
 	</div>
 
 
-
+	<br>
 	${company.name} Street: ${address.street} Street 2: ${address.street2}
 	City: ${address.city} State: ${address.state} Zip: ${address.zip}
+	<br>
 	<c:forEach items="${menu}" var="item">
 		<br />${item.name}
 				${item.description}
