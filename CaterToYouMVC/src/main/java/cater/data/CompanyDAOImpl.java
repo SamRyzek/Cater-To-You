@@ -131,7 +131,7 @@ public class CompanyDAOImpl implements CompanyDAO {
 	}
 	@Override
 	public List<Company> indexActive() {
-		String sql = "SELECT c FROM Company c where c.active=0";
+		String sql = "SELECT c FROM Company c where c.active=1";
 		return em.createQuery(sql, Company.class).getResultList();
 	}
 	@Override

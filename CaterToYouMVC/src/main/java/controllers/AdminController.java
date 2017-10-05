@@ -127,7 +127,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(path = "InactivateCompany.do", method = RequestMethod.POST)
-	public String inactivateComp(@RequestParam("oldId") Integer oldId, Model model, HttpSession session) {
+	public String inactivateComp(@RequestParam("companyID") Integer oldId, Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
 			Company company = companyDAO.findCompanyById(oldId);
 			adminDAO.makeCompanyInactive(company);
@@ -135,7 +135,7 @@ public class AdminController {
 		return "redirect:index.do";
 	}
 	@RequestMapping(path = "ActivateCompany.do", method = RequestMethod.POST)
-	public String activateComp(@RequestParam("oldId") Integer oldId, Model model, HttpSession session) {
+	public String activateComp(@RequestParam("companyID") Integer oldId, Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		Company company = companyDAO.findCompanyById(oldId);
 		adminDAO.makeCompanyActive(company);

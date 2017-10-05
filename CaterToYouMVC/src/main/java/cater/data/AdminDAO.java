@@ -14,9 +14,6 @@ public interface AdminDAO {
 	
 	
 
-
-
-	
 	public List<User> index();
 	public Company createCompany(Company company);
 	
