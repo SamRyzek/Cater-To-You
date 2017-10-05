@@ -74,7 +74,7 @@ body {
 	
 	<div>
 		<form action="udateUserPass.do" method="POST">
-			<input type="hidden" name="id" value="${user.customer.id}">
+			<input type="hidden" name="id" value="${user.id}">
 			<input type="text" name="newUserName" value="${user.username }">
 			<input type="text" name="newPassword" value="${user.password}">
 			<input type="submit" value="Update">

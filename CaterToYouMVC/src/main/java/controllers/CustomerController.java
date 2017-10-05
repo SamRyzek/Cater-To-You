@@ -93,11 +93,12 @@ public class CustomerController {
 		return "views/customerUpdate.jsp";
 	}
 	
+	@RequestMapping(path= "udateUserPass.do", method = RequestMethod.POST)
 	public String updateUserPasword(@RequestParam("id") int id, 
 			@RequestParam("newUserName") String userName,
 			@RequestParam("newPassword") String password) {
-		
-		return "redirect:UpdateCustomer.do";
+		User user = customerDAO.persistUserNamePassword(id, userName, password);
+		return "redirect:UpdateCustomer.do?customerId=" + user.getCustomer().getId();
 	}
 
 	@RequestMapping(path = "editCustomer.do", method = RequestMethod.POST)
