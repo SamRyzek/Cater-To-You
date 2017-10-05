@@ -131,8 +131,15 @@ public class AdminController {
 		User user = (User) session.getAttribute("user");
 			Company company = companyDAO.findCompanyById(oldId);
 			adminDAO.makeCompanyInactive(company);
-		}
 
+		return "redirect:index.do";
+	}
+	@RequestMapping(path = "ActivateCompany.do", method = RequestMethod.POST)
+	public String activateComp(@RequestParam("oldId") Integer oldId, Model model, HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		Company company = companyDAO.findCompanyById(oldId);
+		adminDAO.makeCompanyActive(company);
+		
 		return "redirect:index.do";
 	}
 
