@@ -53,19 +53,16 @@ body {
 	color: white;
 	
 }
-.stuff{
-	min-width: 160px;
-}
 </style>
 <body>
 	<form action="editItem.do" method="POST">
-		<label class="stuff">Name:</label><input type="text" name="name" value="${item.name}" /><br />
-		<label class="stuff">Calories:</label> <input type="text" name="calories" value="${item.calories}" /><br />
-		<label class="stuff">Description:</label> <input type="text" name="description"
-			value="${item.description}" /><br /><label class ="stuff"> Price ($XX.XX): </label><input
-			type="text" name="price" value="${item.price}" /><br/><label class ="stuff"> Availability
-		(Quantity):</label> <input type="number" name="availability"
-			value="${item.availability}" /><br /><label class ="stuff"> Image Url: </label><input type="text"
+		Name: <input type="text" name="name" value="${item.name}" /><br />
+		Calories: <input type="text" name="calories" value="${item.calories}" /><br />
+		Description: <input type="text" name="description"
+			value="${item.description}" /><br /> Price ($XX.XX): <input
+			type="text" name="price" value="${item.price}" /><br /> Availability
+		(Quantity): <input type="number" name="availability"
+			value="${item.availability}" /><br /> Image Url: <input type="text"
 			name="imageURL" value="${item.image.imageUrl}" /><br /> <input
 			type="hidden" name="oldItemId" value="${item.id}" /><br /> <input
 			type="submit" value="Update Item Information" />
@@ -74,7 +71,7 @@ body {
 		<input type="text" name="oldItemId" value="${item.id}" hidden /><br />
 		<input type="submit" value="Make Item Inactive" />
 	</form>
-	<form action="company.do" method="GET">
+	<form action="index.do" method="GET">
 		<input type="submit" value="Return Home" />
 	</form>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
