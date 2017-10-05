@@ -40,7 +40,7 @@ ul.One {
 }
 
 ul.Two {
-	
+
 }
 
 li {
@@ -64,7 +64,7 @@ html {
 	background-repeat: no-repeat;
 	background-origin: inheret;
 	background-size: 100%;
-	background-color: blue;
+	background-color: darkblue;
 }
 
 body {
@@ -74,7 +74,7 @@ body {
 }
 .stuff{
 
-	min-width: 200px
+	min-width: 150px
 
 }
 
@@ -91,8 +91,7 @@ body {
 	<h4>Your Cart</h4>
 	<ul class="Two">
 		<c:forEach items="${itemList}" var="item">
-			<li>${item.count}${item.item.name}$${item.item.price*
-				item.count}</li>
+			<li>${item.count} ${item.item.name} $${item.item.price * item.count}</li><br>
 		</c:forEach>
 	</ul>
 	<br></br>
@@ -100,48 +99,27 @@ body {
 
 
 		<input type="hidden" name="cartId" value="${cart.id}" />
-		<p>
-			Delivery Date: <input type="text" name="date" id="datepicker">
-		</p>
-		<p>
-			Delivery Time: <input type="text" name="time" class="timepicker">
-		</p>
-		<c:choose>
-			<c:when test="${not empty addressList}">
-				<div id="radio-section">
-				<p>
-					New Address<input type="radio" name="addressType" checked data-sec="section-1" value="0"> 
-					Previous Address<input type="radio" name="addressType" data-sec="section-2" value="1">
-				</p>
-			</div>
-			<div class="closed-section" id="section-2">
-				<select name="addressId">
-					<c:forEach items="${addressList}" var="address">
-						<option value="${address.id}">${address.street}
-							${address.street2} ${address.city}, ${address.state}
-							${address.zip}</option>
-					</c:forEach>
-				</select>
-			</div>
-			</c:when>
-			<c:otherwise>
-				<input type="hidden" name="addressType" value="0">
-				<input type="hidden" name="addressId" value="0">
-			</c:otherwise>
-		</c:choose>
-		<div class="open-section" id="section-1">
-			<p>
-				street: <input type="text" name="street" value=" ">
-			</p>
-			<p>
-				street2: <input type="text" name="street2" value=" ">
-			</p>
-			<p>
-				city: <input type="text" name="city" value=" "> state: <input
-					type="text" name="state" value=" "> zip code: <input type="text"
-					name="zip" value=" ">
-			</p>
-		</div>
+		<label class = "stuff">
+			Delivery Date: </label> <input type="text" name="date" id="datepicker"><br>
+
+		<label class = "stuff">
+			Delivery Time: </label><input type="text" name="time" class="timepicker"><br>
+
+		<label class = "stuff">
+			street: </label> <input type="text" name="street"><br>
+
+		<label class = "stuff">
+			street2: </label><input type="text" name="street2"><br>
+
+		<label class = "stuff">
+			city:</label><input type="text" name="city"> <br>
+
+		<label class ="stuff">
+			state:</label><input type="text" name="state"> <br>
+
+		<label class ="stuff">
+			zip code:</label> <input type="text" name="zip"><br>
+
 		<p>
 			<input type="submit" value="Checkout" />
 		</p>
@@ -204,7 +182,7 @@ body {
 									}
 								});
 					}
-					
+
 				});
 	</script>
 </body>
