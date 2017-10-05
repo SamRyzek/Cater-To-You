@@ -33,7 +33,7 @@ public class CustomerController {
 
 	@RequestMapping(path = "Shop.do", method = RequestMethod.GET)
 	public String index(Model model) {
-		List<Company> companies = companyDAO.index();
+		List<Company> companies = companyDAO.indexActive();
 		model.addAttribute("allCompanies", companies);
 		return "views/menus.jsp";
 	}
