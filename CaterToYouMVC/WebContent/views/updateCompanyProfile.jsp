@@ -10,7 +10,7 @@
 <meta name="author" content="">
 <link rel="icon" href="../../../../favicon.ico">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Update ${company.name}</title>
 </head>
 <style>
 ul {
@@ -61,6 +61,7 @@ body {
 					<a href="companyUpdate.do">Return Home</a>
 				</form></li>
 		</ul>
+		<li style="float: right"><a href="loggOut.do">Log Out</a></li>
 	</div>
 	<div>
 	<form action="editCompany.do" method="POST">

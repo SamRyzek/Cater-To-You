@@ -60,6 +60,7 @@ body {
 			<li><form action="updateCompanyProfile.do" method="GET">
 					<a href="updateCompanyProfile.do">Update Company Profile</a>
 				</form></li>
+				<li style="float: right"><a href="loggOut.do">Log Out</a></li>
 
 		</ul>
 	</div>
