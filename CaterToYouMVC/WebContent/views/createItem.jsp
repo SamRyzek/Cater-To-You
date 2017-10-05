@@ -45,14 +45,17 @@ html {
 	background-repeat: no-repeat;
 	background-origin: inheret;
 	background-size: 100%;
-	background-color: blue;
+	background-color: darkblue;
 }
 
 body {
 	background-color: darkblue;
 	border: 2px solid white;
 	color: white;
-	
+}
+
+.stuff {
+	min-width: 200px
 }
 </style>
 <body>
@@ -60,14 +63,16 @@ body {
 		<p>${message}</p>
 	</c:if>
 	<form action="MakeItem.do" method="POST">
-		<input type="hidden" name="companyID" value="${company.id}" /> Name*:
-		<input type="text" name="name" value="" /><br /> Calories: <input
-			type="text" name="calories" value="" /><br /> Description*: <input
-			type="text" name="description" value="${item.description}" /><br />
-		Price ($XX.XX)*: <input type="text" name="price" value="" /><br />
-		Availability* (Quantity): <input type="number" name="availability"
-			value="" /><br /> Image Url: <input type="text" name="imageURL"
-			value="" /><br /> <br /> <input type="submit" value="Create Item" />
+		<input type="hidden" name="companyID" value="${company.id}" /> <label
+			class="stuff">Name*: </label><input type="text" name="name" value="" /><br />
+		<label class="stuff">Calories:</label> <input type="text"
+			name="calories" value="" /><br /> <label class="stuff">Description*:</label>
+		<input type="text" name="description" value="${item.description}" /><br />
+		<label class="stuff">Price ($XX.XX)*:</label> <input type="text"
+			name="price" value="" /><br /> <label class="stuff">Availability*
+			(Quantity): </label><input type="number" name="availability" value="" /><br />
+		<label class = "stuff">Image Url: </label><input type="text" name="imageURL" value="" /><br /> <br />
+		<input type="submit" value="Create Item" />
 
 	</form>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

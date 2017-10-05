@@ -45,14 +45,17 @@ html {
 	background-repeat: no-repeat;
 	background-origin: inheret;
 	background-size: 100%;
-	background-color: blue;
+	background-color: darkblue;
 }
 
 body {
 	background-color: darkblue;
 	border: 2px solid white;
 	color: white;
-	
+}
+
+.stuff {
+	min-width: 200px
 }
 </style>
 <body>
