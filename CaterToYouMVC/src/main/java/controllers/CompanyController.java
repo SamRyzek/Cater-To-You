@@ -236,6 +236,7 @@ public class CompanyController {
 		Order order = companyDAO.findOrderByOrderId(orderId);
 		List <OrderHasItems> orderHaves = companyDAO.findOrderHavesByCompany(company, order);
 		model.addAttribute("orderHaves", orderHaves);
+		model.addAttribute("order", order);
 		model.addAttribute("company", company);
 		return "views/specificOrder.jsp";
 	}

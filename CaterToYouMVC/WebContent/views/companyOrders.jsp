@@ -69,7 +69,7 @@ body {
 	<br>
 	<ul>
 		<c:forEach items="${orders}" var="order">
-			<li>${order.id}${order.deliveryDateTime} ${order.address.street}
+			<li>${order.id} ${order.deliveryDateTime} ${order.address.street}
 				${order.address.street2} ${order.address.city}
 				${order.address.state} ${order.address.zip}</li>
 			<form action="OrderInformation.do" method="GET">

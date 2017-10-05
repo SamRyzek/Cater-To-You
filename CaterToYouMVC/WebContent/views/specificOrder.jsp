@@ -72,7 +72,7 @@ body {
 				${order.address.state} ${order.address.zip}
 	<ul>
 		<c:forEach items="${orderHaves}" var="oi">
-			<li>${oi.count} X ${oi.item.name} </li>
+			<li>${oi.count} X ${oi.item.name} </li><br />
 		</c:forEach>
 	</ul>
 	<br>
