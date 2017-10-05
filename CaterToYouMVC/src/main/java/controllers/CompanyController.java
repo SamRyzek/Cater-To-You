@@ -299,28 +299,29 @@ public class CompanyController {
 			HttpSession session) {
 		Company comp = companyDAO.findCompanyById(companyID);
 		Item itemTemp = new Item();
-		if (name == null) {
-			return "createItem.do";
+		if (name == null || name.equals("")) {
+			model.addAttribute("message", "Item must have a name.");
+			return "views/createItem.jsp";
 		} else {
 			itemTemp.setName(name);
 		}
 		if (calories == null) {
-			return "createItem.do";
 		} else {
 			itemTemp.setCalories(calories);
 		}
 		if (price == null) {
-			return "createItem.do";
+			model.addAttribute("message", "Item must have a price.");
+			return "views/createItem.jsp";
 		} else {
 			itemTemp.setPrice(price);
 		}
 		if (description == null) {
-			return "createItem.do";
 		} else {
 			itemTemp.setDescription(description);
 		}
-		if (availability == null) {
-			return "createItem.do";
+		if (availability == null || availability<1) {
+			model.addAttribute("message", "Item must have an availability greater than 0.");
+			return "views/createItem.jsp";
 		} else {
 			itemTemp.setAvailability(availability);
 		}
