@@ -61,6 +61,7 @@ body {
 		<li style="float: right"><form action="customer.do" method="GET">
 				<a href="customer.do">Return Home</a>
 			</form></li>
+			<li style="float: right"><a href="loggOut.do">Log Out</a></li>
 	</ul>
 
 	<c:forEach items="${allCompanies}" var="company">
