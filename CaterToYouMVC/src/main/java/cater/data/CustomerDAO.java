@@ -27,10 +27,7 @@ public interface CustomerDAO {
 	public List<Address> getPreviousAddress(Customer customer);
 
 	public Address getAddressById(int addId);
-
-
-
-
+	public User persistUserNamePassword(int id, String userName, String password);
 
 //***** New User Method
 	public User createUser(User user);
