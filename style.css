@@ -1,0 +1,68 @@
+html {
+
+	border: 2px solid white;
+	color: black;
+	background-image: url("food2.jpg");
+	background-size: 100%;
+	background-repeat: no-repeat;
+
+}
+
+/* .navbar:link{
+	background-color: transparent;
+	color: white;
+	text-decoration: underline;
+}
+
+
+.list{
+
+	display: list;
+	padding-top: 120px
+	position: absolute;
+    bottom: 8px;
+    left: 16px;
+    font-size: 18px;
+
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+	position: fixed;
+	width: 100%;
+	color: white;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: bottom;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover {
+	background-color: white;
+}
+
+.list{
+	vertical-align:text-bottom;
+	vertical-align: -50px;
+}
+.stuff {
+	min-width: 200px
+}
+
+p.image-container img{
+
+	width: 0px;
+	height: 0%;
+} */
