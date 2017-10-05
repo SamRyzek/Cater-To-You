@@ -13,6 +13,47 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Update "${item.name}"</title>
 </head>
+<style>
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+li {
+	float: left;
+	border-right: 1px solid #bbb;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover {
+	background-color: #111;
+}
+
+html {
+	background-image: url("css/food2.jpg");
+	background-repeat: no-repeat;
+	background-origin: inheret;
+	background-size: 100%;
+	background-color: blue;
+}
+
+body {
+	background-color: darkblue;
+	border: 2px solid white;
+	color: white;
+	
+}
+</style>
 <body>
 	<form action="editItem.do" method="POST">
 		Name: <input type="text" name="name" value="${item.name}" /><br />

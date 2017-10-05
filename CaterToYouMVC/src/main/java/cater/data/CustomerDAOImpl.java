@@ -302,10 +302,4 @@ public class CustomerDAOImpl implements CustomerDAO {
 		return em.find(Customer.class, id);
 	}
 
-
-	@Override
-	public Cart getCartByAddAnd() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

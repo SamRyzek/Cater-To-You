@@ -188,7 +188,7 @@ public class CompanyController {
 		return "redirect:index.do";
 	}
 
-	@RequestMapping(path = "InactivateItem.do", method = RequestMethod.GET)
+	@RequestMapping(path = "InactivateItem.do", method = RequestMethod.POST)
 	public String inactivate(@RequestParam("oldItemId") Integer oldId, Model model, HttpSession session) {
 		Item item = companyDAO.findItemById(oldId);
 		companyDAO.makeMenuItemInactive(item);
