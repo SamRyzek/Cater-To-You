@@ -64,6 +64,12 @@ body {
 	border: 2px solid white;
 	color: white;
 }
+.stuff{
+
+	min-width: 200px
+
+}
+
 </style>
 <body class="active">
 	<ul class="One">
