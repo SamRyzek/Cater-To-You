@@ -83,7 +83,8 @@ body {
 		<p>Email: ${user.email}</p>
 		<p>${address.street}${address.street2}</p>
 		${address.city} ${address.state} ${address.zip}
-		<img alt="picture" src="${user.customer.image.imageUrl}">
+		<p><img alt="picture" src="${user.customer.image.imageUrl}"></p>
+		
 	</div>
 
 

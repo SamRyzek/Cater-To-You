@@ -45,6 +45,7 @@ public interface CompanyDAO {
 	public Address createAddress(Address address);
 	public Address findAddressByAddressId(int id);
 	public Employee createEmployee(Employee employee);
+	public User createUserWithEmployeeRole(User user);
 	
 	
 	

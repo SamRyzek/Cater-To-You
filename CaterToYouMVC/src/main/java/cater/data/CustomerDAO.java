@@ -23,9 +23,9 @@ public interface CustomerDAO {
 	public double calculateCartTotal(Cart c);
 	public Customer createAddressForCustomer(Customer customer);
 	public Customer getCustomerById(int id);
-	
+
 	public List<Address> getPreviousAddress(Customer customer);
-	
+
 	public Address getAddressById(int addId);
 	public User persistUserNamePassword(int id, String userName, String password);
 

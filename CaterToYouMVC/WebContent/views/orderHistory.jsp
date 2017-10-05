@@ -16,7 +16,7 @@
 <title>Order History</title>
 </head>
 <style>
-ul {
+ul.One {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
@@ -24,7 +24,7 @@ ul {
 	background-color: #333;
 }
 
-ul.One{
+ul{
 
 }
 
@@ -59,21 +59,21 @@ body {
 }
 </style>
 <body class="active">
-	<ul>
+	<ul class = "One">
 		<li style="float: right"><form action="customer.do" method="GET">
 				<a href="customer.do">Return Home</a>
 			</form></li>
 	</ul>
-	
-	<p>
-	<ol>
+	<br>
+	<ul>
 		<c:forEach items="${orders}" var="order">
 			<li>${order.id} ${order.deliveryDateTime}
 				${order.address.street} ${order.address.street2}
 				${order.address.city} ${order.address.state} ${order.address.zip}</li>
 		</c:forEach>
-	</ol>
-	</p>
+	</ul>
+	<br>
+
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
