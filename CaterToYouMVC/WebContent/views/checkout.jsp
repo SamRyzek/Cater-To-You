@@ -66,7 +66,7 @@ body {
 }
 .stuff{
 
-	min-width: 200px
+	min-width: 150px
 
 }
 
@@ -83,29 +83,33 @@ body {
 	<h4>Your Cart</h4>
 	<ul class="Two">
 		<c:forEach items="${itemList}" var="item">
-			<li>${item.count}${item.item.name}$${item.item.price * item.count}</li>
+			<li>${item.count} ${item.item.name} $${item.item.price * item.count}</li><br>
 		</c:forEach>
 	</ul>
 	<br></br>
 	<form action="createOrder.do" method="POST">
 		<input type="hidden" name="cartId" value="${cart.id}" />
-		<p>
-			Delivery Date: <input type="text" name="date" id="datepicker">
-		</p>
-		<p>
-			Delivery Time: <input type="text" name="time" class="timepicker">
-		</p>
-		<p>
-			street: <input type="text" name="street">
-		</p>
-		<p>
-			street2: <input type="text" name="street2">
-		</p>
-		<p>
-			city: <input type="text" name="city"> state: <input
-				type="text" name="state"> zip code: <input type="text"
-				name="zip">
-		</p>
+		<label class = "stuff">
+			Delivery Date: </label> <input type="text" name="date" id="datepicker"><br>
+		
+		<label class = "stuff">
+			Delivery Time: </label><input type="text" name="time" class="timepicker"><br>
+		
+		<label class = "stuff">
+			street: </label> <input type="text" name="street"><br>
+		
+		<label class = "stuff">
+			street2: </label><input type="text" name="street2"><br>
+			
+		<label class = "stuff">
+			city:</label><input type="text" name="city"> <br>
+			
+		<label class ="stuff">
+			state:</label><input type="text" name="state"> <br>
+		
+		<label class ="stuff">
+			zip code:</label> <input type="text" name="zip"><br>
+		
 		<p>
 			<input type="submit" value="Checkout" />
 		</p>
