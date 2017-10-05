@@ -3,6 +3,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,9 +31,16 @@ ul.One {
 	background-color: #333;
 }
 
-ul.Two{
+.open-section {
+	display: block;
+}
 
+.closed-section {
+	display: none;
+}
 
+ul.Two {
+	
 }
 
 li {
@@ -77,11 +85,14 @@ body {
 	<h4>Your Cart</h4>
 	<ul class="Two">
 		<c:forEach items="${itemList}" var="item">
-			<li>${item.count}${item.item.name}$${item.item.price * item.count}</li>
+			<li>${item.count}${item.item.name}$${item.item.price*
+				item.count}</li>
 		</c:forEach>
 	</ul>
 	<br></br>
 	<form action="createOrder.do" method="POST">
+
+
 		<input type="hidden" name="cartId" value="${cart.id}" />
 		<p>
 			Delivery Date: <input type="text" name="date" id="datepicker">
@@ -89,17 +100,42 @@ body {
 		<p>
 			Delivery Time: <input type="text" name="time" class="timepicker">
 		</p>
-		<p>
-			street: <input type="text" name="street">
-		</p>
-		<p>
-			street2: <input type="text" name="street2">
-		</p>
-		<p>
-			city: <input type="text" name="city"> state: <input
-				type="text" name="state"> zip code: <input type="text"
-				name="zip">
-		</p>
+		<c:choose>
+			<c:when test="${not empty addressList}">
+				<div id="radio-section">
+				<p>
+					New Address<input type="radio" name="addressType" checked data-sec="section-1" value="0"> 
+					Previous Address<input type="radio" name="addressType" data-sec="section-2" value="1">
+				</p>
+			</div>
+			<div class="closed-section" id="section-2">
+				<select name="addressId">
+					<c:forEach items="${addressList}" var="address">
+						<option value="${address.id}">${address.street}
+							${address.street2} ${address.city}, ${address.state}
+							${address.zip}</option>
+					</c:forEach>
+				</select>
+			</div>
+			</c:when>
+			<c:otherwise>
+				<input type="hidden" name="addressType" value="0">
+				<input type="hidden" name="addressId" value="0">
+			</c:otherwise>
+		</c:choose>
+		<div class="open-section" id="section-1">
+			<p>
+				street: <input type="text" name="street" value=" ">
+			</p>
+			<p>
+				street2: <input type="text" name="street2" value=" ">
+			</p>
+			<p>
+				city: <input type="text" name="city" value=" "> state: <input
+					type="text" name="state" value=" "> zip code: <input type="text"
+					name="zip" value=" ">
+			</p>
+		</div>
 		<p>
 			<input type="submit" value="Checkout" />
 		</p>
@@ -126,19 +162,44 @@ body {
 	<script
 		src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function() {
-			$('.timepicker').timepicker({
-				timeFormat : 'h:mm p',
-				interval : 15,
-				minTime : '8',
-				maxTime : '6:00pm',
-				defaultTime : '11',
-				startTime : '10:00',
-				dynamic : false,
-				dropdown : true,
-				scrollbar : true
-			});
-		});
+		$(document).ready(
+				function() {
+					$('.timepicker').timepicker({
+
+						timeFormat : 'h:mm p',
+						interval : 15,
+						minTime : '8',
+						maxTime : '6:00pm',
+						defaultTime : '11',
+						startTime : '10:00',
+						dynamic : false,
+						dropdown : true,
+						scrollbar : true
+					});
+					var elem = document.getElementById("radio-section");
+					if(elem !== null){
+						elem.addEventListener(
+								"change",
+								function(eve) {
+									var elementId = eve.target
+											.getAttribute("data-sec");
+									if (elementId == "section-1") {
+										$("#section-1").removeClass(
+												"closed-section").addClass(
+												"open-section");
+										$("#section-2").removeClass("open-section")
+												.addClass("closed-section");
+									} else {
+										$("#section-2").removeClass(
+												"closed-section").addClass(
+												"open-section");
+										$("#section-1").removeClass("open-section")
+												.addClass("closed-section");
+									}
+								});
+					}
+					
+				});
 	</script>
 </body>
 </html>

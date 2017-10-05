@@ -41,6 +41,12 @@ public class LoginController {
 		}
 		return getCorrectJSP(model, user);
 	}
+	
+	@RequestMapping("loggOut.do")
+	public String loggOut(HttpSession session) {
+		session.invalidate();
+		return "redirect:index.do";
+	}
 
 	@RequestMapping("newUser.do")
 	public String goToCreateUserPage() {

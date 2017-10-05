@@ -166,6 +166,11 @@ public class CustomerController {
 
 	@RequestMapping("checkout.do")
 	public String showCheckout(Model model, HttpSession session) {
+		Customer customer = (Customer) session.getAttribute("customer");
+		List<Address> addressList = customerDAO.getPreviousAddress(customer);
+		if(addressList.size() > 0) {
+			model.addAttribute("addressList", addressList);
+		}
 		this.addCartToModel(model, session);
 		return "views/checkout.jsp";
 	}
@@ -185,15 +190,16 @@ public class CustomerController {
 		model.addAttribute("cart", cart);
 	}
 
-	@RequestMapping(path="createOrder.do", method = RequestMethod.POST)
-	public String createOrder(@RequestParam("date") String date,
-							@RequestParam("time") String time,
-							@RequestParam("cartId") int id,
-							@RequestParam("street") String street,
-							@RequestParam("street2") String street2,
-							@RequestParam("city") String city,
-							@RequestParam("state") String state,
-							@RequestParam("zip") int zip,
+	@RequestMapping(path="createOrder.do", 
+			method = RequestMethod.POST)
+	public String createOrder(@RequestParam(value ="date", required=false) String date,
+							@RequestParam(value ="time", required=false) String time,
+							@RequestParam(value ="cartId", required=false) int id,
+							@RequestParam(value ="street", required=false) String street,
+							@RequestParam(value ="street2", required=false) String street2,
+							@RequestParam(value ="city", required=false) String city,
+							@RequestParam(value ="state", required=false) String state,
+							@RequestParam(value ="zip", required=false) Integer zip,
 							@RequestParam("addressId") int addId,
 							@RequestParam("addressType") int addType	
 							){
