@@ -89,8 +89,8 @@ body {
 									<input type="submit" value="update">
 								</form>
 							</td>
-							<td>$${item.item.price}</td>
-							<td>$${item.item.price * item.count}</td>
+							<td>${item.item.price}</td>
+							<td>${item.item.price * item.count}</td>
 							<td>
 								<form action="removeItem.do" method="POST">
 									<input type="hidden" name="itemId" value="${item.id}">
@@ -101,10 +101,10 @@ body {
 					</c:forEach>
 				</tbody>
 			</table>
-			<p>Sub Total: $${subTotal}</p>
-			<p>Tax: $${tax}</p>
-			<p>Fee: $${fee}</p>
-			<p>Total: $${total}</p>
+			<p>Sub Total: ${subTotal}</p>
+			<p>Tax: ${tax}</p>
+			<p>Fee: ${fee}</p>
+			<p>Total:${total}</p>
 		</c:otherwise>
 	</c:choose>
 
