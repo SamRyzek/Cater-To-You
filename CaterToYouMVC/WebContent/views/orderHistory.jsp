@@ -63,6 +63,8 @@ body {
 		<li style="float: right"><form action="customer.do" method="GET">
 				<a href="customer.do">Return Home</a>
 			</form></li>
+			<li style="float: right"><a href="loggOut.do">Log Out</a></li>
+			
 	</ul>
 	<br>
 	<ul>
@@ -75,9 +77,13 @@ body {
 	<br>
 
 
+<!-- scripts below -->
+
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
+		crossorigin="anonymous">
+	</script>
+	
 	<script>
 		window.jQuery
 				|| document.write('<script src="js/jquery.min.js"><\/script>')
@@ -86,5 +92,8 @@ body {
 	<script src="js/holder.js"></script>
 
 	<script src="js/bootstrap.min.js"></script>
+
+
+
 </body>
 </html>

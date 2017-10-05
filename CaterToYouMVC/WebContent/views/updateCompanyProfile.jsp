@@ -61,6 +61,7 @@ body {
 					<a href="companyUpdate.do">Return Home</a>
 				</form></li>
 		</ul>
+		<li style="float: right"><a href="loggOut.do">Log Out</a></li>
 	</div>
 	<div>
 	<form action="editCompany.do" method="POST">
