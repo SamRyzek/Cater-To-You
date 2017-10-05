@@ -95,9 +95,9 @@ public class CompanyController {
 		}
 		if (imageURL == " ") {
 			imageURL = comp.getImage().getImageUrl();
-		} 
+		}
 
-		
+
 		addTemp.setId(addId);
 		addTemp = customerDAO.updateAddress(addTemp);
 		compTemp.setAddress(addTemp);
@@ -106,8 +106,8 @@ public class CompanyController {
 		compTemp.setImage(comp.getImage());
 		compTemp.getImage().setImageUrl(imageURL);}
 		compTemp = companyDAO.updateCompanyInfo(compTemp);
-		
-		
+
+
 		return "redirect:index.do";
 	}
 
@@ -144,7 +144,7 @@ public class CompanyController {
 		}
 		userTemp.setId(id);
 		userTemp = companyDAO.editUser(userTemp);
-		
+
 		return "redirect:index.do";
 	}
 
@@ -191,15 +191,15 @@ public class CompanyController {
 		itemTemp.setMenu(item.getMenu());
 		companyDAO.makeMenuItemInactive(item);
 		itemTemp = companyDAO.addItem(itemTemp);
-		
+
 		return "redirect:index.do";
 	}
 
-	@RequestMapping(path = "InactivateItem.do", method = RequestMethod.GET)
+	@RequestMapping(path = "InactivateItem.do", method = RequestMethod.POST)
 	public String inactivate(@RequestParam("oldItemId") Integer oldId, Model model, HttpSession session) {
 		Item item = companyDAO.findItemById(oldId);
 		companyDAO.makeMenuItemInactive(item);
-	
+
 		return "redirect:index.do";
 	}
 
@@ -209,7 +209,7 @@ public class CompanyController {
 		if (user.getEmployee().getEmployeeID() != oldId) {
 			Employee employee = companyDAO.findEmployeeById(oldId);
 			companyDAO.makeEmployeeInactive(employee);
-		} 
+		}
 
 		return "redirect:index.do";
 	}
@@ -280,7 +280,7 @@ public class CompanyController {
 		empTemp.setUser(userTemp);
 		empTemp.setCompany(comp);
 		empTemp = companyDAO.createEmployee(empTemp);
-	
+
 		return "redirect:index.do";
 	}
 

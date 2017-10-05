@@ -213,9 +213,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 	}
 	
-	public User persistUserNamePassword(User user) {
-		User userTracked = em.find(User.class, user.getId());
-		userTracked.setEmail(user.getEmail());
+	@Override
+	public User persistUserNamePassword(int id, String userName, String password) {
+		User userTracked = em.find(User.class, id);
+		userTracked.setUsername(userName);
+		userTracked.setPassword(password);
 		return userTracked;
 		
 	}
@@ -301,4 +303,5 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public Customer getCustomerById(int id) {
 		return em.find(Customer.class, id);
 	}
+
 }
