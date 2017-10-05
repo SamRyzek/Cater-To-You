@@ -70,6 +70,11 @@ body {
 		URL: <input type="text" name="url" value="${image.imageUrl}" /><br />
 		<input type="submit" value="Edit Company Profile" />
 	</form>
+	<form action="CreateItem.do" method="GET">
+	<input
+			type="hidden" name="companyId" value="${company.id}" />
+		<input type="submit" value="Add Item to Menu" />
+	</form>
 	<c:if test="${not empty menu}">
 	<form action="UpdateMenuItem.do" method="POST">
 		Update Menu Item: <select name="itemId">
@@ -95,7 +100,7 @@ body {
 		</select> <input type="submit" value="Update Employee" />
 	</form>
 	</c:if>
-	<c:if test="${not empty inactiveId}">
+	<c:if test="${not empty inactiveStaff}">
 	<form action="ActivateEmployee.do" method="POST">
 	Inactive Employees: <select name="inactiveId">
 	
