@@ -117,6 +117,13 @@ body {
 	<form action="index.do" method="GET">
 		<input type="submit" value="Return Home" />
 	</form>
+	
+	
+	<form action="InactivateCompany.do" method="POST">
+			<input type="hidden" name="oldId"
+				value="${company.id}"/><input type="submit"
+				value="Make Compnay Inactive" />
+</form>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

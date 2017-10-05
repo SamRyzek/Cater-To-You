@@ -10,7 +10,7 @@
 <meta name="author" content="">
 <link rel="icon" href="../../../../favicon.ico">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Update ${company.name}</title>
 </head>
 <style>
 ul {
