@@ -93,6 +93,13 @@ body {
 				value="Update">
 		</form>
 	</div>
+		<form action="editCustomerImage.do" method="POST">
+			<input type="hidden" name="customerId" value="${user.customer.id}">
+			<label class ="stuff">Image URL:</label> <input type="text" name="imageUrl" value="${user.customer.image.imageUrl}" /><br> <!-- delete this if issues -->
+			<input type="submit" value="Update"/>
+		</form>
+	<div>
+	</div>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

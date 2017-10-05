@@ -18,6 +18,7 @@ import entity.Address;
 import entity.Cart;
 import entity.Company;
 import entity.Customer;
+import entity.Image;
 import entity.Item;
 import entity.Order;
 import entity.User;
@@ -100,11 +101,42 @@ public class CustomerController {
 		User user = customerDAO.persistUserNamePassword(id, userName, password);
 		return "redirect:UpdateCustomer.do?customerId=" + user.getCustomer().getId();
 	}
+	
+	@RequestMapping(path = "editCustomerImage.do", method = RequestMethod.POST)
+	public String customerImageEdit(Model model, HttpSession session, @RequestParam("customerId") int id
+			, @RequestParam("imageUrl") String imageUrl) { //input is a class that we made to handle a form
+		Customer customer = customerDAO.getCustomerById(id);
+		User user = (User) session.getAttribute("user");
+		
+		if(customer.getImage()==null) {
+			Image i = new Image();
+			i.setImageUrl(imageUrl);
+			customer.setImage(i);
+			
+			customerDAO.createImageForCustomer(customer);
+//			customerDAO.updateImage(customer, customer.getImage());
+		}
+		else {
+			Image i = new Image();
+			i.setImageUrl(imageUrl);
+			
+//			customer.getImage().setImageUrl(imageUrl);
+			customer.setImage(i);
+			customerDAO.updateImage(customer);
+		}
+		session.setAttribute("user", user);
+		session.setAttribute("customer", customer);
+		model.addAttribute("customer", customer);
+		model.addAttribute("user", user);
+		return "redirect:customer.do";
+	}
+	
 
 	@RequestMapping(path = "editCustomer.do", method = RequestMethod.POST)
-	public String customerEdit(Model model, HttpSession session, CustomerInput input) {
+	public String customerEdit(Model model, HttpSession session, CustomerInput input) { //input is a class that we made to handle a form
 		Customer customer = customerDAO.getCustomerById(input.getId());
 		User user = (User) session.getAttribute("user");
+		String imageUrl = input.getImageUrl();
 
 		if(customer.getAddress()==null) {
 			Address a = new Address();
@@ -121,7 +153,6 @@ public class CustomerController {
 			customerDAO.updateAddress(customer.getAddress());
 		}
 		else {
-
 		customer.getAddress().setCity(input.getCity());
 		customer.getAddress().setState(input.getState());
 		customer.getAddress().setStreet(input.getStreet());
@@ -130,6 +161,7 @@ public class CustomerController {
 		customer.setAddress(customerDAO.updateAddress(customer.getAddress()));
 		}
 
+		
 		user.setEmail(input.getEmail());
 		user = customerDAO.updateEmail(user);
 
