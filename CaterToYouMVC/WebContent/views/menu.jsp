@@ -81,7 +81,18 @@ body {
 			</form>
 		</c:forEach>
 	</div>
-
+	<div>
+		<ul>
+			<c:forEach items="${itemList}" var="item">
+				<li>${item.count} ${item.item.name} ${item.item.price} ${item.item.price * item.count}</li>
+			</c:forEach>
+		</ul>
+		<p>Sub Total: ${subTotal}</p>
+		<p>Tax: ${tax}</p>
+		<p>Fee: ${fee}</p>
+		<p>Total:${total}</p>
+		
+	</div>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>
