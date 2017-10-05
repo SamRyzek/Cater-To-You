@@ -61,6 +61,7 @@ body {
 			<li><form action="Shop.do" method="GET">
 					<a href="Shop.do">Shop</a>
 				</form></li>
+				
 
 			<li><form action="UpdateCustomer.do?customerId=${user.customer.id}" method="GET">
 					<a href="UpdateCustomer.do?customerId=${user.customer.id}">Update</a>
@@ -73,9 +74,7 @@ body {
 			<li><form action="showCart.do" method="GET">
 					<a href="showCart.do">Go To Cart</a>
 				</form></li>
-			<!-- <li style="float: right"><form action="customer.do" method="GET">
-					<a href="index.do">Return Home</a>
-			</form></li> -->
+			<li style="float: right"><a href="loggOut.do">Log Out</a></li>
 		</ul>
 	</div>
 	<div>

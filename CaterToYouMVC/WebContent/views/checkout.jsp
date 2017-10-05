@@ -3,6 +3,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,8 +31,15 @@ ul.One {
 	background-color: #333;
 }
 
-ul.Two{
+.open-section {
+	display: block;
+}
 
+.closed-section {
+	display: none;
+}
+
+ul.Two {
 
 }
 
@@ -56,7 +64,7 @@ html {
 	background-repeat: no-repeat;
 	background-origin: inheret;
 	background-size: 100%;
-	background-color: blue;
+	background-color: darkblue;
 }
 
 body {
@@ -66,7 +74,7 @@ body {
 }
 .stuff{
 
-	min-width: 200px
+	min-width: 150px
 
 }
 
@@ -83,29 +91,35 @@ body {
 	<h4>Your Cart</h4>
 	<ul class="Two">
 		<c:forEach items="${itemList}" var="item">
-			<li>${item.count}${item.item.name}$${item.item.price * item.count}</li>
+			<li>${item.count} ${item.item.name} $${item.item.price * item.count}</li><br>
 		</c:forEach>
 	</ul>
 	<br></br>
 	<form action="createOrder.do" method="POST">
+
+
 		<input type="hidden" name="cartId" value="${cart.id}" />
-		<p>
-			Delivery Date: <input type="text" name="date" id="datepicker">
-		</p>
-		<p>
-			Delivery Time: <input type="text" name="time" class="timepicker">
-		</p>
-		<p>
-			street: <input type="text" name="street">
-		</p>
-		<p>
-			street2: <input type="text" name="street2">
-		</p>
-		<p>
-			city: <input type="text" name="city"> state: <input
-				type="text" name="state"> zip code: <input type="text"
-				name="zip">
-		</p>
+		<label class = "stuff">
+			Delivery Date: </label> <input type="text" name="date" id="datepicker"><br>
+
+		<label class = "stuff">
+			Delivery Time: </label><input type="text" name="time" class="timepicker"><br>
+
+		<label class = "stuff">
+			street: </label> <input type="text" name="street"><br>
+
+		<label class = "stuff">
+			street2: </label><input type="text" name="street2"><br>
+
+		<label class = "stuff">
+			city:</label><input type="text" name="city"> <br>
+
+		<label class ="stuff">
+			state:</label><input type="text" name="state"> <br>
+
+		<label class ="stuff">
+			zip code:</label> <input type="text" name="zip"><br>
+
 		<p>
 			<input type="submit" value="Checkout" />
 		</p>
@@ -132,19 +146,44 @@ body {
 	<script
 		src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function() {
-			$('.timepicker').timepicker({
-				timeFormat : 'h:mm p',
-				interval : 15,
-				minTime : '8',
-				maxTime : '6:00pm',
-				defaultTime : '11',
-				startTime : '10:00',
-				dynamic : false,
-				dropdown : true,
-				scrollbar : true
-			});
-		});
+		$(document).ready(
+				function() {
+					$('.timepicker').timepicker({
+
+						timeFormat : 'h:mm p',
+						interval : 15,
+						minTime : '8',
+						maxTime : '6:00pm',
+						defaultTime : '11',
+						startTime : '10:00',
+						dynamic : false,
+						dropdown : true,
+						scrollbar : true
+					});
+					var elem = document.getElementById("radio-section");
+					if(elem !== null){
+						elem.addEventListener(
+								"change",
+								function(eve) {
+									var elementId = eve.target
+											.getAttribute("data-sec");
+									if (elementId == "section-1") {
+										$("#section-1").removeClass(
+												"closed-section").addClass(
+												"open-section");
+										$("#section-2").removeClass("open-section")
+												.addClass("closed-section");
+									} else {
+										$("#section-2").removeClass(
+												"closed-section").addClass(
+												"open-section");
+										$("#section-1").removeClass("open-section")
+												.addClass("closed-section");
+									}
+								});
+					}
+
+				});
 	</script>
 </body>
 </html>

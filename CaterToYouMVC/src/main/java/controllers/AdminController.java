@@ -37,6 +37,8 @@ public class AdminController {
 
 		if (user.getUserRoles().getId() == 1) {
 			model.addAttribute("address", user.getCustomer().getAddress());
+			model.addAttribute("user", user);
+			model.addAttribute("customer", user.getCustomer());
 			return "views/customerUpdate.jsp";
 		} else if (user.getUserRoles().getId() == 2) {
 			model.addAttribute("user", user);
@@ -80,32 +82,36 @@ public class AdminController {
 		Company compTemp = new Company();
 		Address addTemp = new Address();
 	
-		if (name == null) {
+		if (name.isEmpty()) {
+			model.addAttribute("message", "Company must have a name.");
 			return "views/createCompany.jsp";
 		} else {
 			compTemp.setName(name);
 		}
 		if (street == null) {
+			model.addAttribute("message", "Company must have a street.");
 			return "views/createCompany.jsp";
 		} else {
 			addTemp.setStreet(street);
 		}
 		if (street2 == null) {
-			return "views/createCompany.jsp";
 		} else {
 			addTemp.setStreet2(street2);
 		}
-		if (city == null) {
+		if (city.isEmpty()) {
+			model.addAttribute("message", "Company must have a city.");
 			return "views/createCompany.jsp";
 		} else {
 			addTemp.setCity(city);
 		}
-		if (state == null) {
+		if (state.isEmpty()) {
+			model.addAttribute("message", "Company must have a state.");
 			return "views/createCompany.jsp";
 		} else {
 			addTemp.setState(state);
 		}
 		if (zip == ' ') {
+			model.addAttribute("message", "Company must have a zip.");
 			return "views/createCompany.jsp";
 		} else {
 			addTemp.setZip(zip);
@@ -118,6 +124,16 @@ public class AdminController {
 		compTemp = adminDAO.createCompany(compTemp);
 		model.addAttribute("company", compTemp);
 		return "views/createEmployee.jsp";
+	}
+	
+	@RequestMapping(path = "InactivateCompany.do", method = RequestMethod.POST)
+	public String inactivateComp(@RequestParam("oldId") Integer oldId, Model model, HttpSession session) {
+		User user = (User) session.getAttribute("user");
+			Company company = companyDAO.findCompanyById(oldId);
+			adminDAO.makeCompanyInactive(company);
+		}
+
+		return "redirect:index.do";
 	}
 
 }

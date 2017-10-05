@@ -11,7 +11,7 @@
 <link rel="icon" href="../../../../favicon.ico">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Update Customer Profile</title>
 </head>
 <style>
 ul {
@@ -43,7 +43,7 @@ html {
 	background-repeat: no-repeat;
 	background-origin: inheret;
 	background-size: 100%;
-	background-color: blue;
+	background-color: darkblue;
 }
 
 body {

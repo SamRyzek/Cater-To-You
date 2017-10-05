@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -44,7 +45,7 @@ html {
 	background-repeat: no-repeat;
 	background-origin: inheret;
 	background-size: 100%;
-	background-color: blue;
+	background-color: darkblue;
 }
 
 body {
@@ -55,12 +56,9 @@ body {
 </style>
 <body class="active">
 	<ul>
-		<li><form action="checkout.do">
-				<a href="checkout.do">Check Out</a>
-			</form></li>
-		<li style="float: right"><form action="customer.do" method="GET">
-				<a href="customer.do">Return Home</a>
-			</form></li>
+		<li><a href="checkout.do">Check Out</a></li>
+		<li style="float: right"><a href="customer.do">Return Home</a></li>
+		<li style="float: right"><a href="loggOut.do">Log Out</a></li>
 
 	</ul>
 	<c:choose>
