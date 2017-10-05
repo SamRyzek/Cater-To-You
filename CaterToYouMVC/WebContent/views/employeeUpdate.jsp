@@ -13,17 +13,61 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Update "${user.firstName}" "${user.lastName}"</title>
 </head>
+<style>
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+li {
+	float: left;
+	border-right: 1px solid #bbb;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover {
+	background-color: #111;
+}
+
+html {
+	background-image: url("css/food2.jpg");
+	background-repeat: no-repeat;
+	background-origin: inheret;
+	background-size: 100%;
+	background-color: blue;
+}
+
+body {
+	background-color: darkblue;
+	border: 2px solid white;
+	color: white;
+	
+}
+.stuff{
+	min-width: 100px;
+}
+</style>
 <body>
 <form action="editUser.do" method="POST">
-		First Name of Employee to Edit:
+		<label class ="stuff">First Name of Employee to Edit:</label>
 		<input type="text" name="firstName" value="${user.firstName}" readonly/><br/>
-		Last Name:
+		<label class ="stuff">Last Name:</label>
 		<input type="text" name="lastName" value="${user.lastName}"/><br/>
-		Username:
+		<label class ="stuff">Username:</label>
 		<input type="text" name="username" value="${user.username}"/><br/>
-		Password:
+		<label class ="stuff">Password:</label>
 		<input type="text" name="password" value="${user.password}"/><br/>
-		Email:
+		<label class ="stuff">Email:</label>
 		<input type="text" name="email" value="${user.email}"/><br/>
 		<input type="hidden" name="id" value="${user.id}"/><br/>
 		<input type="submit" value="Update Employee Information" />
@@ -34,7 +78,7 @@
 				value="${employee.employeeID}"/><input type="submit"
 				value="Make Employee Inactive" />
 </form>
-<form action="company.do" method="GET">
+<form action="index.do" method="GET">
 		<input type="submit" value="Return Home" />
 	</form>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

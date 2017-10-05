@@ -51,6 +51,12 @@ body {
 	border: 2px solid white;
 	color: white;
 }
+.stuff{
+
+	min-width: 200px
+
+}
+
 </style>
 <body class="active">
 
@@ -61,22 +67,24 @@ body {
 	</ul>
 
 	<form action="editCustomer.do" method="POST">
-		<p>Name of Customer: <input type="text" name="oldname" value="${user.firstName} ${user.lastName}" readonly /></p> 
+		<label class ="stuff">Name of Customer:</label> <input type="text" name="oldname" value="${user.firstName} ${user.lastName}" readonly /><br> 
 		<input type="hidden" name="id" value="${user.customer.id}">
-		<p>Email: <input type="text" name="email" value="${user.email}" /></p>
-		<p>Billing Address: Street: <input type="text" name="street" value="${address.street}" /></p> 
-		<p>Street 2: <input type="text" name="street2" value="${address.street2}" /></p> 
-		<p>City: <input type="text" name="city" value="${address.city}" /></p> 
-		<p>State: <input type="text" name="state" value="${address.state}" /></p> 
-		<p>Zip: <input type="text" name="zip" value="${address.zip}" /></p> 
-		<input type="submit" value="Update" />
+		<label class ="stuff">Email:</label> <input type="text" name="email" value="${user.email}" /><br>
+		Billing Address: <br> <label class="stuff">Street:</label> <input type="text" name="street" value="${address.street}" /><br> 
+		<label  class ="stuff">Street 2:</label> <input type="text" name="street2" value="${address.street2}" /><br>
+		<label class ="stuff">City:</label> <input type="text" name="city" value="${address.city}" /><br> 
+		<label class ="stuff">State:</label> <input type="text" name="state" value="${address.state}" /> <br>
+		<label class ="stuff">Zip:</label> <input type="text" name="zip" value="${address.zip}" /> <br>
+		<input type="submit" value="Update" /><br>
 	</form>
 	
 	<div>
 		<form action="udateUserPass.do" method="POST">
+		<label class ="stuff">Username: </label>
 			<input type="hidden" name="id" value="${user.id}">
-			<input type="text" name="newUserName" value="${user.username }">
-			<input type="text" name="newPassword" value="${user.password}">
+			<input type="text" name="newUserName" value="${user.username }"><br>
+		<label class ="stuff">Password</label>
+			<input type="text" name="newPassword" value="${user.password}"><br>
 			<input type="submit" value="Update">
 		</form>
 	</div>

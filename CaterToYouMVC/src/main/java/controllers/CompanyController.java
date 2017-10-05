@@ -47,6 +47,20 @@ public class CompanyController {
 		return "views/employeeUpdate.jsp";
 	}
 
+	@RequestMapping(path = "CreateEmployee.do", method = RequestMethod.GET)
+	public String createEmployee(Model model, @RequestParam("companyId") Integer id) {
+		Company compTemp = companyDAO.findCompanyById(id);
+		model.addAttribute("company", compTemp);
+		return "views/createEmployee.jsp";
+	}
+
+	@RequestMapping(path = "CreateItem.do", method = RequestMethod.GET)
+	public String createItem(Model model, @RequestParam("companyId") Integer id) {
+		Company compTemp = companyDAO.findCompanyById(id);
+		model.addAttribute("company", compTemp);
+		return "views/createItem.jsp";
+	}
+
 	@RequestMapping(path = "editCompany.do", method = RequestMethod.POST)
 	public String userEdit(@RequestParam("id") int id, @RequestParam("addId") int addId,
 			@RequestParam("name") String name, @RequestParam("street") String street,
@@ -91,15 +105,15 @@ public class CompanyController {
 			imageURL = comp.getImage().getImageUrl();
 		}
 
-
 		addTemp.setId(addId);
 		addTemp = customerDAO.updateAddress(addTemp);
 		compTemp.setAddress(addTemp);
 		compTemp.setId(id);
-		compTemp.setImage(comp.getImage());
-		compTemp.getImage().setImageUrl(imageURL);
+		if (imageURL != "") {
+			compTemp.setImage(comp.getImage());
+			compTemp.getImage().setImageUrl(imageURL);
+		}
 		compTemp = companyDAO.updateCompanyInfo(compTemp);
-
 
 		return "redirect:index.do";
 	}
@@ -188,7 +202,7 @@ public class CompanyController {
 		return "redirect:index.do";
 	}
 
-	@RequestMapping(path = "InactivateItem.do", method = RequestMethod.GET)
+	@RequestMapping(path = "InactivateItem.do", method = RequestMethod.POST)
 	public String inactivate(@RequestParam("oldItemId") Integer oldId, Model model, HttpSession session) {
 		Item item = companyDAO.findItemById(oldId);
 		companyDAO.makeMenuItemInactive(item);
@@ -211,8 +225,9 @@ public class CompanyController {
 	public String activateEmp(@RequestParam("inactiveId") Integer id, Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		if (user.getEmployee().getEmployeeID() != id) {
-		Employee employee = companyDAO.findEmployeeById(id);
-		companyDAO.makeEmployeeActive(employee);}
+			Employee employee = companyDAO.findEmployeeById(id);
+			companyDAO.makeEmployeeActive(employee);
+		}
 		return "redirect:index.do";
 	}
 
@@ -230,15 +245,15 @@ public class CompanyController {
 			model.addAttribute("menu", menuItems);
 			model.addAttribute("employee", user.getEmployee());
 			model.addAttribute("image", company.getImage());
-
 		}
 		return "views/companyUpdate.jsp";
 	}
+
 	@RequestMapping(path = "MakeEmployee.do", method = RequestMethod.POST)
 	public String makeEmployee(@RequestParam("fName") String fName, @RequestParam("lName") String lName,
 			@RequestParam("email") String email, @RequestParam("username") String username,
-			@RequestParam("password") String password, @RequestParam("companyId") int companyId,
-			 Model model, HttpSession session) {
+			@RequestParam("password") String password, @RequestParam("companyId") int companyId, Model model,
+			HttpSession session) {
 		Company comp = companyDAO.findCompanyById(companyId);
 		User userTemp = new User();
 		Employee empTemp = new Employee();
@@ -273,6 +288,52 @@ public class CompanyController {
 		empTemp.setUser(userTemp);
 		empTemp.setCompany(comp);
 		empTemp = companyDAO.createEmployee(empTemp);
+
+		return "redirect:index.do";
+	}
+
+	@RequestMapping(path = "MakeItem.do", method = RequestMethod.POST)
+	public String MakeItem(@RequestParam("name") String name, @RequestParam("calories") Integer calories,
+			@RequestParam("price") Double price, @RequestParam("description") String description,
+			@RequestParam("availability") Integer availability, @RequestParam("imageURL") String imageURL, @RequestParam("companyID") int companyID,Model model,
+			HttpSession session) {
+		Company comp = companyDAO.findCompanyById(companyID);
+		Item itemTemp = new Item();
+		if (name == null || name.equals("")) {
+			model.addAttribute("message", "Item must have a name.");
+			return "views/createItem.jsp";
+		} else {
+			itemTemp.setName(name);
+		}
+		if (calories == null) {
+		} else {
+			itemTemp.setCalories(calories);
+		}
+		if (price == null) {
+			model.addAttribute("message", "Item must have a price.");
+			return "views/createItem.jsp";
+		} else {
+			itemTemp.setPrice(price);
+		}
+		if (description == null) {
+		} else {
+			itemTemp.setDescription(description);
+		}
+		if (availability == null || availability<1) {
+			model.addAttribute("message", "Item must have an availability greater than 0.");
+			return "views/createItem.jsp";
+		} else {
+			itemTemp.setAvailability(availability);
+		}
+		if (imageURL == null) {
+		} else {
+			Image image = new Image();
+			image.setImageUrl(imageURL);
+			image = companyDAO.addImage(image);
+			itemTemp.setImage(image);
+		}
+		itemTemp.setMenu(comp.getMenu());
+		itemTemp = companyDAO.addItem(itemTemp);
 
 		return "redirect:index.do";
 	}
