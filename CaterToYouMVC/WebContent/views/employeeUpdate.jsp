@@ -34,7 +34,7 @@
 				value="${employee.employeeID}"/><input type="submit"
 				value="Make Employee Inactive" />
 </form>
-<form action="company.do" method="GET">
+<form action="index.do" method="GET">
 		<input type="submit" value="Return Home" />
 	</form>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
