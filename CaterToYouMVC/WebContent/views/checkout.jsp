@@ -101,22 +101,51 @@ body {
 		<p>Total: <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${tax}"/>$</p>
 	<br></br>
 	<form action="createOrder.do" method="POST">
+		<p>Delivery Date: <input type="text" name="date" id="datepicker"></p>
+ 		<p>Delivery Time: <input type="text" name="time" class="timepicker"></p>
+ 		<c:choose>
+ 			<c:when test="${not empty addressList}">
+ 				<div id="radio-section">
+ 				<p>
+ 					New Address<input type="radio" name="addressType" checked data-sec="section-1" value="0">
+ 					Previous Address<input type="radio" name="addressType" data-sec="section-2" value="1">
+ 				</p>
+ 			</div>
+	 			<div class="closed-section" id="section-2">
+	 				<select name="addressId">
+	 					<c:forEach items="${addressList}" var="address">
+	 						<option value="${address.id}">${address.street}
+	 							${address.street2} ${address.city}, ${address.state}
+	 							${address.zip}
+	 						</option>
+	 					</c:forEach>
+	 				</select>
+	 			</div>
+ 			</c:when>
+ 			<c:otherwise>
+ 				<input type="hidden" name="addressType" value="0">
+ 				<input type="hidden" name="addressId" value="0">
+ 			</c:otherwise>
+ 		</c:choose>
 
 
-		<input type="hidden" name="cartId" value="${cart.id}" /> <label
-			class="stuff"> Delivery Date: </label> <input type="text" name="date"
-			id="datepicker"><br> <label class="stuff">
-			Delivery Time: </label><input type="text" name="time" class="timepicker"><br>
+ 		<div class="open-section" id="section-1">
+		<input type="hidden" name="cartId" value="${cart.id}" />
+		<label class = "stuff">
+			street: </label> <input type="text" name="street"><br>
 
-		<label class="stuff"> street: </label> <input type="text"
-			name="street"><br> <label class="stuff">
-			street2: </label><input type="text" name="street2"><br> <label
-			class="stuff"> city:</label><input type="text" name="city"> <br>
+		<label class = "stuff">
+			street2: </label><input type="text" name="street2"><br>
 
-		<label class="stuff"> state:</label><input type="text" name="state">
-		<br> <label class="stuff"> zip code:</label> <input type="text"
-			name="zip"><br>
+		<label class = "stuff">
+			city:</label><input type="text" name="city"> <br>
 
+		<label class ="stuff">
+			state:</label><input type="text" name="state"> <br>
+
+		<label class ="stuff">
+			zip code:</label> <input type="text" name="zip"><br>
+		</div>
 		<p>
 			<input type="submit" value="Checkout" />
 		</p>
