@@ -10,49 +10,43 @@
 <meta name="author" content="">
 <link rel="icon" href="../../../../favicon.ico">
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="css/styles.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Cater To You</title>
 </head>
 <style>
-
 html {
-
 	background-image: url("css/food2.jpg");
 	background-repeat: no-repeat;
 	background-origin: inheret;
 	background-size: 100%;
 	background-color: darkblue;
-	border: 2px solid white;
-
 }
 
-body {
-	
+/* body {
 	background-color: darkblue;
 	border: 2px solid white;
-	color: white;
-} 
- 
+	color: black;
+} */
 </style>
-<body>
-	<div class="modal-dialog">
-		<div class="loginmodal-container">
-			<h1>Cater To You</h1>
-			<br>
-			<form action="checkLogin.do" method="POST">
-				<p>${loginErr}</p>
-				<p>Username:</p>
-				<input type="text" name="username"></input>
-				<p>Password:</p>
-				<input type="text" name="password"></input> <br> <input type="submit"
-					name="submit" value="Login"></input>
-			</form>
-			<a href="newUser.do">Create new Customer Account</a>
 
-		</div>
+<div class="modal-dialog">
+	<div class="loginmodal-container">
+		<h1>Cater To You</h1>
+		<br>
+		<form action="checkLogin.do" method="POST">
+			<p>${loginErr}</p>
+			<p>Username:</p>
+			<input type="text" name="username"></input>
+			<p>Password:</p>
+			<input type="text" name="password"></input> <br> <input
+				type="submit" name="submit" value="Login"></input>
+		</form>
+		<a href="newUser.do">Create new Customer Account</a>
+
 	</div>
-</body>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 	crossorigin="anonymous"></script>

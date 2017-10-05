@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -17,6 +16,7 @@
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
+<link href="css/style.css" rel="stylesheet">
 <link rel="stylesheet"
 	href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -72,12 +72,10 @@ body {
 	border: 2px solid white;
 	color: white;
 }
-.stuff{
 
+.stuff {
 	min-width: 150px
-
 }
-
 </style>
 <body class="active">
 	<ul class="One">
@@ -87,12 +85,12 @@ body {
 		<li style="float: right"><form action="customer.do" method="GET">
 				<a href="customer.do">Return Home</a>
 			</form></li>
-			<li style="float: right"><a href="loggOut.do">Log Out</a></li>
+		<li style="float: right"><a href="loggOut.do">Log Out</a></li>
 	</ul>
 	<h4>Your Cart</h4>
 	<ul class="Two">
 		<c:forEach items="${itemList}" var="item">
-			<li>${item.count} ${item.item.name} 
+			<li>${item.count} ${item.item.name}
 			<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${item.item.price}"/>$<br>
 			<fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${item.item.price * item.count}"/>$</li><br>
 		</c:forEach>
@@ -109,7 +107,7 @@ body {
  			<c:when test="${not empty addressList}">
  				<div id="radio-section">
  				<p>
- 					New Address<input type="radio" name="addressType" checked data-sec="section-1" value="0"> 
+ 					New Address<input type="radio" name="addressType" checked data-sec="section-1" value="0">
  					Previous Address<input type="radio" name="addressType" data-sec="section-2" value="1">
  				</p>
  			</div>
@@ -129,8 +127,8 @@ body {
  				<input type="hidden" name="addressId" value="0">
  			</c:otherwise>
  		</c:choose>
- 		
- 	
+
+
  		<div class="open-section" id="section-1">
 		<input type="hidden" name="cartId" value="${cart.id}" />
 		<label class = "stuff">
@@ -189,9 +187,8 @@ body {
 						scrollbar : true
 					});
 					var elem = document.getElementById("radio-section");
-					if(elem !== null){
-						elem.addEventListener(
-								"change",
+					if (elem !== null) {
+						elem.addEventListener("change",
 								function(eve) {
 									var elementId = eve.target
 											.getAttribute("data-sec");
@@ -199,14 +196,16 @@ body {
 										$("#section-1").removeClass(
 												"closed-section").addClass(
 												"open-section");
-										$("#section-2").removeClass("open-section")
-												.addClass("closed-section");
+										$("#section-2").removeClass(
+												"open-section").addClass(
+												"closed-section");
 									} else {
 										$("#section-2").removeClass(
 												"closed-section").addClass(
 												"open-section");
-										$("#section-1").removeClass("open-section")
-												.addClass("closed-section");
+										$("#section-1").removeClass(
+												"open-section").addClass(
+												"closed-section");
 									}
 								});
 					}

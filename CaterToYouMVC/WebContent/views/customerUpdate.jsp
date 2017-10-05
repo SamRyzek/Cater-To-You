@@ -10,6 +10,7 @@
 <meta name="author" content="">
 <link rel="icon" href="../../../../favicon.ico">
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Update Customer Profile</title>
 </head>
@@ -51,12 +52,10 @@ body {
 	border: 2px solid white;
 	color: white;
 }
-.stuff{
 
+.stuff {
 	min-width: 200px
-
 }
-
 </style>
 <body class="active">
 
@@ -64,30 +63,42 @@ body {
 		<li style="float: right"><form action="customer.do" method="GET">
 				<a href="customer.do">Return Home</a>
 			</form></li>
-			<li style="float: right"><a href="loggOut.do">Log Out</a></li>
+		<li style="float: right"><a href="loggOut.do">Log Out</a></li>
 	</ul>
 
 	<form action="editCustomer.do" method="POST">
-		<label class ="stuff">Name of Customer:</label> <input type="text" name="oldname" value="${user.firstName} ${user.lastName}" readonly /><br> 
-		<input type="hidden" name="id" value="${user.customer.id}">
-		<label class ="stuff">Email:</label> <input type="text" name="email" value="${user.email}" /><br>
-		Billing Address: <br> <label class="stuff">Street:</label> <input type="text" name="street" value="${address.street}" /><br> 
-		<label  class ="stuff">Street 2:</label> <input type="text" name="street2" value="${address.street2}" /><br>
-		<label class ="stuff">City:</label> <input type="text" name="city" value="${address.city}" /><br> 
-		<label class ="stuff">State:</label> <input type="text" name="state" value="${address.state}" /> <br>
-		<label class ="stuff">Zip:</label> <input type="text" name="zip" value="${address.zip}" /> <br>
-		<input type="submit" value="Update" /><br>
+		<label class="stuff">Name of Customer:</label> <input type="text"
+			name="oldname" value="${user.firstName} ${user.lastName}" readonly /><br>
+		<input type="hidden" name="id" value="${user.customer.id}"> <label
+			class="stuff">Email:</label> <input type="text" name="email"
+			value="${user.email}" /><br> Billing Address: <br> <label
+			class="stuff">Street:</label> <input type="text" name="street"
+			value="${address.street}" /><br> <label class="stuff">Street
+			2:</label> <input type="text" name="street2" value="${address.street2}" /><br>
+		<label class="stuff">City:</label> <input type="text" name="city"
+			value="${address.city}" /><br> <label class="stuff">State:</label>
+		<input type="text" name="state" value="${address.state}" /> <br>
+		<label class="stuff">Zip:</label> <input type="text" name="zip"
+			value="${address.zip}" /> <br> <input type="submit"
+			value="Update" /><br>
 	</form>
-	
+
 	<div>
 		<form action="udateUserPass.do" method="POST">
-		<label class ="stuff">Username: </label>
-			<input type="hidden" name="id" value="${user.id}">
-			<input type="text" name="newUserName" value="${user.username }"><br>
-		<label class ="stuff">Password</label>
-			<input type="text" name="newPassword" value="${user.password}"><br>
-			<input type="submit" value="Update">
+			<label class="stuff">Username: </label> <input type="hidden"
+				name="id" value="${user.id}"> <input type="text"
+				name="newUserName" value="${user.username }"><br> <label
+				class="stuff">Password</label> <input type="text" name="newPassword"
+				value="${user.password}"><br> <input type="submit"
+				value="Update">
 		</form>
+	</div>
+		<form action="editCustomerImage.do" method="POST">
+			<input type="hidden" name="customerId" value="${user.customer.id}">
+			<label class ="stuff">Image URL:</label> <input type="text" name="imageUrl" value="${user.customer.image.imageUrl}" /><br> <!-- delete this if issues -->
+			<input type="submit" value="Update"/>
+		</form>
+	<div>
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

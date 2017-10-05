@@ -11,10 +11,11 @@
 <meta name="author" content="">
 <link rel="icon" href="../../../../favicon.ico">
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Create Company</title>
 </head>
-<style>
+<!-- <style>
 ul {
 	list-style-type: none;
 	margin: 0;
@@ -52,27 +53,22 @@ body {
 	background-color: darkblue;
 	border: 2px solid white;
 	color: white;
-}
+} -->
 
-.stuff {
-	min-width: 200px
-}
-</style>
+
+<!-- </style> -->
 <body>
 	<c:if test="${not empty message}">
 		<p>${message}</p>
 	</c:if>
-<form action="makeCompany.do" method="POST">
+	<form action="makeCompany.do" method="POST">
 
-	Name: <input
-			type="text" name="name" value="" /><br /> New
-		Street: <input type="text" name="street" value="" /><br />
-		Street2: <input type="text" name="street2"
-			value="" /><br /> City: <input type="text"
-			name="city" value="" /><br /> State: <input
-			type="text" name="state" value="" /><br /> Zip:
-		<input type="text" name="zip" value="" /><br /> Image
-		URL: <input type="text" name="url" value="" /><br />
+		Name: <input type="text" name="name" value="" /><br /> New Street: <input
+			type="text" name="street" value="" /><br /> Street2: <input
+			type="text" name="street2" value="" /><br /> City: <input
+			type="text" name="city" value="" /><br /> State: <input type="text"
+			name="state" value="" /><br /> Zip: <input type="text" name="zip"
+			value="" /><br /> Image URL: <input type="text" name="url" value="" /><br />
 		<input type="submit" value="Edit Company Profile" />
 	</form>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

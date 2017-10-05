@@ -7,6 +7,7 @@ import entity.Address;
 import entity.Cart;
 import entity.Company;
 import entity.Customer;
+import entity.Image;
 import entity.Item;
 import entity.Menu;
 import entity.Order;
@@ -34,6 +35,12 @@ public interface CustomerDAO {
 	public Customer usersCustomer(User user);
 	public Cart usersCart();
 
+	
+//******* Image methods
+	public Customer createImageForCustomer(Customer customer);
+	public Image updateImage(Customer customer);
+	
+	public User getUserById(int id);
 
 
 

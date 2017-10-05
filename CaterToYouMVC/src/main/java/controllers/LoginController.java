@@ -56,6 +56,8 @@ public class LoginController {
 	@RequestMapping("customer.do")
 	public String displayCustomer(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
+		user = customerDAO.getUserById(user.getId());
+		session.setAttribute("user", user);
 		model.addAttribute("user", user);
 		model.addAttribute("address", user.getCustomer().getAddress());
 		return "views/customer.jsp";

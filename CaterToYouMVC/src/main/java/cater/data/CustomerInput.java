@@ -9,8 +9,17 @@ public class CustomerInput {
 	private String city;
 	private String state;
 	private String zip;
+	private String imageUrl;
 
 	
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
 	public int getId() {
 		return id;
 	}
