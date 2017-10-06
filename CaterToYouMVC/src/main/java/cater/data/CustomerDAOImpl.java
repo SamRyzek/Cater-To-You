@@ -179,6 +179,13 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 		List<CartHasItem> chiList1 = cart.getCartHasItemList();
 		List<OrderHasItems> orderHasList = new ArrayList<>();
+		Order order = new Order();
+		order.setCustomer(cart.getCustomer());
+		order.setAddress(address);
+		Date dt = conveStringToDateTime(time, date);
+		System.out.println("date: "+dt +" :date");
+		order.setDeliveryDateTime(dt);
+		em.persist(order);
 		if(address.getId() == 0) {
 			em.persist(address);
 		}
@@ -186,16 +193,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 			OrderHasItems orderHas = new OrderHasItems();
 			orderHas.setCount(c.getCount());
 			orderHas.setItem(c.getItem());
+			orderHas.setOrder(order);
+			em.persist(orderHas);
 			orderHasList.add(orderHas);
 		}
-		Order order = new Order();
-		order.setCustomer(cart.getCustomer());
-		order.setAddress(address);
 		order.setOrderHasItemsList(orderHasList);
-		Date dt = conveStringToDateTime(time, date);
-		System.out.println("date: "+dt +" :date");
-		order.setDeliveryDateTime(dt);
-		em.persist(order);
 		emptyCart(cart);
 	}
 	
