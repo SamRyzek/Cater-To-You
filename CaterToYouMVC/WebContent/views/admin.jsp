@@ -17,51 +17,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Admin Control</title>
 </head>
-<style>
-ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #333;
-}
-
-li {
-	float: left;
-	border-right: 1px solid #bbb;
-}
-
-li a {
-	display: block;
-	color: white;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-}
-
-li a:hover {
-	background-color: #111;
-}
-
-html {
-	background-image: url("css/food2.jpg");
-	background-repeat: no-repeat;
-	background-origin: inheret;
-	background-size: 100%;
-	background-color: darkblue;
-}
-
-body {
-	background-color: darkblue;
-	border: 2px solid white;
-	color: white;
-}
-
-.stuff {
-	min-width: 200px
-}
-</style>
 <body>
+	<div id="nav-bar">
+		<ul>
+			<li style="float: right"><a href="loggOut.do">Log Out</a></li>
+		</ul>
+	</div>
+	<div id="main-section">
+	
 	<c:if test="${not empty companies}">
 		<form action="AdminUpdateCompany.do" method="GET">
 			Company: <select name="companyID">
@@ -104,6 +67,7 @@ body {
 			</select> <input type="submit" value="Make Company Active" />
 		</form>
 	</c:if>
+	</div>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>

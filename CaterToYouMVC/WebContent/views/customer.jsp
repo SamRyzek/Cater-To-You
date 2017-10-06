@@ -14,79 +14,39 @@
 <link href="css/style.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Cater To You</title>
-<style>
-ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #333;
-}
-
-li {
-	float: left;
-	border-right: 1px solid #bbb;
-}
-
-li a {
-	display: block;
-	color: white;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-}
-
-li a:hover {
-	background-color: #111;
-}
-
-html {
-	background-image: url("css/food2.jpg");
-	background-repeat: no-repeat;
-	background-origin: inheret;
-	background-size: 100%;
-	background-color: blue;
-}
-
-body {
-	background-color: darkblue;
-	border: 2px solid white;
-	color: white;
-}
+<style type="text/css">
+	.picture-profile {
+		width:300px;
+		height:auto;
+	}
 </style>
 </head>
 <body class="active">
-	<div>
+	<div id="nav-bar">
 		<ul>
-			<li><form action="Shop.do" method="GET">
-					<a href="Shop.do">Shop</a>
-				</form></li>
-
-
-			<li><form
-					action="UpdateCustomer.do?customerId=${user.customer.id}"
-					method="GET">
-					<a href="UpdateCustomer.do?customerId=${user.customer.id}">Update</a>
-				</form></li>
-
-			<li><form action="OrderHistory.do" method="GET">
-					<a href="OrderHistory.do">Go To History</a>
-				</form></li>
-
-			<li><form action="showCart.do" method="GET">
-					<a href="showCart.do">Go To Cart</a>
-				</form></li>
+			<li><a href="Shop.do">Shop</a></li>
+			<li><a href="UpdateCustomer.do?customerId=${user.customer.id}">Update</a></li>
+			<li><a href="OrderHistory.do">Go To History</a></li>
+			<li><a href="showCart.do">Go To Cart</a></li>
 			<li style="float: right"><a href="loggOut.do">Log Out</a></li>
 		</ul>
 	</div>
-	<div>
-		<p>${user.firstName}${user.lastName}</p>
-		<p>Email: ${user.email}</p>
-		<p>${address.street}${address.street2}</p>
-		${address.city} ${address.state} ${address.zip}
-		<p>
-			<img alt="picture" src="${user.customer.image.imageUrl}">
-		</p>
+	<div id="main-section">
+		<div class="row">
+			<div class="col-4">
+				<p>${user.firstName}${user.lastName}</p>
+				<p>Email: ${user.email}</p>
+				<p>${address.street}${address.street2}</p>
+				${address.city} ${address.state} ${address.zip}
+			</div>
+			<div class="col-4">
+				<p>
+					<img alt="picture" class="picture-profile" src="${user.customer.image.imageUrl}">
+				</p>
+			</div>
+		</div>
+
+
 
 	</div>
 

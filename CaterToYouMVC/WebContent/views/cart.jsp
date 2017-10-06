@@ -16,52 +16,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Cart</title>
 </head>
-<style>
-ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #333;
-}
-
-li {
-	float: left;
-}
-
-li a {
-	display: block;
-	color: white;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-}
-
-li a:hover {
-	background-color: #111;
-}
-
-html {
-	background-image: url("css/food2.jpg");
-	background-repeat: no-repeat;
-	background-origin: inheret;
-	background-size: 100%;
-	background-color: darkblue;
-}
-
-body {
-	background-color: darkblue;
-	border: 2px solid white;
-	color: white;
-}
-</style>
 <body class="active">
+	<div id="nav-bar">
 	<ul>
 		<li><a href="checkout.do">Check Out</a></li>
 		<li style="float: right"><a href="customer.do">Return Home</a></li>
 		<li style="float: right"><a href="loggOut.do">Log Out</a></li>
 
 	</ul>
+	</div>
+	<div id="main-section">
 	<c:choose>
 		<c:when test="${empty cart}">
 			<h3>Your cart is empty</h3>
@@ -106,11 +70,11 @@ body {
 		<p>Sub Total: <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${subTotal}"/>$</p>
 		<p>Tax: <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${tax}"/>$</p>
 		<p>Fee: <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${fee}"/>$</p>
-		<p>Total: <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${tax}"/>$</p>
+		<p>Total: <fmt:formatNumber type="number" maxFractionDigits="2" minFractionDigits="2" value="${total}"/>$</p>
 		</c:otherwise>
 	</c:choose>
 
-
+	</div>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>

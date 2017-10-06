@@ -12,74 +12,35 @@
 <meta name="author" content="">
 <link rel="icon" href="../../../../favicon.ico">
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Order History</title>
 </head>
-<style>
-ul.One {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #333;
-}
-
-ul {
-	
-}
-
-li {
-	float: left;
-}
-
-li a {
-	display: block;
-	color: white;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-}
-
-li a:hover {
-	background-color: #111;
-}
-
-html {
-	background-image: url("css/food2.jpg");
-	background-repeat: no-repeat;
-	background-origin: inheret;
-	background-size: 100%;
-	background-color: darkblue;
-}
-
-body {
-	background-color: darkblue;
-	border: 2px solid white;
-	color: white;
-}
-</style>
 <body class="active">
-	<ul class="One">
-		<li style="float: right"><form action="index.do" method="GET">
-				<a href="index.do">Return Home</a>
-			</form></li>
-		<li style="float: right"><a href="loggOut.do">Log Out</a></li>
-
-	</ul>
-	<br>
-	<ul>
+	<div id="nav-bar">
+		<ul class="One">
+			<li style="float: right"><a href="index.do">Return Home</a></li>
+			<li style="float: right"><a href="loggOut.do">Log Out</a></li>
+		</ul>
+	</div>
+	<div id="main-section">
+	<table>
 		<c:forEach items="${orders}" var="order">
-			<li>${order.id} ${order.deliveryDateTime} ${order.address.street}
+			<tr>
+			<td>${order.id} ${order.deliveryDateTime} ${order.address.street}
 				${order.address.street2} ${order.address.city}
-				${order.address.state} ${order.address.zip}</li>
+				${order.address.state} ${order.address.zip}</td>
+			<td>
 			<form action="OrderInformation.do" method="GET">
 				<input type="hidden" name="orderID" value="${order.id}" /> <input
 					type="hidden" name="companyID" value="${company.id}" /> <input
 					type="submit" value="See Order Items" />
-			</form>
+			</form></td>
+			</tr>
 		</c:forEach>
-	</ul>
-	<br>
+		
+	</table>
+	</div>	
 
 
 	<!-- scripts below -->

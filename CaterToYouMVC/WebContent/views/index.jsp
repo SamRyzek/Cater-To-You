@@ -23,11 +23,6 @@ html {
 	background-color: darkblue;
 }
 
-/* body {
-	background-color: darkblue;
-	border: 2px solid white;
-	color: black;
-} */
 </style>
 
 <div class="modal-dialog">

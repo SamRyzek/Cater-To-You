@@ -7,73 +7,43 @@
 <link href="css/style.css" rel="stylesheet">
 <title>Customer Registration</title>
 </head>
-<style>
-ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #333;
-}
-
-li {
-	float: left;
-	border-right: 1px solid #bbb;
-}
-
-li a {
-	display: block;
-	color: white;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-}
-
-li a:hover {
-	background-color: #111;
-}
-
-html {
-	background-image: url("css/food2.jpg");
-	background-repeat: no-repeat;
-	background-origin: inheret;
-	background-size: 100%;
-	background-color: darkblue;
-}
-
-body {
-	background-color: darkblue;
-	border: 2px solid white;
-	color: white;
-}
-
-.stuff {
-	min-width: 200px
-}
-</style>
-
-
 
 <body>
-
+	<div id="nav-bar">
+		<ul>
+			<li style="float: right"><a href="index.do">Return Home</a></li>
+		</ul>
+	</div>
+	<div id="main-section">
 	<h1>Personal Details</h1>
 	<br>
 	<form action="newUser.do" method="POST">
-
-		First Name: <input type="text" name="firstName"> <br>
-		Last Name: <input type="text" name="lastName"> <br>
-		Username: <input type="text" name="username"> <br>
-		Password: <input type="text" name="password"> <br> Email:
-		<input type="text" name="email"> <br> <input type=submit
-			value="Create Customer Registration">
+		<table>
+			<tr>
+				<td>First Name:</td>
+				<td><input type="text" name="firstName"></td>
+			</tr>
+			<tr>
+				<td>Last Name:</td>
+				<td><input type="text" name="lastName"></td>
+			</tr>
+			<tr>
+				<td>Username:</td>
+				<td><input type="text" name="username"></td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input type="text" name="password"></td>
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td><input type="text" name="email"></td>
+			</tr>
+		</table>
+		  <input type=submit value="Create Customer Registration">
 
 	</form>
-
-	<form action="index.do" method="GET">
-		<input type="button" value="Return to Login">
-	</form>
-
-
+	</div>
 
 </body>
 </html>

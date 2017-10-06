@@ -14,47 +14,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Update "${item.name}"</title>
 </head>
-<style>
-ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #333;
-}
-
-li {
-	float: left;
-	border-right: 1px solid #bbb;
-}
-
-li a {
-	display: block;
-	color: white;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-}
-
-li a:hover {
-	background-color: #111;
-}
-
-html {
-	background-image: url("css/food2.jpg");
-	background-repeat: no-repeat;
-	background-origin: inheret;
-	background-size: 100%;
-	background-color: darkblue;
-}
-
-body {
-	background-color: darkblue;
-	border: 2px solid white;
-	color: white;
-}
-</style>
 <body>
+	<div id="nav-bar">
+		<ul>
+			<li style="float: right"><a href="index.do">Return Home</a></li>
+			<li style="float: right"><a href="loggOut.do">Log Out</a></li>
+		</ul>
+	</div>
+	<div id="main-section">
 	<form action="editItem.do" method="POST">
 		Name: <input type="text" name="name" value="${item.name}" /><br />
 		Calories: <input type="text" name="calories" value="${item.calories}" /><br />
@@ -74,6 +41,7 @@ body {
 	<form action="index.do" method="GET">
 		<input type="submit" value="Return Home" />
 	</form>
+	</div>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>

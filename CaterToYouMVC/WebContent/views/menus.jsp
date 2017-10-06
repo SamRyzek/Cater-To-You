@@ -14,70 +14,48 @@
 <link href="css/style.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Company Selections</title>
-</head>
-<style>
-ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #333;
-}
-
-li {
-	float: left;
-}
-
-li a {
-	display: block;
-	color: white;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-}
-
-li a:hover {
-	background-color: #111;
-}
-
-html {
-	background-image: url("css/food2.jpg");
-	background-repeat: no-repeat;
-	background-origin: inheret;
-	background-size: 100%;
-	background-color: darkblue;
-}
-
-body {
-	background-color: darkblue;
-	border: 2px solid white;
-	color: white;
-}
+<style type="text/css">
+  .comp-img {
+  	width: 70px;
+  	height: auto;
+  }
+ 	td {
+ 	padding:5px;
+ 	}
 </style>
+</head>
 <body class="active">
-	<ul>
-		<li><form action="showCart.do" method="GET">
-				<a href="showCart.do">Go To Cart</a>
-			</form></li>
-		<li style="float: right"><form action="customer.do" method="GET">
-				<a href="customer.do">Return Home</a>
-			</form></li>
-		<li style="float: right"><a href="loggOut.do">Log Out</a></li>
-	</ul>
-
+	<div id="nav-bar">
+		<ul>
+			<li style="float: right"><a href="index.do">Return Home</a></li>
+			<li style="float: right"><a href="loggOut.do">Log Out</a></li>
+		</ul>
+	</div>
+	<div id="main-section">
+	<table>
 	<c:forEach items="${allCompanies}" var="company">
-				${company.name}
+		<tr>
+			<td>
+				${company.name}<br>
 				${company.address.street}
 				${company.address.street2}
 				${copmany.address.city}
 				${company.address.state}
 				${company.address.zip}
-		 <form action="ShopHere.do" method="GET">
-			<input type="hidden" name="companyId" value="${company.id}" /><br />
-			<input type="submit" value="Shop Here" />
-		</form>
+			<td>
+			<td>
+				<img alt="company pic" class="comp-img" src="${company.image.imageUrl}">
+			</td>
+			<td>
+				 <form action="ShopHere.do" method="GET">
+					<input type="hidden" name="companyId" value="${company.id}" /><br />
+					<input type="submit" value="Shop Here" />
+				</form>
+			</td>
+		</tr>
 	</c:forEach>
-
+	</table>
+	</div>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
