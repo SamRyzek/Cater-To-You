@@ -10,10 +10,10 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="icon" href="../../../../favicon.ico">
-<link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Cater To You</title>
+<<<<<<< HEAD
 <style type="text/css">
 	.picture-profile {
 		width:300px;
@@ -47,20 +47,40 @@
 		</div>
 
 
+=======
+
+</head>
+<body class="main-section">
+	<div>
+		<ul>
+			<li><form action="Shop.do" method="GET">
+					<a href="Shop.do">Shop</a>
+				</form></li>
+			<li><form
+					action="UpdateCustomer.do?customerId=${user.customer.id}"
+					method="GET">
+					<a href="UpdateCustomer.do?customerId=${user.customer.id}">Update</a>
+				</form></li>
+			<li><form action="OrderHistory.do" method="GET">
+					<a href="OrderHistory.do">Go To History</a>
+				</form></li>
+			<li><form action="showCart.do" method="GET">
+					<a href="showCart.do">Go To Cart</a>
+				</form></li>
+			<li style="float: right"><a href="loggOut.do">Log Out</a></li>
+		</ul>
+	</div>
+	<div>
+		<p>${user.firstName}${user.lastName}</p>
+		<p>Email: ${user.email}</p>
+		<p>${address.street}${address.street2}</p>
+		${address.city} ${address.state} ${address.zip}
+		<p class = "Image-container">
+			<img alt="picture" src="${user.customer.image.imageUrl}">
+		</p>
+>>>>>>> b169288a851ede9fd9725c2714c974f9d9b592e4
 
 	</div>
 
-
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
-	<script>
-		window.jQuery
-				|| document.write('<script src="js/jquery.min.js"><\/script>')
-	</script>
-
-	<script src="js/holder.js"></script>
-
-	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
