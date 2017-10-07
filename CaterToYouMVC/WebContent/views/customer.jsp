@@ -13,7 +13,6 @@
 <link href="css/style.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Cater To You</title>
-<<<<<<< HEAD
 <style type="text/css">
 	.picture-profile {
 		width:300px;
@@ -45,42 +44,6 @@
 				</p>
 			</div>
 		</div>
-
-
-=======
-
-</head>
-<body class="main-section">
-	<div>
-		<ul>
-			<li><form action="Shop.do" method="GET">
-					<a href="Shop.do">Shop</a>
-				</form></li>
-			<li><form
-					action="UpdateCustomer.do?customerId=${user.customer.id}"
-					method="GET">
-					<a href="UpdateCustomer.do?customerId=${user.customer.id}">Update</a>
-				</form></li>
-			<li><form action="OrderHistory.do" method="GET">
-					<a href="OrderHistory.do">Go To History</a>
-				</form></li>
-			<li><form action="showCart.do" method="GET">
-					<a href="showCart.do">Go To Cart</a>
-				</form></li>
-			<li style="float: right"><a href="loggOut.do">Log Out</a></li>
-		</ul>
 	</div>
-	<div>
-		<p>${user.firstName}${user.lastName}</p>
-		<p>Email: ${user.email}</p>
-		<p>${address.street}${address.street2}</p>
-		${address.city} ${address.state} ${address.zip}
-		<p class = "Image-container">
-			<img alt="picture" src="${user.customer.image.imageUrl}">
-		</p>
->>>>>>> b169288a851ede9fd9725c2714c974f9d9b592e4
-
-	</div>
-
 </body>
 </html>
